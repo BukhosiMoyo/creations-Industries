@@ -1,4 +1,4 @@
-# DELIVERABLE B — Homepage Copy Blueprint
+j# DELIVERABLE B — Homepage Copy Blueprint
 
 All 11 sections in the exact order defined by PROMPT 0.
 
