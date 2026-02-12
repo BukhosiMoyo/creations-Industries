@@ -1,26 +1,108 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+@plugin "tailwindcss-animate";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+
+  /* Project Tokens */
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-elevated: var(--surface-elevated);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-border: var(--border);
+  --color-border-subtle: var(--border-subtle);
+  --color-ring: var(--ring);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-text: var(--accent-text);
+  --color-glow-accent: var(--glow-accent);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-error: var(--error);
+
+  /* Shadcn Mappings */
+  --color-foreground: var(--text-primary);
+  --color-card: var(--surface);
+  --color-card-foreground: var(--text-primary);
+  --color-popover: var(--surface);
+  --color-popover-foreground: var(--text-primary);
+  --color-primary: var(--accent);
+  --color-primary-foreground: var(--accent-text);
+  --color-secondary: var(--surface-elevated);
+  --color-secondary-foreground: var(--text-primary);
+  --color-muted: var(--surface-elevated);
+  --color-muted-foreground: var(--text-muted);
+  --color-destructive: var(--error);
+  --color-destructive-foreground: var(--accent-text);
+  --color-input: var(--border);
+
+  --radius: 0.625rem;
+
+  /* 
+    Z-INDEX LAYER SYSTEM (STRICT)
+    -----------------------------
+    z-0  to z-5 : Background patterns (DotGrid, LineGrid, Aurora)
+    z-10        : Content (Text, Headings, Images)
+    z-20        : Elevated (Cards, Interactive components)
+    z-30        : Floating (Hero floating elements only)
+    z-50        : Navigation (Header, Sticky Nav)
+    z-60+       : Modals (Dialogs, Mobile Menu)
+  */
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Base Tokens */
+:root {
+  /* Light Mode */
+  --background: hsl(0 0% 98%);
+  --surface: hsl(0 0% 100%);
+  --surface-elevated: hsl(0 0% 97%);
+  --text-primary: hsl(0 0% 10%);
+  --text-secondary: hsl(0 0% 40%);
+  --text-muted: hsl(0 0% 55%);
+  --border: hsl(0 0% 90%);
+  --border-subtle: hsl(0 0% 94%);
+  --ring: hsl(0 0% 20%);
+  /* ... */
+  --accent: hsl(0 72% 51%);
+  --accent-rgb: 220, 40, 40;
+  --accent-hover: hsl(0 72% 45%);
+  /* ... */
+}
+
+.dark {
+  /* Dark Mode */
+  --background: hsl(0 0% 4%);
+  --surface: hsl(0 0% 8%);
+  --surface-elevated: hsl(0 0% 11%);
+  --text-primary: hsl(0 0% 90%);
+  --text-secondary: hsl(0 0% 60%);
+  --text-muted: hsl(0 0% 45%);
+  --border: hsl(0 0% 15%);
+  --border-subtle: hsl(0 0% 12%);
+  --ring: hsl(0 0% 80%);
+  --accent: hsl(0 72% 55%);
+  --accent-rgb: 230, 50, 50;
+  --accent-hover: hsl(0 72% 60%);
+  --accent-text: hsl(0 0% 100%);
+  --glow-accent: hsla(230 60% 60% / 0.15);
+  --success: hsl(142 40% 55%);
+  --warning: hsl(38 80% 60%);
+  --error: hsl(0 60% 55%);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
   }
-}
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  body {
+    @apply bg-background text-text-primary antialiased;
+  }
 }
