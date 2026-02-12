@@ -50,8 +50,8 @@ export async function POST(req: NextRequest) {
             return NextResponse.json({ success: true, lead: updatedLead })
         }
 
-        // Initial Creation (Requires at least fullName and email)
-        if (!data.fullName || !data.email) {
+        // Initial Creation (Requires at least firstName, lastName and email)
+        if (!data.firstName || !data.lastName || !data.email) {
             return NextResponse.json({ error: "Missing required initial fields" }, { status: 400 })
         }
 
@@ -61,6 +61,7 @@ export async function POST(req: NextRequest) {
         const newLead = await prisma.lead.create({
             data: {
                 ...data,
+                fullName: `${data.firstName} ${data.lastName}`,
                 status: LeadStatus.Incomplete,
                 source: LeadSource.Website,
                 priorityTag: Priority.Med,
@@ -81,7 +82,7 @@ export async function POST(req: NextRequest) {
             data: {
                 actorUserId: "SYSTEM", // System generated
                 actionType: "LEAD_INCOMPLETE_CREATE",
-                actionSummary: `Partial lead created for ${data.fullName}`,
+                actionSummary: `Partial lead created for ${data.firstName} ${data.lastName}`,
                 metadata: { leadId: newLead.id }
             }
         })

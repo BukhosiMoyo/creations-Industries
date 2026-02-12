@@ -36,7 +36,8 @@ const STEPS = [
 ]
 
 interface LeadData {
-    fullName: string
+    firstName: string
+    lastName: string
     email: string
     phone: string
     serviceType: string
@@ -58,7 +59,8 @@ export function QuoteWizard({ initialData, resumeToken: _resumeToken }: QuoteWiz
     const [portalToken, setPortalToken] = React.useState<string | null>(null)
 
     const [data, setData] = React.useState<LeadData>({
-        fullName: initialData?.fullName || "",
+        firstName: initialData?.firstName || "",
+        lastName: initialData?.lastName || "",
         email: initialData?.email || "",
         phone: initialData?.phone || "",
         serviceType: initialData?.serviceType || "",
@@ -82,7 +84,7 @@ export function QuoteWizard({ initialData, resumeToken: _resumeToken }: QuoteWiz
         }
 
         // For initial creation, we need name and email
-        if (!leadId && (!currentData.fullName || !currentData.email)) {
+        if (!leadId && (!currentData.firstName || !currentData.lastName || !currentData.email)) {
             return
         }
 
@@ -164,7 +166,8 @@ export function QuoteWizard({ initialData, resumeToken: _resumeToken }: QuoteWiz
                             </p>
                             <SignUpForm
                                 defaultValues={{
-                                    name: data.fullName,
+                                    firstName: data.firstName,
+                                    lastName: data.lastName,
                                     email: data.email
                                 }}
                                 className="w-full"
@@ -246,7 +249,7 @@ export function QuoteWizard({ initialData, resumeToken: _resumeToken }: QuoteWiz
                         {step < 4 ? (
                             <Button
                                 onClick={() => handleStepChange(true)}
-                                disabled={step === 1 && (!data.fullName || !data.email)}
+                                disabled={step === 1 && (!data.firstName || !data.lastName || !data.email)}
                                 className="rounded-[1.25rem] h-12 md:h-14 px-8 md:px-10 font-black uppercase text-[10px] md:text-[11px] tracking-[0.2em] shadow-2xl shadow-accent/25 transition-all active:scale-[0.97] hover:shadow-accent/40 text-white"
                             >
                                 Continue <ChevronRight className="h-4 w-4 ml-2" />
@@ -281,11 +284,20 @@ function PersonalStep({ data, onChange }: PersonalStepProps) {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                    <Label className="text-[10px] uppercase font-black tracking-[0.25em] text-muted-foreground/60 ml-1">Full Name <span className="text-red-500">*</span></Label>
+                    <Label className="text-[10px] uppercase font-black tracking-[0.25em] text-muted-foreground/60 ml-1">First Name <span className="text-red-500">*</span></Label>
                     <Input
-                        placeholder="e.g. Nicolaas van der Merwe"
-                        value={data.fullName}
-                        onChange={(e) => onChange("fullName", e.target.value)}
+                        placeholder="e.g. Nicolaas"
+                        value={data.firstName}
+                        onChange={(e) => onChange("firstName", e.target.value)}
+                        className="h-14 rounded-2xl bg-muted/30 border-2 border-border/40 hover:border-accent/40 focus-visible:ring-2 focus-visible:ring-accent/30 font-medium px-6 text-base transition-all"
+                    />
+                </div>
+                <div className="space-y-2">
+                    <Label className="text-[10px] uppercase font-black tracking-[0.25em] text-muted-foreground/60 ml-1">Last Name <span className="text-red-500">*</span></Label>
+                    <Input
+                        placeholder="e.g. van der Merwe"
+                        value={data.lastName}
+                        onChange={(e) => onChange("lastName", e.target.value)}
                         className="h-14 rounded-2xl bg-muted/30 border-2 border-border/40 hover:border-accent/40 focus-visible:ring-2 focus-visible:ring-accent/30 font-medium px-6 text-base transition-all"
                     />
                 </div>
@@ -442,7 +454,7 @@ function ReviewStep({ data }: { data: LeadData }) {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="bg-muted/20 p-6 rounded-2xl space-y-1 border border-border/40">
                     <span className="text-[10px] font-black uppercase tracking-[0.25em] text-muted-foreground/50">Full Identity</span>
-                    <p className="font-bold tracking-tight text-lg">{data.fullName}</p>
+                    <p className="font-bold tracking-tight text-lg">{data.firstName} {data.lastName}</p>
                 </div>
                 <div className="bg-muted/20 p-6 rounded-2xl space-y-1 border border-border/40">
                     <span className="text-[10px] font-black uppercase tracking-[0.25em] text-muted-foreground/50">Connectivity</span>

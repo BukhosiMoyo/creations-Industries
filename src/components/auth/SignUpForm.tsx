@@ -21,7 +21,8 @@ import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 
 const formSchema = z.object({
-    name: z.string().min(2, "Name must be at least 2 characters"),
+    firstName: z.string().min(2, "First name must be at least 2 characters"),
+    lastName: z.string().min(2, "Last name must be at least 2 characters"),
     email: z.string().email("Invalid email address"),
     password: z.string().min(8, "Password must be at least 8 characters"),
     confirmPassword: z.string(),
@@ -32,7 +33,8 @@ const formSchema = z.object({
 
 interface SignUpFormProps {
     defaultValues?: {
-        name?: string;
+        firstName?: string;
+        lastName?: string;
         email?: string;
     };
     onSuccess?: () => void;
@@ -46,7 +48,8 @@ export function SignUpForm({ defaultValues, onSuccess, className }: SignUpFormPr
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            name: defaultValues?.name || "",
+            firstName: defaultValues?.firstName || "",
+            lastName: defaultValues?.lastName || "",
             email: defaultValues?.email || "",
             password: "",
             confirmPassword: "",
@@ -60,7 +63,8 @@ export function SignUpForm({ defaultValues, onSuccess, className }: SignUpFormPr
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
-                    name: values.name,
+                    firstName: values.firstName,
+                    lastName: values.lastName,
                     email: values.email,
                     password: values.password,
                 }),
@@ -102,19 +106,34 @@ export function SignUpForm({ defaultValues, onSuccess, className }: SignUpFormPr
     return (
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className={`space-y-4 ${className}`}>
-                <FormField
-                    control={form.control}
-                    name="name"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel>Full Name</FormLabel>
-                            <FormControl>
-                                <Input disabled={isLoading} placeholder="John Doe" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                    )}
-                />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <FormField
+                        control={form.control}
+                        name="firstName"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>First Name</FormLabel>
+                                <FormControl>
+                                    <Input disabled={isLoading} placeholder="John" {...field} />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                    <FormField
+                        control={form.control}
+                        name="lastName"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel>Last Name</FormLabel>
+                                <FormControl>
+                                    <Input disabled={isLoading} placeholder="Doe" {...field} />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                </div>
 
                 <FormField
                     control={form.control}

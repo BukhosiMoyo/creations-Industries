@@ -1,25 +1,28 @@
-import { SignUpForm } from "@/components/auth/SignUpForm";
-import Link from "next/link";
+import { SignUpCard } from "@/components/auth/SignUpCard";
+import { LoginRightPanel } from "@/components/auth/LoginRightPanel";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
 
 export default function RegisterPage() {
     return (
-        <div className="flex min-h-screen flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900">
-            <div className="w-full max-w-md space-y-8">
-                <div className="text-center">
-                    <h2 className="mt-6 text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100">
-                        Create your account
-                    </h2>
-                    <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
-                        Or{" "}
-                        <Link href="/login" className="font-medium text-primary hover:text-primary/90">
-                            sign in to your existing account
-                        </Link>
-                    </p>
-                </div>
+        <div className="min-h-screen w-full flex relative">
+            <div className="absolute top-4 right-4 z-50">
+                <ThemeToggle />
+            </div>
+            {/* Left Panel: Signup Form */}
+            <div className="w-full lg:w-1/2 flex items-center justify-center p-4 lg:p-8 bg-background">
+                <div className="w-full max-w-md space-y-8">
+                    {/* Mobile Header Branding (Visible only on small screens) */}
+                    <div className="lg:hidden text-center mb-8">
+                        <h1 className="text-2xl font-bold">Creations Industries</h1>
+                    </div>
 
-                <div className="mt-8 bg-white dark:bg-gray-800 py-8 px-4 shadow sm:rounded-lg sm:px-10">
-                    <SignUpForm />
+                    <SignUpCard />
                 </div>
+            </div>
+
+            {/* Right Panel: Feature Promo (Hidden on mobile) */}
+            <div className="hidden lg:block lg:w-1/2 border-l">
+                <LoginRightPanel />
             </div>
         </div>
     );

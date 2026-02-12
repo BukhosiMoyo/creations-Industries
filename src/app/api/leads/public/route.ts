@@ -5,7 +5,8 @@ import { LeadSource, LeadStatus, LeadUrgency, LeadLocation, LeadBudgetRange, Ser
 import * as z from "zod";
 
 const publicLeadSchema = z.object({
-    fullName: z.string().min(2),
+    firstName: z.string().min(2),
+    lastName: z.string().min(2),
     email: z.string().email(),
     phone: z.string(),
     companyName: z.string().optional(),
@@ -33,7 +34,8 @@ export async function POST(req: NextRequest) {
 
         const lead = await prisma.lead.create({
             data: {
-                ...data,
+                ...data, // firstName, lastName, etc.
+                fullName: `${data.firstName} ${data.lastName}`, // Backward compatibility
                 source: LeadSource.Website,
                 leadScore: score,
                 priorityTag: getPriorityFromScore(score),
