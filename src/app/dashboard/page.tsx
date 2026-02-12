@@ -7,8 +7,8 @@ import { OverviewChart } from "@/components/dashboard/overview-chart"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { format, subDays, startOfDay } from "date-fns"
-// Enum types from Prisma schema
-type RequestStatus = "New" | "AwaitingDocs" | "Processing" | "Completed" | "Cancelled" | "AwaitingReview" | "NeedsMoreInfo";
+import { RequestStatus } from "@prisma/client"
+
 type Priority = "Low" | "Med" | "High" | "Urgent";
 
 async function getDashboardData() {
@@ -24,7 +24,7 @@ async function getDashboardData() {
     ] = await Promise.all([
         prisma.clientCompany.count(),
         prisma.serviceRequest.findMany({
-            where: { status: { not: "Completed" as RequestStatus } },
+            where: { status: { not: RequestStatus.Completed } },
             include: { company: true }
         }),
         prisma.serviceRequest.findMany({

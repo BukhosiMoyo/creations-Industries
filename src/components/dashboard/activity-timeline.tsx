@@ -19,7 +19,7 @@ interface ActivityItem {
     actionSummary: string
     actor: {
         name: string | null
-        email: string
+        email: string | null
         image?: string | null
     }
     createdAt: Date
@@ -75,11 +75,11 @@ export function ActivityTimeline({ activities }: { activities: ActivityItem[] })
                             <div className="flex items-center gap-2">
                                 <Avatar className="h-5 w-5 border border-border">
                                     <AvatarFallback className="text-[8px] font-bold">
-                                        {activity.actor.name?.[0] || activity.actor.email[0]}
+                                        {activity.actor.name?.[0] || activity.actor.email?.[0] || "?"}
                                     </AvatarFallback>
                                 </Avatar>
                                 <span className="text-xs text-muted-foreground font-medium">
-                                    {activity.actor.name || activity.actor.email}
+                                    {activity.actor.name || activity.actor.email || "Unknown User"}
                                 </span>
                             </div>
                         </div>

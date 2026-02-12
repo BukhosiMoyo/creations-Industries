@@ -14,13 +14,14 @@ const contactSchema = z.object({
 
 export async function GET(
     req: NextRequest,
-    { params }: { params: { id: string } }
+    { params }: { params: Promise<{ id: string }> }
 ) {
     try {
         await requireAuth();
+        const { id } = await params;
 
         const contacts = await prisma.clientContact.findMany({
-            where: { companyId: params.id },
+            where: { companyId: id },
             orderBy: { isPrimary: "desc" },
         });
 
@@ -32,17 +33,18 @@ export async function GET(
 
 export async function POST(
     req: NextRequest,
-    { params }: { params: { id: string } }
+    { params }: { params: Promise<{ id: string }> }
 ) {
     try {
         await requireAuth();
+        const { id } = await params;
         const body = await req.json();
         const data = contactSchema.parse(body);
 
         // If setting as primary, unset others for this company
         if (data.isPrimary) {
             await prisma.clientContact.updateMany({
-                where: { companyId: params.id },
+                where: { companyId: id },
                 data: { isPrimary: false },
             });
         }
@@ -50,12 +52,12 @@ export async function POST(
         const contact = await prisma.clientContact.create({
             data: {
                 ...data,
-                companyId: params.id,
+                companyId: id,
             },
         });
 
         await logActivity({
-            companyId: params.id,
+            companyId: id,
             actionType: "CONTACT_CREATE",
             actionSummary: `Added contact ${contact.fullName} to company`,
             metadata: { contactId: contact.id },

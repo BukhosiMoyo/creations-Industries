@@ -7,11 +7,12 @@ import { prisma } from "@/lib/prisma"
  */
 export async function GET(
     req: NextRequest,
-    { params }: { params: { token: string } }
+    { params }: { params: Promise<{ token: string }> }
 ) {
     try {
+        const { token } = await params
         const lead = await prisma.lead.findUnique({
-            where: { resumeToken: params.token },
+            where: { resumeToken: token },
             select: {
                 id: true,
                 fullName: true,

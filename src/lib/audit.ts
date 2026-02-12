@@ -1,6 +1,7 @@
 import { prisma } from "./prisma";
 import { getServerSession } from "next-auth";
 import { authOptions } from "./auth";
+import { Prisma } from "@prisma/client";
 
 export async function logActivity({
     companyId,
@@ -31,7 +32,7 @@ export async function logActivity({
             serviceRequestId,
             actionType,
             actionSummary,
-            metadata: metadata || {},
+            metadata: (metadata || {}) as any,
         },
     });
 }

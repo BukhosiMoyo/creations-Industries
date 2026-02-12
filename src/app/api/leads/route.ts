@@ -79,7 +79,6 @@ export async function POST(req: NextRequest) {
         });
 
         await logActivity({
-            actorUserId: user.id,
             actionType: "LEAD_CREATE",
             actionSummary: `Created lead: ${data.fullName}`,
             metadata: { leadId: lead.id },

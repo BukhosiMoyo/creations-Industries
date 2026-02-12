@@ -22,13 +22,14 @@ const companyUpdateSchema = z.object({
 
 export async function GET(
     req: NextRequest,
-    { params }: { params: { id: string } }
+    { params }: { params: Promise<{ id: string }> }
 ) {
     try {
         await requireAuth();
+        const { id } = await params;
 
         const company = await prisma.clientCompany.findUnique({
-            where: { id: params.id },
+            where: { id },
             include: {
                 contacts: true,
                 serviceRequests: {
@@ -57,15 +58,16 @@ export async function GET(
 
 export async function PATCH(
     req: NextRequest,
-    { params }: { params: { id: string } }
+    { params }: { params: Promise<{ id: string }> }
 ) {
     try {
         await requireAuth();
+        const { id } = await params;
         const body = await req.json();
         const data = companyUpdateSchema.parse(body);
 
         const company = await prisma.clientCompany.update({
-            where: { id: params.id },
+            where: { id },
             data,
         });
 
@@ -88,19 +90,20 @@ export async function PATCH(
 
 export async function DELETE(
     req: NextRequest,
-    { params }: { params: { id: string } }
+    { params }: { params: Promise<{ id: string }> }
 ) {
     try {
         await requireAuth();
+        const { id } = await params;
 
         const company = await prisma.clientCompany.delete({
-            where: { id: params.id },
+            where: { id },
         });
 
         await logActivity({
             actionType: "COMPANY_DELETE",
             actionSummary: `Deleted company: ${company.legalName}`,
-            metadata: { id: params.id, legalName: company.legalName },
+            metadata: { id, legalName: company.legalName },
         });
 
         return NextResponse.json({ message: "Company deleted" });

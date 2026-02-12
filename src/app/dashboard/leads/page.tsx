@@ -27,6 +27,7 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { LeadsTable } from "@/components/dashboard/leads/leads-table"
 import { LeadsFilters } from "@/components/dashboard/leads/leads-filters"
 import { motion } from "framer-motion"
+import { cn } from "@/lib/utils"
 
 export default function LeadsPage() {
     const [view, setView] = React.useState<"list" | "grid">("list")

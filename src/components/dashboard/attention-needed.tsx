@@ -14,7 +14,7 @@ interface AttentionItem {
     serviceType: string
     dueDate?: Date
     ageInStage?: string
-    priority: "High" | "Medium" | "Low"
+    priority: "High" | "Med" | "Low" | "Urgent"
 }
 
 export function AttentionNeeded({ items }: { items: AttentionItem[] }) {
@@ -66,7 +66,7 @@ export function AttentionNeeded({ items }: { items: AttentionItem[] }) {
                         <Badge className={cn(
                             "text-[10px] font-bold uppercase tracking-wider",
                             item.priority === "High" ? "bg-red-500 text-white" :
-                                item.priority === "Medium" ? "bg-amber-500 text-white" : "bg-accent text-white"
+                                item.priority === "Med" ? "bg-amber-500 text-white" : "bg-accent text-white"
                         )}>
                             {item.priority}
                         </Badge>
