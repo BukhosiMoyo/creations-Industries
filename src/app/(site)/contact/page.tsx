@@ -28,7 +28,7 @@ export default function ContactPage() {
                                 </div>
                                 <div>
                                     <h3 className="font-semibold text-lg">Email Us</h3>
-                                    <p className="text-text-secondary">hello@creations.co.za</p>
+                                    <p className="text-text-secondary">info@creations.africa</p>
                                     <p className="text-text-muted text-sm mt-1">We typically reply within 24 hours.</p>
                                 </div>
                             </div>
