@@ -477,3 +477,14 @@ model XeroSyncCursor {
 
   connection XeroConnection @relation(fields: [xeroConnectionId], references: [id], onDelete: Cascade)
 }
+
+model EmailTemplate {
+  id            String   @id @default(cuid())
+  key           String   @unique
+  subject       String?
+  preheader     String?
+  body          Json?    // Stores structured content or overrides
+  lastEditedBy  String?  // User ID or name
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}

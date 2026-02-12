@@ -72,25 +72,25 @@ export function MainNav() {
                         </NavigationMenuContent>
                     </NavigationMenuItem>
                     <NavigationMenuItem>
-                        <Link href="/about" legacyBehavior passHref>
-                            <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "bg-transparent")}>
+                        <NavigationMenuLink asChild>
+                            <Link href="/about" className={cn(navigationMenuTriggerStyle(), "bg-transparent")}>
                                 About
-                            </NavigationMenuLink>
-                        </Link>
+                            </Link>
+                        </NavigationMenuLink>
                     </NavigationMenuItem>
                     <NavigationMenuItem>
-                        <Link href="/how-it-works" legacyBehavior passHref>
-                            <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "bg-transparent")}>
+                        <NavigationMenuLink asChild>
+                            <Link href="/how-it-works" className={cn(navigationMenuTriggerStyle(), "bg-transparent")}>
                                 Process
-                            </NavigationMenuLink>
-                        </Link>
+                            </Link>
+                        </NavigationMenuLink>
                     </NavigationMenuItem>
                     <NavigationMenuItem>
-                        <Link href="/industries" legacyBehavior passHref>
-                            <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "bg-transparent")}>
+                        <NavigationMenuLink asChild>
+                            <Link href="/industries" className={cn(navigationMenuTriggerStyle(), "bg-transparent")}>
                                 Industries
-                            </NavigationMenuLink>
-                        </Link>
+                            </Link>
+                        </NavigationMenuLink>
                     </NavigationMenuItem>
                 </NavigationMenuList>
             </NavigationMenu>
