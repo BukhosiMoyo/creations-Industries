@@ -101,7 +101,10 @@ export function InteractiveGridPattern({
                             height={height - 1}
                             x={hoveredCell.x * width + 1}
                             y={hoveredCell.y * height + 1}
-                            className="fill-gray-200/50 dark:fill-gray-700/50 stroke-gray-400 dark:stroke-gray-600"
+                            className={cn(
+                                "fill-red-500/20 dark:fill-red-500/20 stroke-red-500/50 dark:stroke-red-500/50",
+                                classNameSquare
+                            )}
                             strokeWidth={1}
                             initial={{ opacity: 0, scale: 0.8 }}
                             animate={{ opacity: 1, scale: 1 }}
