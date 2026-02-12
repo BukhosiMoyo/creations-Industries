@@ -8,14 +8,9 @@ export function SiteFooter() {
             <Container className="py-12 md:py-16">
                 <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
                     <div>
-                        <Link href="/" className="inline-block mb-4">
-                            <Image
-                                src="/logo-dark.png"
-                                alt="Creations"
-                                width={160}
-                                height={46}
-                                className="h-9 w-auto object-contain"
-                            />
+                        <Link href="/" className="flex items-center gap-2 mb-4 group">
+                            <div className="h-8 w-8 rounded-lg bg-accent flex items-center justify-center text-white font-black italic shadow-lg shadow-accent/20 group-hover:scale-110 transition-transform">C</div>
+                            <span className="font-black tracking-tighter text-xl uppercase italic">Creations</span>
                         </Link>
                         <p className="text-sm text-text-secondary max-w-xs">
                             Clear, structured accounting and compliance for South African businesses.
