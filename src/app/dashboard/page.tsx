@@ -9,6 +9,8 @@ import { Button } from "@/components/ui/button"
 import { format, subDays, startOfDay } from "date-fns"
 import { RequestStatus } from "@prisma/client"
 
+export const dynamic = 'force-dynamic'
+
 type Priority = "Low" | "Med" | "High" | "Urgent";
 
 async function getDashboardData() {
