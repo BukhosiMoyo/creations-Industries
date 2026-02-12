@@ -10,13 +10,8 @@ import {
     Loader2,
     Shield,
     Upload,
-    Building2,
-    User,
-    FileCheck
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Progress } from "@/components/ui/progress"
-import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import {
@@ -30,12 +25,13 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Textarea } from "@/components/ui/textarea"
 import { cn } from "@/lib/utils"
 import { PortalUploadZone } from "@/components/leads/portal-upload-zone"
+import { QuoteFormLayout } from "@/components/forms/quote-form-layout"
 
 const STEPS = [
-    { id: 1, title: "Personal", icon: User },
-    { id: 2, title: "Business", icon: Building2 },
-    { id: 3, title: "Documents", icon: Upload },
-    { id: 4, title: "Review", icon: FileCheck },
+    { id: 1, title: "Personal Details", description: "Who are you?" },
+    { id: 2, title: "Business Profile", description: "What do you do?" },
+    { id: 3, title: "Documents", description: "Insight Vault" },
+    { id: 4, title: "Review", description: "Final Check" },
 ]
 
 interface LeadData {
@@ -140,143 +136,122 @@ export function QuoteWizard({ initialData, resumeToken: _resumeToken }: QuoteWiz
         }
     }
 
+    const currentStepInfo = STEPS.find(s => s.id === step)
+
     if (isSuccess) {
         return (
-            <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="text-center space-y-6"
-            >
-                <div className="h-24 w-24 bg-accent/10 rounded-full flex items-center justify-center mx-auto shadow-xl shadow-accent/5">
-                    <CheckCircle2 className="h-12 w-12 text-accent" />
-                </div>
-                <div className="space-y-4">
-                    <h2 className="text-4xl font-black tracking-tight">Request Received!</h2>
-                    <p className="text-muted-foreground text-lg max-w-md mx-auto leading-relaxed">
-                        Excellent. We&apos;ve received your details and our team is already reviewing them. Expect a call within 2-4 business hours.
-                    </p>
-                </div>
-                <div className="pt-8">
-                    <Button onClick={() => window.location.href = "/"} size="lg" className="rounded-2xl h-14 px-10 font-black uppercase text-[11px] tracking-[0.2em] shadow-2xl shadow-accent/20">
-                        View Dashboard preview
-                    </Button>
-                </div>
-            </motion.div>
+            <QuoteFormLayout steps={STEPS.map(s => ({ ...s, isCompleted: true, isActive: false }))} currentStep={4}>
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="flex flex-col items-center justify-center min-h-[50vh] text-center space-y-6"
+                >
+                    <div className="h-24 w-24 bg-accent/10 rounded-full flex items-center justify-center mx-auto shadow-xl shadow-accent/5">
+                        <CheckCircle2 className="h-12 w-12 text-accent" />
+                    </div>
+                    <div className="space-y-4">
+                        <h2 className="text-4xl font-black tracking-tight">Request Received!</h2>
+                        <p className="text-muted-foreground text-lg max-w-md mx-auto leading-relaxed">
+                            Excellent. We&apos;ve received your details and our team is already reviewing them. Expect a call within 2-4 business hours.
+                        </p>
+                    </div>
+                    <div className="pt-8">
+                        <Button onClick={() => window.location.href = "/"} size="lg" className="rounded-2xl h-14 px-10 font-black uppercase text-[11px] tracking-[0.2em] shadow-2xl shadow-accent/20">
+                            View Dashboard preview
+                        </Button>
+                    </div>
+                </motion.div>
+            </QuoteFormLayout>
         )
     }
 
     return (
-        <Card className="border-none bg-card/60 backdrop-blur-3xl shadow-[0_48px_96px_-24px_rgba(0,0,0,0.12)] overflow-hidden rounded-[3rem] ring-1 ring-border/50">
-            <CardContent className="p-0 flex flex-col md:flex-row min-h-[650px]">
-                {/* Left Side: Stepper */}
-                <div className="md:w-[320px] bg-accent/[0.02] border-r border-border/40 p-12 hidden md:flex flex-col justify-between">
-                    <div className="space-y-12">
-                        <div className="flex items-center gap-4">
-                            <div className="h-10 w-10 rounded-xl bg-accent flex items-center justify-center text-white font-black italic shadow-xl shadow-accent/30 text-lg">C</div>
-                            <span className="font-black tracking-tighter text-xl uppercase italic">Creations</span>
-                        </div>
-
-                        <div className="space-y-8">
-                            {STEPS.map((s) => (
-                                <div key={s.id} className="flex items-center gap-5 group">
-                                    <div className={cn(
-                                        "h-12 w-12 rounded-2xl flex items-center justify-center border-2 transition-all duration-500",
-                                        step > s.id ? "bg-accent border-accent text-white" :
-                                            step === s.id ? "border-accent text-accent shadow-xl shadow-accent/10 scale-105" :
-                                                "border-muted text-muted-foreground opacity-30 group-hover:opacity-60"
-                                    )}>
-                                        {step > s.id ? <CheckCircle2 className="h-6 w-6" /> : <s.icon className="h-6 w-6" />}
-                                    </div>
-                                    <div className="flex flex-col">
-                                        <span className={cn(
-                                            "text-[10px] font-black uppercase tracking-[0.25em] leading-none mb-1.5",
-                                            step === s.id ? "text-accent" : "text-muted-foreground/50"
-                                        )}>Step 0{s.id}</span>
-                                        <span className={cn(
-                                            "font-black text-sm tracking-tight",
-                                            step === s.id ? "text-foreground" : "text-muted-foreground/60"
-                                        )}>{s.title}</span>
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
+        <QuoteFormLayout
+            steps={STEPS.map(s => ({
+                ...s,
+                isCompleted: step > s.id,
+                isActive: step === s.id
+            }))}
+            currentStep={step}
+            isLoading={isSaving}
+        >
+            <div className="flex flex-col h-full min-h-[calc(100vh-12rem)]">
+                {/* Header */}
+                <div className="mb-8 space-y-2">
+                    <div className="flex items-center gap-3 text-muted-foreground/60 text-[10px] font-black uppercase tracking-[0.25em]">
+                        <span>Step 0{step}</span>
+                        <span>/</span>
+                        <span>04</span>
                     </div>
-
-                    <div className="p-8 bg-accent/[0.04] rounded-[2rem] space-y-4 border border-accent/10">
-                        <div className="flex items-center gap-3 text-accent">
-                            <Shield className="h-5 w-5" />
-                            <span className="text-[10px] font-black uppercase tracking-[0.2em]">End-to-End Secure</span>
-                        </div>
-                        <p className="text-[11px] text-muted-foreground leading-relaxed font-bold opacity-80 uppercase tracking-wide">
-                            Your fiscal data remains private & encrypted at all times.
-                        </p>
-                    </div>
+                    <h1 className="text-3xl md:text-5xl font-black tracking-tight text-foreground">
+                        {currentStepInfo?.title}
+                    </h1>
+                    {currentStepInfo?.description && (
+                        <p className="text-lg text-muted-foreground font-medium">{currentStepInfo.description}</p>
+                    )}
                 </div>
 
-                {/* Right Side: Form Panel */}
-                <div className="flex-1 flex flex-col">
-                    {/* Top Mobile Stepper */}
-                    <div className="md:hidden p-8 border-b border-border/40 flex justify-between items-center bg-card/40">
-                        <span className="text-[10px] font-black uppercase tracking-[0.2em] text-accent">Step {step} of 4</span>
-                        <Progress value={(step / 4) * 100} className="w-24 h-1.5" />
-                    </div>
-
-                    <div className="flex-1 p-8 md:p-16 overflow-y-auto max-h-[75vh] custom-scrollbar">
-                        <AnimatePresence mode="wait">
-                            <motion.div
-                                key={step}
-                                initial={{ opacity: 0, x: 30, filter: "blur(10px)" }}
-                                animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-                                exit={{ opacity: 0, x: -30, filter: "blur(10px)" }}
-                                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                                className="space-y-10"
-                            >
-                                {step === 1 && <PersonalStep data={data} onChange={handleChange} />}
-                                {step === 2 && <BusinessStep data={data} onChange={handleChange} />}
-                                {step === 3 && <DocumentStep portalToken={portalToken || "new"} />}
-                                {step === 4 && <ReviewStep data={data} />}
-                            </motion.div>
-                        </AnimatePresence>
-                    </div>
-
-                    {/* Navigation Footer */}
-                    <div className="p-10 md:p-16 pt-0 flex items-center justify-between mt-auto">
-                        <Button
-                            variant="ghost"
-                            onClick={() => handleStepChange(false)}
-                            disabled={step === 1 || isSaving}
-                            className={cn("rounded-[1.25rem] h-14 px-8 font-black uppercase text-[11px] tracking-[0.2em] text-muted-foreground/60 hover:text-foreground transition-all active:scale-95", step === 1 && "invisible")}
+                {/* Step Content */}
+                <div className="flex-1">
+                    <AnimatePresence mode="wait">
+                        <motion.div
+                            key={step}
+                            initial={{ opacity: 0, x: 20, filter: "blur(10px)" }}
+                            animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+                            exit={{ opacity: 0, x: -20, filter: "blur(10px)" }}
+                            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                            className="space-y-10 pb-12"
                         >
-                            <ChevronLeft className="h-4 w-4 mr-2" /> back
-                        </Button>
+                            {step === 1 && <PersonalStep data={data} onChange={handleChange} />}
+                            {step === 2 && <BusinessStep data={data} onChange={handleChange} />}
+                            {step === 3 && <DocumentStep portalToken={portalToken || "new"} />}
+                            {step === 4 && <ReviewStep data={data} />}
+                        </motion.div>
+                    </AnimatePresence>
+                </div>
 
-                        <div className="flex items-center gap-6">
-                            {isSaving && (
-                                <div className="flex items-center gap-3 text-[10px] font-black text-accent uppercase tracking-[0.25em] animate-pulse">
-                                    <Loader2 className="h-4 w-4 animate-spin" /> Saving
-                                </div>
-                            )}
-                            {step < 4 ? (
-                                <Button
-                                    onClick={() => handleStepChange(true)}
-                                    disabled={step === 1 && (!data.fullName || !data.email)}
-                                    className="rounded-[1.25rem] h-14 px-10 font-black uppercase text-[11px] tracking-[0.2em] shadow-2xl shadow-accent/25 transition-all active:scale-[0.97] hover:shadow-accent/40"
-                                >
-                                    Continue <ChevronRight className="h-4 w-4 ml-2" />
-                                </Button>
-                            ) : (
-                                <Button
-                                    onClick={onFinalSubmit}
-                                    className="rounded-[1.25rem] h-14 px-12 font-black uppercase text-[11px] tracking-[0.2em] bg-accent hover:bg-accent/90 shadow-2xl shadow-accent/30 transition-all active:scale-[0.97]"
-                                >
-                                    Review & Complete <ArrowRight className="h-4 w-4 ml-2" />
-                                </Button>
-                            )}
+                {/* Navigation Footer */}
+                <div className="flex items-center justify-between pt-8 border-t border-border/40 mt-auto">
+                    <Button
+                        variant="ghost"
+                        onClick={() => handleStepChange(false)}
+                        disabled={step === 1 || isSaving}
+                        className={cn("rounded-[1.25rem] h-12 px-6 font-black uppercase text-[10px] tracking-[0.2em] text-muted-foreground/60 hover:text-foreground transition-all active:scale-95", step === 1 && "invisible")}
+                    >
+                        <ChevronLeft className="h-4 w-4 mr-2" /> back
+                    </Button>
+
+                    <div className="flex items-center gap-4 md:gap-6">
+                        <div className="hidden md:flex text-[10px] font-black uppercase tracking-[0.2em] text-muted-foreground/40">
+                            Autosaving...
                         </div>
+
+                        {isSaving && (
+                            <div className="flex items-center gap-2 text-[10px] font-black text-accent uppercase tracking-[0.25em] animate-pulse">
+                                <Loader2 className="h-3 w-3 animate-spin" /> <span className="hidden sm:inline">Saving</span>
+                            </div>
+                        )}
+
+                        {step < 4 ? (
+                            <Button
+                                onClick={() => handleStepChange(true)}
+                                disabled={step === 1 && (!data.fullName || !data.email)}
+                                className="rounded-[1.25rem] h-12 md:h-14 px-8 md:px-10 font-black uppercase text-[10px] md:text-[11px] tracking-[0.2em] shadow-2xl shadow-accent/25 transition-all active:scale-[0.97] hover:shadow-accent/40"
+                            >
+                                Continue <ChevronRight className="h-4 w-4 ml-2" />
+                            </Button>
+                        ) : (
+                            <Button
+                                onClick={onFinalSubmit}
+                                className="rounded-[1.25rem] h-12 md:h-14 px-10 md:px-12 font-black uppercase text-[10px] md:text-[11px] tracking-[0.2em] bg-accent hover:bg-accent/90 shadow-2xl shadow-accent/30 transition-all active:scale-[0.97]"
+                            >
+                                Review & Complete <ArrowRight className="h-4 w-4 ml-2" />
+                            </Button>
+                        )}
                     </div>
                 </div>
-            </CardContent>
-        </Card>
+            </div>
+        </QuoteFormLayout>
     )
 }
 
@@ -287,74 +262,74 @@ interface PersonalStepProps {
 
 function PersonalStep({ data, onChange }: PersonalStepProps) {
     return (
-        <div className="space-y-10">
-            <div className="space-y-3">
-                <h2 className="text-4xl font-black tracking-tight leading-tight">Secure your<br />accounting partner.</h2>
-                <p className="text-muted-foreground text-lg">Start by sharing your primary contact details.</p>
+        <div className="space-y-8 animate-in fade-in zoom-in-95 duration-500">
+            <div className="space-y-2">
+                <Label className="text-xl font-bold tracking-tight">Contact Information</Label>
+                <p className="text-sm text-muted-foreground">We need these details to create your secure portal.</p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-4">
-                <div className="space-y-3">
-                    <Label className="text-[10px] uppercase font-black tracking-[0.25em] text-muted-foreground/60 ml-2">Full Name</Label>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                    <Label className="text-[10px] uppercase font-black tracking-[0.25em] text-muted-foreground/60 ml-1">Full Name</Label>
                     <Input
                         placeholder="e.g. Nicolaas van der Merwe"
                         value={data.fullName}
                         onChange={(e) => onChange("fullName", e.target.value)}
-                        className="h-16 rounded-[1.25rem] bg-muted/30 border-none shadow-none focus-visible:ring-2 focus-visible:ring-accent/30 font-black px-8 text-lg transition-all"
+                        className="h-14 rounded-2xl bg-muted/30 border-2 border-border/40 hover:border-accent/40 focus-visible:ring-2 focus-visible:ring-accent/30 font-medium px-6 text-base transition-all"
                     />
                 </div>
-                <div className="space-y-3">
-                    <Label className="text-[10px] uppercase font-black tracking-[0.25em] text-muted-foreground/60 ml-2">Work Email</Label>
+                <div className="space-y-2">
+                    <Label className="text-[10px] uppercase font-black tracking-[0.25em] text-muted-foreground/60 ml-1">Work Email</Label>
                     <Input
                         type="email"
                         placeholder="name@company.co.za"
                         value={data.email}
                         onChange={(e) => onChange("email", e.target.value)}
-                        className="h-16 rounded-[1.25rem] bg-muted/30 border-none shadow-none focus-visible:ring-2 focus-visible:ring-accent/30 font-black px-8 text-lg transition-all"
+                        className="h-14 rounded-2xl bg-muted/30 border-2 border-border/40 hover:border-accent/40 focus-visible:ring-2 focus-visible:ring-accent/30 font-medium px-6 text-base transition-all"
                     />
                 </div>
-                <div className="space-y-3">
-                    <Label className="text-[10px] uppercase font-black tracking-[0.25em] text-muted-foreground/60 ml-2">Mobile Number</Label>
+                <div className="space-y-2">
+                    <Label className="text-[10px] uppercase font-black tracking-[0.25em] text-muted-foreground/60 ml-1">Mobile Number</Label>
                     <Input
                         placeholder="+27 82 000 0000"
                         value={data.phone}
                         onChange={(e) => onChange("phone", e.target.value)}
-                        className="h-16 rounded-[1.25rem] bg-muted/30 border-none shadow-none focus-visible:ring-2 focus-visible:ring-accent/30 font-black px-8 text-lg transition-all"
+                        className="h-14 rounded-2xl bg-muted/30 border-2 border-border/40 hover:border-accent/40 focus-visible:ring-2 focus-visible:ring-accent/30 font-medium px-6 text-base transition-all"
                     />
                 </div>
-                <div className="space-y-3">
-                    <Label className="text-[10px] uppercase font-black tracking-[0.25em] text-muted-foreground/60 ml-2">Objective</Label>
+                <div className="space-y-2">
+                    <Label className="text-[10px] uppercase font-black tracking-[0.25em] text-muted-foreground/60 ml-1">Objective</Label>
                     <Select value={data.serviceType} onValueChange={(v) => onChange("serviceType", v)}>
-                        <SelectTrigger className="h-16 rounded-[1.25rem] bg-muted/30 border-none shadow-none focus-visible:ring-2 focus-visible:ring-accent/30 font-black px-8 text-lg transition-all">
+                        <SelectTrigger className="h-14 rounded-2xl bg-muted/30 border-2 border-border/40 hover:border-accent/40 focus-visible:ring-2 focus-visible:ring-accent/30 font-medium px-6 text-base transition-all">
                             <SelectValue placeholder="What do you need?" />
                         </SelectTrigger>
-                        <SelectContent className="rounded-[1.25rem] border-border/40 p-2 shadow-2xl">
-                            <SelectItem value="Bookkeeping" className="rounded-xl font-bold py-3">Monthly Bookkeeping</SelectItem>
-                            <SelectItem value="Accounting" className="rounded-xl font-bold py-3">Annual Financials</SelectItem>
-                            <SelectItem value="Tax" className="rounded-xl font-bold py-3">Tax Compliance</SelectItem>
-                            <SelectItem value="Payroll" className="rounded-xl font-bold py-3">Payroll System</SelectItem>
-                            <SelectItem value="CIPC" className="rounded-xl font-bold py-3">CIPC Secretarial</SelectItem>
+                        <SelectContent className="rounded-xl border-border/40 p-2 shadow-2xl">
+                            <SelectItem value="Bookkeeping" className="rounded-lg font-medium py-2.5">Monthly Bookkeeping</SelectItem>
+                            <SelectItem value="Accounting" className="rounded-lg font-medium py-2.5">Annual Financials</SelectItem>
+                            <SelectItem value="Tax" className="rounded-lg font-medium py-2.5">Tax Compliance</SelectItem>
+                            <SelectItem value="Payroll" className="rounded-lg font-medium py-2.5">Payroll System</SelectItem>
+                            <SelectItem value="CIPC" className="rounded-lg font-medium py-2.5">CIPC Secretarial</SelectItem>
                         </SelectContent>
                     </Select>
                 </div>
             </div>
 
-            <div className="space-y-6 pt-4">
-                <Label className="text-[10px] uppercase font-black tracking-[0.25em] text-muted-foreground/60 ml-2">How urgent is this?</Label>
-                <RadioGroup value={data.urgency} onValueChange={(v) => onChange("urgency", v)} className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            <div className="space-y-4 pt-4">
+                <Label className="text-[10px] uppercase font-black tracking-[0.25em] text-muted-foreground/60 ml-1">Target Timeline</Label>
+                <RadioGroup value={data.urgency} onValueChange={(v) => onChange("urgency", v)} className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                     {[
-                        { id: "Urgent_24_48h", label: "ASAP", desc: "48 hours" },
-                        { id: "Soon_7d", label: "Standard", desc: "7 days" },
-                        { id: "Flexible_30d", label: "Flexible", desc: "30 days" },
+                        { id: "Urgent_24_48h", label: "ASAP", desc: "Within 48 hours" },
+                        { id: "Soon_7d", label: "Standard", desc: "Within 7 days" },
+                        { id: "Flexible_30d", label: "Flexible", desc: "Within 30 days" },
                     ].map((opt) => (
                         <div key={opt.id} className="relative">
                             <RadioGroupItem value={opt.id} id={opt.id} className="peer sr-only" />
                             <Label
                                 htmlFor={opt.id}
-                                className="flex flex-col p-6 rounded-[1.5rem] border-2 border-border/40 bg-card/40 cursor-pointer transition-all duration-300 peer-aria-checked:border-accent peer-aria-checked:bg-accent/[0.04] peer-aria-checked:shadow-xl peer-aria-checked:shadow-accent/5 hover:bg-muted/40 hover:border-border/60"
+                                className="flex flex-col p-5 rounded-2xl border-2 border-border/40 bg-card/40 cursor-pointer transition-all duration-300 peer-aria-checked:border-accent peer-aria-checked:bg-accent/[0.04] peer-aria-checked:shadow-lg peer-aria-checked:shadow-accent/5 hover:bg-muted/40 hover:border-border/60 relative z-10"
                             >
                                 <span className="text-sm font-black tracking-tight">{opt.label}</span>
-                                <span className="text-[10px] text-muted-foreground font-black mt-2 uppercase tracking-widest opacity-60">{opt.desc}</span>
+                                <span className="text-[10px] text-muted-foreground font-medium mt-1 uppercase tracking-wide opacity-70">{opt.desc}</span>
                             </Label>
                         </div>
                     ))}
@@ -371,50 +346,48 @@ interface BusinessStepProps {
 
 function BusinessStep({ data, onChange }: BusinessStepProps) {
     return (
-        <div className="space-y-10">
-            <div className="space-y-3">
-                <h2 className="text-4xl font-black tracking-tight leading-tight">Market & Profile.</h2>
-                <p className="text-muted-foreground text-lg">Define your business landscape to help us prepare.</p>
+        <div className="space-y-8 animate-in fade-in zoom-in-95 duration-500">
+            <div className="space-y-2">
+                <Label className="text-xl font-bold tracking-tight">Business Profile</Label>
+                <p className="text-sm text-muted-foreground">Tell us about your organization.</p>
             </div>
 
-            <div className="space-y-8 pt-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div className="space-y-3">
-                        <Label className="text-[10px] uppercase font-black tracking-[0.25em] text-muted-foreground/60 ml-2">Entity Name</Label>
-                        <Input
-                            placeholder="e.g. Acme Holdings"
-                            value={data.companyName}
-                            onChange={(e) => onChange("companyName", e.target.value)}
-                            className="h-16 rounded-[1.25rem] bg-muted/30 border-none shadow-none focus-visible:ring-2 focus-visible:ring-accent/30 font-black px-8 text-lg transition-all"
-                        />
-                    </div>
-                    <div className="space-y-3">
-                        <Label className="text-[10px] uppercase font-black tracking-[0.25em] text-muted-foreground/60 ml-2">Industry Sector</Label>
-                        <Select value={data.industry} onValueChange={(v) => onChange("industry", v)}>
-                            <SelectTrigger className="h-16 rounded-[1.25rem] bg-muted/30 border-none shadow-none focus-visible:ring-2 focus-visible:ring-accent/30 font-black px-8 text-lg transition-all">
-                                <SelectValue placeholder="Where do you operate?" />
-                            </SelectTrigger>
-                            <SelectContent className="rounded-[1.25rem] border-border/40 p-2 shadow-2xl">
-                                <SelectItem value="Retail" className="rounded-xl font-bold py-3">Retail / Wholesale</SelectItem>
-                                <SelectItem value="Tech" className="rounded-xl font-bold py-3">SaaS / Software</SelectItem>
-                                <SelectItem value="Construction" className="rounded-xl font-bold py-3">Construction & Engineering</SelectItem>
-                                <SelectItem value="Professional" className="rounded-xl font-bold py-3">Professional Services</SelectItem>
-                                <SelectItem value="Manufacturing" className="rounded-xl font-bold py-3">Manufacturing</SelectItem>
-                                <SelectItem value="Logistics" className="rounded-xl font-bold py-3">Logistics & Transport</SelectItem>
-                            </SelectContent>
-                        </Select>
-                    </div>
-                </div>
-
-                <div className="space-y-3">
-                    <Label className="text-[10px] uppercase font-black tracking-[0.25em] text-muted-foreground/60 ml-2">Strategic Notes (Optional)</Label>
-                    <Textarea
-                        placeholder="Detail any complex tax requirements or specific goals..."
-                        value={data.message}
-                        onChange={(e) => onChange("message", e.target.value)}
-                        className="min-h-[160px] rounded-[1.5rem] bg-muted/30 border-none shadow-none focus-visible:ring-2 focus-visible:ring-accent/30 font-black p-8 text-lg transition-all resize-none"
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                    <Label className="text-[10px] uppercase font-black tracking-[0.25em] text-muted-foreground/60 ml-1">Entity Name</Label>
+                    <Input
+                        placeholder="e.g. Acme Holdings"
+                        value={data.companyName}
+                        onChange={(e) => onChange("companyName", e.target.value)}
+                        className="h-14 rounded-2xl bg-muted/30 border-2 border-border/40 hover:border-accent/40 focus-visible:ring-2 focus-visible:ring-accent/30 font-medium px-6 text-base transition-all"
                     />
                 </div>
+                <div className="space-y-2">
+                    <Label className="text-[10px] uppercase font-black tracking-[0.25em] text-muted-foreground/60 ml-1">Industry Sector</Label>
+                    <Select value={data.industry} onValueChange={(v) => onChange("industry", v)}>
+                        <SelectTrigger className="h-14 rounded-2xl bg-muted/30 border-2 border-border/40 hover:border-accent/40 focus-visible:ring-2 focus-visible:ring-accent/30 font-medium px-6 text-base transition-all">
+                            <SelectValue placeholder="Where do you operate?" />
+                        </SelectTrigger>
+                        <SelectContent className="rounded-xl border-border/40 p-2 shadow-2xl">
+                            <SelectItem value="Retail" className="rounded-lg font-medium py-2.5">Retail / Wholesale</SelectItem>
+                            <SelectItem value="Tech" className="rounded-lg font-medium py-2.5">SaaS / Software</SelectItem>
+                            <SelectItem value="Construction" className="rounded-lg font-medium py-2.5">Construction & Engineering</SelectItem>
+                            <SelectItem value="Professional" className="rounded-lg font-medium py-2.5">Professional Services</SelectItem>
+                            <SelectItem value="Manufacturing" className="rounded-lg font-medium py-2.5">Manufacturing</SelectItem>
+                            <SelectItem value="Logistics" className="rounded-lg font-medium py-2.5">Logistics & Transport</SelectItem>
+                        </SelectContent>
+                    </Select>
+                </div>
+            </div>
+
+            <div className="space-y-2">
+                <Label className="text-[10px] uppercase font-black tracking-[0.25em] text-muted-foreground/60 ml-1">Strategic Notes (Optional)</Label>
+                <Textarea
+                    placeholder="Detail any complex tax requirements or specific goals..."
+                    value={data.message}
+                    onChange={(e) => onChange("message", e.target.value)}
+                    className="min-h-[140px] rounded-2xl bg-muted/30 border-2 border-border/40 hover:border-accent/40 focus-visible:ring-2 focus-visible:ring-accent/30 font-medium p-6 text-base transition-all resize-none"
+                />
             </div>
         </div>
     )
@@ -422,23 +395,23 @@ function BusinessStep({ data, onChange }: BusinessStepProps) {
 
 function DocumentStep({ portalToken }: { portalToken: string }) {
     return (
-        <div className="space-y-10">
-            <div className="space-y-3">
-                <h2 className="text-4xl font-black tracking-tight leading-tight">Insight Vault.</h2>
-                <p className="text-muted-foreground text-lg">Upload identifying docs or current financials for a faster quote.</p>
+        <div className="space-y-8 animate-in fade-in zoom-in-95 duration-500">
+            <div className="space-y-2">
+                <Label className="text-xl font-bold tracking-tight">Insight Vault</Label>
+                <p className="text-sm text-muted-foreground">Upload identifying docs or current financials for a faster quote.</p>
             </div>
 
-            <div className="p-10 border-2 border-dashed border-accent/20 rounded-[2.5rem] bg-accent/[0.015] hover:bg-accent/[0.03] transition-colors group">
+            <div className="p-8 border-2 border-dashed border-accent/20 rounded-[2rem] bg-accent/[0.015] hover:bg-accent/[0.03] transition-colors group">
                 <PortalUploadZone token={portalToken} onUploadSuccess={() => { }} />
             </div>
 
-            <div className="bg-muted/20 p-8 rounded-[1.5rem] flex items-start gap-5 border border-border/40">
+            <div className="bg-muted/20 p-6 rounded-2xl flex items-start gap-5 border border-border/40">
                 <div className="h-10 w-10 rounded-xl bg-accent/10 flex items-center justify-center shrink-0">
                     <Shield className="h-5 w-5 text-accent" />
                 </div>
                 <div className="space-y-1">
                     <p className="text-[10px] font-black uppercase tracking-[0.2em] text-accent">Privacy Guard</p>
-                    <p className="text-xs font-bold text-muted-foreground/80 leading-relaxed">
+                    <p className="text-xs font-medium text-muted-foreground/80 leading-relaxed">
                         RSA POPIA Compliant. Your documents are stored in an encrypted vault accessible only to your assigned financial lead.
                     </p>
                 </div>
@@ -449,33 +422,33 @@ function DocumentStep({ portalToken }: { portalToken: string }) {
 
 function ReviewStep({ data }: { data: LeadData }) {
     return (
-        <div className="space-y-10">
-            <div className="space-y-3">
-                <h2 className="text-4xl font-black tracking-tight leading-tight">Integrity Check.</h2>
-                <p className="text-muted-foreground text-lg">Confirm your details before we initialize your account.</p>
+        <div className="space-y-8 animate-in fade-in zoom-in-95 duration-500">
+            <div className="space-y-2">
+                <Label className="text-xl font-bold tracking-tight">Integrity Check</Label>
+                <p className="text-sm text-muted-foreground">Confirm your details before we initialize your account.</p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="bg-muted/20 p-8 rounded-[1.5rem] space-y-2 border border-border/40">
+                <div className="bg-muted/20 p-6 rounded-2xl space-y-1 border border-border/40">
                     <span className="text-[10px] font-black uppercase tracking-[0.25em] text-muted-foreground/50">Full Identity</span>
-                    <p className="font-black tracking-tight text-xl">{data.fullName}</p>
+                    <p className="font-bold tracking-tight text-lg">{data.fullName}</p>
                 </div>
-                <div className="bg-muted/20 p-8 rounded-[1.5rem] space-y-2 border border-border/40">
+                <div className="bg-muted/20 p-6 rounded-2xl space-y-1 border border-border/40">
                     <span className="text-[10px] font-black uppercase tracking-[0.25em] text-muted-foreground/50">Connectivity</span>
-                    <p className="font-black tracking-tight text-xl break-all">{data.email}</p>
+                    <p className="font-bold tracking-tight text-lg break-all">{data.email}</p>
                 </div>
-                <div className="bg-muted/20 p-8 rounded-[1.5rem] space-y-2 border border-accent/20">
+                <div className="bg-muted/20 p-6 rounded-2xl space-y-1 border border-accent/20">
                     <span className="text-[10px] font-black uppercase tracking-[0.25em] text-accent/60">Selected Vertical</span>
-                    <p className="font-black tracking-tight text-xl text-accent">{data.serviceType || "Primary Assessment"}</p>
+                    <p className="font-bold tracking-tight text-lg text-accent">{data.serviceType || "Primary Assessment"}</p>
                 </div>
-                <div className="bg-muted/20 p-8 rounded-[1.5rem] space-y-2 border border-border/40">
+                <div className="bg-muted/20 p-6 rounded-2xl space-y-1 border border-border/40">
                     <span className="text-[10px] font-black uppercase tracking-[0.25em] text-muted-foreground/50">Entity Context</span>
-                    <p className="font-black tracking-tight text-xl">{data.companyName || "Personal Onboarding"}</p>
+                    <p className="font-bold tracking-tight text-lg">{data.companyName || "Personal Onboarding"}</p>
                 </div>
             </div>
 
-            <div className="p-8 rounded-[1.5rem] bg-accent/[0.04] border border-accent/15">
-                <p className="text-xs font-bold leading-relaxed text-muted-foreground/70 italic text-center">
+            <div className="p-6 rounded-2xl bg-accent/[0.04] border border-accent/15">
+                <p className="text-xs font-medium leading-relaxed text-muted-foreground/70 italic text-center">
                     By clicking complete, you authorize Creations to process your request in accordance with the South African Privacy Act.
                 </p>
             </div>

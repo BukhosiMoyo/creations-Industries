@@ -37,7 +37,7 @@ export function SiteHeader() {
                         {/* Search Placeholder if needed */}
                     </div>
                     <nav className="flex items-center space-x-4">
-                        <Link href="/quote">
+                        <Link href="/get-a-quote">
                             <Button size="sm" className="hidden md:flex bg-accent hover:bg-accent/90 text-white border-none">
                                 <ClipboardEdit className="mr-2 h-4 w-4" />
                                 Request Quote

@@ -36,7 +36,7 @@ export function HeroSection() {
                     </MotionWrapper>
 
                     <MotionWrapper delay={0.4} className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
-                        <Link href="/quote">
+                        <Link href="/get-a-quote">
                             <Button variant="glow" size="lg" className="h-12 px-8 text-base font-semibold group">
                                 Request a Quote
                                 <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />

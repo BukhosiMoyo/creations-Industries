@@ -26,7 +26,7 @@ export function FinalCtaSection() {
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-                        <Link href="/quote">
+                        <Link href="/get-a-quote">
                             <Button variant="glow" size="lg" className="h-16 px-12 text-xl font-bold rounded-full group">
                                 Request a Free Quote <ArrowRight className="ml-3 h-6 w-6 transition-transform group-hover:translate-x-1" />
                             </Button>
