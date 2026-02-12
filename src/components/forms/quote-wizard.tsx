@@ -11,6 +11,7 @@ import {
     Shield,
     Upload,
 } from "lucide-react"
+import { SignUpForm } from "@/components/auth/SignUpForm"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -155,10 +156,20 @@ export function QuoteWizard({ initialData, resumeToken: _resumeToken }: QuoteWiz
                             Excellent. We&apos;ve received your details and our team is already reviewing them. Expect a call within 2-4 business hours.
                         </p>
                     </div>
-                    <div className="pt-8">
-                        <Button onClick={() => window.location.href = "/"} size="lg" className="rounded-2xl h-14 px-10 font-black uppercase text-[11px] tracking-[0.2em] shadow-2xl shadow-accent/20">
-                            View Dashboard preview
-                        </Button>
+                    <div className="pt-8 w-full max-w-md mx-auto text-left">
+                        <div className="bg-card border border-border/50 rounded-xl p-6 shadow-sm">
+                            <h3 className="text-lg font-bold mb-4">Create your client portal account</h3>
+                            <p className="text-sm text-muted-foreground mb-6">
+                                Securely track your request, upload documents, and communicate with our team.
+                            </p>
+                            <SignUpForm
+                                defaultValues={{
+                                    name: data.fullName,
+                                    email: data.email
+                                }}
+                                className="w-full"
+                            />
+                        </div>
                     </div>
                 </motion.div>
             </QuoteFormLayout>
