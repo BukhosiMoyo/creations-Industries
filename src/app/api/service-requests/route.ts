@@ -3,7 +3,7 @@ import { prisma } from "@/lib/prisma";
 import { requireAuth } from "@/lib/rbac";
 import { logActivity } from "@/lib/audit";
 import { createNotification } from "@/lib/notifications";
-import { ServiceType, RequestStatus, Priority } from "@prisma/client";
+import { ServiceType, RequestStatus, Priority, UserRole } from "@prisma/client";
 import * as z from "zod";
 
 const serviceRequestSchema = z.object({
@@ -18,17 +18,30 @@ const serviceRequestSchema = z.object({
 
 export async function GET(req: NextRequest) {
     try {
-        await requireAuth();
+        const user = await requireAuth();
 
         const { searchParams } = new URL(req.url);
         const companyId = searchParams.get("companyId");
         const status = searchParams.get("status") as RequestStatus | null;
 
+        const where: any = {
+            ...(companyId && { companyId }),
+            ...(status && { status }),
+        };
+
+        // Role-based restrictions
+        if (user.role === UserRole.EMPLOYEE) {
+            where.assignedToUserId = user.id;
+        } else if (user.role === UserRole.CLIENT) {
+            if (user.companyId) {
+                where.companyId = user.companyId;
+            } else {
+                return NextResponse.json({ error: "Client has no company assigned" }, { status: 403 });
+            }
+        }
+
         const requests = await prisma.serviceRequest.findMany({
-            where: {
-                ...(companyId && { companyId }),
-                ...(status && { status }),
-            },
+            where,
             include: {
                 company: { select: { legalName: true } },
                 assignedTo: { select: { name: true } },

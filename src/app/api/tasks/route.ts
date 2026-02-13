@@ -3,7 +3,7 @@ import { prisma } from "@/lib/prisma";
 import { requireAuth } from "@/lib/rbac";
 import { logActivity } from "@/lib/audit";
 import { createNotification } from "@/lib/notifications";
-import { TaskStatus, TaskType } from "@prisma/client";
+import { TaskStatus, TaskType, UserRole } from "@prisma/client";
 import * as z from "zod";
 
 const taskSchema = z.object({
@@ -24,11 +24,18 @@ export async function GET(req: NextRequest) {
         const serviceRequestId = searchParams.get("serviceRequestId");
         const assignedToMe = searchParams.get("assignedToMe") === "true";
 
+        const where: any = {
+            ...(serviceRequestId && { serviceRequestId }),
+            ...(assignedToMe && { assignedToUserId: user.id }),
+        };
+
+        // Role-based restrictions
+        if (user.role === UserRole.EMPLOYEE) {
+            where.assignedToUserId = user.id;
+        }
+
         const tasks = await prisma.task.findMany({
-            where: {
-                ...(serviceRequestId && { serviceRequestId }),
-                ...(assignedToMe && { assignedToUserId: user.id }),
-            },
+            where,
             include: {
                 serviceRequest: {
                     include: { company: { select: { legalName: true } } },

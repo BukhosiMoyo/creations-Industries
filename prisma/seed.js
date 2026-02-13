@@ -1,10 +1,11 @@
+require("dotenv").config();
 const { PrismaClient } = require("@prisma/client");
 const { PrismaPg } = require("@prisma/adapter-pg");
 const { Pool } = require("pg");
 const bcrypt = require("bcrypt");
 
 // Direct URL for the adapter
-const connectionString = process.env.DIRECT_DATABASE_URL || "postgres://postgres:postgres@localhost:51214/template1?sslmode=disable";
+const connectionString = process.env.DIRECT_DATABASE_URL || process.env.DATABASE_URL || "postgres://postgres:postgres@localhost:51214/template1?sslmode=disable";
 
 const pool = new Pool({ connectionString });
 const adapter = new PrismaPg(pool);

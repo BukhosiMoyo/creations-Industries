@@ -2,13 +2,22 @@
 
 import * as React from "react"
 import { cn } from "@/lib/utils"
-import { LucideIcon, TrendingUp, TrendingDown } from "lucide-react"
+import { Building2, Briefcase, FileSearch, AlertCircle, Zap, CheckSquare, TrendingUp, TrendingDown, type LucideIcon } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
+
+const iconMap: Record<string, LucideIcon> = {
+    Building2,
+    Briefcase,
+    FileSearch,
+    AlertCircle,
+    Zap,
+    CheckSquare,
+}
 
 interface KPICardProps {
     name: string
     value: string | number
-    icon: LucideIcon
+    iconName: string
     description?: string
     delta?: {
         value: string
@@ -21,12 +30,14 @@ interface KPICardProps {
 export function KPICard({
     name,
     value,
-    icon: Icon,
+    iconName,
     description,
     delta,
     className,
     accentColor = "accent"
 }: KPICardProps) {
+    const Icon = iconMap[iconName] || Building2
+
     return (
         <Card className={cn(
             "relative overflow-hidden group transition-all duration-300 hover:shadow-2xl hover:shadow-accent/5 lg:hover:-translate-y-1",

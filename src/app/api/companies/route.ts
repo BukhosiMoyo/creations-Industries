@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { requireAuth } from "@/lib/rbac";
+import { UserRole } from "@prisma/client";
 import { logActivity } from "@/lib/audit";
 import * as z from "zod";
 
@@ -21,7 +22,12 @@ const companySchema = z.object({
 
 export async function GET(req: NextRequest) {
     try {
-        await requireAuth();
+        const user = await requireAuth();
+
+        // Admin and Staff only
+        if (user.role === UserRole.EMPLOYEE || user.role === UserRole.CLIENT) {
+            return NextResponse.json({ error: "Access denied" }, { status: 403 });
+        }
 
         const { searchParams } = new URL(req.url);
         const query = searchParams.get("q") || "";

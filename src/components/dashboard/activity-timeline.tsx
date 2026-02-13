@@ -22,7 +22,7 @@ interface ActivityItem {
         email: string | null
         image?: string | null
     }
-    createdAt: Date
+    createdAt: string
 }
 
 const actionIcons: Record<string, React.ElementType> = {

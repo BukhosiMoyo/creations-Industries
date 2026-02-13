@@ -12,7 +12,7 @@ interface AttentionItem {
     type: "overdue" | "stuck" | "upcoming"
     clientName: string
     serviceType: string
-    dueDate?: Date
+    dueDate?: string
     ageInStage?: string
     priority: "High" | "Med" | "Low" | "Urgent"
 }
@@ -55,9 +55,9 @@ export function AttentionNeeded({ items }: { items: AttentionItem[] }) {
                                 </Badge>
                             </div>
                             <p className="text-xs text-muted-foreground font-medium flex items-center gap-1.5">
-                                {item.type === "overdue" ? `Overdue since ${item.dueDate?.toLocaleDateString()}` :
+                                {item.type === "overdue" ? `Overdue since ${item.dueDate ? new Date(item.dueDate).toLocaleDateString() : 'N/A'}` :
                                     item.type === "stuck" ? `Stuck in Awaiting Docs for ${item.ageInStage}` :
-                                        `Due on ${item.dueDate?.toLocaleDateString()}`}
+                                        `Due on ${item.dueDate ? new Date(item.dueDate).toLocaleDateString() : 'N/A'}`}
                             </p>
                         </div>
                     </div>

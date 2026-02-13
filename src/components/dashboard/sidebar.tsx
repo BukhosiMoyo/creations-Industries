@@ -22,21 +22,31 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 
 const navigation = [
-    { name: "Overview", href: "/dashboard", icon: LayoutDashboard },
-    { name: "Pipeline", href: "/dashboard/pipeline", icon: Briefcase },
-    { name: "Companies", href: "/dashboard/companies", icon: Building2 },
-    { name: "Service Requests", href: "/dashboard/requests", icon: Briefcase }, // Assuming this route exists or will be added
-    { name: "Tasks", href: "/dashboard/tasks", icon: CheckSquare, badge: 3 },
-    { name: "Documents", href: "/dashboard/documents", icon: FileText, badge: 12 },
+    { name: "Overview", href: "/dashboard", icon: LayoutDashboard, roles: ["ADMIN", "STAFF", "EMPLOYEE"] },
+    { name: "Pipeline", href: "/dashboard/pipeline", icon: Briefcase, roles: ["ADMIN", "STAFF"] },
+    { name: "Companies", href: "/dashboard/companies", icon: Building2, roles: ["ADMIN", "STAFF"] },
+    { name: "Service Requests", href: "/dashboard/requests", icon: Briefcase, roles: ["ADMIN", "STAFF", "EMPLOYEE"] },
+    { name: "Tasks", href: "/dashboard/tasks", icon: CheckSquare, badge: 3, roles: ["ADMIN", "STAFF", "EMPLOYEE"] },
+    { name: "Documents", href: "/dashboard/documents", icon: FileText, badge: 12, roles: ["ADMIN", "STAFF", "EMPLOYEE"] },
     { type: "separator" },
-    { name: "Reports", href: "/dashboard/reports", icon: BarChart3, disabled: true },
-    { name: "Integrations", href: "/dashboard/xero", icon: Zap },
-    { name: "Settings", href: "/dashboard/settings", icon: Settings },
+    { name: "Reports", href: "/dashboard/reports", icon: BarChart3, disabled: true, roles: ["ADMIN", "STAFF"] },
+    { name: "Integrations", href: "/dashboard/xero", icon: Zap, roles: ["ADMIN"] },
+    { name: "Settings", href: "/dashboard/settings", icon: Settings, roles: ["ADMIN"] },
 ]
 
-export function DashboardSidebar() {
+import { User } from "next-auth"
+
+interface DashboardSidebarProps {
+    user: User
+}
+
+export function DashboardSidebar({ user }: DashboardSidebarProps) {
     const pathname = usePathname()
     const [isCollapsed, setIsCollapsed] = React.useState(false)
+
+    // Filter navigation based on user role
+    // Default to STAFF if no role (safe fallback?) or empty list
+    const userRole = user.role || "STAFF";
 
     return (
         <motion.aside
@@ -72,8 +82,14 @@ export function DashboardSidebar() {
                         return <div key={idx} className="my-4 h-px bg-border/50 mx-2" />
                     }
 
-                    const navItem = item as { name: string; href: string; icon: React.ElementType; badge?: number; disabled?: boolean }
-                    const isActive = pathname === navItem.href || pathname.startsWith(navItem.href + "/")
+                    const navItem = item as { name: string; href: string; icon: React.ElementType; badge?: number; disabled?: boolean; roles: string[] }
+
+                    // Role check
+                    if (!navItem.roles.includes(userRole)) {
+                        return null;
+                    }
+
+                    const isActive = pathname === navItem.href || (navItem.href !== "/dashboard" && pathname.startsWith(navItem.href + "/"))
 
                     return (
                         <Link

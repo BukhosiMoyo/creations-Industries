@@ -23,7 +23,7 @@ export function DashboardShell({ children, user }: DashboardShellProps) {
             <LineGridOverlay className="opacity-40" />
 
             {/* Desktop Sidebar */}
-            <DashboardSidebar />
+            <DashboardSidebar user={user} />
 
             {/* Mobile Sidebar */}
             <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
@@ -35,7 +35,7 @@ export function DashboardShell({ children, user }: DashboardShellProps) {
                         <SheetTitle className="text-xl font-bold ml-3">Creations</SheetTitle>
                     </SheetHeader>
                     <div className="flex-1 overflow-y-auto">
-                        <DashboardSidebar />
+                        <DashboardSidebar user={user} />
                     </div>
                 </SheetContent>
             </Sheet>

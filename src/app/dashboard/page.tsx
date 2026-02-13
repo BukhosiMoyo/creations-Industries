@@ -1,9 +1,9 @@
 import { prisma } from "@/lib/prisma"
-import { Building2, Briefcase, FileSearch, AlertCircle, Zap, CheckSquare, Clock } from "lucide-react"
+import { Clock } from "lucide-react"
 import { KPICard } from "@/components/dashboard/kpi-card"
 import { AttentionNeeded } from "@/components/dashboard/attention-needed"
 import { ActivityTimeline } from "@/components/dashboard/activity-timeline"
-import { OverviewChart } from "@/components/dashboard/overview-chart"
+import { OverviewChartWrapper } from "@/components/dashboard/overview-chart-wrapper"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { format, subDays, startOfDay } from "date-fns"
@@ -90,19 +90,19 @@ async function getDashboardData() {
             type: "overdue" as const,
             clientName: t.serviceRequest.company.legalName,
             serviceType: t.serviceRequest.serviceType,
-            dueDate: t.dueDate || undefined,
+            dueDate: t.dueDate?.toISOString() || undefined,
             priority: "High" as const
         }))
     ].slice(0, 6)
 
     return {
         stats: [
-            { name: "Total Clients", value: companyCount, icon: Building2, delta: { value: "12%", isPositive: true }, description: "Active retained clients" },
-            { name: "Active Requests", value: activeRequests.length, icon: Briefcase, delta: { value: "5%", isPositive: true }, description: "Work currently in pipeline" },
-            { name: "Awaiting Docs", value: stuckRequests.length, icon: FileSearch, accentColor: "amber-500", description: "Pending client input" },
-            { name: "Overdue Tasks", value: overdueTasks.length, icon: AlertCircle, accentColor: "red-500", description: "Immediate action required" },
-            { name: "Pipeline Value", value: `R${(pipelineValue / 1000).toFixed(1)}k`, icon: Zap, description: "Estimated revenue flow" },
-            { name: "Xero Connected", value: 0, icon: CheckSquare, description: "External data sync status" },
+            { name: "Total Clients", value: companyCount, iconName: "Building2", delta: { value: "12%", isPositive: true }, description: "Active retained clients" },
+            { name: "Active Requests", value: activeRequests.length, iconName: "Briefcase", delta: { value: "5%", isPositive: true }, description: "Work currently in pipeline" },
+            { name: "Awaiting Docs", value: stuckRequests.length, iconName: "FileSearch", accentColor: "amber-500", description: "Pending client input" },
+            { name: "Overdue Tasks", value: overdueTasks.length, iconName: "AlertCircle", accentColor: "red-500", description: "Immediate action required" },
+            { name: "Pipeline Value", value: `R${(pipelineValue / 1000).toFixed(1)}k`, iconName: "Zap", description: "Estimated revenue flow" },
+            { name: "Xero Connected", value: 0, iconName: "CheckSquare", description: "External data sync status" },
         ],
         attentionItems,
         recentActivity: recentActivity.map((a: { id: string, actionType: string, actionSummary: string, actor: { name: string | null, email: string | null, image: string | null }, createdAt: Date }) => ({
@@ -114,7 +114,7 @@ async function getDashboardData() {
                 email: a.actor.email,
                 image: a.actor.image
             },
-            createdAt: a.createdAt
+            createdAt: a.createdAt.toISOString()
         })),
         chatData
     }
@@ -166,7 +166,7 @@ export default async function DashboardPage() {
                         </div>
                     </CardHeader>
                     <CardContent className="pt-4 px-2">
-                        <OverviewChart data={data.chatData} />
+                        <OverviewChartWrapper data={data.chatData} />
                     </CardContent>
                 </Card>
 
