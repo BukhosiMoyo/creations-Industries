@@ -14,6 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://creations.africa'),
   title: "Creations | Accounting & Compliance for South African Businesses",
   description: "Clear, structured accounting and compliance for South African businesses. Staying compliant with SARS, CIPC, and the Companies Act.",
   icons: {

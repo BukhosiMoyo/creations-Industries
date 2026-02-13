@@ -42,7 +42,8 @@ export function SiteFooter() {
                         <ul className="space-y-2 text-sm text-text-secondary">
                             <li><Link href="/privacy" className="hover:text-text-primary">Privacy Policy</Link></li>
                             <li><Link href="/terms" className="hover:text-text-primary">Terms of Service</Link></li>
-                            <li><Link href="/sitemap" className="hover:text-text-primary">Sitemap</Link></li>
+                            <li><Link href="/site-map" className="hover:text-text-primary">Sitemap (HTML)</Link></li>
+                            <li><a href="/sitemap.xml" className="hover:text-text-primary" target="_blank" rel="noopener noreferrer">Sitemap (XML)</a></li>
                         </ul>
                     </div>
                 </div>

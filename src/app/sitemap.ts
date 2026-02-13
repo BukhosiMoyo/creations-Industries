@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next'
 import { services, pillars } from '@/lib/services'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-    const baseUrl = 'https://creations-web.vercel.app' // Replace with actual domain when known
+    const baseUrl = 'https://creations.africa'
 
     const staticRoutes = [
         '',

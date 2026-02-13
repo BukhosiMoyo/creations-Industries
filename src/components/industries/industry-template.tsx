@@ -7,18 +7,16 @@ import { Container } from "@/components/ui/container"
 import { SectionWrapper } from "@/components/ui/section-wrapper"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { ServiceContent } from "@/types/service"
+import { IndustryContent } from "@/types/service"
 import { MotionWrapper, StaggerChildren } from "@/components/ui/motion-wrapper"
 import { IconList } from "@/components/ui/icon-list"
 import { CurvyGraph } from "@/components/ui/curvy-graph"
-import { ServiceVisual } from "@/components/ui/service-visuals"
-import { RequiredDocumentsSection } from "@/components/services/required-documents"
 
-interface ServicePageTemplateProps {
-    content: ServiceContent
+interface IndustryPageTemplateProps {
+    content: IndustryContent
 }
 
-export function ServicePageTemplate({ content }: ServicePageTemplateProps) {
+export function IndustryPageTemplate({ content }: IndustryPageTemplateProps) {
     return (
         <div className="flex flex-col">
             {/* 1. HERO SECTION */}
@@ -28,7 +26,7 @@ export function ServicePageTemplate({ content }: ServicePageTemplateProps) {
                         <StaggerChildren className="w-full">
                             <MotionWrapper direction="down" delay={0.1}>
                                 <div className="inline-flex items-center rounded-full border border-accent/20 bg-accent/5 px-3 py-1 text-sm text-accent mb-6 font-medium">
-                                    {content.pillar} Pillar
+                                    Industry Specialist
                                 </div>
                             </MotionWrapper>
 
@@ -40,7 +38,7 @@ export function ServicePageTemplate({ content }: ServicePageTemplateProps) {
 
                             <MotionWrapper delay={0.3}>
                                 <p className="text-text-secondary leading-relaxed mb-8 max-w-3xl mx-auto">
-                                    We combine modern technology with South African regulatory expertise to ensure your business stays compliant, structured, and ready for growth.
+                                    {content.hero.subheading}
                                 </p>
                             </MotionWrapper>
 
@@ -85,15 +83,15 @@ export function ServicePageTemplate({ content }: ServicePageTemplateProps) {
                 </SectionWrapper>
             )}
 
-            {/* 2.5. PROBLEMS SOLVED (New Section) */}
+            {/* 2.5. PROBLEMS SOLVED */}
             {content.problemsSolved && content.problemsSolved.length > 0 && (
                 <SectionWrapper variant="base" padding="lg" showLineGrid patternIntensity="subtle" className="overflow-hidden">
                     <Container>
                         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                             <MotionWrapper className="lg:col-span-4">
-                                <h2 className="text-3xl font-bold mb-6">Critical Problems We Solve</h2>
+                                <h2 className="text-3xl font-bold mb-6">Industry Challenges We Solve</h2>
                                 <p className="text-text-secondary leading-relaxed">
-                                    Effective financial management isn&apos;t just about balancing books; it&apos;s about removing the friction points that stall your business growth.
+                                    Specific industries face specific financial hurdles. We understand the context of your sector.
                                 </p>
                             </MotionWrapper>
                             <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -111,94 +109,7 @@ export function ServicePageTemplate({ content }: ServicePageTemplateProps) {
                 </SectionWrapper>
             )}
 
-            {/* 2.8. DETAILED SECTIONS (Long-form SEO Content — Alternating Split) */}
-            {content.detailedSections && content.detailedSections.length > 0 && content.detailedSections.map((section, i) => {
-                const isEven = i % 2 === 0
-                const illustrationType = section.illustrationType || content.visualType || 'chart'
-                const useDotGrid = i % 2 === 0
-                return (
-                    <SectionWrapper
-                        key={i}
-                        variant={isEven ? "base" : "surface"}
-                        padding="lg"
-                        {...(useDotGrid ? { showDotGrid: true } : { showLineGrid: true })}
-                        patternIntensity="subtle"
-                        className="border-b border-border/40 overflow-hidden"
-                    >
-                        <Container>
-                            <div className={`grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center ${!isEven ? 'lg:[direction:rtl]' : ''}`}>
-                                {/* Text Side */}
-                                <MotionWrapper
-                                    direction={isEven ? "right" : "left"}
-                                    className="lg:col-span-7 lg:[direction:ltr]"
-                                >
-                                    <div className="space-y-6">
-                                        {/* Section accent bar + title */}
-                                        <div className="flex items-center gap-3">
-                                            <div className="h-1 w-10 bg-accent rounded-full" />
-                                            <span className="text-xs font-bold uppercase tracking-[0.2em] text-accent">
-                                                {content.title}
-                                            </span>
-                                        </div>
-                                        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-text-primary leading-tight">
-                                            {section.title}
-                                        </h2>
-
-                                        {/* Paragraphs */}
-                                        <div className="space-y-4">
-                                            {section.content.split('\n\n').map((paragraph, j) => (
-                                                <p key={j} className="text-text-secondary leading-relaxed text-base md:text-lg">
-                                                    {paragraph}
-                                                </p>
-                                            ))}
-                                        </div>
-
-                                        {/* Highlights List */}
-                                        {section.highlights && section.highlights.length > 0 && (
-                                            <div className="pt-2">
-                                                <ul className="space-y-3">
-                                                    {section.highlights.map((item, k) => (
-                                                        <li key={k} className="flex items-start gap-3 group">
-                                                            <div className="mt-1 h-5 w-5 rounded-md bg-accent/10 flex items-center justify-center shrink-0 group-hover:bg-accent/20 transition-colors">
-                                                                <ShieldCheck className="h-3 w-3 text-accent" />
-                                                            </div>
-                                                            <span className="text-text-primary text-sm md:text-base font-medium leading-snug">{item}</span>
-                                                        </li>
-                                                    ))}
-                                                </ul>
-                                            </div>
-                                        )}
-                                    </div>
-                                </MotionWrapper>
-
-                                {/* Illustration Side */}
-                                <MotionWrapper
-                                    direction={isEven ? "left" : "right"}
-                                    delay={0.2}
-                                    className="lg:col-span-5 lg:[direction:ltr]"
-                                >
-                                    <div className="relative flex items-center justify-center py-8 lg:py-12">
-                                        {/* Decorative background glow */}
-                                        <div className="absolute inset-0 bg-accent/[0.03] rounded-[2.5rem] border border-border/30" />
-                                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-accent/5 blur-3xl rounded-full" />
-
-                                        {/* Floating accent details */}
-                                        <div className={`absolute ${isEven ? 'top-4 right-4' : 'top-4 left-4'} h-2 w-2 rounded-full bg-accent/30 animate-pulse`} />
-                                        <div className={`absolute ${isEven ? 'bottom-8 left-6' : 'bottom-8 right-6'} h-1.5 w-1.5 rounded-full bg-accent/20 animate-pulse`} style={{ animationDelay: '1s' }} />
-                                        <div className="absolute top-1/3 right-1/4 h-1 w-1 rounded-full bg-accent/40 animate-pulse" style={{ animationDelay: '2s' }} />
-
-                                        <div className="relative z-10 scale-110 lg:scale-125">
-                                            <ServiceVisual type={illustrationType} />
-                                        </div>
-                                    </div>
-                                </MotionWrapper>
-                            </div>
-                        </Container>
-                    </SectionWrapper>
-                )
-            })}
-
-            {/* 3. WHO IS THIS FOR & DELIVERABLES (Split Layout) */}
+            {/* 3. WHO IS THIS FOR & DELIVERABLES */}
             <SectionWrapper variant="surface" padding="lg" showDotGrid patternIntensity="subtle" className="border-y border-border/40">
                 <Container>
                     <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
@@ -206,7 +117,7 @@ export function ServicePageTemplate({ content }: ServicePageTemplateProps) {
                         <MotionWrapper direction="right" className="lg:col-span-5 space-y-8">
                             <div className="relative">
                                 <h3 className="text-2xl font-bold mb-6 flex items-center gap-2">
-                                    <Users className="h-6 w-6 text-accent" /> Who Is This For?
+                                    <Users className="h-6 w-6 text-accent" /> Use Cases
                                 </h3>
                                 <IconList
                                     items={content.whoIsThisFor}
@@ -219,7 +130,7 @@ export function ServicePageTemplate({ content }: ServicePageTemplateProps) {
                             <div className="p-6 rounded-2xl bg-surface-elevated/50 backdrop-blur-sm border border-border shadow-inner relative overflow-hidden group">
                                 <div className="absolute top-0 right-0 w-32 h-32 bg-accent/5 blur-2xl group-hover:bg-accent/10 transition-colors" />
                                 <h4 className="font-bold mb-4 flex items-center gap-2 text-text-primary relative z-10">
-                                    <ShieldCheck className="h-5 w-5 text-accent" /> Engagement Requirements
+                                    <ShieldCheck className="h-5 w-5 text-accent" /> Prerequisites
                                 </h4>
                                 <IconList
                                     items={content.requirements}
@@ -234,7 +145,7 @@ export function ServicePageTemplate({ content }: ServicePageTemplateProps) {
                         <MotionWrapper direction="left" className="lg:col-span-7">
                             <div className="h-full flex flex-col">
                                 <h3 className="text-2xl font-bold mb-6 flex items-center gap-2">
-                                    <FileText className="h-6 w-6 text-accent" /> Deliverables & Results
+                                    <FileText className="h-6 w-6 text-accent" /> Services Included
                                 </h3>
                                 <IconList
                                     items={content.deliverables}
@@ -254,7 +165,7 @@ export function ServicePageTemplate({ content }: ServicePageTemplateProps) {
                 </Container>
             </SectionWrapper>
 
-            {/* 3.5. COMPLIANCE CONTEXT (New Section) */}
+            {/* 3.5. COMPLIANCE CONTEXT */}
             {content.complianceContext && (
                 <SectionWrapper variant="base" padding="md" showLineGrid patternIntensity="subtle" className="bg-surface/30">
                     <Container>
@@ -265,9 +176,9 @@ export function ServicePageTemplate({ content }: ServicePageTemplateProps) {
                                     <Shield className="h-10 w-10 text-accent" />
                                 </div>
                                 <div className="space-y-4">
-                                    <h3 className="text-2xl font-bold text-text-primary">South African Compliance Context</h3>
-                                    <p className="text-text-primary font-medium italic mb-6">
-                                        &quot;Creations transformed how we handle SARS. No more compliance anxiety.&quot;
+                                    <h3 className="text-2xl font-bold text-text-primary">Compliance & Context</h3>
+                                    <p className="text-text-secondary italic mb-6">
+                                        {content.complianceContext}
                                     </p>
                                 </div>
                             </div>
@@ -276,44 +187,12 @@ export function ServicePageTemplate({ content }: ServicePageTemplateProps) {
                 </SectionWrapper>
             )}
 
-            {/* 3.6. TRUSTED RESOURCES (New Section) */}
-            {content.externalLinks && content.externalLinks.length > 0 && (
-                <SectionWrapper variant="base" padding="md" className="bg-background border-b border-border/40">
-                    <Container>
-                        <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
-                            <h3 className="text-xl font-bold mb-6 flex items-center gap-2 text-text-primary">
-                                <Shield className="h-5 w-5 text-accent" /> Trusted Resources
-                            </h3>
-                            <div className="flex flex-wrap justify-center gap-4">
-                                {content.externalLinks.map((link, i) => (
-                                    <a
-                                        key={i}
-                                        href={link.href}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-surface border border-border/50 hover:border-accent/30 hover:bg-surface-elevated transition-all group"
-                                    >
-                                        <span className="text-sm font-medium text-text-secondary group-hover:text-text-primary transition-colors">{link.label}</span>
-                                        <ArrowRight className="h-3 w-3 text-accent opacity-50 group-hover:translate-x-0.5 transition-transform" />
-                                    </a>
-                                ))}
-                            </div>
-                        </div>
-                    </Container>
-                </SectionWrapper>
-            )}
-
-            {/* 3.8. REQUIRED DOCUMENTS (New Section) */}
-            {content.requiredDocuments && (
-                <RequiredDocumentsSection documents={content.requiredDocuments} />
-            )}
-
             {/* 4. PROCESS STEPS */}
             <SectionWrapper padding="lg" showDotGrid patternIntensity="subtle">
                 <Container>
                     <MotionWrapper className="text-center max-w-3xl mx-auto mb-16">
-                        <h2 className="text-3xl lg:text-4xl font-bold tracking-tight mb-4 text-text-primary">Our Operational Methodology</h2>
-                        <p className="text-text-secondary text-lg">A structured, 5-step approach designed for precision and clarity.</p>
+                        <h2 className="text-3xl lg:text-4xl font-bold tracking-tight mb-4 text-text-primary">How We Work</h2>
+                        <p className="text-text-secondary text-lg">A structured approach designed for your industry.</p>
                     </MotionWrapper>
 
                     <StaggerChildren className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
@@ -335,7 +214,7 @@ export function ServicePageTemplate({ content }: ServicePageTemplateProps) {
                         ))}
                     </StaggerChildren>
 
-                    {/* Insights Box (New) */}
+                    {/* Insights Box */}
                     {content.insights && content.insights.length > 0 && (
                         <MotionWrapper delay={0.4} className="mt-16 p-8 rounded-3xl bg-accent/[0.03] border border-accent/10 relative overflow-hidden">
                             <div className="absolute right-0 bottom-0 w-64 h-32 opacity-10 pointer-events-none">
@@ -343,7 +222,7 @@ export function ServicePageTemplate({ content }: ServicePageTemplateProps) {
                             </div>
                             <div className="relative z-10">
                                 <h3 className="text-xl font-bold mb-6 flex items-center gap-2 text-accent">
-                                    <TrendingUp className="h-5 w-5" /> Professional Insights
+                                    <TrendingUp className="h-5 w-5" /> Specialist Insights
                                 </h3>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     {content.insights.map((insight, i) => (
@@ -364,7 +243,6 @@ export function ServicePageTemplate({ content }: ServicePageTemplateProps) {
                 <Container className="max-w-3xl">
                     <MotionWrapper direction="none" className="text-center mb-12">
                         <h2 className="text-3xl font-bold tracking-tight mb-4">Common Questions</h2>
-                        <p className="text-text-secondary">Everything you need to know about our {content.title.toLowerCase()} service.</p>
                     </MotionWrapper>
 
                     <Accordion type="single" collapsible className="w-full space-y-4">
@@ -386,7 +264,7 @@ export function ServicePageTemplate({ content }: ServicePageTemplateProps) {
             <SectionWrapper padding="lg" showGlow showDotGrid patternIntensity="strong">
                 <Container className="max-w-4xl mx-auto text-center">
                     <MotionWrapper direction="down" className="mb-12">
-                        <h2 className="text-3xl font-bold mb-6">Complementary Services</h2>
+                        <h2 className="text-3xl font-bold mb-6">Recommended Services</h2>
                         <div className="flex flex-wrap justify-center gap-4">
                             {content.relatedServices.map((service, i) => (
                                 <Link key={i} href={`/services/${service.slug}`}>
@@ -404,9 +282,9 @@ export function ServicePageTemplate({ content }: ServicePageTemplateProps) {
                             <div className="absolute -bottom-24 -left-24 w-48 h-48 bg-accent/5 rounded-full blur-3xl"></div>
 
                             <div className="relative z-10">
-                                <h3 className="text-2xl md:text-3xl font-bold mb-4">Ready to start with {content.title}?</h3>
+                                <h3 className="text-2xl md:text-3xl font-bold mb-4">Ready to start?</h3>
                                 <p className="text-text-secondary text-lg mb-10 max-w-xl mx-auto">
-                                    Get a comprehensive quote tailored to your business needs in less than 24 hours. No hidden fees, no strings attached.
+                                    Get a comprehensive quote tailored to your business needs in less than 24 hours.
                                 </p>
                                 <Link href="/quote">
                                     <Button variant="glow" size="lg" className="w-full sm:w-auto px-16 h-16 text-xl font-bold">
