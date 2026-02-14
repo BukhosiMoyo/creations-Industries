@@ -5,7 +5,7 @@ import { EMAIL_TEMPLATES } from "./templates";
 import * as React from "react";
 import { EmailType } from "@prisma/client";
 
-const resend = new Resend(process.env.RESEND_API_KEY || "re_123");
+const resend = new Resend(process.env.RESEND_API_KEY || 're_123456789');
 const FROM_EMAIL = process.env.EMAIL_FROM || "Creations <notifications@creationsweb.za>"; // Fallback
 
 interface SendEmailOptions {
