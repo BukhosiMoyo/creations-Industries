@@ -37,12 +37,27 @@ export function ContactForm() {
 
     async function onSubmit(data: ContactFormValues) {
         setIsSubmitting(true)
-        // Simulate API call
-        await new Promise((resolve) => setTimeout(resolve, 1500))
-        console.log(data)
-        setIsSubmitting(false)
-        setIsSuccess(true)
-        form.reset()
+        try {
+            const response = await fetch("/api/contact", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data),
+            })
+
+            if (!response.ok) {
+                throw new Error("Failed to submit")
+            }
+
+            const result = await response.json()
+            console.log("Success:", result)
+            setIsSuccess(true)
+            form.reset()
+        } catch (error) {
+            console.error("Error submitting form:", error)
+            // Ideally show an error toast here
+        } finally {
+            setIsSubmitting(false)
+        }
     }
 
     if (isSuccess) {
@@ -63,6 +78,15 @@ export function ContactForm() {
     return (
         <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                {/* Honeypot Field - Hidden from users */}
+                <input
+                    type="text"
+                    name="_honey"
+                    style={{ display: 'none' }}
+                    tabIndex={-1}
+                    autoComplete="off"
+                />
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <FormField
                         control={form.control}

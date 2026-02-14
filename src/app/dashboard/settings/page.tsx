@@ -73,6 +73,14 @@ const settingsSections = [
         badge: "Coming Soon",
     },
     {
+        title: "Sending Domains",
+        description:
+            "Manage verified domains and email authentication (SPF/DKIM).",
+        icon: Globe,
+        href: "/dashboard/settings/domains",
+        badge: null,
+    },
+    {
         title: "Company Profile",
         description:
             "Your firm's details, registration, and public-facing information.",
@@ -110,8 +118,8 @@ export default function SettingsPage() {
                         >
                             <Card
                                 className={`border-border/60 transition-all group h-full ${isDisabled
-                                        ? "opacity-50"
-                                        : "hover:bg-muted/30 hover:shadow-md hover:border-accent/30 cursor-pointer"
+                                    ? "opacity-50"
+                                    : "hover:bg-muted/30 hover:shadow-md hover:border-accent/30 cursor-pointer"
                                     }`}
                             >
                                 <CardContent className="p-6">
@@ -119,8 +127,8 @@ export default function SettingsPage() {
                                         <div className="flex items-start gap-4">
                                             <div
                                                 className={`h-12 w-12 shrink-0 rounded-2xl flex items-center justify-center transition-all duration-300 ${isDisabled
-                                                        ? "bg-muted/30 text-muted-foreground/40"
-                                                        : "bg-muted/50 border border-border/50 text-muted-foreground group-hover:bg-accent group-hover:text-white group-hover:border-accent"
+                                                    ? "bg-muted/30 text-muted-foreground/40"
+                                                    : "bg-muted/50 border border-border/50 text-muted-foreground group-hover:bg-accent group-hover:text-white group-hover:border-accent"
                                                     }`}
                                             >
                                                 <section.icon className="h-6 w-6" />

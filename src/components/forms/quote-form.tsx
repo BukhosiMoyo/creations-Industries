@@ -63,15 +63,32 @@ export function QuoteForm() {
         mode: "onChange",
     })
 
+    const [referenceId, setReferenceId] = useState<string | null>(null)
+
     async function onSubmit(data: QuoteFormValues) {
         setIsSubmitting(true)
-        // Simulate API call
-        await new Promise((resolve) => setTimeout(resolve, 1500))
-        console.log(data)
-        setIsSubmitting(false)
-        setIsSuccess(true)
-        form.reset()
-        setStep(1)
+        try {
+            const response = await fetch("/api/quote", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data),
+            })
+
+            if (!response.ok) {
+                throw new Error("Failed to submit")
+            }
+
+            const result = await response.json()
+            setReferenceId(result.referenceId)
+            setIsSuccess(true)
+            form.reset()
+            setStep(1)
+        } catch (error) {
+            console.error("Error submitting quote:", error)
+            // Show error toast
+        } finally {
+            setIsSubmitting(false)
+        }
     }
 
     const nextStep = async () => {
@@ -104,6 +121,12 @@ export function QuoteForm() {
                     <AlertTitle className="text-2xl font-bold mb-2">Request Received</AlertTitle>
                     <AlertDescription className="text-lg">
                         Thank you for your request. We will prepare a custom quote and contact you within 24 hours.
+                        {referenceId && (
+                            <div className="mt-4 p-4 bg-white/50 rounded-lg border border-success/20">
+                                <span className="text-sm text-success/80 block">Your Reference ID:</span>
+                                <span className="text-xl font-bold font-mono">{referenceId}</span>
+                            </div>
+                        )}
                     </AlertDescription>
                     <Button
                         variant="outline"
@@ -130,6 +153,14 @@ export function QuoteForm() {
 
             <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="min-h-[400px] flex flex-col justify-between">
+                    {/* Honeypot Field - Hidden from users */}
+                    <input
+                        type="text"
+                        name="_honey"
+                        style={{ display: 'none' }}
+                        tabIndex={-1}
+                        autoComplete="off"
+                    />
                     <div className="relative overflow-hidden">
                         <AnimatePresence mode="wait">
                             <motion.div

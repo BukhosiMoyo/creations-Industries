@@ -1,10 +1,10 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Shield, Cloud, Network, LayoutDashboard, Users, TrendingUp, Landmark, Binary } from "lucide-react"
+import { Shield, Cloud, Network, LayoutDashboard, Users, TrendingUp, Landmark, Binary, Award, Calendar, FileText, CheckCircle } from "lucide-react"
 
 interface ServiceVisualProps {
-    type?: 'chart' | 'shield' | 'cloud' | 'flow' | 'team' | 'compliance' | 'strategic'
+    type?: 'chart' | 'shield' | 'cloud' | 'flow' | 'team' | 'compliance' | 'strategic' | 'certificate' | 'timeline'
     className?: string
 }
 
@@ -28,6 +28,57 @@ export function ServiceVisual({ type = 'chart', className = "" }: ServiceVisualP
 
     const renderVisual = () => {
         switch (type) {
+            case 'certificate':
+                return (
+                    <div className="relative flex items-center justify-center">
+                        <motion.div
+                            initial={{ scale: 0.8, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            transition={{ duration: 0.5 }}
+                            className="relative z-10 bg-surface border border-border p-6 rounded-xl shadow-2xl flex flex-col items-center"
+                        >
+                            <Award className="w-16 h-16 text-accent mb-4" strokeWidth={1} />
+                            <div className="w-24 h-2 bg-text-secondary/10 rounded-full mb-2" />
+                            <div className="w-16 h-2 bg-text-secondary/10 rounded-full" />
+
+                            <motion.div
+                                initial={{ scale: 0 }}
+                                animate={{ scale: 1 }}
+                                transition={{ delay: 0.5, type: "spring" }}
+                                className="absolute -bottom-3 -right-3 bg-accent text-white p-2 rounded-full shadow-lg"
+                            >
+                                <CheckCircle className="w-6 h-6" />
+                            </motion.div>
+                        </motion.div>
+                        <div className="absolute inset-0 bg-accent/5 blur-2xl rounded-full scale-150" />
+                    </div>
+                )
+            case 'timeline':
+                return (
+                    <div className="relative flex items-center justify-center w-full max-w-[200px]">
+                        <div className="absolute top-1/2 left-0 right-0 h-1 bg-border -translate-y-1/2 rounded-full" />
+                        <div className="relative z-10 flex justify-between w-full">
+                            {[...Array(3)].map((_, i) => (
+                                <motion.div
+                                    key={i}
+                                    initial={{ scale: 0 }}
+                                    animate={{ scale: 1 }}
+                                    transition={{ delay: i * 0.3 }}
+                                    className="bg-surface border-2 border-accent w-8 h-8 rounded-full flex items-center justify-center shadow-lg"
+                                >
+                                    <div className="w-3 h-3 bg-accent rounded-full" />
+                                </motion.div>
+                            ))}
+                        </div>
+                        <motion.div
+                            animate={{ x: [0, 10, 0] }}
+                            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                            className="absolute -top-8 bg-accent/10 text-accent px-2 py-1 rounded text-xs font-bold"
+                        >
+                            Process
+                        </motion.div>
+                    </div>
+                )
             case 'shield':
             case 'compliance':
                 return (

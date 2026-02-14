@@ -2,10 +2,36 @@ import { Container } from "@/components/ui/container"
 import { SectionWrapper } from "@/components/ui/section-wrapper"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { CheckCircle2, Target, Users, Zap } from "lucide-react"
+import { constructMetadata } from "@/lib/metadata"
+import { JsonLd } from "@/components/seo/json-ld"
+import { Organization, WithContext, AboutPage as AboutPageSchema } from "schema-dts"
+
+export const metadata = constructMetadata({
+    title: "About Us | Creations",
+    description: "Built on experience, driven by precision. We provide clarity, structure, and direction for South African businesses."
+})
 
 export default function AboutPage() {
+    const jsonLd: WithContext<AboutPageSchema> = {
+        "@context": "https://schema.org",
+        "@type": "AboutPage",
+        mainEntity: {
+            "@type": "Organization",
+            name: "Creations",
+            url: "https://creations.co.za",
+            logo: "https://creations.co.za/logo.png",
+            contactPoint: {
+                "@type": "ContactPoint",
+                telephone: "+27101234567",
+                contactType: "customer service",
+                areaServed: "ZA"
+            }
+        }
+    }
+
     return (
         <main>
+            <JsonLd data={jsonLd} />
             {/* Hero */}
             <SectionWrapper showGlow patternIntensity="subtle" padding="lg">
                 <Container className="text-center max-w-4xl">

@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { calculateLeadScore, getPriorityFromScore } from "@/lib/leads/scoring";
 import { LeadSource, LeadStatus, LeadUrgency, LeadLocation, LeadBudgetRange, ServiceType } from "@prisma/client";
+import { generateReferenceId } from "@/lib/leads/utils";
 import * as z from "zod";
 
 const publicLeadSchema = z.object({
@@ -32,8 +33,11 @@ export async function POST(req: NextRequest) {
             messageLength: data.message?.length || 0,
         });
 
+        const referenceId = generateReferenceId();
+
         const lead = await prisma.lead.create({
             data: {
+                referenceId,
                 ...data, // firstName, lastName, etc.
                 fullName: `${data.firstName} ${data.lastName}`, // Backward compatibility
                 source: LeadSource.Website,

@@ -2,6 +2,7 @@ import { PrismaClient } from "@prisma/client";
 import { PrismaPg } from "@prisma/adapter-pg";
 import { Pool } from "pg";
 
+// Global Prisma Client instance
 const globalForPrisma = global as unknown as { prisma: PrismaClient };
 
 // Direct URL for the adapter (extracted from the prisma+postgres URL if possible, 

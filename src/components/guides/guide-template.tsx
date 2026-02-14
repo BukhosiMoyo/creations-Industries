@@ -1,0 +1,297 @@
+"use client"
+
+import Link from "next/link"
+import { ArrowRight, Clock, FileText, HelpCircle, Shield, ShieldCheck, TrendingUp, Users, CheckCircle } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Container } from "@/components/ui/container"
+import { SectionWrapper } from "@/components/ui/section-wrapper"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { GuideContent } from "@/types/service"
+import { MotionWrapper, StaggerChildren } from "@/components/ui/motion-wrapper"
+import { IconList } from "@/components/ui/icon-list"
+import { CurvyGraph } from "@/components/ui/curvy-graph"
+import { ServiceVisual } from "@/components/ui/service-visuals"
+
+interface GuidePageTemplateProps {
+    content: GuideContent
+}
+
+export function GuidePageTemplate({ content }: GuidePageTemplateProps) {
+    return (
+        <div className="flex flex-col">
+            {/* 1. HERO SECTION */}
+            <SectionWrapper variant="base" padding="lg" showGlow showReactiveGrid patternIntensity="subtle" className="border-b border-border/40">
+                <Container>
+                    <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
+                        <StaggerChildren className="w-full">
+                            <MotionWrapper direction="down" delay={0.1}>
+                                <div className="inline-flex items-center rounded-full border border-primary/20 bg-primary/5 px-3 py-1 text-sm text-primary mb-6 font-medium">
+                                    Step-by-Step Guide
+                                </div>
+                            </MotionWrapper>
+
+                            <MotionWrapper delay={0.2}>
+                                <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-br from-text-primary via-text-primary to-accent mb-6 leading-[1.1]">
+                                    {content.hero.heading}
+                                </h1>
+                            </MotionWrapper>
+
+                            <MotionWrapper delay={0.3}>
+                                <p className="text-text-secondary leading-relaxed mb-8 max-w-3xl mx-auto">
+                                    {content.hero.subheading}
+                                </p>
+                            </MotionWrapper>
+
+                            {content.hero.helperStrip && (
+                                <MotionWrapper delay={0.35} className="flex flex-wrap justify-center gap-2 mb-10">
+                                    {content.hero.helperStrip.map((item, i) => (
+                                        <div key={i} className="px-3 py-1.5 rounded-lg bg-surface/50 border border-border/50 text-sm text-text-secondary flex items-center gap-2">
+                                            <div className="h-1.5 w-1.5 rounded-full bg-accent" />
+                                            {item}
+                                        </div>
+                                    ))}
+                                </MotionWrapper>
+                            )}
+
+                            {/* Guide Helper Actions - Less aggressive than "Get Quote" */}
+                            <MotionWrapper delay={0.4} className="flex flex-col sm:flex-row gap-4 justify-center">
+                                <Link href="/contact">
+                                    <Button variant="outline" size="lg" className="h-12 px-8 text-base text-text-primary border-border hover:bg-surface">Ask an Expert</Button>
+                                </Link>
+                            </MotionWrapper>
+                        </StaggerChildren>
+                    </div>
+                </Container>
+            </SectionWrapper>
+
+            {/* 2. STATS & INSIGHTS (Optional for Guides) */}
+            {content.stats && content.stats.length > 0 && (
+                <SectionWrapper padding="md" showDotGrid patternIntensity="subtle" className="bg-background border-b border-border/40">
+                    <Container>
+                        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+                            {content.stats.map((stat, i) => (
+                                <MotionWrapper key={i} delay={i * 0.1} className="text-center group border-r border-border/20 last:border-0 pr-4 last:pr-0">
+                                    <div className="text-3xl md:text-4xl font-black text-accent mb-1 tabular-nums group-hover:scale-110 transition-transform duration-500">{stat.value}</div>
+                                    <div className="text-[10px] font-black text-text-muted uppercase tracking-[0.2em] mb-2">{stat.label}</div>
+                                    {stat.description && <p className="text-xs text-text-secondary leading-tight opacity-80">{stat.description}</p>}
+                                </MotionWrapper>
+                            ))}
+                        </div>
+                    </Container>
+                </SectionWrapper>
+            )}
+
+            {/* 2.8. DETAILED SECTIONS */}
+            {content.detailedSections && content.detailedSections.length > 0 && content.detailedSections.map((section, i) => {
+                const isEven = i % 2 === 0
+                const illustrationType = section.illustrationType || content.visualType || 'chart'
+                const useDotGrid = i % 2 === 0
+                return (
+                    <SectionWrapper
+                        key={i}
+                        variant={isEven ? "base" : "surface"}
+                        padding="lg"
+                        {...(useDotGrid ? { showDotGrid: true } : { showLineGrid: true })}
+                        patternIntensity="subtle"
+                        className="border-b border-border/40 overflow-hidden"
+                    >
+                        <Container>
+                            <div className={`grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center ${!isEven ? 'lg:[direction:rtl]' : ''}`}>
+                                {/* Text Side */}
+                                <MotionWrapper
+                                    direction={isEven ? "right" : "left"}
+                                    className="lg:col-span-7 lg:[direction:ltr]"
+                                >
+                                    <div className="space-y-6">
+                                        <div className="flex items-center gap-3">
+                                            <div className="h-1 w-10 bg-accent rounded-full" />
+                                            <span className="text-xs font-bold uppercase tracking-[0.2em] text-accent">
+                                                Context
+                                            </span>
+                                        </div>
+                                        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-text-primary leading-tight">
+                                            {section.title}
+                                        </h2>
+
+                                        <div className="space-y-4">
+                                            {section.content.split('\n\n').map((paragraph, j) => (
+                                                <p key={j} className="text-text-secondary leading-relaxed text-base md:text-lg">
+                                                    {paragraph}
+                                                </p>
+                                            ))}
+                                        </div>
+
+                                        {section.highlights && section.highlights.length > 0 && (
+                                            <div className="pt-2">
+                                                <ul className="space-y-3">
+                                                    {section.highlights.map((item, k) => (
+                                                        <li key={k} className="flex items-start gap-3 group">
+                                                            <div className="mt-1 h-5 w-5 rounded-md bg-accent/10 flex items-center justify-center shrink-0 group-hover:bg-accent/20 transition-colors">
+                                                                <ShieldCheck className="h-3 w-3 text-accent" />
+                                                            </div>
+                                                            <span className="text-text-primary text-sm md:text-base font-medium leading-snug">{item}</span>
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            </div>
+                                        )}
+                                    </div>
+                                </MotionWrapper>
+
+                                {/* Illustration Side */}
+                                <MotionWrapper
+                                    direction={isEven ? "left" : "right"}
+                                    delay={0.2}
+                                    className="lg:col-span-5 lg:[direction:ltr]"
+                                >
+                                    <div className="relative flex items-center justify-center py-8 lg:py-12">
+                                        <div className="absolute inset-0 bg-accent/[0.03] rounded-[2.5rem] border border-border/30" />
+                                        <div className="relative z-10 scale-110 lg:scale-125">
+                                            <ServiceVisual type={illustrationType} />
+                                        </div>
+                                    </div>
+                                </MotionWrapper>
+                            </div>
+                        </Container>
+                    </SectionWrapper>
+                )
+            })}
+
+            {/* 3. WHO IS THIS FOR & REQUIREMENTS */}
+            {(content.whoIsThisFor || content.requirements) && (
+                <SectionWrapper variant="surface" padding="lg" showDotGrid patternIntensity="subtle" className="border-y border-border/40">
+                    <Container>
+                        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                            {/* Left: Who is this for */}
+                            {content.whoIsThisFor && (
+                                <MotionWrapper direction="right" className="lg:col-span-6 space-y-8">
+                                    <div className="relative">
+                                        <h3 className="text-2xl font-bold mb-6 flex items-center gap-2">
+                                            <Users className="h-6 w-6 text-accent" /> Who Is This Guide For?
+                                        </h3>
+                                        <IconList
+                                            items={content.whoIsThisFor}
+                                            defaultIcon={TrendingUp}
+                                            itemClassName="p-4 rounded-xl bg-background border border-border shadow-sm hover:border-accent/20 transition-all group"
+                                        />
+                                    </div>
+                                </MotionWrapper>
+                            )}
+
+                            {/* Right: Requirements */}
+                            {content.requirements && (
+                                <MotionWrapper direction="left" className="lg:col-span-6 space-y-8">
+                                    <div className="p-6 rounded-2xl bg-surface-elevated/50 backdrop-blur-sm border border-border shadow-inner relative overflow-hidden group h-full">
+                                        <div className="absolute top-0 right-0 w-32 h-32 bg-accent/5 blur-2xl group-hover:bg-accent/10 transition-colors" />
+                                        <h4 className="font-bold mb-6 flex items-center gap-2 text-text-primary relative z-10 text-xl">
+                                            <ShieldCheck className="h-6 w-6 text-accent" /> What You Need
+                                        </h4>
+                                        <IconList
+                                            items={content.requirements}
+                                            iconClassName="h-5 w-5 text-accent"
+                                            itemClassName="text-base text-text-secondary py-2"
+                                            className="space-y-4 relative z-10"
+                                        />
+                                    </div>
+                                </MotionWrapper>
+                            )}
+                        </div>
+                    </Container>
+                </SectionWrapper>
+            )}
+
+            {/* 4. PROCESS STEPS (Guide Core) */}
+            {content.process && (
+                <SectionWrapper padding="lg" showDotGrid patternIntensity="subtle">
+                    <Container>
+                        <MotionWrapper className="text-center max-w-3xl mx-auto mb-16">
+                            <h2 className="text-3xl lg:text-4xl font-bold tracking-tight mb-4 text-text-primary">How To Do It</h2>
+                            <p className="text-text-secondary text-lg">Follow these steps carefully.</p>
+                        </MotionWrapper>
+
+                        <StaggerChildren className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                            {content.process.map((step, i) => (
+                                <MotionWrapper key={i} delay={i * 0.1}>
+                                    <Card className="h-full bg-surface/40 hover:bg-surface border-border/50 group overflow-hidden relative transition-all duration-300 hover:-translate-y-1">
+                                        <CardHeader className="pb-2">
+                                            <div className="text-5xl font-black text-accent/5 group-hover:text-accent/10 transition-colors mb-2 italic">0{step.step}</div>
+                                            <CardTitle className="text-lg group-hover:text-accent transition-colors font-bold">{step.title}</CardTitle>
+                                        </CardHeader>
+                                        <CardContent>
+                                            <p className="text-sm text-text-secondary leading-relaxed opacity-90">{step.description}</p>
+                                        </CardContent>
+                                    </Card>
+                                </MotionWrapper>
+                            ))}
+                        </StaggerChildren>
+
+                        {/* Insights Box */}
+                        {content.insights && content.insights.length > 0 && (
+                            <MotionWrapper delay={0.4} className="mt-16 p-8 rounded-3xl bg-accent/[0.03] border border-accent/10 relative overflow-hidden">
+                                <div className="absolute right-0 bottom-0 w-64 h-32 opacity-10 pointer-events-none">
+                                    <CurvyGraph />
+                                </div>
+                                <div className="relative z-10">
+                                    <h3 className="text-xl font-bold mb-6 flex items-center gap-2 text-accent">
+                                        <TrendingUp className="h-5 w-5" /> Expert Tips
+                                    </h3>
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        {content.insights.map((insight, i) => (
+                                            <div key={i} className="flex gap-4">
+                                                <div className="h-2 w-2 rounded-full bg-accent mt-2 shrink-0" />
+                                                <p className="text-text-secondary text-sm leading-relaxed">{insight}</p>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            </MotionWrapper>
+                        )}
+                    </Container>
+                </SectionWrapper>
+            )}
+
+            {/* 4. FAQs */}
+            <SectionWrapper variant="surface" padding="lg" showLineGrid patternIntensity="subtle">
+                <Container className="max-w-3xl">
+                    <MotionWrapper direction="none" className="text-center mb-12">
+                        <h2 className="text-3xl font-bold tracking-tight mb-4">Common Questions</h2>
+                    </MotionWrapper>
+
+                    <Accordion type="single" collapsible className="w-full space-y-4">
+                        {content.faqs.map((faq, i) => (
+                            <AccordionItem key={i} value={`item-${i}`} className="border rounded-xl bg-background px-4 overflow-hidden shadow-sm">
+                                <AccordionTrigger className="text-left font-semibold py-4 hover:no-underline hover:text-accent">
+                                    {faq.question}
+                                </AccordionTrigger>
+                                <AccordionContent className="text-text-secondary pb-4 leading-relaxed">
+                                    {faq.answer}
+                                </AccordionContent>
+                            </AccordionItem>
+                        ))}
+                    </Accordion>
+                </Container>
+            </SectionWrapper>
+
+            {/* 5. READ NEXT / CTA */}
+            {content.relatedServices && content.relatedServices.length > 0 && (
+                <SectionWrapper padding="lg" showGlow showDotGrid patternIntensity="strong">
+                    <Container className="max-w-4xl mx-auto text-center">
+                        <MotionWrapper direction="down" className="mb-12">
+                            <h2 className="text-3xl font-bold mb-6">Related Services</h2>
+                            <div className="flex flex-wrap justify-center gap-4">
+                                {content.relatedServices.map((service, i) => (
+                                    <Link key={i} href={`/services/${service.slug}`}>
+                                        <Button variant="outline" className="h-auto py-3 px-6 text-base border-border bg-surface hover:bg-surface-elevated group">
+                                            {service.title} <ArrowRight className="ml-2 h-4 w-4 opacity-50 group-hover:translate-x-1 transition-transform" />
+                                        </Button>
+                                    </Link>
+                                ))}
+                            </div>
+                        </MotionWrapper>
+                    </Container>
+                </SectionWrapper>
+            )}
+        </div>
+    )
+}

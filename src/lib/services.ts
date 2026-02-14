@@ -9069,5 +9069,3169 @@ export const services: ServiceContent[] = [
             }
         ],
         visualType: "shield"
+    },
+    {
+        slug: "vat-registration",
+        title: "VAT Registration Services in South Africa",
+        pillar: "Compliance",
+        hero: {
+            heading: "VAT Registration Services in South Africa",
+            subheading: "Expert assistance with compulsory and voluntary VAT registration. We handle the entire SARS application process so you can trade compliantly."
+        },
+        whoIsThisFor: [
+            "Businesses with turnover exceeding R1 million (Compulsory)",
+            "Startups with turnover over R50,000 seeking voluntary registration",
+            "Companies tendering for contracts requiring VAT numbers",
+            "Importers and exporters needing customs codes"
+        ],
+        deliverables: [
+            "Assessment of VAT eligibility (Voluntary vs Compulsory)",
+            "Preparation of SARS VAT101 application forms",
+            "Collation of supporting documents (invoices, bank letters)",
+            "Submission of application via SARS eFiling or branch visit",
+            "Management of SARS interviews and queries",
+            "Confirmation of VAT number and liability date",
+            "Setup of initial VAT periods (Category A/B)"
+        ],
+        process: [
+            { step: 1, title: "Eligibility Assessment", description: "We confirm if you meet the requirements for compulsory or voluntary registration." },
+            { step: 2, title: "Document Preparation", description: "We gather the specific proof of trading and banking details SARS requires." },
+            { step: 3, title: "Application Submission", description: "We submit your application and handle any SARS verification requests." },
+            { step: 4, title: "VAT Setup", description: "Once approved, we set up your VAT periods and compliance calendar." }
+        ],
+        requirements: ["Bank account confirmation letter (original stamp)", "Proof of address (Director & Business)", "Invoices proving trading activity (>R50k)", "Company registration documents"],
+        timeline: "2 to 6 weeks (Dependent on SARS processing)",
+        faqs: [
+            { question: "When must I register for VAT?", answer: "It is compulsory if your taxable supplies exceed R1 million in any 12-month period. You must apply within 21 days of exceeding this threshold." },
+            { question: "Can I register voluntarily?", answer: "Yes, if your taxable supplies exceed R50,000 in the past 12 months. This is beneficial if your clients are VAT vendors and you want to claim input VAT." },
+            { question: "What is the difference between invoice and payments basis?", answer: "Most businesses are on the invoice basis (pay VAT when you invoice). The payments basis (pay VAT when you get paid) is only for individuals or small businesses with turnover under R2.5m." },
+            { question: "What happens if my application is rejected?", answer: "SARS often rejects applications due to insufficient proof of trading or incorrect bank details. We review rejections and re-apply with the correct evidence." }
+        ],
+        relatedServices: [
+            { slug: "vat-compliance-support", title: "VAT Compliance" },
+            { slug: "bookkeeping-services-south-africa", title: "Bookkeeping" },
+            { slug: "company-registration", title: "Company Registration" }
+        ],
+        stats: [
+            { label: "Threshold", value: "R1 Million", description: "Compulsory registration." },
+            { label: "Voluntary", value: ">R50k", description: "Min turnover required." },
+            { label: "Standard Rate", value: "15%", description: "Current VAT rate." },
+            { label: "Timeline", value: "2-6 Weeks", description: "SARS processing time." }
+        ],
+        insights: [
+            "Registering for VAT increases your administrative burden significantly; ensure the benefits (input claims/tenders) outweigh the costs.",
+            "SARS is extremely strict on bank account verification; the details must match the company registration exactly.",
+            "Once registered, you must file returns every two months even if you have no trading activity."
+        ],
+        problemsSolved: [
+            "Rejection of VAT applications by SARS",
+            "Inability to tender without a VAT number",
+            "Lost input VAT claims on large expenses",
+            "Compliance penalties for late registration",
+            "Confusion over liability dates"
+        ],
+        complianceContext: "VAT registration is governed by the VAT Act. Failure to register when liable (over R1m turnover) is a criminal offence and carries harsh penalties.",
+        externalLinks: [
+            { label: "SARS (VAT Guide)", href: "https://www.sars.gov.za/tax-rates/value-added-tax-vat/" }
+        ],
+        detailedSections: [
+            {
+                title: "Compulsory vs. Voluntary Registration",
+                content: "Understanding whether you *must* register or *should* register is the first step. **Compulsory registration** is triggered when your taxable supplies (sales) exceed R1 million in any continuous 12-month period. You have 21 days to apply.\n\n**Voluntary registration** is an option for businesses with turnover exceeding R50,000. This is often strategic: it allows you to claim back VAT on startup costs, rent, and equipment, and it lends credibility to your business when dealing with large corporate clients who expect a tax invoice.",
+                highlights: [
+                    "Compulsory threshold: R1 million turnover",
+                    "Voluntary threshold: R50,000 turnover",
+                    "Strategic benefit: Claiming input tax",
+                    "Credibility benefit: Tendering and corporate contracts"
+                ],
+                illustrationType: "chart"
+            },
+            {
+                title: "The 'Hidden' Challenges of Application",
+                content: "A VAT application seems simple on paper (VAT101 form), but SARS is rigorous in its verification process to prevent fraud. Common stumbling blocks include banking details (the account name must match the company name *exactly*), proof of address (must be a valid business location, not just a post box), and proof of trading (invoices must show genuine business activity).\n\nWe act as the intermediary, ensuring your application pack meets SARS's strict criteria before submission, significantly reducing the chance of rejection or delays.",
+                highlights: [
+                    "Bank account verification (SARS strictness)",
+                    "Proof of genuine business address",
+                    "Valid tax invoices proving turnover",
+                    "Director verification requirements"
+                ],
+                illustrationType: "shield"
+            },
+            {
+                title: "Responsibilities of a VAT Vendor",
+                content: "Becoming a VAT vendor changes your business administration. You immediately become an unpaid tax collector for the government. You must issue valid tax invoices containing specific details (VAT number, address, etc.), maintain proper accounting records, and submit returns (usually every two months) on time.\n\nThe penalties for non-compliant invoicing or late payments are severe (10% penalty + interest). Our service extends beyond just getting the number; we advise you on how to set up your invoicing system to be compliant from day one.",
+                highlights: [
+                    "Issuing valid tax invoices (Section 20)",
+                    "Bi-monthly return submission (VAT201)",
+                    "Payment of VAT by the 25th/last business day",
+                    "Record keeping for 5 years"
+                ],
+                illustrationType: "compliance"
+            }
+        ],
+        visualType: "shield"
+    },
+    {
+        slug: "vat-returns-submissions",
+        title: "VAT Returns & VAT Submissions (VAT201) Services",
+        pillar: "Compliance",
+        hero: {
+            heading: "VAT Returns & VAT Submissions (VAT201) Services",
+            subheading: "Accurate, on-time VAT201 submissions. We reconcile your input and output tax to ensure you pay only what is due to SARS."
+        },
+        whoIsThisFor: [
+            "Registered VAT vendors (Category A, B, or C)",
+            "Businesses wanting to avoid late payment penalties",
+            "Companies needing accurate input VAT claims",
+            "Entities subjected to frequent SARS audits"
+        ],
+        deliverables: [
+            "Processing of sales and expense invoices for VAT",
+            "Calculation of VAT liability or refund due",
+            "Completion and submission of SARS VAT201 return",
+            "Reconciliation of VAT control account",
+            "Verification of valid tax invoices for input claims",
+            "Advising on payment amounts and references",
+            "Management of SARS verification requests"
+        ],
+        process: [
+            { step: 1, title: "Data Collection", description: "We gather your sales and purchase records for the VAT period." },
+            { step: 2, title: "Input Verification", description: "We check that your expense invoices meet SARS validity requirements." },
+            { step: 3, title: "Calculation & Submission", description: "We calculate the net VAT payable/refundable and submit the VAT201." },
+            { step: 4, title: "Payment/Refund Management", description: "We provide payment instructions or manage the refund payout process." }
+        ],
+        requirements: ["Valid tax invoices for all expenses >R500", "Sales reports/invoices for the period", "Bank statements", "Import/Export documents (if applicable)"],
+        timeline: "Every 2 Months (Standard) or Monthly",
+        faqs: [
+            { question: "When is my VAT return due?", answer: "Submissions via eFiling and payments are generally due by the last business day of the month following the end of your tax period." },
+            { question: "What counts as a valid tax invoice?", answer: "It must be an original document with the words 'Tax Invoice', seller's VAT number, buyer's VAT number (if over R5,000), date, and description of goods." },
+            { question: "What if I can't pay the VAT on time?", answer: "You should still submit the return on time to avoid the late submission penalty (administrative non-compliance). You can then apply for a deferred payment arrangement for the debt." },
+            { question: "Why does SARS audit my refund?", answer: "Refunds often trigger automatic verifications. SARS checks if the input tax claims are valid. We manage this process by submitting the required invoices to release the refund." }
+        ],
+        relatedServices: [
+            { slug: "vat-reconciliations", title: "VAT Reconciliations" },
+            { slug: "monthly-bookkeeping-services", title: "Monthly Bookkeeping" },
+            { slug: "vat-registration", title: "VAT Registration" }
+        ],
+        stats: [
+            { label: "Penalty", value: "10%", description: "Late payment fine." },
+            { label: "Interest", value: "Prime+", description: "On overdue VAT." },
+            { label: "Audit", value: "Common", description: "On refunds." },
+            { label: "Frequency", value: "Bi-Monthly", description: "Typical cycle." }
+        ],
+        insights: [
+            "The most common reason for SARS disallowing input VAT is invalid invoices (e.g., missing VAT number, incorrect address).",
+            "Paying late attracts a 10% penalty immediately, regardless of the reason.",
+            "If you have a zero-rated supply (e.g., exports), you must have the correct customs documentation to prove it."
+        ],
+        problemsSolved: [
+            "Incorrect VAT calculations leading to overpayment",
+            "Penalties for late regular submissions",
+            "Disallowed input tax due to invalid invoices",
+            "Stress of SARS verification audits",
+            "Cash flow surprises from unexpected VAT bills"
+        ],
+        complianceContext: "Submitting incorrect returns involves severe penalties under the Tax Administration Act. Using a practitioner ensures a 'reasonable care' defence.",
+        externalLinks: [
+            { label: "SARS (VAT Vendors)", href: "https://www.sars.gov.za/types-of-tax/value-added-tax-vat/" }
+        ],
+        detailedSections: [
+            {
+                title: "The Mechanics of a VAT Return",
+                content: "A VAT return (VAT201) is a summary of two things: **Output Tax** (VAT you charged on sales) and **Input Tax** (VAT you paid on expenses). The difference is what you pay SARS, or what SARS pays you.\n\nGetting this calculation right requires more than just adding up invoices. You need to know which expenses are 'denied' (like entertainment or car hire), which supplies are 'zero-rated' (like exports), and which are 'exempt' (like financial services). We ensure every line item is classified correctly according to the VAT Act.",
+                highlights: [
+                    "Output Tax vs Input Tax calculation",
+                    "Identification of 'denied' input credits",
+                    "Handling of zero-rated and exempt supplies",
+                    "Correct treatment of credit notes and bad debts"
+                ],
+                illustrationType: "chart"
+            },
+            {
+                title: "Documentation: The Key to Input Claims",
+                content: "A valid tax invoice is the currency of the VAT system. If you claim input tax without a valid invoice, SARS will disallow the claim and add penalties. A valid invoice for amounts over R5,000 must contain specific details, including the buyer's (your) VAT number and address.\n\nWe review your larger expense invoices monthly to ensure they meet Section 20 requirements. If they don't, we advise you to get them corrected *before* submission, saving you from audit disallowances later.",
+                highlights: [
+                    "Section 20 invoice validity checks",
+                    "Buyer's VAT number mandatory > R5,000",
+                    "Original tax invoices required",
+                    "Electronic storage compliance"
+                ],
+                illustrationType: "shield"
+            },
+            {
+                title: "Managing SARS Refunds and Audits",
+                content: "If your input tax exceeds your output tax (e.g., you bought a large asset or had a slow sales month), SARS owes you a refund. However, refunds often trigger a proper verification (audit) where SARS asks for supporting documents.\n\nWe manage this entire process. We know exactly how to structure the 'pack' of documents SARS requests to ensure the verification is finalized quickly and the refund is released to your bank account without unnecessary delays.",
+                highlights: [
+                    "Preparation of SARS verification packs",
+                    "Reconciliation of claimed amounts to invoices",
+                    "Follow-up on delayed refunds",
+                    "Dispute resolution for disallowed items"
+                ],
+                illustrationType: "compliance"
+            }
+        ],
+        visualType: "flow"
+    },
+    {
+        slug: "vat-deregistration",
+        title: "VAT Deregistration Services in South Africa",
+        pillar: "Compliance",
+        hero: {
+            heading: "VAT Deregistration Services in South Africa",
+            subheading: "Securely cancel your VAT registration when you cease trading or fall below the threshold. We handle the final exit audit and compliance clearance."
+        },
+        whoIsThisFor: [
+            "Businesses ceasing operations or liquidating",
+            "Companies with turnover falling below R1 million (Voluntary)",
+            "Entities that have sold their business as a going concern",
+            "Non-compliant vendors forced to deregister by SARS"
+        ],
+        deliverables: [
+            "Assessment of deregistration eligibility",
+            "Processing of VAT123 deregistration form",
+            "Calculation of output tax on assets retained upon cessation (Exit Charge)",
+            "Submission of final VAT return",
+            "Handling of SARS deregistration audit",
+            "Clearance of all outstanding VAT liabilities",
+            "Confirmation of deregistration status"
+        ],
+        process: [
+            { step: 1, title: "Eligibility Check", description: "We confirm if you are legally allowed (or required) to deregister." },
+            { step: 2, title: "Asset Valuation", description: "We value any assets kept by the business to calculate the final 'exit VAT'." },
+            { step: 3, title: "Application & Audit", description: "We submit the VAT123 and manage the mandatory SARS audit." },
+            { step: 4, title: "Final Settlement", description: "Any final VAT due is paid, and the VAT number is cancelled." }
+        ],
+        requirements: ["Reason for deregistration (e.g., liquidation, low turnover)", "Asset register with current market values", "All past VAT returns submitted", "Bank statements"],
+        timeline: "3 to 6 Months (SARS audit mandatory)",
+        faqs: [
+            { question: "When can I deregister for VAT?", answer: "You can deregister if your taxable supplies fall below R1 million in a 12-month period, or if you cease trading entirely." },
+            { question: "Do I have to pay VAT when I deregister?", answer: "Yes. SARS treats deregistration as a 'deemed sale' of all your business assets at market value. You must pay 15% VAT on the value of assets you keep." },
+            { question: "Can I just stop submitting returns?", answer: "No. Until you are officially deregistered, you must continue submitting 'nil' returns. Failure to do so leads to administrative penalties every month." },
+            { question: "How long does the process take?", answer: "Deregistration always triggers a SARS audit. The process typically takes 3 to 6 months to finalise, during which you remain liable for compliance." }
+        ],
+        relatedServices: [
+            { slug: "vat-compliance-support", title: "VAT Compliance" },
+            { slug: "annual-financial-statements", title: "Financial Statements" },
+            { slug: "company-registration", title: "Company Services" }
+        ],
+        stats: [
+            { label: "Exit Tax", value: "15%", description: "On retained assets." },
+            { label: "Audit", value: "100%", description: "Mandatory by SARS." },
+            { label: "Timeline", value: "3-6 Mo", description: "Due to audit." },
+            { label: "Risk", value: "High", description: "If done incorrectly." }
+        ],
+        insights: [
+            "Deregistration is not instant; it is a process that involves a final audit of your entire VAT history.",
+            "The 'Exit Charge' often catches business owners by surprise; you must pay VAT on the market value of assets you own at the time of closing.",
+            "You cannot deregister if you have outstanding returns or debt; these must be cleared first."
+        ],
+        problemsSolved: [
+            "Ongoing compliance costs for dormant companies",
+            "Penalties for unsubmitted returns after trading stops",
+            "Unexpected tax bills from the SARS exit audit",
+            "Inability to close a business fully",
+            "Legal liability for a VAT number no longer in use"
+        ],
+        complianceContext: "Section 8(2) of the VAT Act deems all assets to be sold upon deregistration. This ensures input tax previously claimed is 'repaid' on assets kept.",
+        externalLinks: [
+            { label: "SARS (Deregistration)", href: "https://www.sars.gov.za/types-of-tax/value-added-tax-vat/register-for-vat/" }
+        ],
+        detailedSections: [
+            {
+                title: "The Mandatory Exit Audit",
+                content: "Deregistering for VAT is not as simple as ticking a box. SARS views deregistration as a final opportunity to check your compliance. Therefore, almost every deregistration application triggers an audit. SARS will verify that all past returns were correct and that you have accurately declared the value of assets held at cessation.\n\nWe prepare your 'audit pack' in advance—valuing assets, reconciling past returns, and ensuring your records are perfect before the auditor even asks.",
+                highlights: [
+                    "Mandatory SARS audit engagement",
+                    "Verification of past 5 years' compliance",
+                    "Reconciliation of all input/output tax",
+                    "Resolution of outstanding queries"
+                ],
+                illustrationType: "shield"
+            },
+            {
+                title: "Understanding the 'Exit Charge'",
+                content: "The sting in the tail of VAT deregistration is Section 8(2) of the VAT Act. If you deregister, SARS deems that you have 'sold' all your business assets (computers, vehicles, furniture, stock) to yourself at open market value. You must pay 15% VAT on this value in your final return.\n\nThis 'Exit Charge' ensures that you don't keep assets on which you claimed input VAT without paying output VAT. We help you value these assets realistically to ensure you pay a fair amount, not an inflated one.",
+                highlights: [
+                    "Deemed sale of assets at market value",
+                    "Payment of 15% VAT on retained assets",
+                    "Valuation of stock and equipment",
+                    "Impact on cash flow at closure"
+                ],
+                illustrationType: "chart"
+            },
+            {
+                title: "When Voluntary Deregistration Makes Sense",
+                content: "If your turnover has dropped below the R1 million compulsory threshold, staying registered might cost you more in admin fees than you claim back in input VAT. In this case, voluntary deregistration is a smart move to reduce overheads.\n\nHowever, the timing is critical. You don't want to deregister just before a large capital purchase or a new contract that requires a VAT number. We analyse the cost-benefit of deregistering to ensure it is the right financial decision for your current business stage.",
+                highlights: [
+                    "Reducing monthly administrative costs",
+                    "Eliminating risk of late submission penalties",
+                    "Simplifying accounting requirements",
+                    "Strategic timing to minimise Exit Charge"
+                ],
+                illustrationType: "strategic"
+            }
+        ],
+        visualType: "compliance"
+    },
+    {
+        slug: "vat-compliance-support",
+        title: "VAT Compliance Support Services in South Africa",
+        pillar: "Compliance",
+        hero: {
+            heading: "VAT Compliance Support Services in South Africa",
+            subheading: "Expert resolution of SARS VAT audits, verification requests, and disputes. We protect your business from penalties and ensure fair treatment."
+        },
+        whoIsThisFor: [
+            "Businesses under SARS audit or verification",
+            "Companies with disallowed input tax claims",
+            "Vendors with long-outstanding VAT refunds",
+            "Businesses needing to correct past errors (VDP)"
+        ],
+        deliverables: [
+            "Preparation of audit packs for SARS verification",
+            "Reconstruction of missing records for compliance",
+            "Submission of Voluntary Disclosure Programme (VDP) applications",
+            "Dispute resolution and lodging of objections (NOO)",
+            "Follow-up on delayed refunds",
+            "Review of past returns for errors",
+            "Liaison with SARS auditors on your behalf"
+        ],
+        process: [
+            { step: 1, title: "Diagnostic Review", description: "We analyse the SARS correspondence and your records to understand the issue." },
+            { step: 2, title: "Strategy & Preparation", description: "We gather the necessary evidence and structure your response to SARS." },
+            { step: 3, title: "Submission & Engagement", description: "We submit the response and handle all communication with the SARS auditor." },
+            { step: 4, title: "Resolution", description: "We ensure the audit is finalised and any refunds or assessments are correct." }
+        ],
+        requirements: ["SARS correspondence (letters/notifications)", "Access to eFiling profile", "Relevant supporting documents for the period", "History of the dispute (if any)"],
+        timeline: "2 Weeks to 6 Months (Depending on SARS)",
+        faqs: [
+            { question: "What triggers a SARS VAT audit?", answer: "Audits are often triggered by refunds, large input claims, inconsistent turnover declarations, or random selection." },
+            { question: "Can I ignore a verification request?", answer: "No. If you ignore it, SARS will disallow all your input tax and issue an additional assessment with penalties and interest." },
+            { question: "What is the Voluntary Disclosure Programme (VDP)?", answer: "VDP allows you to come forward and correct past mistakes before SARS finds them. In return, SARS waives criminal prosecution and most penalties." },
+            { question: "Why is my VAT refund delayed?", answer: "Refunds are usually delayed due to outstanding returns in other tax types (like PAYE), missing bank details, or an active audit status." }
+        ],
+        relatedServices: [
+            { slug: "vat-returns-submissions", title: "VAT Submissions" },
+            { slug: "tax-clearance-certificates", title: "Tax Clearance" },
+            { slug: "bookkeeping-services-south-africa", title: "Bookkeeping Services" }
+        ],
+        stats: [
+            { label: "Penalties", value: "Waived", description: "Via VDP often." },
+            { label: "Refunds", value: "Released", description: "Post-verification." },
+            { label: "Response", value: "21 Days", description: "Typical SARS deadline." },
+            { label: "Success", value: "High", description: "With proper proof." }
+        ],
+        insights: [
+            "The way you present your documents to SARS matters as much as the documents themselves; a messy submission often leads to rejection.",
+            "SARS has strict timelines (usually 21 days) to respond to verification requests; missing this deadline triggers an automatic assessment.",
+            "You have the right to object to a SARS assessment, but you must pay the 'disputed' amount first unless you apply for a suspension of payment."
+        ],
+        problemsSolved: [
+            "Blocked VAT refunds impacting cash flow",
+            "Additional assessments raised unfairly by SARS",
+            "Stress of dealing with aggressive auditors",
+            "Risk of criminal prosecution for past errors",
+            "Penalties for non-compliance"
+        ],
+        complianceContext: "The Tax Administration Act gives you rights (fair process) and obligations (submission of evidence). We ensure SARS respects your rights.",
+        externalLinks: [
+            { label: "SARS (Dispute Resolution)", href: "https://www.sars.gov.za/individuals/dispute-resolution/" }
+        ],
+        detailedSections: [
+            {
+                title: "Surviving a SARS VAT Audit",
+                content: "Receiving a notification of a VAT audit can be intimidating. SARS auditors are tasked with finding errors and underpayments. They will scrutinise your invoices, bank statements, and calculations. If your records are disorganised or incomplete, they will likely raise an 'Additional Assessment'—essentially a bill for tax they believe you owe, plus penalties.\n\nWe act as your shield during this process. We review your data *before* submission, organise it into the format SARS prefers, and answer the auditor's questions directly. This professional approach often resolves audits quickly and without unexpected tax bills.",
+                highlights: [
+                    "Pre-submission review of all documents",
+                    "Organised 'Audit Pack' creation",
+                    "Direct communication with SARS auditors",
+                    "Prevention of unfair assessments"
+                ],
+                illustrationType: "shield"
+            },
+            {
+                title: "Unlocking Delayed Refunds",
+                content: "For many businesses, a VAT refund is a critical cash flow injection. When SARS withholds a refund for months due to 'verification', it can cripple operations. Often, these delays are caused by simple administrative issues—a missing bank letter, an unlinked tax type, or a single missing invoice.\n\nWe diagnose the root cause of the delay. We don't just 'wait and see'; we actively follow up, escalate via the SARS Service Manager system if necessary, and ensure that every requirement for release is met.",
+                highlights: [
+                    "Root cause analysis of refund blocks",
+                    "Escalation strategies for stalled cases",
+                    "Verification of bank details",
+                    "Clearing of 'special stoppers' on accounts"
+                ],
+                illustrationType: "chart"
+            },
+            {
+                title: "Correcting Past Mistakes (VDP)",
+                content: "If you realise you have under-declared output tax or over-claimed input tax in the past, the Voluntary Disclosure Programme (VDP) is your safety net. If you approach SARS *before* they select you for an audit, you can correct the error, pay the tax, and have the understatement penalties (which can be up to 200%) and criminal sanctions waived.\n\nWe guide you through the VDP process, calculating the correct liability and drafting the application to ensure you get the full benefit of the amnesty.",
+                highlights: [
+                    "Amnesty from criminal prosecution",
+                    "Waiver of understatement penalties",
+                    "Regularisation of tax affairs",
+                    "Clean slate for future compliance"
+                ],
+                illustrationType: "compliance"
+            }
+        ],
+        visualType: "shield"
+    },
+    {
+        slug: "vat-reconciliations",
+        title: "VAT Reconciliation Services in South Africa",
+        pillar: "Compliance",
+        hero: {
+            heading: "VAT Reconciliation Services in South Africa",
+            subheading: "Complete reconciliation of your VAT returns to your Annual Financial Statements. We identify variances before SARS does."
+        },
+        whoIsThisFor: [
+            "Companies preparing Annual Financial Statements (AFS)",
+            "Businesses undergoing a SARS IT14SD verification",
+            "Entities with turnover variances between VAT201s and AFS",
+            "Auditors needing third-party VAT verification"
+        ],
+        deliverables: [
+            "Detailed IT14SD reconciliation schedule",
+            "Variance analysis between VAT201 declarations and detailed ledger",
+            "Correction of past VAT compilation errors",
+            "Preparation of VDP applications for material variances",
+            "Alignment of turnover declared for Income Tax vs VAT",
+            "Audit-ready working papers for SARS reviews",
+            "Restatement of VAT control accounts"
+        ],
+        process: [
+            { step: 1, title: "Data Gathering", description: "We collect your 12 months of VAT201s, your trial balance, and your turnover figures." },
+            { step: 2, title: "Reconciliation", description: "We compare declared turnover (VAT201) with accounting turnover (AFS/Trial Balance)." },
+            { step: 3, title: "Variance Analysis", description: "We investigate differences (e.g., zero-rated supplies, capital variances) to find the root cause." },
+            { step: 4, title: "Resolution", description: "We prepare the reconciliation schedule (IT14SD format) or correct errors via VDP." }
+        ],
+        requirements: ["Submitted VAT201 returns for the financial year", "Draft Annual Financial Statements", "General Ledger detailed transaction history", "Income Tax Return (ITR14) calculations"],
+        timeline: "1 to 3 Weeks (Depending on complexity)",
+        faqs: [
+            { question: "Why doesn't my VAT turnover match my financial statements?", answer: "Common reasons include zero-rated supplies, bad debts recovered, capital asset sales, or distinct accounting vs tax timing rules (e.g., deposits)." },
+            { question: "What happens if SARS finds a difference?", answer: "SARS will issue an IT14SD verification. If you cannot explain the variance within 21 days, they will assess tax on the difference plus penalties." },
+            { question: "Is a VAT reconciliation mandatory?", answer: "It is a standard audit procedure and highly recommended before submitting your Income Tax Return (ITR14) to prevent triggers." },
+            { question: "Can you fix errors found during reconciliation?", answer: "Yes. If we find you owe more VAT, we can use the Voluntary Disclosure Programme (VDP) to fix it with reduced penalties." }
+        ],
+        relatedServices: [
+            { slug: "annual-financial-statements", title: "Financial Statements" },
+            { slug: "corporate-income-tax-returns-itr14", title: "Corporate Tax ITR14" },
+            { slug: "vat-compliance-support", title: "VAT Compliance" }
+        ],
+        stats: [
+            { label: "Variance", value: "Checked", description: "VAT vs AFS turnover." },
+            { label: "Risk", value: "Lowered", description: "Avoiding IT14SD triggers." },
+            { label: "Accuracy", value: "100%", description: "Detailed line-by-line." },
+            { label: "Audit", value: "Ready", description: "Prepared for SARS." }
+        ],
+        insights: [
+            "The most common audit trigger for companies is a discrepancy between turnover declared on VAT returns and turnover declared on Income Tax returns.",
+            "SARS uses the IT14SD form to force companies to reconcile these amounts; failure to do so accurately results in automatic assessments.",
+            "Proactive reconciliation before year-end filing allows you to correct errors cheaply via VDP rather than expensively via audit."
+        ],
+        problemsSolved: [
+            "Unexpected tax assessments due to turnover mismatches",
+            "Inability to complete SARS IT14SD forms",
+            "Unexplained balances in the VAT control account",
+            "Risk of penalties for under-declaration",
+            "Delays in finalising Annual Financial Statements"
+        ],
+        complianceContext: "The Tax Administration Act requires tax types (VAT, PAYE, Income Tax) to align. Reconciliations prove this alignment to SARS.",
+        externalLinks: [
+            { label: "SARS (IT14SD Guide)", href: "https://www.sars.gov.za/latest-news/completion-of-it14sd-form-2/" }
+        ],
+        detailedSections: [
+            {
+                title: "The Danger of Mismatched Turnover",
+                content: "One of SARS's most powerful automated checks is comparing the total turnover declared on your 12 VAT returns (VAT201) against the turnover declared on your Annual Financial Statements (ITR14). If these numbers differ—even by a small percentage—SARS's system often flags the company for verification.\n\nA VAT reconciliation explains the difference. Some differences are valid (e.g., zero-rated exports, interest income, or capital sales). Others are errors. We identify every cent of variance so you have a valid explanation ready when SARS asks.",
+                highlights: [
+                    "Automated SARS cross-checks (VAT vs ITR14)",
+                    "Valid vs Invalid variances",
+                    "Identification of capital vs revenue differences",
+                    "Prevention of 'Fishing Expedition' audits"
+                ],
+                illustrationType: "chart"
+            },
+            {
+                title: "The VAT Control Account Cleanup",
+                content: "Your Balance Sheet contains a 'VAT Control Account'—the liability or asset representing what you owe SARS or what SARS owes you at year-end. If this balance does not match your actual VAT return for that period, your books are wrong.\n\nWe rebuild your VAT control account from the transaction level up. We match payments made to SARS against liabilities declared, identifying missed payments, unallocated credits, or calculation errors that have persisted for years. A clean control account is the sign of a healthy finance function.",
+                highlights: [
+                    "Balance sheet verification",
+                    "Payment allocation correction",
+                    "Clearing of historical ghost balances",
+                    "Alignment with eFiling statement of account"
+                ],
+                illustrationType: "shield"
+            },
+            {
+                title: "Proactive Strategy: The IT14SD Review",
+                content: "The IT14SD is a supplementary declaration SARS requests to reconcile VAT, PAYE, and Customs to your Income Tax return. It is notoriously difficult to complete if your records are not perfect. Instead of waiting for SARS to request it (giving you only 21 days to respond), we perform a 'Mock IT14SD' as part of your year-end process.\n\nThis proactive step highlights risks immediately. If we find a material under-declaration of VAT, we can submit a Voluntary Disclosure (VDP) application immediately, fixing the problem on your terms rather than under audit pressure.",
+                highlights: [
+                    "Mock IT14SD preparation",
+                    "Stress-testing your tax compliance",
+                    "Early warning system for audit risks",
+                    "Strategic use of VDP for corrections"
+                ],
+                illustrationType: "compliance"
+            }
+        ],
+        visualType: "chart"
+    },
+    {
+        slug: "paye-registration",
+        title: "PAYE Registration Services in South Africa",
+        pillar: "Compliance",
+        hero: {
+            heading: "PAYE Registration Services in South Africa",
+            subheading: "Ensure your business is compliant with SARS payroll taxes. We handle your PAYE, SDL, and UIF registration quickly and accurately."
+        },
+        whoIsThisFor: [
+            "New employers hiring their first staff member",
+            "Directors drawing a regular salary above the tax threshold",
+            "Foreign companies employing South African residents",
+            "Businesses restoring a deregistered PAYE number"
+        ],
+        deliverables: [
+            "Registration for Pay-As-You-Earn (PAYE) with SARS",
+            "Registration for Unemployment Insurance Fund (UIF) with SARS",
+            "Registration for Skills Development Levy (SDL) if applicable",
+            "Activation of EMP201 status on eFiling",
+            "Confirmation of EMP501 reconciliation eligibility",
+            "Issue of official SARS Notice of Registration (EMP103)"
+        ],
+        process: [
+            { step: 1, title: "Needs Analysis", description: "We determine if you are legally required to register based on your payroll value." },
+            { step: 2, title: "Document Collection", description: "We gather the necessary entity documents, bank details, and representative info." },
+            { step: 3, title: "SARS Submission", description: "We complete the RAV01 form and submit your application directly to SARS." },
+            { step: 4, title: "Activation", description: "Once the number is issued, we link it to your eFiling profile so you can submit returns." }
+        ],
+        requirements: ["Company Registration Documents (CIPC)", "Certified ID of Representative", "Proof of Bank Account (stamped by bank)", "Proof of Address for the business", "Date of first employment"],
+        timeline: "2 to 10 Working Days (Instant if no SARS audit selected)",
+        faqs: [
+            { question: "When must I register for PAYE?", answer: "You must register for PAYE within 21 days of hiring your first employee if any employee earns above the tax threshold." },
+            { question: "Do I need to register for SDL as well?", answer: "SDL (Skills Development Levy) is only compulsory if your total annual payroll exceeds R500,000. We can register you automatically when it becomes necessary." },
+            { question: "What is the difference between UIF at SARS and UIF at Dept of Labour?", answer: "You pay UIF contributions to SARS via the EMP201. However, you must also register with the Department of Labour (uFiling) to declare employee details for benefits." },
+            { question: "Can I register for PAYE without a bank account?", answer: "No. SARS requires valid, stamped proof of a South African bank account in the business's name to process the registration." }
+        ],
+        relatedServices: [
+            { slug: "payroll-services-south-africa", title: "Monthly Payroll" },
+            { slug: "uif-registration", title: "UIF Department of Labour" },
+            { slug: "workmens-compensation-coida", title: "COIDA Registration" }
+        ],
+        stats: [
+            { label: "Deadline", value: "21 Days", description: "To register after hiring." },
+            { label: "Penalties", value: "10%", description: "For late payment." },
+            { label: "Levy", value: "1%", description: "SDL if > R500k payroll." },
+            { label: "UIF", value: "2%", description: "1% Employer + 1% Employee." }
+        ],
+        insights: [
+            "Directors of companies are considered employees for PAYE purposes; if you draw a salary, the company must register.",
+            "Failing to register for PAYE is a criminal offence, and directors can be held personally liable for the unpaid tax.",
+            "Once registered, you must submit an EMP201 return every month, even if you paid no salaries for that specific month (submit a 'nil' return)."
+        ],
+        problemsSolved: [
+            "Risk of 10% late payment penalties from day one",
+            "Inability to issue invalid IRP5s to employees",
+            "Directors' personal liability for company tax debt",
+            "Delays in obtaining Tax Clearance due to non-compliance",
+            "Confusion between SARS UIF and Department of Labour UIF"
+        ],
+        complianceContext: "The Fourth Schedule of the Income Tax Act mandates registration. The Tax Administration Act imposes penalties for non-compliance.",
+        externalLinks: [
+            { label: "SARS (PAYE Guide)", href: "https://www.sars.gov.za/types-of-tax/pay-as-you-earn/" }
+        ],
+        detailedSections: [
+            {
+                title: "The 'Employee' Definition Trap",
+                content: "Many business owners mistakenly believe that because they are directors or 'contractors' to their own company, they don't need to pay PAYE. This is incorrect. SARS defines an employee broadly. If you receive remuneration and work under the control or supervision of the employer (including your own company), PAYE must be withheld.\n\nWe assess your worker relationships to ensure you are registering correctly and not exposing yourself to a 'deemed employee' audit later.",
+                highlights: [
+                    "Review of Director vs Employee status",
+                    "Evaluation of Independent Contractors",
+                    "Prevention of PAYE vs Dividend confusion",
+                    "Compliance with Fourth Schedule rules"
+                ],
+                illustrationType: "team"
+            },
+            {
+                title: "The Triple Registration: PAYE, SDL, UIF",
+                content: "Applying for PAYE often triggers requirements for Skills Development Levy (SDL) and Unemployment Insurance Fund (UIF). While UIF is mandatory for almost all employers, SDL is only triggered when your payroll hits R500,000 per year.\n\nWe manage this complexity for you. We register you for exactly what you need—no more, no less—preventing you from paying levies you are exempt from while ensuring you don't miss compulsory ones.",
+                highlights: [
+                    "Automatic SDL threshold monitoring",
+                    "Seamless UIF tax registration",
+                    "Exemption filings for small payrolls",
+                    "Unified EMP201 set-up"
+                ],
+                illustrationType: "chart"
+            },
+            {
+                title: "Link to Monthly Compliance (EMP201)",
+                content: "Registration is just the starting line. Once you have a PAYE number, the clock starts ticking on your monthly EMP201 returns. These must be submitted and paid by the 7th of every month.\n\nUnlike other registrations, we don't just hand you a number and walk away. We link the new tax type to your eFiling profile and can immediately transition you into our monthly payroll service to ensure you never miss that 7th-of-the-month deadline.",
+                highlights: [
+                    "Immediate eFiling linkage",
+                    "Setup of payment beneficiaries",
+                    "Training on EMP201 deadlines",
+                    "Handover to payroll department"
+                ],
+                illustrationType: "flow"
+            }
+        ],
+        visualType: "team"
+    },
+    {
+        slug: "uif-registration",
+        title: "UIF Registration Services (Department of Labour)",
+        pillar: "Compliance",
+        hero: {
+            heading: "UIF Registration Services (Department of Labour)",
+            subheading: "Complete registration with the Department of Labour to unlock employee benefits. We handle your UI-19 submissions and uFiling activation."
+        },
+        whoIsThisFor: [
+            "Employers registered for PAYE but not uFiling",
+            "Companies employing domestic workers",
+            "Businesses needing to declare employee details for benefits",
+            "Employers resolving non-compliance notices from Labour"
+        ],
+        deliverables: [
+            "Registration number from the Department of Labour",
+            "Activation of uFiling profile",
+            "Submission of initial UI-19 employee declaration",
+            "Linking of PAYE reference number to Labour reference number",
+            "Confirmation of compliant status"
+        ],
+        process: [
+            { step: 1, title: "Registration Check", description: "We verify if you are already registered via SARS and retrieve your Labour reference number if it exists." },
+            { step: 2, title: "Application Submission", description: "We complete the UI-8 (Business) and UI-19 (Employee) forms and submit them to the Department of Labour." },
+            { step: 3, title: "uFiling Activation", description: "We create your online profile to allow for digital monthly declarations." },
+            { step: 4, title: "Handover", description: "We provide you with your login details and proof of registration for your records." }
+        ],
+        requirements: ["Company Registration Documents (CIPC)", "ID Copies of Directors and Employees", "Date of employment for each staff member", "Gross monthly remuneration details", "SARS PAYE Number (if applicable)"],
+        timeline: "5 to 10 Working Days (Dependent on Dept of Labour backlog)",
+        faqs: [
+            { question: "I already pay UIF to SARS. Why must I register with Labour?", answer: "SARS collects the money, but the Department of Labour manages the benefits. If you don't register with Labour and submit monthly declarations (UI-19), your employees cannot claim benefits even if you paid the tax." },
+            { question: "Is uFiling mandatory?", answer: "Technically no, but manual submissions are unreliable and slow. We highly recommend uFiling for instant confirmation of declarations." },
+            { question: "Do I need to register if I only have domestic workers?", answer: "Yes. All employers, including households employing domestic workers for more than 24 hours a month, must register for UIF." },
+            { question: "What happens if I am behind on declarations?", answer: "You must backdate your submissions. We can help you submit bulk declarations for past periods to up-date your compliance profile." }
+        ],
+        relatedServices: [
+            { slug: "paye-registration", title: "PAYE Registration (SARS)" },
+            { slug: "workmens-compensation-coida", title: "COIDA Registration" },
+            { slug: "payroll-services-south-africa", title: "Monthly Payroll" }
+        ],
+        stats: [
+            { label: "Compliance", value: "Mandatory", description: "For all employers." },
+            { label: "Claims", value: "Blocked", description: "If not declared." },
+            { label: "Backlog", value: "High", description: "DoL is slow." },
+            { label: "Platform", value: "uFiling", description: "Digital is faster." }
+        ],
+        insights: [
+            "The biggest tragedy we see is retrenched employees being unable to claim UIF because their employer paid the tax but never submitted the UI-19 declarations to the Department of Labour.",
+            "SARS and the Department of Labour systems do not sync perfectly; you must manually ensure your declarations match your payments.",
+            "Domestic workers often miss out on maternity benefits because households fail to register; this is a moral and legal obligation."
+        ],
+        problemsSolved: [
+            "Employees rejected when claiming maternity or unemployment benefits",
+            " inability to obtain a compliance certificate",
+            "Disconnect between SARS payments and Labour records",
+            "Administrative burden of manual UI-19 forms",
+            "Risk of Labour inspections and fines"
+        ],
+        complianceContext: "The Unemployment Insurance Contributions Act mandates payment (SARS), while the Unemployment Insurance Act mandates declaration (Labour). You detailed both.",
+        externalLinks: [
+            { label: "Dept of Labour (uFiling)", href: "https://ufiling.labour.gov.za/uif/" }
+        ],
+        detailedSections: [
+            {
+                title: "The SARS vs. Labour Disconnect",
+                content: "South Africa has a dual system for UIF. You pay the 1% contribution to SARS via your monthly EMP201. However, SARS simply acts as a collection agent. The actual record of who works for you and how much they earn sits with the Department of Labour.\n\nMany employers assume payment equals compliance. It does not. Without a separate registration and monthly declaration to the Department of Labour (via uFiling or UI-19 forms), your employees do not exist in the system. We bridge this gap, ensuring that every cent you pay to SARS is reflected in a valid benefit claim for your staff.",
+                highlights: [
+                    "Payment to SARS ≠ Declaration to Labour",
+                    "Bridging the data gap",
+                    "Ensuring benefit eligibility",
+                    "Eliminating 'Ghost Payments'"
+                ],
+                illustrationType: "cloud"
+            },
+            {
+                title: "Domestic Worker Registration",
+                content: "If you employ a domestic worker, gardener, or nanny for more than 24 hours a month, you are an employer by law. You must register for UIF. This is often neglected, leaving vulnerable workers without a safety net during maternity leave or retrenchment.\n\nWe handle this sensitive registration for households, ensuring you meet your legal obligations without the hassle of navigating government queues. We treat your household compliance with the same professionalism as a corporate account.",
+                highlights: [
+                    "Mandatory for >24hr/month work",
+                    "Protection for vulnerable workers",
+                    "Maternity benefit access",
+                    "Simple, low-cost compliance"
+                ],
+                illustrationType: "shield"
+            },
+            {
+                title: "Backdating & Retroactive Compliance",
+                content: "Discovering you are non-compliant years down the line is stressful. You may have paid SARS but never submitted a declaration. We can perform a 'bulk backdate', submitting declarations for the past 5 years to bring your profile up to date.\n\nThis is critical if you are about to retrench staff or if an employee is going on maternity leave. We prioritise these cases to ensure the benefits are unlocked before the employee needs them.",
+                highlights: [
+                    "5-Year retroactive declarations",
+                    "Unlocking 'frozen' benefits",
+                    "Resolution of non-compliance notices",
+                    "Preparation for Labour audits"
+                ],
+                illustrationType: "compliance"
+            }
+        ],
+        visualType: "cloud"
+    },
+    {
+        slug: "workmens-compensation-coida",
+        title: "COIDA Registration (Workmen's Compensation)",
+        pillar: "Compliance",
+        hero: {
+            heading: "COIDA Registration (Workmen's Compensation)",
+            subheading: "Protect your business and employees from workplace injuries. We handle your W.As.2 registration and annual Returns of Earnings."
+        },
+        whoIsThisFor: [
+            "All employers with one or more employees",
+            "Construction and manufacturing businesses",
+            "Companies tendering for government contracts",
+            "Directors drawing a salary"
+        ],
+        deliverables: [
+            "Registration with the Compensation Fund (COIDA)",
+            "Submission of W.As.2 Registration Form",
+            "Submission of W.As.8 Return of Earnings (ROE)",
+            "Notice of Assessment (W.As.3)",
+            "Assistance with payment allocation",
+            "Issue of Letter of Good Standing (upon payment)"
+        ],
+        process: [
+            { step: 1, title: "Registration", description: "We submit the W.As.2 form to register your business with the Compensation Fund." },
+            { step: 2, title: "Declaration", description: "We declare your employees' actual and projected earnings for the year." },
+            { step: 3, title: "Assessment", description: "The Fund issues an assessment (invoice) based on your industry's risk rating." },
+            { step: 4, title: "Good Standing", description: "Once paid, we apply for your Letter of Good Standing immediately." }
+        ],
+        requirements: ["Company Registration Documents", "ID Copies of Directors", "Date of first employee engagement", "Estimated payroll for the current year", "Actual payroll for previous years (if trading)"],
+        timeline: "5 to 15 Working Days (Fund dependent)",
+        faqs: [
+            { question: "Is COIDA mandatory?", answer: "Yes. The COIDA Act requires *all* employers (casual or full-time) to register within 7 days of employing their first worker." },
+            { question: "Does it cover me as a Director?", answer: "Yes, working directors are covered and their earnings must be declared, subject to the maximum earnings threshold." },
+            { question: "How much does it cost?", answer: "The cost is a percentage of your annual payroll, determined by the 'risk rating' of your industry. Office work is cheap (around 0.17%); construction is more expensive." },
+            { question: "What if I have no employees yet?", answer: "You should wait. You only register for COIDA once you have actually employed someone. Registering too early creates a liability for Returns of Earnings." }
+        ],
+        relatedServices: [
+            { slug: "letter-of-good-standing", title: "Letter of Good Standing" },
+            { slug: "uif-registration", title: "UIF Registration" },
+            { slug: "payroll-services-south-africa", title: "Monthly Payroll" }
+        ],
+        stats: [
+            { label: "Fine", value: "10%", description: "For late ROE." },
+            { label: "Cover", value: "Injuries", description: "Medical & disability." },
+            { label: "Legal", value: "Immunity", description: "No civil claims." },
+            { label: "Deadline", value: "31 May", description: "Annual ROE due." }
+        ],
+        insights: [
+            "The Workmen's Compensation Act provides 'no-fault' cover. This means that if an employee is injured, they claim from the Fund, not from you. In exchange, they cannot sue you for civil damages.",
+            "SARS and the Compensation Fund are separate entities. A Tax Clearance Certificate does NOT prove you are paid up with COIDA; only a Letter of Good Standing does.",
+            "Using the wrong 'Nature of Business' class is a common error. If you are an IT company classified as 'Construction', you are paying 5x more than you should."
+        ],
+        problemsSolved: [
+            "Risk of civil lawsuits from injured employees",
+            "Inability to apply for government tenders",
+            "Stalled construction site access (H&S requirement)",
+            "Penalties for failure to submit Return of Earnings",
+            "Overpaying assessments due to wrong classification"
+        ],
+        complianceContext: "The Compensation for Occupational Injuries and Diseases Act (COIDA) makes registration compulsory. It acts as a state-mandated insurance policy.",
+        externalLinks: [
+            { label: "Dept of Labour (COIDA)", href: "https://www.labour.gov.za/Workmens-Compensation" }
+        ],
+        detailedSections: [
+            {
+                title: "Your Protection Against Civil Claims",
+                content: "COIDA is not just another tax; it is an insurance policy that protects *you* as the employer. If an employee is injured or killed on duty, the Fund pays for their medical treatment and compensation. Crucially, Section 35 of the Act states that because this cover exists, an employee **cannot sue their employer** for damages.\n\nWithout COIDA registration, you lose this immunity. If an accident happens, you could face a ruinous civil lawsuit for millions in damages. Registration is your legal shield.",
+                highlights: [
+                    "Statutory immunity from civil liability",
+                    "Coverage for medical expenses",
+                    "Compensation for permanent disablement",
+                    "Protection for directors and officers"
+                ],
+                illustrationType: "shield"
+            },
+            {
+                title: "The Annual Return of Earnings (ROE)",
+                content: "COIDA operates on an annual cycle. Every year between 1 April and 31 May, you must submit a 'Return of Earnings' (W.As.8). This declares what you paid your staff in the past year and what you expect to pay in the coming year.\n\nThe Fund calculates your assessment based on these figures. We handle this submission meticulously, ensuring that excluded amounts (like certain allowances) are not taxed, saving you money on your assessment.",
+                highlights: [
+                    "Mandatory annual submission (April-May)",
+                    "Calculation of assessable earnings",
+                    "Exclusion of non-ratable income",
+                    "Prevention of estimated assessments"
+                ],
+                illustrationType: "chart"
+            },
+            {
+                title: "Correcting Industry Classifications",
+                content: "Your assessment rate depends on your 'Class' or 'Subclass'. A construction company pays a much higher rate than an accounting firm. We frequently find businesses classified incorrectly—often paying high-risk rates for low-risk work.\n\nWe review your classification. If it is wrong, we apply for a re-classification and can even apply for a refund of overpayments made in previous years.",
+                highlights: [
+                    "Review of SARS vs COIDA classification",
+                    "Application for rate reduction",
+                    "Retrospective refunds for errors",
+                    "Alignment with actual business activities"
+                ],
+                illustrationType: "strategic"
+            }
+        ],
+        visualType: "shield"
+    },
+    {
+        slug: "letter-of-good-standing",
+        title: "Letter of Good Standing (COIDA)",
+        pillar: "Compliance",
+        hero: {
+            heading: "Letter of Good Standing (COIDA)",
+            subheading: "Urgent proof of Workmen's Compensation compliance. Essential for tenders, site access, and contracts."
+        },
+        whoIsThisFor: [
+            "Contractors needing site access",
+            "Businesses applying for government tenders",
+            "Companies renewing vendor supplier databases",
+            "Entities needing to prove COIDA compliance"
+        ],
+        deliverables: [
+            "Official Letter of Good Standing from the Compensation Fund",
+            "Resolution of account arrears (if applicable)",
+            "Submission of outstanding Returns of Earnings (if applicable)",
+            "Payment allocation assistance",
+            "Renewal reminders before expiry"
+        ],
+        process: [
+            { step: 1, title: "Status Check", description: "We log into the CompEasy system to check if your returns and payments are up to date." },
+            { step: 2, title: "Compliance Gap Closure", description: "If you are in arrears or have missed a return, we calculate the due amount and submit the missing ROE." },
+            { step: 3, title: "Payment Clearance", description: "We monitor the allocation of your payment to ensure the system reflects a zero balance." },
+            { step: 4, title: "Issuance", description: "We generate the Letter of Good Standing and email it to you immediately." }
+        ],
+        requirements: ["Valid COIDA Registration Number", "All Returns of Earnings (ROE) submitted to date", "Account balance must be zero (paid in full)", "Installment plan honoured (if applicable)"],
+        timeline: "24 to 48 Hours (If compliant)",
+        faqs: [
+            { question: "Can I get a Letter if I owe money?", answer: "No. The Fund will strictly not issue a Letter of Good Standing unless your account balance is zero and all returns are submitted." },
+            { question: "How long is the Letter valid for?", answer: "It is valid for 12 months, expiring on 30 April each year. You must renew it annually after submitting your ROE." },
+            { question: "I paid but the system doesn't show it. Can you help?", answer: "Yes. Payment allocation is a major issue with the Compensation Fund. We can log a query with proof of payment to force the allocation." },
+            { question: "Does a Tax Clearance Certificate cover this?", answer: "No. A Tax Clearance Certificate (SARS) and a Letter of Good Standing (Labour/COIDA) are two completely separate documents." }
+        ],
+        relatedServices: [
+            { slug: "workmens-compensation-coida", title: "COIDA Registration" },
+            { slug: "tax-clearance-certificate", title: "Tax Clearance Certificate" },
+            { slug: "company-registration-sa", title: "Company Registration" }
+        ],
+        stats: [
+            { label: "Validity", value: "1 Year", description: "Until 30 April." },
+            { label: "Speed", value: "24hrs", description: "If fully compliant." },
+            { label: "Tenders", value: "Required", description: "Mandatory doc." },
+            { label: "Allocation", value: "Assisted", description: "We fix errors." }
+        ],
+        insights: [
+            "A Letter of Good Standing is the first document requested by Health & Safety officers on construction sites. Without it, your team will be turned away at the gate.",
+            "You cannot pay for a Letter of Good Standing; you pay your assessment offering. The Letter is the receipt that proves you have paid.",
+            "If you are on an installment plan with the Fund, you can still get a Letter of Good Standing, provided your installments are up to date."
+        ],
+        problemsSolved: [
+            "Lost revenue due to rejected tender applications",
+            "Construction site lockouts due to H&S non-compliance",
+            "Delays in supplier vendor registration",
+            "Frustration with 'missing' payments at the Fund",
+            "Expired certificates halting business operations"
+        ],
+        complianceContext: "Section 89 of the COIDA Act authorizes the Director-General to issue a certificate of good standing only if the employer has complied with all requirements.",
+        externalLinks: [
+            { label: "Dept of Labour (CompEasy)", href: "https://compeasy.labour.gov.za/" }
+        ],
+        detailedSections: [
+            {
+                title: "The 'Golden Ticket' for Tenders",
+                content: "In South Africa, you cannot be awarded a government tender or a large corporate contract without a valid Letter of Good Standing. It proves that you are a responsible employer who covers their staff against injury.\n\nWe treat this document with the urgency it deserves. If you have a tender deadline, we move mountains to clear your account and get the certificate in your hands before the cutoff.",
+                highlights: [
+                    "Tender compliance prerequisite",
+                    "Vendor application essential",
+                    "Proof of employer responsibility",
+                    "Competitive advantage"
+                ],
+                illustrationType: "certificate"
+            },
+            {
+                title: "Solving the 'Allocation' Nightmare",
+                content: "The most common reason for a declined Letter of Good Standing is not non-payment, but unallocated payment. You paid, but the Fund's system hasn't linked the money to your account.\n\nThis administrative deadlock can last months if you try to resolve it via the call centre. We have established channels to escalate allocation queries, manually proving your payment to the finance team to clear your profile and release your certificate.",
+                highlights: [
+                    "Manual payment tracing",
+                    "Resolution of suspense account errors",
+                    "Escalation of unallocated funds",
+                    "System synchronization"
+                ],
+                illustrationType: "flow"
+            },
+            {
+                title: "Annual Renewal Cycle",
+                content: "A Letter of Good Standing is not a one-off event. It expires every year on 30 April. To renew it, you must submit your Return of Earnings (ROE) for the past year and pay your new assessment.\n\nWe proactively manage this cycle for you. We prepare your ROE in March, submit it on 1 April, and ensure your new Letter is issued before the old one expires, ensuring zero downtime in your compliance status.",
+                highlights: [
+                    "Proactive expiry monitoring",
+                    "Seamless annual transitions",
+                    "ROE submission coordination",
+                    "Continuous compliance coverage"
+                ],
+                illustrationType: "timeline"
+            }
+        ],
+        visualType: "certificate"
+    },
+    {
+        slug: "payroll-services-south-africa",
+        title: "Monthly Payroll Services",
+        pillar: "Accounting",
+        hero: {
+            heading: "Monthly Payroll Services",
+            subheading: "Professional, confidential payroll processing for South African businesses. We handle payslips, EMP201s, and complex tax calculations."
+        },
+        whoIsThisFor: [
+            "Small to medium businesses (1-100 employees)",
+            "Companies with variable pay structures (commission/overtime)",
+            "Directors wanting confidential executive payroll",
+            "Employers tired of payroll software costs"
+        ],
+        deliverables: [
+            "Professional electronic payslips for all staff",
+            "Calculation of PAYE, UIF, and SDL",
+            "Submission of monthly EMP201 returns to SARS",
+            "Submission of monthly UI-19 declarations to Labour",
+            "Leave management and tracking",
+            "Mid-year and year-end tax certificates (IRP5/IT3a)"
+        ],
+        process: [
+            { step: 1, title: "Input", description: "You send us the hours, overtime, and leave details for the month via a simple template." },
+            { step: 2, title: "Processing", description: "We process the payroll, calculating all statutory deductions and net pay accurately." },
+            { step: 3, title: "Review", description: "We send you a draft for approval, ensuring checking of overtime and commissions." },
+            { step: 4, title: "Finalise", description: "We issue payslips, submit the EMP201 to SARS, and provide you with the payment amounts." }
+        ],
+        requirements: ["Employee Details (ID, Tax Number, Address)", "Employment Contracts (for setup)", "Monthly input data (hours/leave)", "Bank details for salary payments"],
+        timeline: "24-Hour Turnaround from data receipt",
+        faqs: [
+            { question: "Do you handle third-party payments?", answer: "We calculate them (e.g., Medical Aid, Pension, Garnishee orders) and reflect them on the payslip, but you typically make the actual transfer to the provider." },
+            { question: "What about confidentiality?", answer: "Payroll data is strictly ring-fenced. We can email payslips directly to employees with password protection so no one else sees them." },
+            { question: "Do I still need to buy payroll software?", answer: "No. We use our own professional software (Sage/SimplePay). You don't need to pay for any licenses; our fee covers the technology." },
+            { question: "Can you handle ETI (Employment Tax Incentive)?", answer: "Yes. We automatically calculate ETI for eligible employees, reducing your monthly PAYE liability legally." }
+        ],
+        relatedServices: [
+            { slug: "paye-registration", title: "PAYE Registration" },
+            { slug: "uif-registration", title: "UIF Registration" },
+            { slug: "emp501-reconciliations", title: "EMP501 Reconciliations" }
+        ],
+        stats: [
+            { label: "Accuracy", value: "100%", description: "Guaranteed calcs." },
+            { label: "Software", value: "Included", description: "No license fees." },
+            { label: "Tax", value: "Optimised", description: "ETI & structuring." },
+            { label: "Time", value: "Saved", description: "Focus on business." }
+        ],
+        insights: [
+            "Payroll is the most sensitive function in any business. One wrong calculation or one late payslip can destroy employee morale instantly.",
+            "Structuring packages correctly (e.g., Travel Allowances vs Reimbursive Travel) can save both the employer and employee significant tax, but the rules are strict.",
+            "The hidden cost of doing payroll yourself is the software license fees and the time spent keeping up with changing tax tables."
+        ],
+        problemsSolved: [
+            "Employee disputes over incorrect tax calculations",
+            "Late EMP201 submissions leading to 10% penalties",
+            "Data leaks of sensitive salary information",
+            "Complex ETI calculations and audit risks",
+            "Software subscription costs for small teams"
+        ],
+        complianceContext: "The Basic Conditions of Employment Act (BCEA) mandates specific pay slip details. The Tax Administration Act penalizes late EMP201s.",
+        externalLinks: [
+            { label: "SARS (Tax Rates)", href: "https://www.sars.gov.za/tax-rates/" }
+        ],
+        detailedSections: [
+            {
+                title: "Confidentiality & Security",
+                content: "Salaries are a sensitive topic. In many small businesses, the person doing the accounts is also a colleague, which can lead to awkwardness or leaks. Outsourcing payroll removes this risk.\n\nWe act as a 'black box'. You send us the data, we process it, and we send individual, password-protected payslips directly to staff. Your internal team never needs to see the full payroll listing if you don't want them to.",
+                highlights: [
+                    "Direct-to-employee emailing",
+                    "Password protected PDFs",
+                    "Executive payroll segregation",
+                    "POPIA compliant processing"
+                ],
+                illustrationType: "shield"
+            },
+            {
+                title: "Legally Reducing Your tax Liability (ETI)",
+                content: "The Employment Tax Incentive (ETI) is a government mechanism to encourage hiring young people. If you employ qualifying staff, you can reduce your PAYE liability by up to R1,000 per employee per month.\n\nHowever, the calculation is complex and the penalties for getting it wrong are severe. We automate this calculation, ensuring you claim every cent you are entitled to without exposing yourself to audit risk.",
+                highlights: [
+                    "Automated ETI checks",
+                    "Monthly claim calculation",
+                    "Audit trail generation",
+                    "ETI refund management"
+                ],
+                illustrationType: "chart"
+            },
+            {
+                title: "Leave Management Integration",
+                content: "Payroll is not just about money; it's about time. Under the BCEA, you are legally required to track annual, sick, and family responsibility leave on the payslip.\n\nWe track these balances month-to-month. If an employee takes unpaid leave, our system automatically adjusts their PAYE and UIF offering, preventing the common error of over-deducting tax in short months.",
+                highlights: [
+                    "Running leave balance tracking",
+                    "BCEA compliance checks",
+                    "Unpaid leave auto-adjustments",
+                    "Termination payout calculations"
+                ],
+                illustrationType: "timeline"
+            }
+        ],
+        visualType: "team"
+    },
+    {
+        slug: "emp501-reconciliations",
+        title: "EMP501 Reconciliations (Bi-Annual)",
+        pillar: "Compliance",
+        hero: {
+            heading: "EMP501 Reconciliations (Bi-Annual)",
+            subheading: "Mandatory SARS reconciliations twice a year. We match your payroll data to your payments, preventing penalties and audit triggers."
+        },
+        whoIsThisFor: [
+            "All employers registered for PAYE",
+            "Companies with disparities between payments and declarations",
+            "Businesses issuing IRP5/IT3a certificates",
+            "Employers needing Tax Clearance"
+        ],
+        deliverables: [
+            "Submission of Interim EMP501 (due 31 October)",
+            "Submission of Final EMP501 (due 31 May)",
+            "Generation of IRP5/IT3a certificates for all employees",
+            "Reconciliation of PAYE/SDL/UIF liabilities vs payments",
+            "Correction of historical EMP201 errors",
+            "ETI data validation and submission"
+        ],
+        process: [
+            { step: 1, title: "Audit", description: "We import your 6 or 12 months of payroll data into EasyFile and match it against your monthly EMP201s." },
+            { step: 2, title: "Correction", description: "If there are differences (common with ETI claims), we correct the specific EMP201 periods." },
+            { step: 3, title: "Submission", description: "We file the reconciliation via EasyFile and generate the tax certificates." },
+            { step: 4, title: "Distribution", description: "We provide you with the IRP5s to give to your staff for their personal tax returns." }
+        ],
+        requirements: ["EasyFile Database or Payroll Backup", "eFiling Login Credentials", "List of all payments made to SARS (SOA)", "Employee Income Tax Numbers"],
+        timeline: "3 to 5 Working Days (Before deadline)",
+        faqs: [
+            { question: "What happens if I miss the deadline?", answer: "SARS imposes a penalty of 1% of the *total annual PAYE liability*. For a payroll of R1m, that's a R10,000 fine for being one day late." },
+            { question: "Can I do this on eFiling?", answer: "For very small payrolls (<20 staff), yes. However, EasyFile is recommended as it validates ID numbers and tax numbers more rigorously." },
+            { question: "My employee doesn't have a tax number. Can I issue an IRP5?", answer: "No. You must register them for income tax first. We can assist with bulk registration of employees." },
+            { question: "Why does my ETI not balance?", answer: "ETI is the most common cause of EMP501 failure. SARS frequently updates validation rules. We recalculate your ETI month-by-month to prove its validity." }
+        ],
+        relatedServices: [
+            { slug: "payroll-services-south-africa", title: "Monthly Payroll" },
+            { slug: "paye-registration", title: "PAYE Registration" },
+            { slug: "vat-reconciliations", title: "VAT Reconciliations" }
+        ],
+        stats: [
+            { label: "Penalty", value: "1%", description: "Of TOTAL payroll." },
+            { label: "Deadlines", value: "2", description: "Oct & May." },
+            { label: "Software", value: "EasyFile", description: "SARS mandated." },
+            { label: "Certs", value: "IRP5", description: "Must be issued." }
+        ],
+        insights: [
+            "The EMP501 is the 'final exam' for your payroll department. If your monthly work (EMP201) was sloppy, the EMP501 will reveal it.",
+            "SARS often blocks Tax Clearance Certificates during filing season if your EMP501 is outstanding or if there is a 'cents difference' between your liability and payment.",
+            "Do not issue manual IRP5s. They must be generated through the SARS-validated system to pre-populate your employees' tax returns."
+        ],
+        problemsSolved: [
+            "Massive penalties for non-submission (1% of liability)",
+            "Staff inability to file personal tax returns (no IRP5)",
+            "Blocked Tax Clearance due to payroll imbalances",
+            "ETI clawbacks from SARS audits",
+            "EasyFile technical errors (Java/Database issues)"
+        ],
+        complianceContext: "Paragraph 14(3) of the Fourth Schedule requires all employers to render a return (EMP501) rendering liability for tax.",
+        externalLinks: [
+            { label: "SARS (EasyFile Guide)", href: "https://www.sars.gov.za/businesses-and-employers/my-business-and-tax/easyfile-employer/" }
+        ],
+        detailedSections: [
+            {
+                title: "The 1% Penalty Trap",
+                content: "The penalty for late EMP501 submission is draconian. It is calculated as 1% of your *total annual* PAYE liability for the year. This means for a mid-sized company, a single day's delay can cost tens of thousands of Rands.\n\nWe prioritize these submissions. We start the reconciliation process weeks before the deadline (31 May and 31 October) to ensure that any data issues are resolved long before the system gets overloaded on the final day.",
+                highlights: [
+                    "Avoidance of 1% liability penalty",
+                    "Early detection of data errors",
+                    "Stress-free deadline management",
+                    "Penalty remission applications"
+                ],
+                illustrationType: "shield"
+            },
+            {
+                title: "EasyFile: The Technical Hurdle",
+                content: "Submitting an EMP501 requires the use of SARS EasyFile, a piece of software notorious for its technical complexity, Java errors, and database corruptions. Many finance teams spend more time fighting the software than checking the figures.\n\nWe run a dedicated, updated EasyFile environment. We import your data, validate it against the latest SARS specification, and handle the encrypted submission. You don't need to install anything.",
+                highlights: [
+                    "Management of EasyFile software",
+                    "Validation of source code errors",
+                    "Database backup and security",
+                    "Java compatibility handling"
+                ],
+                illustrationType: "cloud"
+            },
+            {
+                title: "ETI Reconciliation & Audit Defense",
+                content: "SARS's validation logic for Employment Tax Incentive (ETI) claims is strict. If a date of birth is missing or a period of employment is 1 day off, the claim is rejected and you owe money.\n\nOur reconciliation process rebuilds your ETI claim from scratch. We prove the validity of every cent claimed. If SARS audits the refund, we have the working papers ready to defend it.",
+                highlights: [
+                    "ETI claim validation",
+                    "Data integrity checks",
+                    "Audit file preparation",
+                    "Clawback prevention"
+                ],
+                illustrationType: "compliance"
+            }
+        ],
+        visualType: "chart"
+    },
+    {
+        slug: "sdl-registration-submissions",
+        title: "SDL Registration & Submissions",
+        pillar: "Compliance",
+        hero: {
+            heading: "SDL Registration & Submissions",
+            subheading: "Compliance with the Skills Development Levies Act. Mandatory for payrolls over R500k per annum."
+        },
+        whoIsThisFor: [
+            "Employers with a payroll exceeding R500k/year",
+            "Companies wanting to claim mandatory grants",
+            "Businesses prioritizing B-BBEE skills points",
+            "Entities needing Tax Clearance"
+        ],
+        deliverables: [
+            "Registration for SDL with SARS",
+            "Linking SDL to your existing PAYE/UIF profile",
+            "Monthly declaration via EMP201",
+            "Reconciliation via EMP501",
+            "Assistance with SETA transfers (if misclassified)"
+        ],
+        process: [
+            { step: 1, title: "Assessment", description: "We review your annual payroll to confirm if you meet the R500,000 threshold for liability." },
+            { step: 2, title: "Registration", description: "We register you for SDL on eFiling and select the correct SETA (Sector Education and Training Authority)." },
+            { step: 3, title: "Submission", description: "We include the 1% levy in your monthly EMP201 returns to SARS." },
+            { step: 4, title: "Compliance", description: "We ensure your payments match your liability, preventing 10% penalties." }
+        ],
+        requirements: ["Valid PAYE Number", "Estimated Annual Payroll figures", "Core Business Activity (for SETA classification)", "eFiling Profile"],
+        timeline: "2 to 5 Working Days (Registration)",
+        faqs: [
+            { question: "How much is SDL?", answer: "It is calculated as 1% of the total amount paid in salaries to employees (including overtime, bonuses, etc.)." },
+            { question: "Who is exempt?", answer: "Employers with a total annual payroll below R500,000 are exempt. Public benefit organizations (PBOs) may also be exempt depending on their activities." },
+            { question: "Can I get this money back?", answer: "Yes. If you submit a Workplace Skills Plan (WSP) and Annual Training Report (ATR) to your SETA, you can claim back 20% of your SDL as a Mandatory Grant." },
+            { question: "What if I registered but my payroll dropped?", answer: "You remain registered but liabilities will be zero. We still file the return as zero to keep your status compliant." }
+        ],
+        relatedServices: [
+            { slug: "payroll-services-south-africa", title: "Monthly Payroll" },
+            { slug: "emp501-reconciliations", title: "EMP501 Reconciliations" },
+            { slug: "bee-certification", title: "BEE Certification" }
+        ],
+        stats: [
+            { label: "Rate", value: "1%", description: "Of payroll." },
+            { label: "Threshold", value: "R500k", description: "Annual payroll." },
+            { label: "Penalty", value: "10%", description: "Late payment." },
+            { label: "Refrund", value: "20%", description: "Via WSP/ATR." }
+        ],
+        insights: [
+            "Many companies pay SDL faithfully but never claim their Mandatory Grant back. It's effectively a tax you don't need to lose if you do training planning.",
+            "Being registered with the wrong SETA is a common headache. If you are an IT company registered with the Construction SETA, claiming grants becomes impossible.",
+            "SDL compliance is a strict requirement for a Tax Clearance Certificate. Even a R50 outstanding balance will block your TCC."
+        ],
+        problemsSolved: [
+            "Blocked Tax Clearance due to SDL non-compliance",
+            "Penalties for failure to register despite exceeding threshold",
+            "Missed opportunity to claim 20% Mandatory Grants",
+            "Incorrect SETA allocation affecting BEE points",
+            "Audit findings on under-declared levies"
+        ],
+        complianceContext: "The Skills Development Levies Act applies to all employers except those with a payroll under R500,000. It funds the SETA system.",
+        externalLinks: [
+            { label: "SARS (SDL Guide)", href: "https://www.sars.gov.za/types-of-tax/skills-development-levy/" }
+        ],
+        detailedSections: [
+            {
+                title: "The R500,000 Threshold",
+                content: "The moment your expected annual payroll exceeds R500,000, you become liable for SDL. This is often tripped by a new hire or a bonus run.\n\nWe monitor your payroll totals monthly. As soon as you cross the threshold, we trigger the registration to ensure you don't fall behind. Retroactive registration often attracts penalties, so proactive monitoring is key.",
+                highlights: [
+                    "Threshold monitoring",
+                    "Proactive registration",
+                    "Penalty avoidance",
+                    "Budget forecasting"
+                ],
+                illustrationType: "chart"
+            },
+            {
+                title: "SETA Classification Matters",
+                content: "When you register for SDL, you are assigned to a SETA (Sector Education and Training Authority) based on your industry. Being in the right SETA is crucial if you want to claim back funds or earn BEE skills development points.\n\nWe ensure your 'SIC Code' (Standard Industrial Classification) on eFiling matches your actual business activities, placing you in the correct SETA for your industry.",
+                highlights: [
+                    "SIC Code alignment",
+                    "SETA transfer management",
+                    "Grant eligibility protection",
+                    "Industry benchmarking"
+                ],
+                illustrationType: "strategic"
+            },
+            {
+                title: "Grant Recovery & BEE",
+                content: "SDL is unique because you can get some of it back. By submitting a Workplace Skills Plan (WSP), you can recover 20% of your levies.\n\nWhile we focus on the tax compliance (registration and payment), we work closely with Skills Development Facilitators (SDFs) to ensure your tax data supports your grant claims and BEE verification.",
+                highlights: [
+                    "Tax support for SDFs",
+                    "Grant claim data preparation",
+                    "BEE verification support",
+                    "Financial data integrity"
+                ],
+                illustrationType: "flow"
+            }
+        ],
+        visualType: "compliance"
+    },
+    {
+        slug: "irp5-certificates",
+        title: "IRP5 Certificates (Employee Tax)",
+        pillar: "Compliance",
+        hero: {
+            heading: "IRP5 Certificates (Employee Tax)",
+            subheading: "Mandatory tax certificates for all employees. We ensure every cent of tax, UIF, and SDL is accurately reflected for personal filing."
+        },
+        whoIsThisFor: [
+            "All employers with staff earning above the tax threshold",
+            "Employees needing to file personal income tax",
+            "Directors drawing remuneration"
+        ],
+        deliverables: [
+            "Generation of IRP5 Certificates (Tax Deducted)",
+            "Generation of IT3(a) Certificates (No Tax Deducted)",
+            "Submission of electronic tax record to SARS",
+            "PDF distribution to employees via secure email",
+            "Correction of historical IRP5 errors"
+        ],
+        process: [
+            { step: 1, title: "Reconciliation", description: "We match the total tax paid to SARS against the total tax deducted from the employee." },
+            { step: 2, title: "Validation", description: "We run the data through SARS's validation engine to check for missing tax numbers or invalid addresses." },
+            { step: 3, title: "Generation", description: "Once validated, we generate the official SARS certificates via EasyFile." },
+            { step: 4, title: "Distribution", description: "We send the certificates to your staff, ready for their tax season filing." }
+        ],
+        requirements: ["Completed EMP501 Reconciliation", "Employee Income Tax Numbers (Mandatory)", "Valid Employee Physical Addresses", "Accurate Bank Account Details"],
+        timeline: "Issued annually (May/June)",
+        faqs: [
+            { question: "What is the difference between an IRP5 and IT3(a)?", answer: "An IRP5 is issued if PAYE was deducted. An IT3(a) is issued if no PAYE was deducted (e.g., earnings below threshold)." },
+            { question: "Can I just type one out on Word?", answer: "No. Valid IRP5s must be generated through SARS-compatible software and contain a unique 30-digit certificate number linked to SARS assessments." },
+            { question: "My employee lost their IRP5. Can I reprint it?", answer: "Yes. Because we use cloud-based or EasyFile systems, we can regenerate a copy of a past IRP5 at any time." },
+            { question: "Why is the tax number mandatory?", answer: "SARS now rejects EMP501 submissions if a significant portion of employees do not have income tax numbers. We assist with bulk registration." }
+        ],
+        relatedServices: [
+            { slug: "emp501-reconciliations", title: "EMP501 Reconciliations" },
+            { slug: "personal-income-tax-returns-itr12", title: "Personal Income Tax" },
+            { slug: "payroll-services-south-africa", title: "Monthly Payroll" }
+        ],
+        stats: [
+            { label: "Deadline", value: "31 May", description: "Must be issued." },
+            { label: "Format", value: "Electronic", description: "SARS Standard." },
+            { label: "Fine", value: "10%", description: "Late issue." },
+            { label: "Type", value: "Review", description: "Annual." }
+        ],
+        insights: [
+            "Your employees cannot file their personal tax returns until they receive their IRP5. Delaying this causes massive frustration amongst your staff.",
+            "The IRP5 code '3699' (Gross Employment Income) must match the '3696' (Non-Taxable Income) definitions perfectly, or SARS will audit the employee.",
+            "Directors often face 'PAYE credits' disputes because their IRP5s don't reflect the PAYE they actually paid during the year."
+        ],
+        problemsSolved: [
+            "Staff inability to file tax returns",
+            "Rejection of employee home loan applications (proof of income)",
+            "Disputes with SARS over 'missing' tax credits",
+            "Manual errors in typing out certificates"
+        ],
+        complianceContext: "Paragraph 13 of the Fourth Schedule to the Income Tax Act requires every employer to deliver an employees' tax certificate to each employee.",
+        externalLinks: [
+            { label: "SARS (IRP5 Codes)", href: "https://www.sars.gov.za/latest-news/paye-brs-changes/" }
+        ],
+        detailedSections: [
+            {
+                title: "The Employee Experience",
+                content: "For most employees, the IRP5 is the most important document of the year. It determines whether they get a tax refund or owe SARS money. If you issue an incorrect IRP5, your employee gets audited.\n\nWe take this responsibility seriously. We ensure that every allowance, medical aid credit, and fringe benefit is coded correctly so your staff have a smooth filing season.",
+                highlights: [
+                    "Error-free coding",
+                    "Audit prevention for staff",
+                    "Medical aid credit accuracy",
+                    "Fringe benefit valuation"
+                ],
+                illustrationType: "team"
+            },
+            {
+                title: "The IT3(a) Distinction",
+                content: "Not everyone gets an IRP5. If an employee earned below the tax threshold and no tax was deducted, they receive an IT3(a). This is still a valid proof of income for banks and loans.\n\nOur system automatically distinguishes between the two, ensuring you issue the correct certificate type for every worker, from the cleaner to the CEO.",
+                highlights: [
+                    "Automatic classification",
+                    "Threshold verification",
+                    "Banking compliance",
+                    "Proof of income validity"
+                ],
+                illustrationType: "chart"
+            },
+            {
+                title: "EasyFile Validation",
+                content: "Before an IRP5 can be issued, it must pass the SARS 'pre-submission validation'. This checks that ID numbers are valid, addresses particular formats, and bank details exist.\n\nWe run this validation monthly, not just at year-end. This means when 31 May arrives, we are ready to issue immediately, avoiding the last-minute data panic that plagues most payroll departments.",
+                highlights: [
+                    "Monthly data sanitization",
+                    "ID number verification",
+                    "Address formatting",
+                    "Bank account validation"
+                ],
+                illustrationType: "shield"
+            }
+        ],
+        visualType: "certificate"
+    },
+    {
+        slug: "provisional-tax-services",
+        title: "Provisional Tax (Individuals & Companies)",
+        pillar: "Compliance",
+        hero: {
+            heading: "Provisional Tax (IRP6)",
+            subheading: "Avoid massive tax bills in February. We calculate and submit your biannual tax estimates accurately, preventing penalties and interest."
+        },
+        whoIsThisFor: [
+            "All registered companies (Pty Ltd)",
+            "Directors of companies",
+            "Freelancers and Sole Proprietors",
+            "Individuals with rental or investment income > R30,000"
+        ],
+        deliverables: [
+            "Calculation of First Period Provisional Tax (August)",
+            "Calculation of Second Period Provisional Tax (February)",
+            "Submission of IRP6 returns via eFiling",
+            "Generation of Payment Reference Numbers (PRN)",
+            "Calculation of optional Third Top-up Payment (September)"
+        ],
+        process: [
+            { step: 1, title: "Estimation", description: "We estimate your total annual taxable income based on your year-to-date performance." },
+            { step: 2, title: "Calculation", description: "We calculate the tax due, deducting PAYE already paid and previous provisional payments." },
+            { step: 3, title: "Submission", description: "We submit the IRP6 return to SARS before the deadline." },
+            { step: 4, title: "Instruction", description: "We send you the payment instruction so you can pay SARS directly." }
+        ],
+        requirements: ["Year-to-date Management Accounts (for August)", "Estimated full-year income (for February)", "Details of PAYE paid", "Certificates for Medical Aid/RA (for individuals)"],
+        timeline: "Submitted bi-annually (August & February)",
+        faqs: [
+            { question: "Is Provisional Tax a separate tax?", answer: "No. It is just a way of paying your normal Income Tax in two installments (August and February) instead of one lump sum at year-end." },
+            { question: "What happens if I underestimate my income?", answer: "If your estimate is more than 10-20% lower than your actual final income, SARS imposes a 20% 'Underestimation Penalty' on the difference." },
+            { question: "I own a dormant company. Must I file?", answer: "Yes. All registered companies must file IRP6 returns, even if they are 'Nil' returns, to maintain compliance." },
+            { question: "Can I use the 'Basic Amount' from last year?", answer: "You can, but SARS increases it by 8% per year. Also, if your last assessment is older than 18 months, the Basic Amount expires." }
+        ],
+        relatedServices: [
+            { slug: "corporate-income-tax-returns-itr14", title: "Corporate Income Tax" },
+            { slug: "personal-income-tax-returns-itr12", title: "Personal Income Tax" },
+            { slug: "tax-clearance-certificate", title: "Tax Clearance Certificate" }
+        ],
+        stats: [
+            { label: "Penalty", value: "20%", description: "Underestimation." },
+            { label: "Interest", value: "Prime", description: "On late pay." },
+            { label: "Deadlines", value: "Aug/Feb", description: "Non-negotiable." },
+            { label: "Top-up", value: "Sept", description: "Optional 3rd." }
+        ],
+        insights: [
+            "The Second Period (February) is the most critical. You must be at least 80% accurate in your estimation to avoid penalties.",
+            "Many businesses treat the August payment lightly, paying 'Zero'. This strains cash flow in February when the full year's tax becomes due at once.",
+            "Provisional tax payments are prepayments. If you overpay, you get the money back (with interest) when you file your final annual return."
+        ],
+        problemsSolved: [
+            "Cash flow shock of a single massive tax bill",
+            "Automatic 10% penalties for late payment",
+            "20% penalties for under-estimating income",
+            "Compliance blocks on Tax Clearance Certificates"
+        ],
+        complianceContext: "Paragraph 19 of the Fourth Schedule requires provisional taxpayers to submit an estimate of taxable income.",
+        externalLinks: [
+            { label: "SARS (Provisional Tax)", href: "https://www.sars.gov.za/types-of-tax/provisional-tax/" }
+        ],
+        detailedSections: [
+            {
+                title: "The Two-Payment System",
+                content: "The South African tax system requires you to pay your tax as you earn it. Provisional tax splits your liability into two payments:\nContent: 1. **August:** You pay 50% of your estimated tax for the year.\n2. **February:** You pay the remaining balance to reach 100% of your estimated tax.\n\nFailing to make these payments doesn't just attract interest; it attracts a flat 10% penalty on the late amount.",
+                highlights: [
+                    "50% due by end of August",
+                    "Balance due by end of February",
+                    "Cash flow smoothing",
+                    "Interest avoidance"
+                ],
+                illustrationType: "chart"
+            },
+            {
+                title: "The 'Basic Amount' Trap",
+                content: "To simplify things, SARS pre-populates your return with a 'Basic Amount' (your taxable income from your last assessed year). You are allowed to use this amount without risk of penalties, *provided* that assessment is not older than 18 years.\n\nWe carefully check if your Basic Amount is valid. If it has expired, using it will trigger an audit and penalties. We recalculate your actual position to be safe.",
+                highlights: [
+                    "Safe harbour usage",
+                    "18-month validity check",
+                    "8% annual escalation",
+                    "Audit prevention"
+                ],
+                illustrationType: "shield"
+            },
+            {
+                title: "The Voluntary Details (Top-Up)",
+                content: "For companies with complex finances, it's hard to be 100% accurate in February. If, after your year-end audit (usually around September), you realize you underpaid, you can make a voluntary 'Third Payment'.\n\nThis payment stops the interest clock running. We advise on whether a top-up is necessary to maximize your cash retention while minimizing SARS interest.",
+                highlights: [
+                    "September top-up",
+                    "Interest saving",
+                    "Final liability settlement",
+                    " Strategic cash flow management"
+                ],
+                illustrationType: "strategic"
+            }
+        ],
+        visualType: "chart"
+    },
+    {
+        slug: "corporate-income-tax-returns-itr14",
+        title: "Corporate Income Tax (ITR14)",
+        pillar: "Compliance",
+        hero: {
+            heading: "Corporate Income Tax (ITR14)",
+            subheading: "Comprehensive company tax filing. We maximize your legal deductions and ensure your balance sheet matches your declarations."
+        },
+        whoIsThisFor: [
+            "All registered companies (Pty Ltd)",
+            "Closed Corporations (CCs)",
+            "Non-Profit Companies (NPCs)",
+            "Co-operatives"
+        ],
+        deliverables: [
+            "Computation of Taxable Income vs Accounting Profit",
+            "Submission of Annual Corporate Income Tax Return (ITR14)",
+            "Submission of Supplementary Declaration (IT10) for Controlled Foreign Companies",
+            "Reconciliation of Provisional Tax payments",
+            "Review of Assessment (ITA34) for errors"
+        ],
+        process: [
+            { step: 1, title: "Review", description: "We analyze your Annual Financial Statements to identify tax adjustments (e.g., depreciation vs wear-and-tear)." },
+            { step: 2, title: "Computation", description: "We prepare a tax computation that bridges the gap between your profit and your taxable income." },
+            { step: 3, title: "Filing", description: "We complete the ITR14 on eFiling, inputting your full Balance Sheet and Income Statement data." },
+            { step: 4, title: "Assessment", description: "We monitor the assessment and verify that SARS has calculated the tax correctly." }
+        ],
+        requirements: ["Signed Annual Financial Statements (AFS)", "Fixed Asset Register", "Trial Balance", "Previous Year's Assessment (ITA34)"],
+        timeline: "Due within 12 months of financial year end",
+        faqs: [
+            { question: "What is the tax rate?", answer: "The standard corporate tax rate is 27%. However, qualifying Small Business Corporations (SBCs) pay significantly less on a sliding scale." },
+            { question: "My company is dormant. Do I still file?", answer: "Yes. SARS requires a return for every year the company exists. Filing a 'Nil' return prevents administrative penalties." },
+            { question: "What expenses can I deduct?", answer: "Generally, any expense incurred in the production of income. However, capital expenses (like buying a building) are not deductible, though they may qualify for allowances." },
+            { question: "Does this include Dividends Tax?", answer: "No. Dividends Tax is a separate declaration (DTR01/02) filed when you declare a dividend. We handle that separately." }
+        ],
+        relatedServices: [
+            { slug: "annual-financial-statements-afs", title: "Annual Financial Statements" },
+            { slug: "provisional-tax-services", title: "Provisional Tax" },
+            { slug: "vat-reconciliations", title: "VAT Reconciliations" }
+        ],
+        stats: [
+            { label: "Rate", value: "27%", description: "Standard Co Tax." },
+            { label: "SBC", value: "0-27%", description: "Small Biz Rate." },
+            { label: "Deadline", value: "+12m", description: "After Year End." },
+            { label: "Audit", value: "High", description: "If discrepancies." }
+        ],
+        insights: [
+            "The comparison between your VAT returns, PAYE returns, and your Income Tax return is automated by SARS. If your turnover on the ITR14 doesn't match your VAT returns, you will be audited.",
+            "Wear-and-tear allowances (Section 11(e)) are often more generous than accounting depreciation, reducing your tax bill legallly.",
+            "Don't ignore the balance sheet section of the ITR14. SARS uses it to test solvency and liquidity."
+        ],
+        problemsSolved: [
+            "Overpayment of tax due to missed allowances",
+            "Administrative penalties for late or non-submission",
+            "Audits triggered by conflicting data (VAT vs IT)",
+            "Loss of tax losses due to non-submission"
+        ],
+        complianceContext: "Section 66 of the Income Tax Act requires all companies to submit an annual return of income.",
+        externalLinks: [
+            { label: "SARS (SBC Rates)", href: "https://www.sars.gov.za/types-of-tax/corporate-income-tax/small-business-corporations-sbc/" }
+        ],
+        detailedSections: [
+            {
+                title: "Small Business Corporation (SBC) Tax",
+                content: "If your turnover is under R20 million and your shareholders are all natural persons, you might qualify as a Small Business Corporation (SBC). This is a massive tax advantage.\n\nSBCs pay 0% tax on the first portion of their profit, and lower rates thereafter. We aggressively check your eligibility for this status to minimize your tax burden.",
+                highlights: [
+                    "0% tax on first profits",
+                    "Accelerated depreciation (100% write-off)",
+                    "Eligibility assessment",
+                    "SBC vs Micro Business analysis"
+                ],
+                illustrationType: "strategic"
+            },
+            {
+                title: "The Audit Trigger Points",
+                content: "SARS's AI now cross-references everything. They check if your 'Cost of Sales' on the ITR14 matches your input VAT claims. They check if your 'Salaries' expense matches your EMP201 submissions.\n\nWe perform these reconciliation checks *before* we file. If there is a discrepancy, we find it and fix it, preventing the audit flag from being raised in the first place.",
+                highlights: [
+                    "Cross-tax verification",
+                    "VAT vs IT turnover checks",
+                    "Payroll vs IT expense checks",
+                    "Pre-submission audit"
+                ],
+                illustrationType: "shield"
+            },
+            {
+                title: "Losses and Assessed Losses",
+                content: "If your company made a loss, you don't pay tax. But more importantly, that loss is 'ring-fenced' and carried forward to set off against *future* profits.\n\nHowever, if you fail to file your return for a year, SARS can wipe out your assessed loss. We ensure your losses are preserved to shield your future profits from tax.",
+                highlights: [
+                    "Preservation of tax losses",
+                    "Set-off against future profit",
+                    "Assessed loss verification",
+                    "Section 20 compliance"
+                ],
+                illustrationType: "chart"
+            }
+        ],
+        visualType: "strategic"
+    },
+    {
+        slug: "personal-income-tax-returns-itr12",
+        title: "Personal Income Tax (ITR12)",
+        pillar: "Compliance",
+        hero: {
+            heading: "Personal Income Tax (ITR12)",
+            subheading: "Expert filing for individuals, freelancers, and directors. We maximise your legal refunds and ensure full compliance."
+        },
+        whoIsThisFor: [
+            "Salaried employees with travel/medical allowances",
+            "Commission earners and Freelancers",
+            "Directors of companies",
+            "Individuals with rental or investment income"
+        ],
+        deliverables: [
+            "Completion and Submission of ITR12 Tax Return",
+            "Review of Auto-Assessments for accuracy",
+            "Optimisation of medical aid and retirement annuity deductions",
+            "Submission of Logbooks for travel claims",
+            "Dispute resolution for incorrect assessments"
+        ],
+        process: [
+            { step: 1, title: "Collection", description: "We send you a simple checklist of documents we need (IRP5s, Medical Aid certs, etc.)." },
+            { step: 2, title: "Calculation", description: "We calculate your tax position before filing, checking if you are due a refund or need to pay in." },
+            { step: 3, title: "Filing", description: "We submit the return to SARS via eFiling, ensuring all codes are correct to prevent verification requests." },
+            { step: 4, title: "Review", description: "We check the ITA34 assessment issued by SARS to ensure it matches our calculation." }
+        ],
+        requirements: ["IRP5/IT3a Requirements", "Medical Aid Tax Certificate", "Retirement Annuity Certificate", "Travel Logbook (if applicable)"],
+        timeline: "Filing Season (July to October)",
+        faqs: [
+            { question: "SARS Auto-Assessed me. Do I need to do anything?", answer: "Yes! Auto-assessments often leave out deductible expenses like donations or medical credits. Accepting it blindly can cost you money. We review it first." },
+            { question: "I earn a salary but also have a side hustle. Do I declare it?", answer: "Absolutely. All extra income (trading, freelancing, rental) must be declared. We help you deduct valid expenses against this income." },
+            { question: "Can I claim for my home office?", answer: "Only if you meet strict criteria (dedicated room, used regularly and exclusively for trade). We assess if you qualify to avoid audit rejection." },
+            { question: "How long until I get my refund?", answer: "If you are not selected for audit, refunds usually pay out within 72 hours of submission. If audited, it can take 21 working days." }
+        ],
+        relatedServices: [
+            { slug: "provisional-tax-services", title: "Provisional Tax" },
+            { slug: "sole-proprietor-tax", title: "Sole Proprietor Tax" },
+            { slug: "tax-clearance-certificate", title: "Tax Clearance Certificate" }
+        ],
+        stats: [
+            { label: "Refunds", value: "Max", description: "Optimized." },
+            { label: "Season", value: "Jul-Oct", description: "Filing time." },
+            { label: "Audit", value: "Low", description: "Clean data." },
+            { label: "Auto", value: "Check", description: "Don't just accept." }
+        ],
+        insights: [
+            "The most common reason for SARS audits is a discrepancy between your IRP5 and the data the employer submitted. We identify these mismatches before filing.",
+            "If you receive a travel allowance, you MUST keep a logbook. SARS rejects 100% of claims without a valid logbook.",
+            "Donations to PBOs (Public Benefit Organizations) are deductible up to 10% of your taxable income, but you must have the Section 18A certificate."
+        ],
+        problemsSolved: [
+            "Unclaimed refunds due to lack of knowledge",
+            "Stress of dealing with SARS eFiling profiles",
+            "Audits triggered by incorrect expense claims",
+            "Penalties for non-disclosure of budding side-businesses"
+        ],
+        complianceContext: "Section 66 of the Income Tax Act requires individuals meeting the threshold to submit an income tax return.",
+        externalLinks: [
+            { label: "SARS (Filing Season)", href: "https://www.sars.gov.za/types-of-tax/personal-income-tax/tax-season/" }
+        ],
+        detailedSections: [
+            {
+                title: "The Auto-Assessment Trap",
+                content: "SARS now 'auto-assesses' millions of taxpayers using data from banks and employers. It sounds convenient, but it's dangerous. SARS doesn't know about your home office, your extra medical expenses, or your retirement annuity top-ups.\n\nWe review every auto-assessment. In many cases, we file a correction that results in a legally significantly larger refund for the client.",
+                highlights: [
+                    "Auto-assessment review",
+                    "Deduction maximization",
+                    "Correction filing",
+                    "Refund optimization"
+                ],
+                illustrationType: "shield"
+            },
+            {
+                title: "Side Hustles & Freelancing",
+                content: "The 'Side Hustle' economy is huge, but many don't realize that income is taxable. If you have a full-time job and a side business, the tax interaction is complex.\n\nWe structure your return to ensure your trading expenses are deducted against your trading income, preventing you from paying tax on your *gross* side-income instead of your *net* profit.",
+                highlights: [
+                    "Trading income declaration",
+                    "Expense deduction aggregation",
+                    "Provisional tax triggers",
+                    "Profit vs Turnover tax"
+                ],
+                illustrationType: "strategic"
+            },
+            {
+                title: "Crypto & Foreign Income",
+                content: "SARS is actively cracking down on undisclosed Cryptocurrency profits and foreign interest. They receive data from exchanges and foreign banks.\n\nWe ensure these are declared correctly (Capital Gains vs Income) to avoid the massive penalties associated with non-disclosure of offshore assets.",
+                highlights: [
+                    "Crypto asset declaration",
+                    "Capital Gains vs Income analysis",
+                    "Foreign interest disclosure",
+                    "Amnesty/VDP guidance"
+                ],
+                illustrationType: "chart"
+            }
+        ],
+        visualType: "shield"
+    },
+    {
+        slug: "sole-proprietor-tax",
+        title: "Sole Proprietor Tax",
+        pillar: "Compliance",
+        hero: {
+            heading: "Sole Proprietor Tax Services",
+            subheading: "Running a business in your personal name? We separate your business affairs from your personal life, ensuring you claim every valid business deduction."
+        },
+        whoIsThisFor: [
+            "Freelancers and Independent Contractors",
+            "Sole Proprietors (Trading in own name)",
+            "Gig Economy Workers (Uber, Upwork, etc.)",
+            "Consultants"
+        ],
+        deliverables: [
+            "Preparation of Income and Expenditure Statement",
+            "Calculation of Taxable Income vs Gross Income",
+            "Submission of ITR12 with Local Business trade",
+            "Ring-fencing of Assessed Losses (if applicable)",
+            "Provisional Tax estimations"
+        ],
+        process: [
+            { step: 1, title: "Separation", description: "We analyze your bank statements to separate personal expenses (groceries) from business expenses (software, travel)." },
+            { step: 2, title: "Accounts", description: "We compile a professional Statement of Comprehensive Income that meets bank and SARS standards." },
+            { step: 3, title: "Adjustments", description: "We apply Section 11(a) deductions and depreciation allowances to minimize your taxable income." },
+            { step: 4, title: "Filing", description: "We file your ITR12, completing the Local Business section accurately." }
+        ],
+        requirements: ["Bank Statements (12 months)", "Invoices/Spreadsheet of expenses", "Asset list (Computers, Vehicles, etc.)", "Logbook for business travel"],
+        timeline: "Annual Filing (July - October)",
+        faqs: [
+            { question: "Do I need a separate business bank account?", answer: "Legally, no. Practically, YES. It makes proving your expenses to SARS 100x easier and protects you from an audit nightmare." },
+            { question: "What counts as a business expense?", answer: "Any expense incurred in the production of income that is not of a capital nature. Internet, software, rent (proportionate), and travel all count." },
+            { question: "Can I deduct my car?", answer: "Yes, but only the business portion. You must keep a logbook. SARS will disallow 100% of the claim without one." },
+            { question: "When should I register a Pty Ltd?", answer: "When your risk increases (you need limited liability) or when your profits exceed the tax bracket where company tax (27%) is cheaper than personal tax." }
+        ],
+        relatedServices: [
+            { slug: "personal-income-tax-returns-itr12", title: "Personal Income Tax" },
+            { slug: "provisional-tax-services", title: "Provisional Tax" },
+            { slug: "company-registration-pty-ltd-npc", title: "Company Registration" }
+        ],
+        stats: [
+            { label: "Tax Rate", value: "18-45%", description: "Sliding scale." },
+            { label: "Liability", value: "Unlimited", description: "Personal risk." },
+            { label: "Admin", value: "Low", description: "No CIPC fees." },
+            { label: "Audit", value: "Medium", description: "Expense checks." }
+        ],
+        insights: [
+            "The biggest mistake Sole Proprietors make is not saving for tax. Because PAYE isn't deducted monthly, you can be hit with a massive bill in February.",
+            "SARS often tries to apply 'Ring-Fencing of Losses' (Section 20A) to suspect trades (like hobby businesses). We defend your right to claim legitimate business losses.",
+            "Sole Proprietors often miss out on depreciation/wear-and-tear allowances on assets they own personally but use for business."
+        ],
+        problemsSolved: [
+            "Mixing personal and business finances",
+            "Unexpected tax bills due to lack of provision",
+            "Disallowed expenses during SARS audits",
+            "Difficulty getting vehicle finance (no payslips)"
+        ],
+        complianceContext: "Sole Proprietors are taxed under the normal Individual Income Tax tables, but must declare trading income under a specific section of the ITR12.",
+        externalLinks: [
+            { label: "SARS (Sole Proprietors)", href: "https://www.sars.gov.za/types-of-tax/personal-income-tax/sole-proprietors/" }
+        ],
+        detailedSections: [
+            {
+                title: "Ring-Fencing of Losses",
+                content: "If your business makes a loss, you can usually deduct that loss from your other income (like a salary). However, SARS has strict 'Ring-Fencing' rules (Section 20A) to prevent people from claiming hobby losses against their salary.\n\nWe analyze your business against the 'facts and circumstances' test (profit motive, commercial nature) to ensure your legitimate losses are allowed.",
+                highlights: [
+                    "Section 20A analysis",
+                    "Hobby vs Business test",
+                    "Loss deduction defense",
+                    "3-out-of-5 year rule"
+                ],
+                illustrationType: "shield"
+            },
+            {
+                title: "Home Office Deductions",
+                content: "Since COVID, everyone wants to claim a home office. For Sole Proprietors, this is easier than for employees, but the rules are still strict. You must have a dedicated room used *exclusively* for trade.\n\nWe calculate the correct apportionment of your rent, rates, electricity, and cleaning costs based on the square meterage of your office vs your home.",
+                highlights: [
+                    "Square meterage apportionment",
+                    "cleaning & utility claims",
+                    "Exclusive use verification",
+                    "Capital Gains Tax impact"
+                ],
+                illustrationType: "strategic"
+            },
+            {
+                title: "Vehicle & Travel Claims",
+                content: "For a Sole Proprietor, your vehicle is often your biggest asset. You can claim wear-and-tear (depreciation), fuel, insurance, and maintenance.\n\nHowever, you can ONLY claim the business portion. We take your commercial logbook kilometers and use them to calculate the exact deductible portion of your total vehicle costs.",
+                highlights: [
+                    "Logbook analysis",
+                    "Wear-and-tear claims",
+                    "Maintenance apportionment",
+                    "Finance cost deduction"
+                ],
+                illustrationType: "chart"
+            }
+        ],
+        visualType: "chart"
+    },
+    {
+        slug: "capital-gains-tax-advisory",
+        title: "Capital Gains Tax (CGT) Advisory",
+        pillar: "Compliance",
+        hero: {
+            heading: "Capital Gains Tax (CGT) Advisory",
+            subheading: "Selling a property, shares, or a business? We calculate your CGT liability accurately, applying statutory exclusions to minimize what you owe."
+        },
+        whoIsThisFor: [
+            "Property Sellers (Residential or Commercial)",
+            "Share Traders and Investors",
+            "Business Owners selling their company",
+            "Trusts disposing of assets"
+        ],
+        deliverables: [
+            "Calculation of Base Cost (including valid enhancements)",
+            "Determination of Capital vs Revenue nature",
+            "Application of Annual Exclusion (R40,000 for individuals)",
+            "Primary Residence Exclusion calculation (R2m)",
+            "Submission of CGT schedule in ITR12/ITR14"
+        ],
+        process: [
+            { step: 1, title: "Base Cost", description: "We compile all proof of expenditure (purchase price, transfer costs, renovations) to establish your base cost." },
+            { step: 2, title: "Valuation", description: "We determine the proceeds and apply the specific inclusion rate (40% for individuals, 80% for companies)." },
+            { step: 3, title: "Exclusions", description: "We automatically apply statutory exclusions like the R2 million Primary Residence break." },
+            { step: 4, title: "Filing", description: "We include the gain as part of your annual tax return, ensuring it is added to your taxable income correctly." }
+        ],
+        requirements: ["Original Purchase Agreement", "Sale Agreement", "Invoices for improvements/renovations", "Transfer Duty receipts", "Valuation certificates (if applicable)"],
+        timeline: "Ad-hoc (Filed with Annual Return)",
+        faqs: [
+            { question: "Is CGT a separate tax I pay on sale?", answer: "No. It is part of Income Tax. A portion of your profit is added to your other income for the year and taxed at your marginal rate." },
+            { question: "I sold my house. Do I pay tax?", answer: "Only if the profit is over R2 million, and it was your 'Primary Residence'. If you rented it out, you pay CGT on the whole profit." },
+            { question: "How much is the tax?", answer: "For individuals, max effective rate is 18%. For Companies, it is 21.6%. For Trusts, it is 36%." },
+            { question: "I lost my invoices for renovations. Can I claim them?", answer: "No. SARS is strict on proof. Without invoices, your base cost is lower, and your tax is higher. We help you digitize these proofs." }
+        ],
+        relatedServices: [
+            { slug: "personal-income-tax-returns-itr12", title: "Personal Income Tax" },
+            { slug: "corporate-income-tax-returns-itr14", title: "Corporate Income Tax" },
+            { slug: "annual-financial-statements-afs", title: "Financial Statements" }
+        ],
+        stats: [
+            { label: "Inclusion", value: "40%", description: "Individuals." },
+            { label: "Inclusion", value: "80%", description: "Companies." },
+            { label: "Annual", value: "R40k", description: "Exclusion." },
+            { label: "Home", value: "R2m", description: "Residence exclusion." }
+        ],
+        insights: [
+            "The most critical part of CGT is the 'Base Cost'. Every Rand of proven expenditure reduces your taxable profit.",
+            "Selling shares? The 'First-In-First-Out' vs 'Weighted Average' method can radically change your tax bill.",
+            "If you sell your small business to retire (over age 55), there is a special once-off exclusion of R1.8 million."
+        ],
+        problemsSolved: [
+            "Unexpected tax bills after selling assets",
+            "Overpayment due to understated Base Cost",
+            "Confusion between 'Revenue' and 'Capital' nature",
+            "Audit rejections of unproven renovation costs"
+        ],
+        complianceContext: "The Eighth Schedule to the Income Tax Act governs the calculation and taxation of capital gains.",
+        externalLinks: [
+            { label: "SARS (CGT Guide)", href: "https://www.sars.gov.za/types-of-tax/capital-gains-tax/" }
+        ],
+        detailedSections: [
+            {
+                title: "Primary Residence Exclusion",
+                content: "The biggest tax break in South Africa is the Primary Residence Exclusion. The first R2 million of profit on the sale of your home is tax-free.\n\nHowever, if you used a part of the home for business (home office) or rented out a cottage, that portion of the profit is NOT exempt. We calculate this apportionment precisely to prevent SARS audit clawbacks.",
+                highlights: [
+                    "R2 million exclusion",
+                    "Apportionment calculation",
+                    "Rental period adjustment",
+                    "Dual-use implications"
+                ],
+                illustrationType: "shield"
+            },
+            {
+                title: "The Base Cost Battle",
+                content: "Your Base Cost isn't just what you bought the asset for. It includes transfer duty, legal fees, agent commission, and *capital* improvements (like adding a room).\n\nIt does NOT include maintenance (painting, repairs). We go through your records to find every eligible cent to add to your Base Cost, reducing your profit and your tax.",
+                highlights: [
+                    "Expenditure analysis",
+                    "Capital vs Repairs distinction",
+                    "Receipt verification",
+                    "Transfer cost inclusion"
+                ],
+                illustrationType: "chart"
+            },
+            {
+                title: "Small Business Asset Relief",
+                content: "For small business owners over 55 deciding to retire and sell their business, there is a massive relief: The first R1.8 million of capital gain is tax-free.\n\nThis is a once-in-a-lifetime exemption. We assist in structuring the sale of your business to ensure you qualify for this 'Golden Handshake' from SARS.",
+                highlights: [
+                    "Retirement relief",
+                    "R1.8m exemption",
+                    "Qualifying criteria",
+                    "Sale structuring"
+                ],
+                illustrationType: "strategic"
+            }
+        ],
+        visualType: "strategic"
+    },
+    {
+        slug: "annual-financial-statements-afs",
+        title: "Annual Financial Statements (AFS)",
+        pillar: "Accounting",
+        hero: {
+            heading: "Annual Financial Statements (AFS)",
+            subheading: "Your business's official report card. We prepare IFRS-compliant financials that satisfy SARS, your bank, and your investors."
+        },
+        whoIsThisFor: [
+            "All registered Pty Ltd companies",
+            "Closed Corporations (CCs)",
+            "Non-Profit Companies (NPCs)",
+            "Companies applying for finance or tenders"
+        ],
+        deliverables: [
+            "Statement of Financial Position (Balance Sheet)",
+            "Statement of Comprehensive Income (Profit & Loss)",
+            "Statement of Changes in Equity",
+            "Statement of Cash Flows",
+            "Notes to the Financial Statements",
+            "Independent Review Report (if required)"
+        ],
+        process: [
+            { step: 1, title: "Trial Balance", description: "We finalize your Trial Balance, ensuring all year-end journals (depreciation, accruals, prepayments) are processed." },
+            { step: 2, title: "Compilation", description: "We compile the financial statements in accordance with IFRS for SMEs or the applicable framework." },
+            { step: 3, title: "Review", description: "A senior accountant reviews the statements for accuracy, consistency, and compliance." },
+            { step: 4, title: "Delivery", description: "We deliver the signed AFS to you, ready for submission to SARS, your bank, or CIPC." }
+        ],
+        requirements: ["Complete and reconciled bookkeeping records", "Fixed Asset Register", "Loan agreements and schedules", "Bank confirmations"],
+        timeline: "Within 6 months of financial year-end",
+        faqs: [
+            { question: "Do all companies need AFS?", answer: "Yes. The Companies Act requires every company to prepare Annual Financial Statements within 6 months of year-end." },
+            { question: "What framework do you use?", answer: "For most SMEs, we use IFRS for SMEs. For very small companies, we can use the appropriate micro-entity framework." },
+            { question: "Does my company need an audit?", answer: "Most SMEs do not need an audit. However, if your Public Interest Score (PI Score) exceeds 350, or you are an NPC, you likely do." },
+            { question: "Can I use AFS to get a business loan?", answer: "Yes. Banks require up-to-date AFS to assess your creditworthiness. We prepare them in the format banks expect." }
+        ],
+        relatedServices: [
+            { slug: "corporate-income-tax-returns-itr14", title: "Corporate Income Tax" },
+            { slug: "management-accounts", title: "Management Accounts" },
+            { slug: "monthly-bookkeeping-services", title: "Monthly Bookkeeping" }
+        ],
+        stats: [
+            { label: "Deadline", value: "6 months", description: "After year end." },
+            { label: "Standard", value: "IFRS", description: "For SMEs." },
+            { label: "Audit", value: "PI>350", description: "Score threshold." },
+            { label: "Filing", value: "CIPC", description: "Annual return." }
+        ],
+        insights: [
+            "The most common reason banks reject loan applications is outdated or poorly prepared Annual Financial Statements.",
+            "Your AFS is not just for SARS. It is a legal requirement under the Companies Act, Section 30.",
+            "Directors are personally liable for the accuracy of AFS. We help you discharge this duty with confidence."
+        ],
+        problemsSolved: [
+            "Bank rejections due to missing or non-compliant AFS",
+            "Late filing penalties from CIPC",
+            "Inability to file ITR14 without supporting financials",
+            "Director liability for inaccurate statements"
+        ],
+        complianceContext: "Section 30 of the Companies Act (71 of 2008) requires all companies to prepare AFS within 6 months of year-end.",
+        externalLinks: [
+            { label: "CIPC (Annual Returns)", href: "https://www.cipc.co.za/annual-returns/" }
+        ],
+        detailedSections: [
+            {
+                title: "IFRS for SMEs vs Full IFRS",
+                content: "Most South African SMEs use the simplified IFRS for SMEs framework. It is less complex than Full IFRS (used by listed companies) but still internationally recognized.\n\nWe determine the correct framework for your company based on your Public Interest Score and whether you have external investors. Using the wrong framework can invalidate your financials.",
+                highlights: [
+                    "Framework selection",
+                    "PI Score calculation",
+                    "International recognition",
+                    "Simplification benefits"
+                ],
+                illustrationType: "strategic"
+            },
+            {
+                title: "The Public Interest Score",
+                content: "Your PI Score determines whether you need an audit, an independent review, or just a compilation. It is calculated based on your turnover, number of employees, and number of shareholders.\n\nScore over 350 = Audit. Score 100-349 = Independent Review. Score under 100 = Compilation only. We calculate this for you every year.",
+                highlights: [
+                    "PI Score calculation",
+                    "Audit vs Review vs Compilation",
+                    "Annual assessment",
+                    "Cost implications"
+                ],
+                illustrationType: "chart"
+            },
+            {
+                title: "Bank-Ready Financials",
+                content: "When you apply for a business loan, overdraft, or asset finance, the bank will ask for your latest AFS. But not just any AFS. They want to see specific ratios: Debt-to-Equity, Current Ratio, and Gross Profit Margin.\n\nWe prepare your AFS with these ratios in mind, ensuring your financial story is presented in the strongest possible light.",
+                highlights: [
+                    "Ratio analysis",
+                    "Debt-to-Equity optimization",
+                    "Current Ratio presentation",
+                    "Lending readiness"
+                ],
+                illustrationType: "shield"
+            }
+        ],
+        visualType: "compliance"
+    },
+    {
+        slug: "management-accounts",
+        title: "Management Accounts",
+        pillar: "Intelligence",
+        hero: {
+            heading: "Management Accounts",
+            subheading: "Don't wait for year-end to know how your business is performing. Monthly and quarterly management accounts give you real-time visibility."
+        },
+        whoIsThisFor: [
+            "Business owners wanting monthly insight",
+            "Companies with multiple revenue streams",
+            "Boards requiring quarterly reporting",
+            "Businesses seeking finance (banks want to see them)"
+        ],
+        deliverables: [
+            "Monthly Income Statement with Budget Comparison",
+            "Monthly Balance Sheet",
+            "Aged Debtors and Creditors Report",
+            "Bank Reconciliation Statement",
+            "Key Performance Indicator (KPI) Dashboard"
+        ],
+        process: [
+            { step: 1, title: "Capture", description: "We process and categorize your monthly transactions from bank feeds and source documents." },
+            { step: 2, title: "Reconcile", description: "We reconcile your bank, debtors, creditors, and intercompany accounts." },
+            { step: 3, title: "Compile", description: "We compile the management accounts pack: Income Statement, Balance Sheet, and KPI summary." },
+            { step: 4, title: "Review", description: "We schedule a brief call to discuss the results and flag any concerns." }
+        ],
+        requirements: ["Access to accounting software (or bank statements)", "Budget for comparison (we can help you create one)", "Source documents (invoices, receipts)"],
+        timeline: "Monthly — delivered by the 15th of the following month",
+        faqs: [
+            { question: "How are these different from AFS?", answer: "AFS are formal, annual, and backwards-looking. Management accounts are informal, monthly, and forward-looking. They help you make decisions NOW." },
+            { question: "Do I need separate bookkeeping?", answer: "No. Management accounts are built ON TOP of your bookkeeping. If we do your bookkeeping, the management accounts flow automatically." },
+            { question: "Can we customize the reports?", answer: "Absolutely. We tailor the pack to your specific KPIs — whether that's gross margin by product, revenue by branch, or cost per employee." },
+            { question: "Are these auditable?", answer: "They are not audited, but they form the basis of your year-end AFS. Accurate monthly accounts mean a smooth year-end process." }
+        ],
+        relatedServices: [
+            { slug: "annual-financial-statements-afs", title: "Annual Financial Statements" },
+            { slug: "monthly-bookkeeping-services", title: "Monthly Bookkeeping" },
+            { slug: "cash-flow-management-forecasting", title: "Cash Flow Management" }
+        ],
+        stats: [
+            { label: "Frequency", value: "Monthly", description: "Or quarterly." },
+            { label: "Turnaround", value: "15 days", description: "After month-end." },
+            { label: "Insight", value: "Real-time", description: "Not year-end." },
+            { label: "Custom", value: "Yes", description: "Your KPIs." }
+        ],
+        insights: [
+            "Businesses that review monthly management accounts are 3x more likely to identify problems before they become crises.",
+            "Lenders increasingly want to see monthly management accounts, not just annual AFS. It shows you are in control.",
+            "The best use of management accounts is comparing actuals to budget. Without a budget, you are flying blind."
+        ],
+        problemsSolved: [
+            "Year-end financial surprises",
+            "Inability to track profitability by department or product",
+            "Cash flow problems identified too late",
+            "Board meetings without reliable data"
+        ],
+        complianceContext: "While not a legal requirement, management accounts are considered best practice under the King IV Code on Corporate Governance.",
+        externalLinks: [
+            { label: "King IV Report", href: "https://www.iodsa.co.za/page/king-iv" }
+        ],
+        detailedSections: [
+            {
+                title: "Budget vs Actual Analysis",
+                content: "The power of management accounts lies in comparison. We compare your actual monthly results against your budget, line by line.\n\nThis immediately highlights where you are overspending, underperforming, or exceeding expectations. It turns raw numbers into actionable intelligence.",
+                highlights: [
+                    "Line-by-line variance analysis",
+                    "Overspend flagging",
+                    "Revenue tracking",
+                    "Trend identification"
+                ],
+                illustrationType: "chart"
+            },
+            {
+                title: "KPI Dashboards",
+                content: "Numbers are meaningless without context. We create a custom KPI dashboard that tracks the metrics that matter to YOUR business.\n\nFor a retailer, it might be Gross Margin per product line. For a service business, it might be Revenue per Employee. We identify the 5-7 KPIs that drive your business and track them monthly.",
+                highlights: [
+                    "Custom KPI selection",
+                    "Visual dashboards",
+                    "Monthly trend tracking",
+                    "Industry benchmarking"
+                ],
+                illustrationType: "strategic"
+            },
+            {
+                title: "Departmental Reporting",
+                content: "If your business has multiple departments, branches, or product lines, you need to know which ones are profitable and which are dragging you down.\n\nWe set up your chart of accounts to enable departmental reporting, giving you a clear view of profitability per segment without needing complex ERP software.",
+                highlights: [
+                    "Segmented reporting",
+                    "Profitability per department",
+                    "Cost allocation",
+                    "Branch comparison"
+                ],
+                illustrationType: "flow"
+            }
+        ],
+        visualType: "chart"
+    },
+    {
+        slug: "cash-flow-management-forecasting",
+        title: "Cash Flow Management & Forecasting",
+        pillar: "Intelligence",
+        hero: {
+            heading: "Cash Flow Management & Forecasting",
+            subheading: "Profit is an opinion. Cash is a fact. We help you forecast, protect, and optimize your cash flow so you never miss a payment."
+        },
+        whoIsThisFor: [
+            "Businesses experiencing cash crunches despite being profitable",
+            "Companies with seasonal revenue patterns",
+            "Businesses preparing for large capital expenditures",
+            "Start-ups managing burn rate"
+        ],
+        deliverables: [
+            "13-Week Rolling Cash Flow Forecast",
+            "Monthly Cash Flow Statement (Direct Method)",
+            "Working Capital Analysis",
+            "Debtor and Creditor Days Calculation",
+            "Cash Surplus/Deficit projections"
+        ],
+        process: [
+            { step: 1, title: "Map", description: "We map all your cash inflows (collections, grants, loans) and outflows (salaries, rent, SARS, suppliers) on a weekly basis." },
+            { step: 2, title: "Forecast", description: "We build a 13-week rolling forecast that shows exactly when you will have surplus or shortfall." },
+            { step: 3, title: "Optimize", description: "We identify ways to accelerate collections, negotiate payment terms, and eliminate unnecessary spend." },
+            { step: 4, title: "Monitor", description: "We update the forecast weekly with actuals and flag any deviations from plan." }
+        ],
+        requirements: ["Bank statements (3-6 months historical)", "List of recurring commitments (rent, salaries, loan repayments)", "Debtor and Creditor aged analysis", "Revenue pipeline or sales forecast"],
+        timeline: "Setup in 1 week, then ongoing weekly updates",
+        faqs: [
+            { question: "I am profitable but always short on cash. Why?", answer: "Profit and cash are different. You can be profitable but have all your money tied up in debtors (people who owe you). We fix that gap." },
+            { question: "What is a 13-week forecast?", answer: "It is a week-by-week projection of your cash balance for the next 3 months. It tells you exactly which week you might run short." },
+            { question: "Can this help me get a loan?", answer: "Yes. Banks love seeing a well-managed cash flow forecast. It shows you understand your business and can service debt." },
+            { question: "How often do you update it?", answer: "Weekly. We replace the forecast week with actuals and roll the forecast forward by one week." }
+        ],
+        relatedServices: [
+            { slug: "management-accounts", title: "Management Accounts" },
+            { slug: "monthly-bookkeeping-services", title: "Monthly Bookkeeping" },
+            { slug: "annual-financial-statements-afs", title: "Annual Financial Statements" }
+        ],
+        stats: [
+            { label: "Forecast", value: "13 weeks", description: "Rolling window." },
+            { label: "Updates", value: "Weekly", description: "Actuals vs plan." },
+            { label: "Setup", value: "1 week", description: "Quick start." },
+            { label: "Visibility", value: "100%", description: "Cash position." }
+        ],
+        insights: [
+            "80% of business failures are due to cash flow problems, not profitability problems. The distinction is critical.",
+            "If your Debtor Days are 60 but your Creditor Days are 30, you are funding your clients' businesses with your own cash.",
+            "A 13-week cash flow forecast is the single best tool to prevent business failure."
+        ],
+        problemsSolved: [
+            "Running out of cash despite being profitable",
+            "Inability to predict payroll shortfalls",
+            "Late supplier payments damaging relationships",
+            "Panic borrowing at high interest rates"
+        ],
+        complianceContext: "While not a statutory requirement, cash flow forecasting is strongly recommended by the King IV Code and is required by most lenders.",
+        externalLinks: [
+            { label: "SAICA (Cash Flow Best Practice)", href: "https://www.saica.co.za/" }
+        ],
+        detailedSections: [
+            {
+                title: "Profit vs Cash: The Critical Difference",
+                content: "You can have a R1 million profit on your Income Statement and R0 in the bank. How? Because profit includes non-cash items (depreciation) and doesn't account for loan repayments, VAT payments, or capital expenditure.\n\nWe bridge this gap by showing you exactly where your cash went, every month.",
+                highlights: [
+                    "Profit to cash reconciliation",
+                    "Non-cash item analysis",
+                    "Working capital impact",
+                    "Capital expenditure planning"
+                ],
+                illustrationType: "chart"
+            },
+            {
+                title: "The Debtor Problem",
+                content: "In South Africa, the average SME waits 45-90 days to get paid by their clients. Meanwhile, they must pay salaries, rent, and SARS on time.\n\nWe analyze your Debtor Days, identify slow payers, and implement strategies to speed up collections — from credit terms review to automated reminders.",
+                highlights: [
+                    "Debtor Days analysis",
+                    "Collection strategy",
+                    "Credit term optimization",
+                    "Aged debtors management"
+                ],
+                illustrationType: "shield"
+            },
+            {
+                title: "Seasonal Business Planning",
+                content: "If your business has seasonal peaks and troughs (construction, tourism, retail), you need a cash flow strategy that carries you through the quiet months.\n\nWe build a 12-month seasonal forecast that shows exactly how much cash you need to save during peak months to survive the quiet ones.",
+                highlights: [
+                    "Seasonal forecasting",
+                    "Peak/trough analysis",
+                    "Cash reserve planning",
+                    "Overdraft facility sizing"
+                ],
+                illustrationType: "strategic"
+            }
+        ],
+        visualType: "flow"
+    },
+    {
+        slug: "budgeting-and-forecasting",
+        title: "Budgeting & Forecasting",
+        pillar: "Intelligence",
+        hero: {
+            heading: "Budgeting & Forecasting",
+            subheading: "A budget is a plan for your money. A forecast is a prediction of where it's going. We build both, so you're never caught off guard."
+        },
+        whoIsThisFor: [
+            "Business owners preparing for a new financial year",
+            "Companies seeking bank finance or investors",
+            "Boards requiring strategic financial planning",
+            "Start-ups projecting runway and break-even"
+        ],
+        deliverables: [
+            "Annual Operating Budget (Revenue & Expenditure)",
+            "Departmental or Branch Budgets",
+            "Revenue Forecast (12-month rolling)",
+            "Break-even Analysis",
+            "Scenario Planning (Best / Base / Worst case)"
+        ],
+        process: [
+            { step: 1, title: "Review", description: "We analyze your historical financial data (2-3 years) to identify trends, seasonality, and cost structures." },
+            { step: 2, title: "Build", description: "We collaborate with you to set realistic revenue targets and expense limits for the coming year." },
+            { step: 3, title: "Model", description: "We build a financial model with 3 scenarios (Best, Base, Worst) to stress-test your plan." },
+            { step: 4, title: "Monitor", description: "We integrate the budget into your monthly management accounts for ongoing variance analysis." }
+        ],
+        requirements: ["Historical financial statements (2-3 years)", "Revenue pipeline or sales targets", "Planned capital expenditure", "Staffing plans"],
+        timeline: "2-3 weeks for initial budget; quarterly forecast updates",
+        faqs: [
+            { question: "What's the difference between a budget and a forecast?", answer: "A budget is a *plan* set at the start of the year. A forecast is a *prediction* updated throughout the year based on actuals. We do both." },
+            { question: "My business is new. Can I still budget?", answer: "Yes. We use industry benchmarks and your business plan to create a realistic first-year budget." },
+            { question: "How detailed should the budget be?", answer: "Detailed enough to be useful, simple enough to follow. We recommend line-item detail for major categories and lump sums for minor ones." },
+            { question: "Can this help with investor presentations?", answer: "Absolutely. We format the financial model for investor decks, including hockey-stick projections if justified by data." }
+        ],
+        relatedServices: [
+            { slug: "management-accounts", title: "Management Accounts" },
+            { slug: "cash-flow-management-forecasting", title: "Cash Flow Management" },
+            { slug: "annual-financial-statements-afs", title: "Annual Financial Statements" }
+        ],
+        stats: [
+            { label: "Scenarios", value: "3", description: "Best/Base/Worst." },
+            { label: "Horizon", value: "12m", description: "Rolling forecast." },
+            { label: "Setup", value: "2-3w", description: "Initial build." },
+            { label: "Updates", value: "Quarterly", description: "Reforecast." }
+        ],
+        insights: [
+            "Companies with budgets grow 30% faster than those without because they make proactive decisions instead of reactive ones.",
+            "The most useful part of a budget is not the numbers — it's the *conversation* about what's realistic and what's not.",
+            "A 3-scenario model (Best/Base/Worst) protects you from optimism bias and prepares you for downturns."
+        ],
+        problemsSolved: [
+            "No financial visibility for the year ahead",
+            "Inability to measure performance against targets",
+            "Poor investor or lender presentations",
+            "Hiring or spending decisions made without data"
+        ],
+        complianceContext: "Budgets are not a statutory requirement, but are considered essential under King IV Corporate Governance principles.",
+        externalLinks: [
+            { label: "SAICA (Financial Planning)", href: "https://www.saica.co.za/" }
+        ],
+        detailedSections: [
+            {
+                title: "Zero-Based Budgeting",
+                content: "Traditional budgeting takes last year's numbers and adds a percentage. Zero-based budgeting starts from scratch, forcing you to justify every Rand of expenditure.\n\nWe recommend this approach for businesses that have grown quickly and suspect inefficiencies. It's more work upfront, but the savings can be dramatic.",
+                highlights: [
+                    "Justify every expense",
+                    "Eliminate waste",
+                    "Fresh-start approach",
+                    "Dramatic cost savings"
+                ],
+                illustrationType: "chart"
+            },
+            {
+                title: "Scenario Planning",
+                content: "What happens if you lose your biggest client? What if the Rand weakens 10%? What if you win that tender?\n\nWe build 3 scenarios into your financial model so you can see the financial impact of key risks and opportunities before they happen.",
+                highlights: [
+                    "Best case modelling",
+                    "Worst case stress testing",
+                    "Key variable sensitivity",
+                    "Decision triggers"
+                ],
+                illustrationType: "strategic"
+            },
+            {
+                title: "Break-Even Analysis",
+                content: "Every business owner should know their break-even point — the amount of revenue needed to cover all fixed and variable costs.\n\nWe calculate this precisely, showing you how many units, projects, or hours you need to sell to stop losing money and start making a profit.",
+                highlights: [
+                    "Fixed vs variable cost split",
+                    "Contribution margin analysis",
+                    "Revenue target setting",
+                    "Pricing strategy input"
+                ],
+                illustrationType: "flow"
+            }
+        ],
+        visualType: "chart"
+    },
+    {
+        slug: "monthly-reporting-packs",
+        title: "Monthly Reporting Packs",
+        pillar: "Intelligence",
+        hero: {
+            heading: "Monthly Reporting Packs",
+            subheading: "A consolidated, director-ready report delivered every month. Financial performance, KPIs, and commentary — all in one document."
+        },
+        whoIsThisFor: [
+            "Directors and Board members",
+            "Investors requiring monthly updates",
+            "Franchise owners managing multiple outlets",
+            "Business owners who want a single source of truth"
+        ],
+        deliverables: [
+            "Consolidated Monthly Report Pack (PDF)",
+            "Income Statement with commentary",
+            "Balance Sheet highlights",
+            "Cash Flow summary",
+            "KPI dashboard with traffic-light indicators",
+            "Management commentary and risk flags"
+        ],
+        process: [
+            { step: 1, title: "Close", description: "We close your books for the month, processing all outstanding journals and reconciliations." },
+            { step: 2, title: "Compile", description: "We compile the reporting pack with financials, KPIs, and visual dashboards." },
+            { step: 3, title: "Comment", description: "We add management commentary explaining variances and flagging risks or opportunities." },
+            { step: 4, title: "Deliver", description: "We deliver the pack as a polished PDF and schedule a brief review call if needed." }
+        ],
+        requirements: ["Monthly bookkeeping (completed)", "Budget for variance analysis", "Agreed KPIs", "Access to accounting software"],
+        timeline: "Delivered by the 20th of the following month",
+        faqs: [
+            { question: "How is this different from management accounts?", answer: "Management accounts are the raw financials. A Reporting Pack adds commentary, KPIs, visual dashboards, and a narrative. It's 'board-ready'." },
+            { question: "What KPIs do you include?", answer: "We agree on 5-7 KPIs during setup. Common ones include Gross Margin, Net Profit, Debtor Days, Revenue Growth, and Staff Cost Ratio." },
+            { question: "Can I share this with my investors?", answer: "Yes. The pack is designed to be shared with boards, investors, and financiers. It is professional and branded." },
+            { question: "Do you include non-financial metrics?", answer: "If relevant. Examples include customer churn rate, project completion rates, or employee headcount." }
+        ],
+        relatedServices: [
+            { slug: "management-accounts", title: "Management Accounts" },
+            { slug: "budgeting-and-forecasting", title: "Budgeting & Forecasting" },
+            { slug: "cash-flow-management-forecasting", title: "Cash Flow Management" }
+        ],
+        stats: [
+            { label: "Delivery", value: "20th", description: "Of next month." },
+            { label: "Format", value: "PDF", description: "Board-ready." },
+            { label: "KPIs", value: "5-7", description: "Custom metrics." },
+            { label: "Commentary", value: "Yes", description: "With narrative." }
+        ],
+        insights: [
+            "A monthly reporting pack turns your accountant from a number-cruncher into a strategic advisor.",
+            "Traffic-light KPI indicators (Red/Amber/Green) let directors focus on what needs attention instead of reading every number.",
+            "Consistency is key. Delivering the same format every month builds trust and makes trends easy to spot."
+        ],
+        problemsSolved: [
+            "Board meetings without reliable, timely data",
+            "Investor frustration with sporadic reporting",
+            "Inability to spot negative trends early",
+            "Information overload without clear narrative"
+        ],
+        complianceContext: "King IV Principle 5 recommends that the board ensures reports are issued that enable stakeholders to make informed assessments.",
+        externalLinks: [
+            { label: "King IV Report", href: "https://www.iodsa.co.za/page/king-iv" }
+        ],
+        detailedSections: [
+            {
+                title: "The Executive Summary",
+                content: "Every report pack starts with a one-page executive summary. It answers three questions: How did we perform? What are the risks? What should we do next?\n\nThis single page lets a busy director understand the state of the business in 60 seconds.",
+                highlights: [
+                    "One-page overview",
+                    "Performance summary",
+                    "Risk identification",
+                    "Action recommendations"
+                ],
+                illustrationType: "strategic"
+            },
+            {
+                title: "Visual KPI Dashboards",
+                content: "Numbers tell a story, but charts tell it faster. We include visual dashboards with line graphs for trends, bar charts for comparisons, and traffic-light indicators for KPIs.\n\nRed means action required. Amber means monitor. Green means on track. Simple.",
+                highlights: [
+                    "Traffic-light indicators",
+                    "Trend line charts",
+                    "Comparison bar charts",
+                    "At-a-glance status"
+                ],
+                illustrationType: "chart"
+            },
+            {
+                title: "Variance Commentary",
+                content: "Every significant variance from budget gets a written explanation. We don't just tell you WHAT happened — we tell you WHY and WHAT TO DO about it.\n\nThis transforms your reporting pack from a historical document into a decision-making tool.",
+                highlights: [
+                    "Why-not-just-what analysis",
+                    "Actionable recommendations",
+                    "Budget vs actual narrative",
+                    "Forward-looking insights"
+                ],
+                illustrationType: "flow"
+            }
+        ],
+        visualType: "chart"
+    },
+    {
+        slug: "catch-up-bookkeeping-historical-cleanup",
+        title: "Catch-up Bookkeeping / Historical Cleanup",
+        pillar: "Accounting",
+        hero: {
+            heading: "Catch-up Bookkeeping & Historical Cleanup",
+            subheading: "Months or years behind on your books? We clean up the mess, reconcile everything, and get you back to zero — ready for compliant filing."
+        },
+        whoIsThisFor: [
+            "Businesses with months or years of unreconciled records",
+            "Companies that have changed accountants",
+            "Start-ups that neglected bookkeeping",
+            "Businesses facing SARS audits with incomplete records"
+        ],
+        deliverables: [
+            "Full categorization of historical bank transactions",
+            "Bank reconciliation for all outstanding periods",
+            "Reconstruction of Debtors and Creditors ledgers",
+            "Fixed Asset Register compilation",
+            "Trial Balance ready for AFS compilation"
+        ],
+        process: [
+            { step: 1, title: "Assess", description: "We review the current state of your books: what exists, what's missing, and how far behind you are." },
+            { step: 2, title: "Gather", description: "We request bank statements, invoices, and any existing records from your previous accountant." },
+            { step: 3, title: "Process", description: "We systematically process each month, categorizing transactions and reconciling accounts." },
+            { step: 4, title: "Deliver", description: "We deliver clean, reconciled books ready for tax returns and financial statements." }
+        ],
+        requirements: ["Bank statements for all outstanding periods", "Any existing accounting records", "Invoices and receipts (whatever is available)", "Loan agreements"],
+        timeline: "2-6 weeks depending on volume and complexity",
+        faqs: [
+            { question: "How far behind can I be?", answer: "We've cleaned up books that were 5+ years behind. There's no limit. The sooner we start, the less it costs." },
+            { question: "I don't have all my invoices. Is that a problem?", answer: "We work with what you have. Bank statements are the backbone. We reconstruct as much as possible from the banking data." },
+            { question: "Will this help with my overdue tax returns?", answer: "Yes. Clean books are the foundation. Once the books are done, we can file all outstanding returns quickly." },
+            { question: "Can I switch to you from my old accountant?", answer: "Absolutely. We handle the handover process and request all records from your previous accountant on your behalf." }
+        ],
+        relatedServices: [
+            { slug: "monthly-bookkeeping-services", title: "Monthly Bookkeeping" },
+            { slug: "annual-financial-statements-afs", title: "Annual Financial Statements" },
+            { slug: "bank-reconciliation-services", title: "Bank Reconciliation" }
+        ],
+        stats: [
+            { label: "Timeline", value: "2-6w", description: "Depends on volume." },
+            { label: "Backlog", value: "5+ yrs", description: "No limit." },
+            { label: "Output", value: "Clean TB", description: "AFS-ready." },
+            { label: "Result", value: "Compliant", description: "SARS-ready." }
+        ],
+        insights: [
+            "The cost of catch-up bookkeeping is almost always less than the penalties for non-compliance. Every day you wait, the problem gets bigger.",
+            "Bank statements are your lifeline. Even without invoices, we can reconstruct 80%+ of your books from banking data alone.",
+            "Many businesses avoid cleaning up because they fear what they'll find. In our experience, it's rarely as bad as expected."
+        ],
+        problemsSolved: [
+            "Years of unfiled tax returns",
+            "SARS penalties accumulating daily",
+            "Inability to apply for finance without AFS",
+            "Accountant handover with missing records"
+        ],
+        complianceContext: "Section 28 of the Tax Administration Act requires taxpayers to keep records for 5 years. Catch-up bookkeeping helps reconstruct these records.",
+        externalLinks: [
+            { label: "SARS (Record Keeping)", href: "https://www.sars.gov.za/legal-counsel/legal-counsel-secondary-legislation/public-notices/" }
+        ],
+        detailedSections: [
+            {
+                title: "The Cleanup Process",
+                content: "We treat catch-up bookkeeping like an archaeological dig. We start with the most reliable data (bank statements) and work outwards, reconstructing your financial history month by month.\n\nEach month gets a full bank reconciliation, expense categorization, and balance sheet review before we move to the next.",
+                highlights: [
+                    "Month-by-month processing",
+                    "Bank statement reconstruction",
+                    "Expense categorization",
+                    "Sequential reconciliation"
+                ],
+                illustrationType: "flow"
+            },
+            {
+                title: "The Penalty Relief Opportunity",
+                content: "If you've been non-compliant, SARS may have issued estimated assessments and penalties. Once we clean up your books and file the correct returns, we can apply for penalty relief under the Voluntary Disclosure Programme (VDP) or the penalty dispute process.\n\nIn many cases, we've had penalties reduced by 50-100%.",
+                highlights: [
+                    "VDP application",
+                    "Penalty dispute process",
+                    "Estimated assessment reversal",
+                    "50-100% penalty reduction"
+                ],
+                illustrationType: "shield"
+            },
+            {
+                title: "Ongoing Bookkeeping Setup",
+                content: "Cleanup is pointless if you fall behind again. As part of our service, we set up a system to keep your books current going forward.\n\nThis includes cloud accounting setup, automated bank feeds, and a monthly bookkeeping schedule to prevent the backlog from ever returning.",
+                highlights: [
+                    "Cloud accounting setup",
+                    "Automated bank feeds",
+                    "Monthly schedule",
+                    "Prevention system"
+                ],
+                illustrationType: "strategic"
+            }
+        ],
+        visualType: "flow"
+    },
+    {
+        slug: "bank-reconciliation-services",
+        title: "Bank Reconciliation Services",
+        pillar: "Accounting",
+        hero: {
+            heading: "Bank Reconciliation Services",
+            subheading: "Every transaction accounted for. We reconcile your bank accounts monthly, catching errors, fraud, and missing entries before they compound."
+        },
+        whoIsThisFor: [
+            "Businesses doing their own bookkeeping but struggling with reconciliations",
+            "Companies with high transaction volumes",
+            "Businesses using multiple bank accounts",
+            "Companies preparing for audits or AFS"
+        ],
+        deliverables: [
+            "Monthly Bank Reconciliation Statement",
+            "Identification of unmatched transactions",
+            "Duplicate payment detection",
+            "Outstanding cheques and deposits listing",
+            "Reconciled bank balance confirmation"
+        ],
+        process: [
+            { step: 1, title: "Import", description: "We import your bank statement and match it to your accounting records line by line." },
+            { step: 2, title: "Investigate", description: "We investigate every unmatched item — finding the missing invoice, duplicate payment, or bank error." },
+            { step: 3, title: "Adjust", description: "We process correcting journals for errors, bank charges, and interest not yet recorded." },
+            { step: 4, title: "Report", description: "We deliver a clean bank reconciliation statement showing your true cash position." }
+        ],
+        requirements: ["Bank statements (monthly)", "Access to accounting software", "Deposit slips and payment records"],
+        timeline: "Monthly — within 5 business days of receiving bank statement",
+        faqs: [
+            { question: "What if my bank and my books don't match?", answer: "That's exactly why reconciliation exists. Common causes include timing differences, bank charges, and unrecorded transactions. We find and fix every one." },
+            { question: "I only have one bank account. Do I still need this?", answer: "Yes. Even one account can have errors. Bank charges, interest, and duplicate payments are common issues we catch." },
+            { question: "How often should I reconcile?", answer: "Monthly, at minimum. For high-volume businesses, we recommend weekly. The longer you wait, the harder it is to find errors." },
+            { question: "Can you reconcile credit card accounts too?", answer: "Yes. We reconcile all financial accounts including credit cards, petty cash, and loan accounts." }
+        ],
+        relatedServices: [
+            { slug: "monthly-bookkeeping-services", title: "Monthly Bookkeeping" },
+            { slug: "catch-up-bookkeeping-historical-cleanup", title: "Catch-up Bookkeeping" },
+            { slug: "management-accounts", title: "Management Accounts" }
+        ],
+        stats: [
+            { label: "Turnaround", value: "5 days", description: "After statement." },
+            { label: "Accuracy", value: "100%", description: "Every cent." },
+            { label: "Fraud", value: "Detected", description: "Early warning." },
+            { label: "Frequency", value: "Monthly", description: "Minimum." }
+        ],
+        insights: [
+            "Unreconciled bank accounts are the #1 cause of inaccurate financial statements. If your bank isn't reconciled, nothing else matters.",
+            "We catch an average of 3-5 errors per month per client during reconciliation. These include bank charges, duplicate payments, and missing invoices.",
+            "Fraud is most often detected during bank reconciliation — an unfamiliar debit order, a payment to an unknown supplier, or a round-number withdrawal."
+        ],
+        problemsSolved: [
+            "Unknown cash balance in the business",
+            "Undetected duplicate payments",
+            "Bank charges not recorded in books",
+            "Year-end AFS delays due to unreconciled accounts"
+        ],
+        complianceContext: "Reconciled bank accounts are a precondition for accurate financial reporting under IFRS and for SARS audit readiness.",
+        externalLinks: [
+            { label: "SAICA (Financial Reporting)", href: "https://www.saica.co.za/" }
+        ],
+        detailedSections: [
+            {
+                title: "The Matching Process",
+                content: "Bank reconciliation is about matching every line on your bank statement to a corresponding entry in your books. If they don't match, something is wrong.\n\nWe use accounting software auto-matching for speed, then manually investigate every remaining item. Nothing gets left unresolved.",
+                highlights: [
+                    "Auto-matching technology",
+                    "Manual investigation",
+                    "Zero unresolved items",
+                    "Error classification"
+                ],
+                illustrationType: "flow"
+            },
+            {
+                title: "Fraud Detection",
+                content: "Bank reconciliation is your first line of defense against fraud. We flag unusual transactions: payments to new suppliers, round-number transfers, and debit orders you didn't authorize.\n\nEarly detection can mean the difference between a minor investigation and a catastrophic loss.",
+                highlights: [
+                    "Unusual transaction flagging",
+                    "New payee alerts",
+                    "Round-number analysis",
+                    "Unauthorized debit detection"
+                ],
+                illustrationType: "shield"
+            },
+            {
+                title: "Multi-Account Reconciliation",
+                content: "If you have multiple bank accounts, credit cards, and a petty cash fund, keeping track of your total cash position is complex.\n\nWe reconcile all accounts monthly and provide a consolidated cash position report, giving you one number that represents your true available cash.",
+                highlights: [
+                    "All accounts reconciled",
+                    "Consolidated cash view",
+                    "Credit card reconciliation",
+                    "Petty cash verification"
+                ],
+                illustrationType: "chart"
+            }
+        ],
+        visualType: "compliance"
+    },
+    {
+        slug: "debtors-creditors-management",
+        title: "Debtors & Creditors Management",
+        pillar: "Accounting",
+        hero: {
+            heading: "Debtors & Creditors Management",
+            subheading: "Get paid faster. Pay smarter. We manage your receivables and payables to optimize your working capital and protect your cash flow."
+        },
+        whoIsThisFor: [
+            "Businesses with large debtor books",
+            "Companies struggling with late-paying customers",
+            "Businesses needing better supplier payment timing",
+            "Companies wanting to improve working capital"
+        ],
+        deliverables: [
+            "Aged Debtors Report (30/60/90/120+ days)",
+            "Aged Creditors Report",
+            "Customer statements and collection letters",
+            "Debtor and Creditor Days calculation",
+            "Working Capital optimization recommendations"
+        ],
+        process: [
+            { step: 1, title: "Analyze", description: "We analyze your current debtors and creditors to identify slow payers, high-risk accounts, and missed discounts." },
+            { step: 2, title: "Collect", description: "We send statements, follow up on overdue invoices, and escalate non-payers according to your credit policy." },
+            { step: 3, title: "Optimize", description: "We review supplier payment terms to maximize cash flow — paying early only when discounts justify it." },
+            { step: 4, title: "Report", description: "We provide monthly aged reports with commentary on trends and action items." }
+        ],
+        requirements: ["Access to accounting software", "Customer and supplier master lists", "Credit terms documentation", "Invoice records"],
+        timeline: "Ongoing monthly management",
+        faqs: [
+            { question: "What are Debtor Days?", answer: "Debtor Days = (Trade Debtors / Revenue) × 365. It tells you, on average, how long your customers take to pay. Under 30 is excellent. Over 60 is a problem." },
+            { question: "Do you do debt collection?", answer: "We do pre-legal collection: statements, calls, and escalation letters. For legal action, we refer to our network of attorneys." },
+            { question: "Can you help me negotiate better supplier terms?", answer: "Yes. We review your supplier agreements and recommend where to negotiate extended payment terms or early settlement discounts." },
+            { question: "What if a debtor won't pay?", answer: "We escalate through a formal process: reminder, letter of demand, and then referral to a collections attorney if needed. We also advise on write-off timing and tax implications." }
+        ],
+        relatedServices: [
+            { slug: "monthly-bookkeeping-services", title: "Monthly Bookkeeping" },
+            { slug: "cash-flow-management-forecasting", title: "Cash Flow Management" },
+            { slug: "bank-reconciliation-services", title: "Bank Reconciliation" }
+        ],
+        stats: [
+            { label: "Target", value: "<30", description: "Debtor Days." },
+            { label: "Reports", value: "Monthly", description: "Aged analysis." },
+            { label: "Follow-up", value: "Weekly", description: "Collection calls." },
+            { label: "Impact", value: "Cash+", description: "Working capital." }
+        ],
+        insights: [
+            "For every R1 million in revenue, reducing Debtor Days from 60 to 30 frees up approximately R82,000 in cash.",
+            "The biggest mistake SMEs make is having no formal credit policy. Every customer should have a credit limit and payment terms documented.",
+            "Paying suppliers early without a discount is essentially giving them a free loan. We identify where this is happening."
+        ],
+        problemsSolved: [
+            "Cash flow shortages caused by slow-paying customers",
+            "Lost supplier discounts due to poor payment planning",
+            "No visibility into who owes you money",
+            "Bad debts written off too late (missing tax deduction timing)"
+        ],
+        complianceContext: "Under the Income Tax Act, bad debts can only be claimed as a deduction if they are genuinely irrecoverable and properly written off.",
+        externalLinks: [
+            { label: "SARS (Bad Debt Deductions)", href: "https://www.sars.gov.za/types-of-tax/income-tax/" }
+        ],
+        detailedSections: [
+            {
+                title: "The Aged Analysis",
+                content: "The Aged Debtors Report is your single most important cash flow tool. It shows exactly who owes you money, how much, and how long they've owed it.\n\nWe categorize debtors into 30, 60, 90, and 120+ day buckets. Anything over 90 days is a red flag. Over 120 is a write-off risk.",
+                highlights: [
+                    "30/60/90/120 day buckets",
+                    "Risk classification",
+                    "Write-off identification",
+                    "Collection priority ranking"
+                ],
+                illustrationType: "chart"
+            },
+            {
+                title: "Credit Policy Design",
+                content: "A credit policy is a set of rules that determine who gets credit, how much, and on what terms. Without one, you are essentially lending money to strangers with no contract.\n\nWe help you design and implement a credit policy that protects your cash flow while maintaining good customer relationships.",
+                highlights: [
+                    "Credit limit setting",
+                    "Payment term design",
+                    "Application process",
+                    "Escalation hierarchy"
+                ],
+                illustrationType: "shield"
+            },
+            {
+                title: "Supplier Payment Optimization",
+                content: "Not all supplier payments should be made on the same schedule. If a supplier offers 2% discount for payment within 10 days, that is equivalent to 36% annual return — always take it.\n\nIf no discount is offered, pay on the last day of the term. We analyze every supplier relationship to optimize your payment timing.",
+                highlights: [
+                    "Discount analysis",
+                    "Payment scheduling",
+                    "Term negotiation",
+                    "Cash flow optimization"
+                ],
+                illustrationType: "strategic"
+            }
+        ],
+        visualType: "chart"
+    },
+    {
+        slug: "cipc-annual-returns",
+        title: "CIPC Annual Returns",
+        pillar: "Compliance",
+        hero: {
+            heading: "CIPC Annual Returns",
+            subheading: "Don't let your company get deregistered. We file your Annual Returns on time, ensuring you stay in business and penalty-free."
+        },
+        whoIsThisFor: [
+            "Every registered company (Pty Ltd)",
+            "Every Close Corporation (CC)",
+            "Non-Profit Companies (NPCs)",
+            "Directors who received a 'Deregistration' warning"
+        ],
+        deliverables: [
+            "Calculation of Annual Return fee (based on turnover)",
+            "Submission of Annual Return to CIPC",
+            "Submission of Financial Accountability Supplement (FAS)",
+            "Proof of CIPC Compliance Certificate",
+            "Deregistration prevention"
+        ],
+        process: [
+            { step: 1, title: "Calculate", description: "We calculate the exact fee due based on your company's latest turnover." },
+            { step: 2, title: "File", description: "We submit the return and the required Financial Accountability Supplement (FAS) to CIPC." },
+            { step: 3, title: "Pay", description: "We pay the CIPC fee on your behalf immediately to prevent any penalties." },
+            { step: 4, title: "Confirm", description: "We send you the confirmation certificate proving your company is active and compliant." }
+        ],
+        requirements: ["Company Registration Number", "Latest Annual Turnover figure", "Director ID numbers", "Active CIPC customer code (we can use ours)"],
+        timeline: "24-48 hours",
+        faqs: [
+            { question: "What happens if I don't file?", answer: "CIPC will add late penalties and eventually start the deregistration process. If your company is deregistered, your bank accounts will be frozen." },
+            { question: "Is this the same as a tax return?", answer: "No. Tax returns go to SARS based on profit. Annual Returns go to CIPC based on turnover to keep the company 'active'." },
+            { question: "When is it due?", answer: "During your company's 'anniversary month' each year (the month you registered)." },
+            { question: "Can you restore a deregistered company?", answer: "Yes, but it is a long, expensive process requiring multiple forms and newspaper adverts. Prevention is much better." }
+        ],
+        relatedServices: [
+            { slug: "annual-financial-statements-afs", title: "Annual Financial Statements" },
+            { slug: "corporate-income-tax-returns-itr14", title: "Corporate Income Tax" },
+            { slug: "beneficial-ownership-filing", title: "Beneficial Ownership" }
+        ],
+        stats: [
+            { label: "Due", value: "Annually", description: "Anniversary month." },
+            { label: "Risk", value: "Frozen", description: "Bank accounts." },
+            { label: "Penalty", value: "R1000+", description: "Late fees." },
+            { label: "Status", value: "Active", description: "In business." }
+        ],
+        insights: [
+            "Over 40% of small businesses in SA are in 'Deregistration Process' because they forgot this simple annual filing.",
+            "Banks automatically freeze accounts when CIPC status changes to 'Deregistration Process'. Unfreezing them can take weeks.",
+            "You cannot tender or apply for contracts if your CIPC status is not 'Active'."
+        ],
+        problemsSolved: [
+            "Company deregistration due to non-compliance",
+            "Frozen bank accounts",
+            "Inability to get tax clearance",
+            "Loss of company name trading rights"
+        ],
+        complianceContext: "Section 33 of the Companies Act requires every company to file an annual return to confirm it is still doing business.",
+        externalLinks: [
+            { label: "CIPC (Annual Returns)", href: "https://www.cipc.co.za/" }
+        ],
+        detailedSections: [
+            {
+                title: "Deregistration Danger",
+                content: "CIPC is aggressive about removing inactive companies from the register. If you miss two returns, they start the deregistration process.\n\nOnce 'Final Deregistration' happens, your company legally ceases to exist. Your assets become property of the state, and your bank accounts are frozen. We ensure this never happens.",
+                highlights: [
+                    "Automatic process",
+                    "Asset forfeiture risk",
+                    "Bank freezing",
+                    "Legal entity loss"
+                ],
+                illustrationType: "shield"
+            },
+            {
+                title: "The FAS Requirement",
+                content: "You cannot just pay the fee anymore. You must also file a Financial Accountability Supplement (FAS) or upload AFS stats via XBRL.\n\nWe handle this complexity for you, ensuring that the financial data submitted to CIPC matches what you submit to SARS.",
+                highlights: [
+                    "Financial Accountability Supplement",
+                    "Turnover declaration",
+                    "XBRL requirement",
+                    "Data consistency"
+                ],
+                illustrationType: "chart"
+            },
+            {
+                title: "Turnover-Based Fees",
+                content: "The fee you pay CIPC depends on your turnover. If your turnover is under R1 million, the fee is low (R100 standard). If it's higher, the fee increases.\n\nWe calculate the correct fee to avoid underpayment rejections or overpayment waste.",
+                highlights: [
+                    "Sliding scale fees",
+                    "Turnover verification",
+                    "Penalty calculation",
+                    "Correct payment"
+                ],
+                illustrationType: "strategic"
+            }
+        ],
+        visualType: "compliance"
+    },
+    {
+        slug: "company-registration-pty-ltd-npc",
+        title: "Company Registration (Pty Ltd / NPC)",
+        pillar: "Compliance",
+        hero: {
+            heading: "Company Registration (Pty Ltd / NPC)",
+            subheading: "Start your business journey correctly. We handle the entire CIPC registration process, from name reservation to tax number registration."
+        },
+        whoIsThisFor: [
+            "Entrepreneurs starting a new business",
+            "Sole proprietors wanting to formalize their entity",
+            "Partnerships needing limited liability protection",
+            "Non-Profit organizations seeking NPC status"
+        ],
+        deliverables: [
+            "Name Reservation (Cor10.1)",
+            "Company Registration Certificate (Cor14.3)",
+            "Income Tax Registration number",
+            "Share Certificates for all shareholders",
+            "BEE EME Affidavit (for turnover <R10m)",
+            "Standard Memorandum of Incorporation (MOI)"
+        ],
+        process: [
+            { step: 1, title: "Reserve", description: "You give us 4 proposed names. We submit them to CIPC for reservation in order of preference." },
+            { step: 2, title: "Register", description: "Once a name is approved, we lodge the incorporation documents with director details." },
+            { step: 3, title: "Certify", description: "We issue share certificates and the BEE affidavit immediately upon registration." },
+            { step: 4, title: "Banking", description: "We provide the Cor14.3 and MOI you need to open a business bank account." }
+        ],
+        requirements: ["ID Copies of all directors", "Proof of Address for directors", "4 Proposed Company Names", "Director contact details"],
+        timeline: "3-5 business days (dependent on CIPC system speed)",
+        faqs: [
+            { question: "Do I get a tax number automatically?", answer: "Yes. CIPC and SARS systems are linked. You will receive an Income Tax number shortly after registration." },
+            { question: "What is the difference between Pty Ltd and NPC?", answer: "Pty Ltd is for profit (shareholders earn dividends). NPC is for public benefit (profits must be reinvested for the cause)." },
+            { question: "Do I need a BEE certificate?", answer: "New companies with turnover under R10m qualify as Exempt Micro Enterprises (EMEs). An affidavit serves as your BEE certificate. We provide this." },
+            { question: "Can foreign nationals be directors?", answer: "Yes, provided they have a valid Passport. The process takes slightly longer due to manual verification." }
+        ],
+        relatedServices: [
+            { slug: "share-certificates-registers", title: "Share Certificates" },
+            { slug: "beneficial-ownership-filing", title: "Beneficial Ownership" },
+            { slug: "monthly-bookkeeping-services", title: "Monthly Bookkeeping" }
+        ],
+        stats: [
+            { label: "Time", value: "3-5 days", description: "Full process." },
+            { label: "Tax", value: "Auto", description: "Registration." },
+            { label: "BEE", value: "Level 1/2/4", description: "Affidavit incl." },
+            { label: "Docs", value: "Bank-ready", description: "All forms." }
+        ],
+        insights: [
+            "Choosing the right company name is critical. 30% of name reservations are rejected because they conflict with existing trademarks.",
+            "A standard MOI works for 90% of businesses. If you have complex shareholder agreements, you need a custom MOI.",
+            "Don't trade as a Sole Proprietor if you have risks. A Company (Pty Ltd) protects your personal assets from business liabilities."
+        ],
+        problemsSolved: [
+            "CIPC system frustration and rejections",
+            "Incorrect director appointments",
+            "Missing share certificates (banks require these)",
+            "Delays in opening bank accounts due to wrong documents"
+        ],
+        complianceContext: "Company registration is governed by the Companies Act of 2008. We ensure all initial filings comply with CIPC regulations.",
+        externalLinks: [
+            { label: "CIPC (Register a Company)", href: "https://www.cipc.co.za/" }
+        ],
+        detailedSections: [
+            {
+                title: "Pty Ltd vs Sole Proprietor",
+                content: "Why register a company? Limited Liability. If a Sole Proprietor goes bust, the creditors can take your house and car. If a Pty Ltd goes bust, your personal assets are generally safe.\n\nAlso, big corporates and government tenders often refuse to deal with Sole Proprietors. A registration number gives you credibility.",
+                highlights: [
+                    "Asset protection",
+                    "Credibility",
+                    "Tender eligibility",
+                    "Tax planning flexibility"
+                ],
+                illustrationType: "shield"
+            },
+            {
+                title: "The Name Game",
+                content: "CIPC rejects names that are 'confusingly similar' to existing ones. We help you choose names that are likely to pass.\n\nTip: Avoid generic words like 'Global' or 'Holdings' unless you pair them with a unique word. 'Smith Holdings' will be rejected. 'Smith 123 Holdings' might pass.",
+                highlights: [
+                    "Name reservation strategy",
+                    "Conflict checking",
+                    "Defensive name registration",
+                    "Trademark awareness"
+                ],
+                illustrationType: "strategic"
+            },
+            {
+                title: "Shareholding Structure",
+                content: "Who owns the company? Directors manage it, but Shareholders own it. You need to decide upfront how many shares to issue and who gets them.\n\nWe issue standard 'Ordinary Shares' which carry voting rights and dividend rights. We produce the share certificates required by the bank.",
+                highlights: [
+                    "Director vs Shareholder",
+                    "Authorized vs Issued shares",
+                    "Share certificates",
+                    "Ownership percentages"
+                ],
+                illustrationType: "chart"
+            }
+        ],
+        visualType: "strategic"
+    },
+    {
+        slug: "director-changes-add-remove",
+        title: "Director Changes (Add/Remove)",
+        pillar: "Compliance",
+        hero: {
+            heading: "Director Changes",
+            subheading: "Appoint new leadership or remove inactive directors. We handle the legal resolutions and CIPC filings effectively."
+        },
+        whoIsThisFor: [
+            "Companies bringing on new partners",
+            "Boards removing non-performing directors",
+            "Family businesses transferring control",
+            "Sole directors appointing a second director for succession"
+        ],
+        deliverables: [
+            "Cor39 Director Amendment filing with CIPC",
+            "Board Resolution approving the change",
+            "Resignation letters (where applicable)",
+            "Updated CoR14.3 Certificate",
+            "Register of Directors update"
+        ],
+        process: [
+            { step: 1, title: "Draft", description: "We draft the required special resolution and minutes of the meeting authorizing the change." },
+            { step: 2, title: "Sign", description: "All current and new directors sign the mandate and resolution." },
+            { step: 3, title: "Lodge", description: "We submit the Cor39 Application to CIPC with certified ID copies." },
+            { step: 4, title: "Update", description: "Once CIPC approves (usually 2-5 days), we issue the new company certificate." }
+        ],
+        requirements: ["Certified ID copies of all current and new directors", "Company registration number", "Effective date of change", "Specific mandate signed by existing board"],
+        timeline: "3-5 business days (dependent on CIPC)",
+        faqs: [
+            { question: "Can I remove a director without their consent?", answer: "It is difficult but possible. Section 71 of the Companies Act sets out a strict legal process for removing a director for negligence or dereliction of duty." },
+            { question: "Does a director have to be a shareholder?", answer: "No. Directors manage the company; Shareholders own it. You can be one, both, or neither." },
+            { question: "What is the minimum number of directors?", answer: "A private company (Pty Ltd) must have at least 1 director. A Non-Profit Company (NPC) must have at least 3." },
+            { question: "Do directors need to live in South Africa?", answer: "No, foreign nationals can be directors, but they must provide a certified passport copy and a valid address." }
+        ],
+        relatedServices: [
+            { slug: "company-registration-pty-ltd-npc", title: "Company Registration" },
+            { slug: "share-certificates-registers", title: "Share Certificates" },
+            { slug: "cipc-annual-returns", title: "CIPC Annual Returns" }
+        ],
+        stats: [
+            { label: "Time", value: "3-5 days", description: "CIPC processing." },
+            { label: "Docs", value: "Resolution", description: "Drafted for you." },
+            { label: "Min", value: "1", description: "Director (Pty)." },
+            { label: "Min", value: "3", description: "Directors (NPC)." }
+        ],
+        insights: [
+            "Resigning as a director does NOT remove your liability for actions taken while you were a director. Make sure you get a formal indemnity.",
+            "Removing a director against their will is a legal minefield. Always try to negotiate a voluntary resignation first.",
+            "Banks must be notified immediately of any director changes to update signing powers. We provide the certificate you need for this."
+        ],
+        problemsSolved: [
+            "Disputes between business partners",
+            "Deceased estates requiring director updates",
+            "Frozen bank accounts due to outdated director info",
+            "Invalid board decisions due to incorrect composition"
+        ],
+        complianceContext: "Section 70 of the Companies Act governs vacancies on the board and the process for filling them.",
+        externalLinks: [
+            { label: "Companies Act (Section 71)", href: "https://v1.cipc.co.za/" }
+        ],
+        detailedSections: [
+            {
+                title: "Resignation vs Removal",
+                content: "There is a big difference. A resignation is voluntary. A removal is forced.\n\nRemoval requires a shareholders meeting, proper notice, and an opportunity for the director to be heard. If you get this process wrong, the removal can be declared void by a court.",
+                highlights: [
+                    "Voluntary resignation",
+                    "Section 71 removal",
+                    "Shareholder vote",
+                    "Right to be heard"
+                ],
+                illustrationType: "shield"
+            },
+            {
+                title: "Bank Mandate Updates",
+                content: "Changing a director at CIPC is only Step 1. Step 2 is the bank. If you don't update the bank, the old director might still have access to funds, or the new director won't be able to sign.\n\nWe provide the 'Certificate of Confirmation' that banks specifically ask for.",
+                highlights: [
+                    "Signing powers",
+                    "FICA updates",
+                    "Risk management",
+                    "Access control"
+                ],
+                illustrationType: "strategic"
+            },
+            {
+                title: "Executive vs Non-Executive",
+                content: "The Companies Act doesn't distinguish between executive and non-executive directors—they all have the same fiduciary duties.\n\nHowever, for governance, it's important to define roles. We help draft appointment letters that clarify whether a director is a full-time employee or an independent advisor.",
+                highlights: [
+                    "Fiduciary duties",
+                    "Role definition",
+                    "Appointment letters",
+                    "Liability awareness"
+                ],
+                illustrationType: "team"
+            }
+        ],
+        visualType: "team"
+    },
+    {
+        slug: "share-certificates-registers",
+        title: "Share Certificates & Registers",
+        pillar: "Compliance",
+        hero: {
+            heading: "Share Certificates & Registers",
+            subheading: "Who really owns your company? We issue legally compliant share certificates and maintain your Securities Register as required by law."
+        },
+        whoIsThisFor: [
+            "Companies that have never issued share certificates",
+            "Businesses with lost or missing share registers",
+            "Companies transferring ownership to new partners",
+            "Businesses undergoing B-BBEE verification"
+        ],
+        deliverables: [
+            "Official Share Certificates (signed by directors)",
+            "Securities Register (Share Register)",
+            "Share Transfer Forms (CM42)",
+            "Resolutions approving share issues/transfers",
+            "BEE Ownership Affidavit support"
+        ],
+        process: [
+            { step: 1, title: "Audit", description: "We review your company documents to determine the current authorized and issued share capital." },
+            { step: 2, title: "Draft", description: "We prepare the share certificates and update the securities register to reflect true ownership." },
+            { step: 3, title: "Sign", description: "Directors sign the certificates and shareholders sign the counterfoils." },
+            { step: 4, title: "Issue", description: "We issue the physical or digital certificates to the shareholders for safekeeping." }
+        ],
+        requirements: ["Company Registration Documents (Cor14.3)", "ID copies of all shareholders", "Details of percentage ownership", "Proof of share capital payment (if applicable)"],
+        timeline: "2-3 business days",
+        faqs: [
+            { question: "I lost my share certificate. What now?", answer: "We can issue a replacement. You will need to sign an indemnity form stating the original is lost, which we prepare for you." },
+            { question: "Does CIPC keep a record of shareholders?", answer: "Historically, no. CIPC only recorded directors. However, the new Beneficial Ownership filing now requires this data. The company itself MUST keep the register." },
+            { question: "Can I transfer shares to my spouse?", answer: "Yes, via a Share Transfer Form. Note that this may trigger Capital Gains Tax (CGT) or Donations Tax events." },
+            { question: "Do I need a share certificate for a bank account?", answer: "Yes. Banks require proof of Ultimate Beneficial Ownership (UBO), and the share certificate is the primary proof." }
+        ],
+        relatedServices: [
+            { slug: "beneficial-ownership-filing", title: "Beneficial Ownership" },
+            { slug: "company-registration-pty-ltd-npc", title: "Company Registration" },
+            { slug: "guide-capital-gains-tax", title: "Capital Gains Tax" }
+        ],
+        stats: [
+            { label: "Required", value: "Yes", description: "Companies Act." },
+            { label: "Bank", value: "Mandatory", description: "For account opening." },
+            { label: "Sales", value: "Proof", description: "Of ownership." },
+            { label: "Risk", value: "Disputes", description: "Without proof." }
+        ],
+        insights: [
+            "A CIPC disclosure certificate lists DIRECTORS, not SHAREHOLDERS. The Share Certificate is the ONLY legal proof of ownership.",
+            "If you sell your business, the first thing the buyer's due diligence team will ask for is the Securities Register. If it's missing, the deal stalls.",
+            "Structuring shareholding correctly upfront (e.g., using a Trust) can save millions in Estate Duty later."
+        ],
+        problemsSolved: [
+            "Inability to open business bank accounts",
+            "Failed B-BBEE verifications due to lack of proof",
+            "Disputes between partners over ownership %",
+            "Delays in selling the business"
+        ],
+        complianceContext: "Section 50 of the Companies Act requires every company to maintain a Securities Register. Failure to do so is an offence.",
+        externalLinks: [
+            { label: "Companies Act (Securities Register)", href: "https://v1.cipc.co.za/" }
+        ],
+        detailedSections: [
+            {
+                title: "The Securities Register",
+                content: "This is not just a list. It is a formal legal record of every share ever issued, transferred, or repurchased by the company.\n\nIt tracks certificate numbers, distinctive share numbers, and transfer dates. Without it, you cannot prove the history of ownership.",
+                highlights: [
+                    "Historical tracking",
+                    "Certificate numbers",
+                    "Transfer dates",
+                    "Legal mandate"
+                ],
+                illustrationType: "chart"
+            },
+            {
+                title: "Authorized vs Issued Capital",
+                content: "Authorized capital is the maximum number of shares a company CAN issue. Issued capital is the number it HAS issued.\n\nWe ensure you don't accidentally issue more shares than authorized (which is void) and help you increase authorized capital if needed.",
+                highlights: [
+                    "Capital structure",
+                    "Void issuance prevention",
+                    "MOI amendments",
+                    "Share classes"
+                ],
+                illustrationType: "strategic"
+            },
+            {
+                title: "Share Classes",
+                content: "Not all shares are equal. You can have Ordinary Shares (voting + dividends), N-Shares (dividends only), or Preference Shares (pay out first).\n\nWe help you structure different share classes to suit investors, employees, or family members.",
+                highlights: [
+                    "Voting rights",
+                    "Dividend rights",
+                    "Preference shares",
+                    "Employee schemes"
+                ],
+                illustrationType: "flow"
+            }
+        ],
+        visualType: "certificate"
+    },
+    {
+        slug: "beneficial-ownership-filing",
+        title: "Beneficial Ownership Filing",
+        pillar: "Compliance",
+        hero: {
+            heading: "Beneficial Ownership Filing",
+            subheading: "Transparency is now the law. We file your mandatory declaration of who really owns and controls your company, as required by the new CIPC regulations."
+        },
+        whoIsThisFor: [
+            "Every registered company (Pty Ltd)",
+            "Every Close Corporation (CC)",
+            "Non-Profit Companies (NPCs)",
+            "Trusts (Master of High Court filing)"
+        ],
+        deliverables: [
+            "Identification of Beneficial Owners (5% threshold)",
+            "Verification of ID/Passport documents",
+            "Submission of Beneficial Ownership Register to CIPC",
+            "Confirmation Certificate from CIPC",
+            "Maintenance of internal Beneficial Ownership Register"
+        ],
+        process: [
+            { step: 1, title: "Identify", description: "We trace your ownership structure until we find the warm bodies (natural persons) who ultimately own or control 5% or more." },
+            { step: 2, title: "Verify", description: "We collect and verify the required certified ID copies and mandate forms." },
+            { step: 3, title: "File", description: "We submit the digital register to the CIPC Beneficial Ownership database." },
+            { step: 4, title: "Maintain", description: "We update the filing whenever there is a change in shareholding or control." }
+        ],
+        requirements: ["Securities Register", "ID copies of all shareholders", "Trust Deeds (if shareholders are Trusts)", "Company Registration Documents"],
+        timeline: "2-3 business days",
+        faqs: [
+            { question: "Why is this required now?", answer: "South Africa was 'Grey Listed' by the generic FATF in 2023. These regulations are part of the government's response to combat money laundering and hide beneficial ownership." },
+            { question: "What counts as a Beneficial Owner?", answer: "Any natural person who holds 5% or more interest in the company, or who exercises 'effective control' (e.g., the power to appoint directors)." },
+            { question: "How often must I file?", answer: "Initially by October 2023 (or immediately for new companies), and then annually with your Annual Return, or within 10 days of any change." },
+            { question: "What if a Trust owns my shares?", answer: "We must look THROUGH the Trust to find the beneficiaries and trustees. The Trust itself is not a beneficial owner; the people behind it are." }
+        ],
+        relatedServices: [
+            { slug: "cipc-annual-returns", title: "CIPC Annual Returns" },
+            { slug: "share-certificates-registers", title: "Share Certificates" },
+            { slug: "company-registration-pty-ltd-npc", title: "Company Registration" }
+        ],
+        stats: [
+            { label: "Deadline", value: "Annual", description: "With returns." },
+            { label: "Threshold", value: "5%", description: "Ownership." },
+            { label: "Penalty", value: "Fine/Jail", description: "Non-compliance." },
+            { label: "Privacy", value: "Protected", description: "Not public." }
+        ],
+        insights: [
+            "Non-compliance with Beneficial Ownership filing is now a criminal offence for directors, not just an administrative penalty.",
+            "CIPC cross-references this data with SARS and the Department of Home Affairs. Inconsistencies trigger audits.",
+            "Even if you are the sole shareholder and director, you MUST still file. There are no exemptions for small companies."
+        ],
+        problemsSolved: [
+            "Risk of CIPC enforcement action",
+            "Inability to file Annual Returns (blocked until BO is done)",
+            "Bank account freezes due to FICA non-compliance",
+            "Grey-listing regulatory pressure"
+        ],
+        complianceContext: "The General Laws (Anti-Money Laundering and Combating Terrorism Financing) Amendment Act of 2022 mandated this filing.",
+        externalLinks: [
+            { label: "CIPC (Beneficial Ownership)", href: "https://www.cipc.co.za/" }
+        ],
+        detailedSections: [
+            {
+                title: "The 5% Rule",
+                content: "Previously, you only had to disclose shareholders if asked. Now, any person holding 5% or more beneficial interest MUST be declared.\n\nThis includes complex structures. If Company A owns Company B, legal ownership belongs to A, but BENEFICIAL ownership belongs to the shareholders of A. We trace it all the way up.",
+                highlights: [
+                    "5% threshold",
+                    "Complex structures",
+                    "Look-through principle",
+                    "Ultimate ownership"
+                ],
+                illustrationType: "strategic"
+            },
+            {
+                title: "Control vs Ownership",
+                content: "Beneficial ownership isn't just about shares. It's about control. If you have the right to appoint the board, or veto decisions, or materially influence management, you are a beneficial owner even if you own 0% of the shares.\n\nWe help you identify these 'control persons' to ensure full compliance.",
+                highlights: [
+                    "Effective control",
+                    "Veto rights",
+                    "Board appointment rights",
+                    "Material influence"
+                ],
+                illustrationType: "team"
+            },
+            {
+                title: "Privacy Concerns",
+                content: "Many clients worry that this data becomes public. It does not. The Beneficial Ownership register is NOT available to the general public.\n\nIt is only available to law enforcement procedures, SARS, and the Financial Intelligence Centre (FIC). Your privacy from competitors is maintained.",
+                highlights: [
+                    "Data privacy",
+                    "Law enforcement access",
+                    "No public search",
+                    "Competitor protection"
+                ],
+                illustrationType: "shield"
+            }
+        ],
+        visualType: "compliance"
+    },
+    {
+        slug: "bee-certification",
+        title: "BEE Certification & EME Affidavits",
+        pillar: "Compliance",
+        hero: {
+            heading: "BEE Certification & Affidavits",
+            subheading: "Get your B-BBEE credentials sorted fast. We issue valid EME Affidavits and assist with QSE compliance so you can tender with confidence."
+        },
+        whoIsThisFor: [
+            "Start-ups (Turnover < R10m)",
+            "Small Businesses (EMEs)",
+            "Black-Owned Businesses",
+            "Companies responding to Tenders"
+        ],
+        deliverables: [
+            "Valid B-BBEE Sworn Affidavit (CIPC/DTI format)",
+            "Assessment of Black Ownership status",
+            "Sector Charter advice (Construction, ICT, etc.)",
+            "Consultation on QSE thresholds",
+            "Renewals and updates"
+        ],
+        process: [
+            { step: 1, title: "Assess", description: "We verify your annual turnover and shareholding structure to confirm your EME status." },
+            { step: 2, title: "Draft", description: "We prepare the official DTI or CIPC-aligned sworn affidavit." },
+            { step: 3, title: "Sign", description: "You sign the affidavit before a Commissioner of Oaths (we can facilitate this)." },
+            { step: 4, title: "Issue", description: "You receive a valid B-BBEE document ready for tenders and supplier databases." }
+        ],
+        requirements: ["Financial Statements (to prove turnover)", "Shareholder Certificates", "ID Copies of Directors", "Company Registration Documents"],
+        timeline: "Same Day (for EME Affidavits)",
+        faqs: [
+            { question: "Do I need a verification agency?", answer: "If your turnover is under R10 million, NO. You only need a Sworn Affidavit. Paying thousands for a certificate is a waste of money." },
+            { question: "What level will I be?", answer: "If you are <51% black-owned, you are Level 4. If you are >51% black-owned, Level 2. If 100% black-owned, Level 1." },
+            { question: "What about the Construction Sector?", answer: "The Construction Sector Code is stricter. Even EMEs may need to register with the BEP. We can guide you through this specific code." },
+            { question: "Does this expire?", answer: "Yes, a B-BBEE affidavit/certificate is valid for 12 months from the date of issue." }
+        ],
+        relatedServices: [
+            { slug: "tender-readiness", title: "Tender Readiness" },
+            { slug: "cipc-annual-returns", title: "CIPC Renewals" },
+            { slug: "tax-clearance", title: "Tax Clearance" }
+        ],
+        stats: [
+            { label: "Turnover Limit", value: "R10m", description: "For EME Affidavit." },
+            { label: "Validity", value: "1 Year", description: "From issue date." },
+            { label: "Level 1", value: "135%", description: "Procurement Recog." },
+            { label: "Level 4", value: "100%", description: "Procurement Recog." }
+        ],
+        insights: [
+            "Never buy a 'BEE Certificate' for an EME from a verification agency unless required by a specific tender. An affidavit is the legal standard.",
+            "Fronting (faking black ownership) is a criminal offence punishable by up to 10 years in prison. Ensure your ownership structure is legitimate.",
+            "Your B-BBEE level is crucial for winning government tenders and corporate supply contracts."
+        ],
+        problemsSolved: [
+            "Disqualification from government tenders",
+            "Inability to become a vendor for large corporates",
+            "Confusion about EME vs QSE vs Generic scorecards",
+            "Expired compliance documents"
+        ],
+        complianceContext: "Based on the Amended B-BBEE Codes of Good Practice (Gazette 36928) and specific Sector Charters.",
+        externalLinks: [
+            { label: "DTI (B-BBEE Codes)", href: "http://www.thedtic.gov.za/" }
+        ],
+        detailedSections: [
+            {
+                title: "EME vs QSE",
+                content: "The most common confusion is between Exempt Micro Enterprises (EMEs) and Qualifying Small Enterprises (QSEs).\n\n**EME (Turnover < R10m):** Automatically compliant. Only needs an affidavit. No audit required.\n\n**QSE (Turnover R10m - R50m):** Must comply with all 5 elements of the scorecard (Ownership, Management, Skills, Enterprise Dev, Socio-Economic Dev) UNLESS 51% black-owned.",
+                highlights: [
+                    "Threshold: R10 Million",
+                    "Automatic Levels",
+                    "Affidavit vs Certificate",
+                    "Scorecard Elements"
+                ],
+                illustrationType: "chart"
+            },
+            {
+                title: "Levels Explained",
+                content: "Your level determines your attractiveness as a supplier. Companies want to buy from Level 1 or 2 suppliers to boost their OWN score.\n\n**Level 1 (135%):** 100% Black Owned.\n**Level 2 (125%):** >51% Black Owned.\n**Level 4 (100%):** <51% Black Owned.\n\nWe strategize legal ways to improve your level through legitimate ownership structures, not fronting.",
+                highlights: [
+                    "Procurement Recognition",
+                    "Supplier Competitiveness",
+                    "Strategic Ownership",
+                    "Legal Structure"
+                ],
+                illustrationType: "strategic"
+            },
+            {
+                title: "Sector Charters",
+                content: "Warning: Generic codes don't apply to everyone. If you are in Construction, Transport, ICT, Tourism, or Agriculture, you fall under a **Sector Charter**.\n\nThese charters often have different thresholds (e.g., Construction contractors are EME only up to R6m or R10m depending on class). We check your sector code first to avoid an invalid affidavit.",
+                highlights: [
+                    "Construction Charter",
+                    "ICT Charter",
+                    "Transport Charter",
+                    "Different Thresholds"
+                ],
+                illustrationType: "compliance"
+            }
+        ],
+        visualType: "certificate"
     }
 ]

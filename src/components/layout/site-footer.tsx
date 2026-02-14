@@ -8,9 +8,23 @@ export function SiteFooter() {
             <Container className="py-12 md:py-16">
                 <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
                     <div>
-                        <Link href="/" className="flex items-center gap-2 mb-4 group">
-                            <div className="h-8 w-8 rounded-lg bg-accent flex items-center justify-center text-white font-black italic shadow-lg shadow-accent/20 group-hover:scale-110 transition-transform">C</div>
-                            <span className="font-black tracking-tighter text-xl uppercase italic">Creations</span>
+                        <Link href="/" className="flex items-center gap-2 mb-4 group w-fit">
+                            <div className="relative h-10 w-auto">
+                                <Image
+                                    src="/logo.png"
+                                    alt="Creations"
+                                    width={120}
+                                    height={40}
+                                    className="dark:hidden h-10 w-auto object-contain"
+                                />
+                                <Image
+                                    src="/logo-dark.png"
+                                    alt="Creations"
+                                    width={120}
+                                    height={40}
+                                    className="hidden dark:block h-10 w-auto object-contain"
+                                />
+                            </div>
                         </Link>
                         <p className="text-sm text-text-secondary max-w-xs">
                             Clear, structured accounting and compliance for South African businesses.
@@ -20,30 +34,30 @@ export function SiteFooter() {
                     <div>
                         <h3 className="mb-4 text-sm font-semibold">Services</h3>
                         <ul className="space-y-2 text-sm text-text-secondary">
-                            <li><Link href="/services/accounting" className="hover:text-text-primary">Accounting</Link></li>
-                            <li><Link href="/services/tax-services" className="hover:text-text-primary">Tax Services</Link></li>
-                            <li><Link href="/services/cipc-compliance" className="hover:text-text-primary">CIPC Compliance</Link></li>
-                            <li><Link href="/services/payroll-service" className="hover:text-text-primary">Payroll</Link></li>
+                            <li><Link href="/services/accounting" className="hover:text-text-primary transition-colors">Accounting</Link></li>
+                            <li><Link href="/services/tax-services" className="hover:text-text-primary transition-colors">Tax Services</Link></li>
+                            <li><Link href="/services/cipc-compliance" className="hover:text-text-primary transition-colors">CIPC Compliance</Link></li>
+                            <li><Link href="/services/payroll-service" className="hover:text-text-primary transition-colors">Payroll</Link></li>
                         </ul>
                     </div>
 
                     <div>
                         <h3 className="mb-4 text-sm font-semibold">Company</h3>
                         <ul className="space-y-2 text-sm text-text-secondary">
-                            <li><Link href="/about" className="hover:text-text-primary">About Us</Link></li>
-                            <li><Link href="/how-it-works" className="hover:text-text-primary">How It Works</Link></li>
-                            <li><Link href="/contact" className="hover:text-text-primary">Contact</Link></li>
-                            <li><Link href="/quote" className="hover:text-text-primary">Request Quote</Link></li>
+                            <li><Link href="/about" className="hover:text-text-primary transition-colors">About Us</Link></li>
+                            <li><Link href="/how-it-works" className="hover:text-text-primary transition-colors">How It Works</Link></li>
+                            <li><Link href="/contact" className="hover:text-text-primary transition-colors">Contact</Link></li>
+                            <li><Link href="/get-a-quote" className="hover:text-text-primary transition-colors">Request Quote</Link></li>
                         </ul>
                     </div>
 
                     <div>
                         <h3 className="mb-4 text-sm font-semibold">Legal</h3>
                         <ul className="space-y-2 text-sm text-text-secondary">
-                            <li><Link href="/privacy" className="hover:text-text-primary">Privacy Policy</Link></li>
-                            <li><Link href="/terms" className="hover:text-text-primary">Terms of Service</Link></li>
-                            <li><Link href="/site-map" className="hover:text-text-primary">Sitemap (HTML)</Link></li>
-                            <li><a href="/sitemap.xml" className="hover:text-text-primary" target="_blank" rel="noopener noreferrer">Sitemap (XML)</a></li>
+                            <li><Link href="/privacy" className="hover:text-text-primary transition-colors">Privacy Policy</Link></li>
+                            <li><Link href="/terms" className="hover:text-text-primary transition-colors">Terms of Service</Link></li>
+                            <li><Link href="/site-map" className="hover:text-text-primary transition-colors">Sitemap (HTML)</Link></li>
+                            <li><a href="/sitemap.xml" className="hover:text-text-primary transition-colors" target="_blank" rel="noopener noreferrer">Sitemap (XML)</a></li>
                         </ul>
                     </div>
                 </div>

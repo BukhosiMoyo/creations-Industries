@@ -2,10 +2,37 @@ import { Container } from "@/components/ui/container"
 import { SectionWrapper } from "@/components/ui/section-wrapper"
 import { ContactForm } from "@/components/forms/contact-form"
 import { Mail, MapPin, Phone } from "lucide-react"
+import { constructMetadata } from "@/lib/metadata"
+import { JsonLd } from "@/components/seo/json-ld"
+import { ContactPage as ContactPageSchema, WithContext } from "schema-dts"
+
+export const metadata = constructMetadata({
+    title: "Contact Us | Creations",
+    description: "Get in touch with Creations for expert accounting, tax, and compliance services. We are based in Sandton, serving businesses across South Africa."
+})
 
 export default function ContactPage() {
+    const jsonLd: WithContext<ContactPageSchema> = {
+        "@context": "https://schema.org",
+        "@type": "ContactPage",
+        mainEntity: {
+            "@type": "AccountingService",
+            name: "Creations",
+            telephone: "+27101234567",
+            email: "info@creations.africa",
+            address: {
+                "@type": "PostalAddress",
+                streetAddress: "100 West Street",
+                addressLocality: "Sandton",
+                postalCode: "2196",
+                addressCountry: "ZA"
+            }
+        }
+    }
+
     return (
         <main>
+            <JsonLd data={jsonLd} />
             <SectionWrapper showGlow patternIntensity="subtle" padding="lg">
                 <Container className="text-center max-w-4xl">
                     <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">Get in Touch</h1>

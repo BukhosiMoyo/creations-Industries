@@ -1,5 +1,7 @@
 export type ServicePillar = "Compliance" | "Accounting" | "Intelligence"
 
+export type ServiceVisualType = "compliance" | "chart" | "shield" | "flow" | "strategic" | "team" | "cloud" | "certificate" | "timeline"
+
 export interface ServiceContent {
     slug: string
     title: string
@@ -52,9 +54,9 @@ export interface ServiceContent {
         title: string
         content: string
         highlights?: string[]
-        illustrationType?: 'chart' | 'shield' | 'cloud' | 'flow' | 'team' | 'compliance' | 'strategic'
+        illustrationType?: ServiceVisualType
     }[]
-    visualType?: 'chart' | 'shield' | 'cloud' | 'flow' | 'team' | 'compliance' | 'strategic'
+    visualType?: ServiceVisualType
 }
 
 export interface PillarContent {
@@ -99,4 +101,49 @@ export interface IndustryContent {
     insights?: string[]
     problemsSolved?: string[]
     complianceContext?: string
+}
+
+export interface GuideContent {
+    slug: string
+    title: string
+    hero: {
+        heading: string
+        subheading: string
+        helperStrip?: string[]
+    }
+    seoTitle?: string
+    seoDescription?: string
+    whoIsThisFor?: string[]
+    process?: {
+        step: number
+        title: string
+        description: string
+    }[]
+    requirements?: string[]
+    timeline?: string
+    faqs: {
+        question: string
+        answer: string
+    }[]
+    relatedServices?: {
+        slug: string
+        title: string
+    }[]
+    stats?: {
+        label: string
+        value: string
+        description?: string
+    }[]
+    insights?: string[]
+    externalLinks?: {
+        label: string
+        href: string
+    }[]
+    detailedSections?: {
+        title: string
+        content: string
+        highlights?: string[]
+        illustrationType?: ServiceVisualType
+    }[]
+    visualType?: ServiceVisualType
 }

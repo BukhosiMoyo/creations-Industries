@@ -13,14 +13,9 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  metadataBase: new URL('https://creations.africa'),
-  title: "Creations | Accounting & Compliance for South African Businesses",
-  description: "Clear, structured accounting and compliance for South African businesses. Staying compliant with SARS, CIPC, and the Companies Act.",
-  icons: {
-    icon: "/icon.webp",
-  },
-};
+import { constructMetadata } from "@/lib/metadata";
+
+export const metadata = constructMetadata();
 
 export default function RootLayout({
   children,

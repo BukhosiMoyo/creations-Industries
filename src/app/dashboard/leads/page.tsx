@@ -29,10 +29,28 @@ import { LeadsFilters } from "@/components/dashboard/leads/leads-filters"
 import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
 
+export const dynamic = 'force-dynamic';
+import { getLeads, getPipelineStages } from "@/lib/leads/leads-service";
+import { LeadsKanban } from "@/components/dashboard/leads/leads-kanban";
+
 export default function LeadsPage() {
     const [view, setView] = React.useState<"list" | "grid">("list")
     const [searchQuery, setSearchQuery] = React.useState("")
     const [showFilters, setShowFilters] = React.useState(false)
+    const [pipelineStages, setPipelineStages] = React.useState<any[]>([]); // State to hold pipeline stages
+
+    React.useEffect(() => {
+        // Fetch pipeline stages when the component mounts
+        const fetchStages = async () => {
+            try {
+                const stages = await getPipelineStages();
+                setPipelineStages(stages);
+            } catch (error) {
+                console.error("Failed to fetch pipeline stages:", error);
+            }
+        };
+        fetchStages();
+    }, []);
 
     return (
         <div className="flex flex-col gap-8">

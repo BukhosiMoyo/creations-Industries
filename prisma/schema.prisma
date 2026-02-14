@@ -46,9 +46,33 @@ model User {
   // CRM Relations
   assignedRequests ServiceRequest[] @relation("AssignedTo")
   assignedTasks    Task[]           @relation("AssignedTo")
+  assignedLeads    Lead[]           @relation("LeadAssignee")
   uploadedDocs     Document[]
   activities       ActivityLog[]
   notifications    Notification[]
+  // v1.0 Tenancy
+  workspaceId      String?
+  workspace        Workspace?       @relation(fields: [workspaceId], references: [id])
+}
+
+model Workspace {
+  id          String   @id @default(cuid())
+  name        String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  users       User[]
+  leads       Lead[]
+  campaigns   Campaign[]
+  templates   EmailTemplate[]
+  domains     SendingDomain[]
+  mailboxes   SendingMailbox[]
+  profiles    SendingProfile[]
+  jobs        EmailJob[]
+  messages    EmailMessage[]
+  events      EmailEvent[]
+  stages      PipelineStage[]
+  enrollments CampaignEnrollment[]
 }
 
 model Account {
@@ -143,6 +167,7 @@ enum ServiceType {
   TenderReadiness
   DataAnalytics
   BusinessIT
+  Other
 }
 
 enum RequestStatus {
@@ -299,8 +324,14 @@ model EmailEvent {
   relatedServiceRequestId   String?
   createdAt                 DateTime  @default(now())
 
+  workspaceId    String?
+  workspace      Workspace?      @relation(fields: [workspaceId], references: [id])
+
   company        ClientCompany?  @relation(fields: [relatedCompanyId], references: [id])
   serviceRequest ServiceRequest? @relation(fields: [relatedServiceRequestId], references: [id])
+  
+  emailMessageId String?
+  emailMessage   EmailMessage?   @relation(fields: [emailMessageId], references: [id])
 }
 
 // -----------------------------------------------------------------------------
@@ -313,6 +344,27 @@ enum LeadSource {
   WhatsApp
   Referral
   EmailImport
+}
+
+enum BusinessType {
+  SME
+  Corporate
+  Startup
+  Other
+}
+
+enum VatStatus {
+  Registered
+  NotRegistered
+  Unknown
+}
+
+enum AwarenessStage {
+  Unaware
+  ProblemAware
+  SolutionAware
+  ServiceAware
+  Ready
 }
 
 enum LeadLocation {
@@ -349,6 +401,7 @@ enum LeadStatus {
 
 model Lead {
   id                 String          @id @default(cuid())
+  referenceId        String          @unique
   firstName          String
   lastName           String
   fullName           String?         // Deprecated
@@ -367,6 +420,7 @@ model Lead {
   leadScore          Int             @default(0)
   priorityTag        Priority        @default(Med)
   assignedToUserId   String?
+  assignedToUser     User?           @relation("LeadAssignee", fields: [assignedToUserId], references: [id])
   lastContactedAt    DateTime?
   nextFollowUpAt     DateTime?
   createdAt          DateTime        @default(now())
@@ -378,9 +432,46 @@ model Lead {
   resumeToken        String?         @unique
   deviceMetadata     Json?
 
+  // Outreach & Scoring (v1.0)
+  businessType       BusinessType    @default(Other)
+  vatStatus          VatStatus       @default(Unknown)
+  awarenessStage     AwarenessStage  @default(Unaware)
+  
+  pipelineStageId    String?
+  pipelineStage      PipelineStage?  @relation(fields: [pipelineStageId], references: [id])
+  ownerUserId        String?
+  
+  personaType        String? // Enum?
+  domainRiskScore    Int             @default(0)
+
+  workspaceId        String?
+  workspace          Workspace?      @relation(fields: [workspaceId], references: [id])
+
+  // Relations
+  enrollments        CampaignEnrollment[]
+  campaigns          CampaignLead[] // Deprecated or keep for legacy compatibility
+  jobs               EmailJob[]
+  persona            LeadPersona?
+
+  
+  // existing
   documents          LeadDocument[]
   statusEvents       LeadStatusEvent[]
   portalTokens       LeadPortalToken[]
+  
+  // legacy relations
+  outreachEvents     OutreachEvent[]
+}
+
+model LeadPersona {
+  id            String   @id @default(cuid())
+  leadId        String   @unique
+  personaType   String
+  mainPainPoint String?
+  urgencyLevel  String?
+  advisoryAngle String?
+  
+  lead          Lead     @relation(fields: [leadId], references: [id], onDelete: Cascade)
 }
 
 enum LeadDocType {
@@ -491,4 +582,390 @@ model EmailTemplate {
   lastEditedBy  String?  // User ID or name
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
+  
+  workspaceId   String?
+  workspace     Workspace? @relation(fields: [workspaceId], references: [id])
+  
+  steps         CampaignStep[]
+  jobs          EmailJob[]
 }
+
+// -----------------------------------------------------------------------------
+// OUTREACH SYSTEM v1.0 MODELS
+// -----------------------------------------------------------------------------
+
+// --- A4: Enrollment ---
+
+enum EnrollmentStatus {
+  Enrolled
+  Active
+  Paused
+  Completed
+  Exited
+  Suppressed
+}
+
+enum ExitReason {
+  Replied
+  BookedMeeting
+  Unsubscribed
+  Bounced
+  Manual
+  Other
+}
+
+model CampaignEnrollment {
+  id                String           @id @default(cuid())
+  workspaceId       String
+  campaignId        String
+  leadId            String
+  status            EnrollmentStatus @default(Enrolled)
+  currentStepNumber Int              @default(0)
+  nextSendAt        DateTime
+  lastSentAt        DateTime?
+  exitReason        ExitReason?
+  idempotencyKey    String?          // Unique per (campaign, lead)
+  createdAt         DateTime         @default(now())
+  updatedAt         DateTime         @updatedAt
+
+  workspace         Workspace        @relation(fields: [workspaceId], references: [id])
+  campaign          Campaign         @relation(fields: [campaignId], references: [id])
+  lead              Lead             @relation(fields: [leadId], references: [id])
+  jobs              EmailJob[]
+
+  @@index([workspaceId])
+  @@index([campaignId])
+  @@index([leadId])
+  @@index([nextSendAt])
+  @@unique([campaignId, leadId])
+}
+
+// --- A5: Sending Infrastructure ---
+
+enum ProviderType {
+  Resend
+  SES
+  SendGrid
+  SMTP
+  Other
+}
+
+enum VerificationStatus {
+  Unknown
+  Pending
+  Verified
+  Failed
+}
+
+model SendingDomain {
+  id              String             @id @default(cuid())
+  workspaceId     String
+  domain          String             @unique
+  subdomain       String?
+  provider        ProviderType       @default(Resend)
+  dkimStatus      VerificationStatus @default(Unknown)
+  spfStatus       VerificationStatus @default(Unknown)
+  dmarcStatus     VerificationStatus @default(Unknown)
+  isActive        Boolean            @default(true)
+  createdAt       DateTime           @default(now())
+  updatedAt       DateTime           @updatedAt
+
+  workspace       Workspace          @relation(fields: [workspaceId], references: [id])
+  mailboxes       SendingMailbox[]
+}
+
+enum WarmupState {
+  Cold
+  Warming
+  Warmed
+  Restricted
+}
+
+model SendingMailbox {
+  id              String             @id @default(cuid())
+  workspaceId     String
+  sendingDomainId String
+  fromName        String
+  fromEmail       String
+  replyToEmail    String?
+  isActive        Boolean            @default(true)
+  
+  dailyCap        Int                @default(50)
+  minDelaySeconds Int                @default(90)
+  maxDelaySeconds Int                @default(240)
+  warmupState     WarmupState        @default(Cold)
+  
+  createdAt       DateTime           @default(now())
+  updatedAt       DateTime           @updatedAt
+
+  workspace       Workspace          @relation(fields: [workspaceId], references: [id])
+  domain          SendingDomain      @relation(fields: [sendingDomainId], references: [id])
+  
+  // Relations to Profiles via explicit junction or implied? 
+  // User asked for "mailbox_ids uuid[] or junction". 
+  // Prisma works best with implicit or explicit many-to-many.
+  profiles        SendingProfileMailbox[]
+  jobs            EmailJob[]
+}
+
+enum RoutingStrategy {
+  Single
+  RoundRobin
+  WeightedRoundRobin
+}
+
+model SendingProfile {
+  id          String   @id @default(cuid())
+  workspaceId String
+  name        String
+  strategy    RoutingStrategy @default(RoundRobin)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  workspace   Workspace @relation(fields: [workspaceId], references: [id])
+  mailboxes   SendingProfileMailbox[]
+  campaigns   Campaign[]
+}
+
+model SendingProfileMailbox {
+  sendingProfileId String
+  mailboxId        String
+  weight           Int     @default(1)
+
+  profile          SendingProfile @relation(fields: [sendingProfileId], references: [id])
+  mailbox          SendingMailbox @relation(fields: [mailboxId], references: [id])
+
+  @@id([sendingProfileId, mailboxId])
+}
+
+
+// --- A6: Email Jobs (Outbox) ---
+
+enum JobStatus {
+  Queued
+  Sending
+  Sent
+  Failed
+  Canceled
+  Suppressed
+}
+
+model EmailJob {
+  id                String    @id @default(cuid())
+  workspaceId       String
+  campaignId        String?
+  enrollmentId      String?
+  leadId            String
+  mailboxId         String
+  templateId        String?
+
+  toEmail           String
+  subjectRendered   String
+  bodyHtmlRendered  String
+  bodyTextRendered  String?
+  mergeVars         Json?
+
+  status            JobStatus @default(Queued)
+  scheduledAt       DateTime
+  lockedAt          DateTime?
+  lockedBy          String?
+  attemptCount      Int       @default(0)
+  nextAttemptAt     DateTime?
+  lastError         String?
+  idempotencyKey    String?   @unique
+
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+
+  workspace         Workspace          @relation(fields: [workspaceId], references: [id])
+  campaign          Campaign?          @relation(fields: [campaignId], references: [id])
+  enrollment        CampaignEnrollment? @relation(fields: [enrollmentId], references: [id])
+  lead              Lead               @relation(fields: [leadId], references: [id])
+  mailbox           SendingMailbox     @relation(fields: [mailboxId], references: [id])
+  template          EmailTemplate?     @relation(fields: [templateId], references: [id])
+  
+  message           EmailMessage?
+}
+
+enum MessageStatus {
+  Sent
+  Delivered
+  Bounced
+  Complained
+  Deferred
+  Dropped
+}
+
+model EmailMessage {
+  id              String        @id @default(cuid())
+  workspaceId     String
+  emailJobId      String        @unique
+  providerMessageId String?
+  provider        ProviderType
+  fromEmail       String
+  toEmail         String
+  status          MessageStatus @default(Sent)
+  sentAt          DateTime?
+  deliveredAt     DateTime?
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  workspace       Workspace     @relation(fields: [workspaceId], references: [id])
+  job             EmailJob      @relation(fields: [emailJobId], references: [id])
+  events          EmailEvent[]
+}
+
+// --- A9: Pipeline Stages ---
+model PipelineStage {
+  id          String   @id @default(cuid())
+  workspaceId String
+  name        String
+  orderIndex  Int
+  isTerminal  Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  workspace   Workspace @relation(fields: [workspaceId], references: [id])
+  leads       Lead[]
+}
+
+// --- B1: Event Outbox ---
+
+enum EventStatus {
+  Pending
+  Processing
+  Processed
+  Failed
+}
+
+model EventOutbox {
+  id             String      @id @default(cuid())
+  workspaceId    String?
+  eventType      String
+  aggregateType  String
+  aggregateId    String
+  payload        Json
+  metadata       Json?
+  status         EventStatus @default(Pending)
+  attemptCount   Int         @default(0)
+  nextAttemptAt  DateTime?
+  processedAt    DateTime?
+  lastError      String?
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt // Used as locking mechanism sometimes
+  
+  @@index([status, nextAttemptAt])
+}
+
+// -----------------------------------------------------------------------------
+// OUTREACH & CAMPAIGN MODELS
+// -----------------------------------------------------------------------------
+
+// -----------------------------------------------------------------------------
+// CAMPAIGN MODELS (Refactored for v1.0)
+// -----------------------------------------------------------------------------
+
+enum CampaignStatus {
+  Draft
+  Running
+  Paused
+  Completed
+  Stopped
+  Archived
+}
+
+// CampaignType enum removed or kept? User schema didn't specify types, but useful. Keeping for now.
+enum CampaignType {
+  Outbound
+  Nurture
+  Onboarding
+  Webinar
+  Other
+}
+
+model Campaign {
+  id               String         @id @default(cuid())
+  workspaceId      String?
+  name             String
+  status           CampaignStatus @default(Draft)
+  goal             String?
+  type             CampaignType   @default(Outbound)
+  targetFilters    Json?
+  sendingProfileId String?
+  schedule         Json?
+  dailyCap         Int?
+  createdByUserId  String?
+  createdAt        DateTime       @default(now())
+  updatedAt        DateTime       @updatedAt
+
+  workspace        Workspace?     @relation(fields: [workspaceId], references: [id])
+  sendingProfile   SendingProfile? @relation(fields: [sendingProfileId], references: [id])
+  steps            CampaignStep[]
+  enrollments      CampaignEnrollment[]
+  jobs             EmailJob[]
+  leads            CampaignLead[]
+  outreachEvents   OutreachEvent[]
+}
+
+model CampaignStep {
+  id               String   @id @default(cuid())
+  campaignId       String
+  order            Int
+  templateId       String?
+  delayHours       Int      @default(24)
+  exitOnReply      Boolean  @default(true)
+  exitOnBooking    Boolean  @default(true)
+  
+  // Legacy fields (deprecating)
+  subject      String?
+  body         String?
+  delayMinutes Int      @default(0)
+
+  campaign         Campaign       @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  template         EmailTemplate? @relation(fields: [templateId], references: [id])
+  outreachEvents   OutreachEvent[]
+}
+
+model CampaignLead {
+  id             String         @id @default(cuid())
+  campaignId     String
+  leadId         String
+  currentStep    Int            @default(1)
+  status         String         @default("ACTIVE")
+  nextSendAt     DateTime?
+  startedAt      DateTime       @default(now())
+  completedAt    DateTime?
+
+  campaign       Campaign       @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  lead           Lead           @relation(fields: [leadId], references: [id], onDelete: Cascade)
+
+  @@unique([campaignId, leadId])
+}
+
+enum OutreachEventType {
+  Sent
+  Delivered
+  Opened
+  Clicked
+  Replied
+  Bounced
+  Complained
+  Unsubscribed
+}
+
+model OutreachEvent {
+  id             String            @id @default(cuid())
+  type           OutreachEventType
+  campaignId     String?
+  stepId         String?
+  leadId         String
+  userEmail      String?
+  metadata       Json?
+  occurredAt     DateTime          @default(now())
+
+  campaign       Campaign?         @relation(fields: [campaignId], references: [id])
+  step           CampaignStep?     @relation(fields: [stepId], references: [id])
+  lead           Lead              @relation(fields: [leadId], references: [id], onDelete: Cascade)
+}
+
+

@@ -8,6 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Button } from "@/components/ui/button"
 import { format, subDays, startOfDay } from "date-fns"
 import { RequestStatus } from "@prisma/client"
+import { getGlobalEmailStats } from "@/lib/analytics-service"
 
 export const dynamic = 'force-dynamic'
 
@@ -22,7 +23,8 @@ async function getDashboardData() {
         stuckRequests,
         overdueTasks,
         recentActivity,
-        allRequests
+        allRequests,
+        emailStats
     ] = await Promise.all([
         prisma.clientCompany.count(),
         prisma.serviceRequest.findMany({
@@ -51,7 +53,8 @@ async function getDashboardData() {
             where: {
                 createdAt: { gte: subDays(startOfDay(now), 7) }
             }
-        })
+        }),
+        getGlobalEmailStats()
     ])
 
     // Pipeline Value (Derived placeholders)
@@ -98,11 +101,11 @@ async function getDashboardData() {
     return {
         stats: [
             { name: "Total Clients", value: companyCount, iconName: "Building2", delta: { value: "12%", isPositive: true }, description: "Active retained clients" },
-            { name: "Active Requests", value: activeRequests.length, iconName: "Briefcase", delta: { value: "5%", isPositive: true }, description: "Work currently in pipeline" },
-            { name: "Awaiting Docs", value: stuckRequests.length, iconName: "FileSearch", accentColor: "amber-500", description: "Pending client input" },
-            { name: "Overdue Tasks", value: overdueTasks.length, iconName: "AlertCircle", accentColor: "red-500", description: "Immediate action required" },
-            { name: "Pipeline Value", value: `R${(pipelineValue / 1000).toFixed(1)}k`, iconName: "Zap", description: "Estimated revenue flow" },
-            { name: "Xero Connected", value: 0, iconName: "CheckSquare", description: "External data sync status" },
+            { name: "Available Leads", value: activeRequests.length, iconName: "Briefcase", delta: { value: "5%", isPositive: true }, description: "Work currently in pipeline" },
+            { name: "Emails Sent", value: emailStats.sent, iconName: "Send", description: "Outreach emails sent" },
+            { name: "Open Rate", value: `${emailStats.rates.openRate}%`, iconName: "Eye", accentColor: "emerald-500", description: "Engagement quality" },
+            { name: "Reply Rate", value: `${emailStats.rates.replyRate}%`, iconName: "MessageCircle", description: "Direct conversations" },
+            { name: "Bounce Rate", value: `${emailStats.rates.bounceRate}%`, iconName: "AlertTriangle", accentColor: emailStats.rates.bounceRate > 5 ? "red-500" : "slate-500", description: "Health check" },
         ],
         attentionItems,
         recentActivity: recentActivity.map((a: { id: string, actionType: string, actionSummary: string, actor: { name: string | null, email: string | null, image: string | null }, createdAt: Date }) => ({
