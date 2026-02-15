@@ -2,6 +2,7 @@
 import { prisma } from "@/lib/prisma";
 
 export async function getLeads(workspaceId?: string) {
+    // Force rebuild 2
     return prisma.lead.findMany({
         where: workspaceId ? { workspaceId } : undefined,
         orderBy: { createdAt: 'desc' },
@@ -18,7 +19,7 @@ export async function getLeads(workspaceId?: string) {
             _count: {
                 select: {
                     jobs: true,
-                    enrollments: true // Changed from campaignEnrollments
+                    enrollments: true
                 }
             }
         }
@@ -39,9 +40,40 @@ export async function updateLeadStage(leadId: string, stageId: string) {
     });
 }
 
-export async function updateLead(id: string, data: any) {
+export async function updateLead(leadId: string, data: any) {
     return prisma.lead.update({
-        where: { id },
+        where: { id: leadId },
         data
+    });
+}
+
+export async function getLead(id: string) {
+    return prisma.lead.findUnique({
+        where: { id },
+        include: {
+            pipelineStage: true,
+            assignedToUser: {
+                select: {
+                    id: true,
+                    firstName: true,
+                    lastName: true,
+                    email: true,
+                    image: true
+                }
+            },
+            documents: true,
+            statusEvents: {
+                orderBy: { createdAt: 'desc' }
+            },
+            enrollments: {
+                include: {
+                    campaign: true
+                }
+            },
+            jobs: {
+                orderBy: { createdAt: 'desc' },
+                take: 5
+            }
+        }
     });
 }

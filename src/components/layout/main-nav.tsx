@@ -2,7 +2,6 @@
 
 import * as React from "react"
 import Link from "next/link"
-import Image from "next/image"
 import { cn } from "@/lib/utils"
 import {
     NavigationMenu,
@@ -52,14 +51,16 @@ export function MainNav() {
             <NavigationMenu>
                 <NavigationMenuList>
                     <NavigationMenuItem>
-                        <NavigationMenuTrigger className="bg-transparent">Services</NavigationMenuTrigger>
+                        <NavigationMenuTrigger className="bg-transparent text-sm font-medium text-text-primary hover:text-text-primary group">
+                            Services
+                        </NavigationMenuTrigger>
                         <NavigationMenuContent>
-                            <div className="grid w-[800px] gap-3 p-4 md:grid-cols-3">
+                            <div className="grid w-[800px] gap-3 p-4 md:grid-cols-3 bg-surface border border-border/40 shadow-xl rounded-xl">
                                 {services.map((pillar) => (
-                                    <div key={pillar.pillar} className="flex flex-col space-y-2">
-                                        <div className="mb-2">
-                                            <h4 className="text-sm font-medium leading-none mb-1 text-accent">{pillar.pillar}</h4>
-                                            <p className="text-xs text-text-muted leading-snug mb-2">{pillar.description}</p>
+                                    <div key={pillar.pillar} className="flex flex-col space-y-2 p-2">
+                                        <div className="mb-2 pb-2 border-b border-border/40">
+                                            <h4 className="text-sm font-bold leading-none mb-1 text-accent">{pillar.pillar}</h4>
+                                            <p className="text-xs text-text-muted leading-snug">{pillar.description}</p>
                                         </div>
                                         <ul className="space-y-1">
                                             {pillar.items.map((item) => (
@@ -72,25 +73,25 @@ export function MainNav() {
                         </NavigationMenuContent>
                     </NavigationMenuItem>
                     <NavigationMenuItem>
-                        <NavigationMenuLink asChild>
-                            <Link href="/about" className={cn(navigationMenuTriggerStyle(), "bg-transparent")}>
+                        <Link href="/about" legacyBehavior passHref>
+                            <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "bg-transparent text-sm font-medium text-text-primary hover:text-text-primary")}>
                                 About
-                            </Link>
-                        </NavigationMenuLink>
+                            </NavigationMenuLink>
+                        </Link>
                     </NavigationMenuItem>
                     <NavigationMenuItem>
-                        <NavigationMenuLink asChild>
-                            <Link href="/how-it-works" className={cn(navigationMenuTriggerStyle(), "bg-transparent")}>
+                        <Link href="/how-it-works" legacyBehavior passHref>
+                            <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "bg-transparent text-sm font-medium text-text-primary hover:text-text-primary")}>
                                 Process
-                            </Link>
-                        </NavigationMenuLink>
+                            </NavigationMenuLink>
+                        </Link>
                     </NavigationMenuItem>
                     <NavigationMenuItem>
-                        <NavigationMenuLink asChild>
-                            <Link href="/industries" className={cn(navigationMenuTriggerStyle(), "bg-transparent")}>
+                        <Link href="/industries" legacyBehavior passHref>
+                            <NavigationMenuLink className={cn(navigationMenuTriggerStyle(), "bg-transparent text-sm font-medium text-text-primary hover:text-text-primary")}>
                                 Industries
-                            </Link>
-                        </NavigationMenuLink>
+                            </NavigationMenuLink>
+                        </Link>
                     </NavigationMenuItem>
                 </NavigationMenuList>
             </NavigationMenu>

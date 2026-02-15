@@ -23,6 +23,7 @@ import {
     DropdownMenuItem,
     DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
+import { NewCompanyDialog } from "@/components/dashboard/companies/new-company-dialog";
 
 interface Company {
     id: string;
@@ -72,10 +73,12 @@ export default function CompaniesPage() {
                         <Download className="h-4 w-4" />
                         Export
                     </Button>
-                    <Button className="rounded-xl font-bold bg-accent hover:bg-accent/90 shadow-lg shadow-accent/20 gap-2">
-                        <Plus className="h-4 w-4" />
-                        Add New Client
-                    </Button>
+                    <NewCompanyDialog>
+                        <Button className="rounded-xl font-bold bg-accent hover:bg-accent/90 shadow-lg shadow-accent/20 gap-2 text-white">
+                            <Plus className="h-4 w-4" />
+                            Add New Client
+                        </Button>
+                    </NewCompanyDialog>
                 </div>
             </div>
 
@@ -116,9 +119,11 @@ export default function CompaniesPage() {
                                     : "You haven't added any client companies yet. Start building your portfolio today."}
                             </p>
                             {!search && (
-                                <Button className="mt-8 rounded-xl bg-accent font-bold" onClick={() => { }}>
-                                    Create First Record
-                                </Button>
+                                <NewCompanyDialog>
+                                    <Button className="mt-8 rounded-xl bg-accent font-bold text-white">
+                                        Create First Record
+                                    </Button>
+                                </NewCompanyDialog>
                             )}
                         </CardContent>
                     </Card>
@@ -225,4 +230,3 @@ export default function CompaniesPage() {
         </div>
     );
 }
-

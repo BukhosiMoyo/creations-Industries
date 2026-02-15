@@ -8,7 +8,8 @@ import type {
     LocalBusiness,
     AboutPage,
     ContactPage,
-    ProfessionalService
+    ProfessionalService,
+    Product
 } from 'schema-dts'
 
 type SchemaType =
@@ -21,6 +22,7 @@ type SchemaType =
     | WithContext<AboutPage>
     | WithContext<ContactPage>
     | WithContext<ProfessionalService>
+    | WithContext<Product>
 
 interface JsonLdProps {
     data: SchemaType

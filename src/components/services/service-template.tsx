@@ -2,6 +2,8 @@
 
 import Link from "next/link"
 import { ArrowRight, Clock, FileText, HelpCircle, Shield, ShieldCheck, TrendingUp, Users } from "lucide-react"
+import { trackEvent, ConversionEvents } from "@/lib/analytics"
+import { QuoteLink } from "@/components/common/quote-link"
 import { Button } from "@/components/ui/button"
 import { Container } from "@/components/ui/container"
 import { SectionWrapper } from "@/components/ui/section-wrapper"
@@ -56,9 +58,9 @@ export function ServicePageTemplate({ content }: ServicePageTemplateProps) {
                             )}
 
                             <MotionWrapper delay={0.4} className="flex flex-col sm:flex-row gap-4 justify-center">
-                                <Link href="/quote">
+                                <QuoteLink eventLabel="service_hero_cta">
                                     <Button variant="glow" size="lg" className="h-12 px-8 text-base">Get a Quote <ArrowRight className="ml-2 h-4 w-4" /></Button>
-                                </Link>
+                                </QuoteLink>
                                 <Link href="/contact">
                                     <Button variant="outline" size="lg" className="h-12 px-8 text-base text-text-primary border-border hover:bg-surface">Contact Us</Button>
                                 </Link>
@@ -408,11 +410,11 @@ export function ServicePageTemplate({ content }: ServicePageTemplateProps) {
                                 <p className="text-text-secondary text-lg mb-10 max-w-xl mx-auto">
                                     Get a comprehensive quote tailored to your business needs in less than 24 hours. No hidden fees, no strings attached.
                                 </p>
-                                <Link href="/quote">
+                                <QuoteLink eventLabel="service_bottom_cta">
                                     <Button variant="glow" size="lg" className="w-full sm:w-auto px-16 h-16 text-xl font-bold">
                                         Request Quote Now
                                     </Button>
-                                </Link>
+                                </QuoteLink>
                             </div>
                         </div>
                     </MotionWrapper>

@@ -11,6 +11,7 @@ import {
     Shield,
     Upload,
 } from "lucide-react"
+import { trackEvent, ConversionEvents } from "@/lib/analytics"
 import { SignUpForm } from "@/components/auth/SignUpForm"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -131,6 +132,12 @@ export function QuoteWizard({ initialData, resumeToken: _resumeToken }: QuoteWiz
         setIsSaving(true)
         try {
             await triggerAutosave(data, 4)
+            trackEvent({
+                action: ConversionEvents.CONTACT_FORM_SUBMIT,
+                category: 'conversion',
+                label: 'quote_wizard_completed',
+                value: 1 // Assign a value if needed, e.g. 1 lead
+            })
             setIsSuccess(true)
         } catch (error) {
             console.error(error)

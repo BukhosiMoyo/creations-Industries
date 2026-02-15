@@ -1,5 +1,8 @@
+"use client"
+
 import Link from "next/link"
 import Image from "next/image"
+import { trackEvent, ConversionEvents } from "@/lib/analytics"
 import { Container } from "@/components/ui/container"
 
 export function SiteFooter() {
@@ -67,6 +70,30 @@ export function SiteFooter() {
                     <p className="mt-2 text-xs text-text-muted">
                         Disclaimer: We are professional accountants, but this website is for informational purposes.
                     </p>
+                    <div className="flex justify-center gap-6 mt-4 opacity-80 hover:opacity-100 transition-opacity">
+                        <a
+                            href="mailto:info@creations.africa"
+                            className="flex items-center gap-2 hover:text-accent"
+                            onClick={() => trackEvent({
+                                action: ConversionEvents.EMAIL_CLICK,
+                                category: 'engagement',
+                                label: 'footer_email'
+                            })}
+                        >
+                            Email Us
+                        </a>
+                        <a
+                            href="tel:+27101234567"
+                            className="flex items-center gap-2 hover:text-accent"
+                            onClick={() => trackEvent({
+                                action: ConversionEvents.PHONE_CLICK,
+                                category: 'engagement',
+                                label: 'footer_phone'
+                            })}
+                        >
+                            Call Us
+                        </a>
+                    </div>
                 </div>
             </Container>
         </footer>

@@ -18,6 +18,7 @@ import { contactSchema, ContactFormValues } from "@/lib/schemas"
 import { useState } from "react"
 import { CheckCircle2, Loader2 } from "lucide-react"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
+import { trackEvent, ConversionEvents } from "@/lib/analytics"
 
 export function ContactForm() {
     const [isSubmitting, setIsSubmitting] = useState(false)
@@ -50,6 +51,12 @@ export function ContactForm() {
 
             const result = await response.json()
             console.log("Success:", result)
+            trackEvent({
+                action: ConversionEvents.CONTACT_FORM_SUBMIT,
+                category: 'conversion',
+                label: 'contact_page_form',
+                value: 0
+            })
             setIsSuccess(true)
             form.reset()
         } catch (error) {

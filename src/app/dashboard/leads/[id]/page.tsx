@@ -18,7 +18,8 @@ import {
     History,
     FileUp,
     Download,
-    CreditCard
+    CreditCard,
+    Loader2
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -29,33 +30,58 @@ import { Input } from "@/components/ui/input"
 import { formatDistanceToNow } from "date-fns"
 import { cn } from "@/lib/utils"
 import { useRouter } from "next/navigation"
-
-// Static mock data for purity
-const MOCK_DATE = new Date("2026-02-12T04:00:00Z")
+import { getLead } from "@/lib/leads/leads-service"
 
 export default function LeadDetailPage({ params }: { params: { id: string } }) {
     const router = useRouter()
+    const [lead, setLead] = React.useState<any>(null)
+    const [loading, setLoading] = React.useState(true)
 
-    const lead = React.useMemo(() => ({
-        id: params.id,
-        fullName: "Sarah Jenkins",
-        email: "sarah@nexustech.io",
-        phone: "+27 11 234 5678",
-        companyName: "Nexus Tech Solutions",
-        websiteUrl: "https://nexustech.io",
-        source: "Website",
-        serviceType: "Tax",
-        urgency: "Urgent_24_48h",
-        budgetRange: "R15k_30k",
-        status: "New",
-        leadScore: 88,
-        priorityTag: "High",
-        message: "We need urgent assistance with our corporate tax filing for the previous financial year. We have some outstanding CIPC issues as well.",
-        createdAt: MOCK_DATE,
-    }), [params.id])
+    React.useEffect(() => {
+        async function fetchLead() {
+            try {
+                // Since getLead is a server action, we can call it directly or via API route.
+                // However, client components usually fetch via API routes or pass server component data.
+                // Given the architecture, let's try direct server action call if Next.js allows, 
+                // or fallback to API if needed. But for now, let's simulate API call or direct import if server action.
+                // Actually, `getLead` is marked "use server" at top of file, so we can call it.
+                const data = await getLead(params.id)
+                setLead(data)
+            } catch (error) {
+                console.error("Failed to fetch lead:", error)
+            } finally {
+                setLoading(false)
+            }
+        }
+        fetchLead()
+    }, [params.id])
+
+    if (loading) {
+        return (
+            <div className="flex items-center justify-center min-h-[50vh]">
+                <Loader2 className="h-8 w-8 animate-spin text-accent" />
+            </div>
+        )
+    }
+
+    if (!lead) {
+        return (
+            <div className="flex flex-col items-center justify-center min-h-[50vh] gap-4">
+                <h2 className="text-xl font-bold">Lead Not Found</h2>
+                <Button onClick={() => router.back()}>Back to Inbox</Button>
+            </div>
+        )
+    }
 
     const steps = ["New", "Contacted", "Qualified", "AwaitingDocs", "Converted"]
-    const currentStepIndex = steps.indexOf(lead.status)
+    // Determine current step index based on status or pipeline stage
+    // Map existing status/stage to steps
+    let currentStepIndex = steps.indexOf(lead.status)
+    if (currentStepIndex === -1) {
+        // Fallback or handle "Lost" / "Spam"
+        if (lead.status === "Lost") currentStepIndex = -1 // distinct state?
+        else currentStepIndex = 0
+    }
 
     return (
         <div className="flex flex-col gap-6 max-w-7xl mx-auto">
@@ -93,12 +119,12 @@ export default function LeadDetailPage({ params }: { params: { id: string } }) {
                                 <div className="space-y-4">
                                     <div className="space-y-1">
                                         <div className="flex items-center gap-3">
-                                            <h1 className="text-3xl font-bold tracking-tight">{lead.fullName}</h1>
+                                            <h1 className="text-3xl font-bold tracking-tight">{lead.firstName} {lead.lastName}</h1>
                                             <Badge className="bg-red-500/10 text-red-600 border-red-200/50 font-bold text-[10px] uppercase h-6">
                                                 {lead.priorityTag} Priority
                                             </Badge>
                                         </div>
-                                        <p className="text-lg font-medium text-muted-foreground">{lead.companyName}</p>
+                                        <p className="text-lg font-medium text-muted-foreground">{lead.companyName || "Individual"}</p>
                                     </div>
 
                                     <div className="flex flex-wrap gap-4 pt-1">
@@ -114,12 +140,14 @@ export default function LeadDetailPage({ params }: { params: { id: string } }) {
                                             </div>
                                             {lead.phone}
                                         </div>
-                                        <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground/80 hover:text-foreground transition-colors cursor-pointer group">
-                                            <div className="h-8 w-8 rounded-lg bg-muted/40 flex items-center justify-center group-hover:bg-accent/10 transition-colors">
-                                                <Globe className="h-4 w-4 group-hover:text-accent" />
+                                        {lead.websiteUrl && (
+                                            <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground/80 hover:text-foreground transition-colors cursor-pointer group">
+                                                <div className="h-8 w-8 rounded-lg bg-muted/40 flex items-center justify-center group-hover:bg-accent/10 transition-colors">
+                                                    <Globe className="h-4 w-4 group-hover:text-accent" />
+                                                </div>
+                                                {lead.websiteUrl}
                                             </div>
-                                            {lead.websiteUrl}
-                                        </div>
+                                        )}
                                     </div>
                                 </div>
                                 <div className="flex flex-col items-center justify-center p-6 bg-accent/[0.03] border border-accent/10 rounded-2xl w-full md:w-40 gap-1.5 shrink-0">
@@ -165,8 +193,8 @@ export default function LeadDetailPage({ params }: { params: { id: string } }) {
                                     <FileText className="h-3.5 w-3.5" />
                                     Submission Message
                                 </p>
-                                <p className="text-sm font-medium leading-relaxed italic text-muted-foreground/90">
-                                    &ldquo;{lead.message}&rdquo;
+                                <p className="text-sm font-medium leading-relaxed italic text-muted-foreground/90 whitespace-pre-wrap">
+                                    {lead.message}
                                 </p>
                             </div>
                         )}
@@ -183,16 +211,16 @@ export default function LeadDetailPage({ params }: { params: { id: string } }) {
                             {[
                                 { label: "Source", value: lead.source, icon: Globe },
                                 { label: "Service Type", value: lead.serviceType, icon: FileText },
-                                { label: "Urgency", value: lead.urgency.replace(/_/g, ' '), icon: Clock },
+                                { label: "Urgency", value: lead.urgency?.replace(/_/g, ' '), icon: Clock },
                                 { label: "Budget", value: lead.budgetRange, icon: CreditCard },
-                                { label: "Created", value: `${formatDistanceToNow(lead.createdAt)} ago`, icon: Calendar },
+                                { label: "Created", value: `${formatDistanceToNow(new Date(lead.createdAt))} ago`, icon: Calendar },
                             ].map((item, i) => (
                                 <div key={i} className="flex items-center justify-between group">
                                     <div className="flex items-center gap-2.5">
                                         <item.icon className="h-4 w-4 text-muted-foreground/60 group-hover:text-accent transition-colors" />
                                         <span className="text-[11px] font-bold text-muted-foreground uppercase tracking-tight">{item.label}</span>
                                     </div>
-                                    <span className="text-xs font-bold">{item.value}</span>
+                                    <span className="text-xs font-bold">{item.value || "N/A"}</span>
                                 </div>
                             ))}
                         </div>
@@ -202,7 +230,7 @@ export default function LeadDetailPage({ params }: { params: { id: string } }) {
                         <div className="space-y-4">
                             <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Internal Portal</p>
                             <div className="flex items-center gap-2">
-                                <Input value="https://creations.io/lead/secure-7a3b..." readOnly className="h-9 text-[11px] bg-muted/40 font-mono" />
+                                <Input value={`https://creations.io/lead/secure-${lead.referenceId}`} readOnly className="h-9 text-[11px] bg-muted/40 font-mono" />
                                 <Button size="icon" variant="outline" className="h-9 w-9 shrink-0 border-border/40">
                                     <Copy className="h-4 w-4" />
                                 </Button>
@@ -226,7 +254,9 @@ export default function LeadDetailPage({ params }: { params: { id: string } }) {
                     <TabsTrigger value="documents" className="rounded-xl h-full px-8 font-bold text-xs uppercase tracking-widest data-[state=active]:bg-background data-[state=active]:shadow-sm data-[state=active]:text-accent">
                         <FileText className="h-4 w-4 mr-2" />
                         Documents
-                        <Badge className="ml-2 bg-accent/10 text-accent border-transparent text-[9px] h-4 min-w-[1.2rem] flex items-center justify-center p-0">3</Badge>
+                        <Badge className="ml-2 bg-accent/10 text-accent border-transparent text-[9px] h-4 min-w-[1.2rem] flex items-center justify-center p-0">
+                            {lead.documents?.length || 0}
+                        </Badge>
                     </TabsTrigger>
                     <TabsTrigger value="notes" className="rounded-xl h-full px-8 font-bold text-xs uppercase tracking-widest data-[state=active]:bg-background data-[state=active]:shadow-sm data-[state=active]:text-accent">
                         Notes
@@ -235,23 +265,36 @@ export default function LeadDetailPage({ params }: { params: { id: string } }) {
 
                 <TabsContent value="timeline" className="space-y-4">
                     <div className="relative pl-8 space-y-8 before:absolute before:left-[11px] before:top-2 before:bottom-2 before:w-[2px] before:bg-border/30">
-                        {/* Mock Timeline Events */}
-                        {[
-                            { title: "Status Changed to Contacted", sub: "by Admin User", time: "1 hour ago", icon: History },
-                            { title: "ID Document Uploaded", sub: "by client via portal", time: "2 hours ago", icon: FileUp },
-                            { title: "Lead Received", sub: "via Website Form", time: "2 hours ago", icon: Globe },
-                        ].map((event, i) => (
-                            <div key={i} className="relative">
+                        {/* Real Timeline Events */}
+                        {lead.statusEvents && lead.statusEvents.length > 0 ? (
+                            lead.statusEvents.map((event: any, i: number) => (
+                                <div key={i} className="relative">
+                                    <div className="absolute -left-[30px] top-1 h-6 w-6 rounded-full bg-background border-2 border-accent flex items-center justify-center shadow-lg shadow-accent/20 z-10">
+                                        <div className="h-2 w-2 rounded-full bg-accent" />
+                                    </div>
+                                    <div className="space-y-1">
+                                        <p className="text-sm font-bold leading-none">Status Change: {event.newStatus}</p>
+                                        <p className="text-xs text-muted-foreground font-medium">From {event.oldStatus}</p>
+                                        <p className="text-[10px] font-bold text-muted-foreground/40 uppercase tracking-tight tabular-nums">
+                                            {formatDistanceToNow(new Date(event.createdAt))} ago
+                                        </p>
+                                    </div>
+                                </div>
+                            ))
+                        ) : (
+                            <div className="relative">
                                 <div className="absolute -left-[30px] top-1 h-6 w-6 rounded-full bg-background border-2 border-accent flex items-center justify-center shadow-lg shadow-accent/20 z-10">
                                     <div className="h-2 w-2 rounded-full bg-accent" />
                                 </div>
                                 <div className="space-y-1">
-                                    <p className="text-sm font-bold leading-none">{event.title}</p>
-                                    <p className="text-xs text-muted-foreground font-medium">{event.sub}</p>
-                                    <p className="text-[10px] font-bold text-muted-foreground/40 uppercase tracking-tight tabular-nums">{event.time}</p>
+                                    <p className="text-sm font-bold leading-none">Lead Created</p>
+                                    <p className="text-xs text-muted-foreground font-medium">via {lead.source}</p>
+                                    <p className="text-[10px] font-bold text-muted-foreground/40 uppercase tracking-tight tabular-nums">
+                                        {formatDistanceToNow(new Date(lead.createdAt))} ago
+                                    </p>
                                 </div>
                             </div>
-                        ))}
+                        )}
                     </div>
                 </TabsContent>
 
@@ -263,21 +306,18 @@ export default function LeadDetailPage({ params }: { params: { id: string } }) {
                         </div>
                         <p className="text-[11px] font-bold text-muted-foreground uppercase tracking-widest">Upload New File</p>
                     </div>
-                    {/* Mock Document Cards */}
-                    {[
-                        { name: "identity_document.pdf", type: "ID", size: "1.2 MB" },
-                        { name: "bank_statement_dec.pdf", type: "BankStatement", size: "4.5 MB" },
-                    ].map((doc, i) => (
-                        <Card key={i} className="border-border/40 bg-card/50 hover:border-accent/20 transition-all group shadow-sm">
+                    {/* Real Document Cards */}
+                    {lead.documents?.map((doc: any) => (
+                        <Card key={doc.id} className="border-border/40 bg-card/50 hover:border-accent/20 transition-all group shadow-sm">
                             <CardContent className="p-4 flex items-center gap-4">
                                 <div className="h-10 w-10 rounded-xl bg-accent/5 flex items-center justify-center border border-accent/10">
                                     <FileText className="h-5 w-5 text-accent" />
                                 </div>
                                 <div className="flex-1 min-w-0">
-                                    <p className="text-xs font-bold truncate pr-6 leading-tight">{doc.name}</p>
+                                    <p className="text-xs font-bold truncate pr-6 leading-tight">{doc.filename}</p>
                                     <div className="flex items-center gap-2 mt-1">
                                         <Badge variant="outline" className="bg-muted/30 border-0 text-[8px] font-bold h-4 px-1">{doc.type}</Badge>
-                                        <span className="text-[9px] font-bold text-muted-foreground/60 uppercase">{doc.size}</span>
+                                        <span className="text-[9px] font-bold text-muted-foreground/60 uppercase">{doc.size ? `${(doc.size / 1024).toFixed(1)} KB` : 'N/A'}</span>
                                     </div>
                                 </div>
                                 <Button variant="ghost" size="icon" className="h-8 w-8 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity">
@@ -286,6 +326,11 @@ export default function LeadDetailPage({ params }: { params: { id: string } }) {
                             </CardContent>
                         </Card>
                     ))}
+                    {(!lead.documents || lead.documents.length === 0) && (
+                        <div className="col-span-full py-10 text-center text-muted-foreground text-xs font-medium italic">
+                            No documents uploaded yet.
+                        </div>
+                    )}
                 </TabsContent>
             </Tabs>
         </div>

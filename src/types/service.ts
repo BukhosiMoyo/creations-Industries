@@ -101,6 +101,12 @@ export interface IndustryContent {
     insights?: string[]
     problemsSolved?: string[]
     complianceContext?: string
+    testimonial?: {
+        quote: string
+        author: string
+        role: string
+        variant?: "primary" | "subtle"
+    }
 }
 
 export interface GuideContent {

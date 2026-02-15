@@ -7,24 +7,14 @@ export async function getGlobalEmailStats(workspaceId?: string) {
     const where = workspaceId ? { workspaceId } : undefined;
 
     const [sent, delivered, opened, replied, bounced, complaint] = await Promise.all([
-        prisma.emailEvent.count({ where: { ...where, type: EmailType.LeadReceived } }), // Mapping isn't 1:1 with old types?
-        // Wait, schema has: LeadReceived, ClientConfirmation, DocsRequested, Reminder, StatusUpdate
-        // It DOES NOT HAVE Sent, Delivered, Opened, etc. in `EmailType` enum?
-        // Let's check schema again. `EmailEvent` type is `EmailType`.
-        // `OutreachEvent` has `OutreachEventType` which has Sent, Opened, etc.
-        // `EmailEvent` seems to be for transactional system notifications?
-        // `OutreachEvent` is for campaign tracking.
-
-        // Strategy: We should probably aggregate `OutreachEvent` for campaign stats 
-        // AND `EmailMessage` status for delivery stats.
-
-        // `EmailMessage` has `status` field of type `MessageStatus` (Sent, Delivered, Bounced...)
-        // Let's use `EmailMessage` for delivery stats.
-
+        // Count sent/delivered/bounced/complaint from EmailMessage
         prisma.emailMessage.count({ where: { ...where, status: 'Sent' } }),
         prisma.emailMessage.count({ where: { ...where, status: 'Delivered' } }),
+
+        // Count opened/replied from OutreachEvent (Campaign engagement)
         prisma.outreachEvent.count({ where: { ...where, type: 'Opened' } }),
         prisma.outreachEvent.count({ where: { ...where, type: 'Replied' } }),
+
         prisma.emailMessage.count({ where: { ...where, status: 'Bounced' } }),
         prisma.emailMessage.count({ where: { ...where, status: 'Complained' } })
     ]);

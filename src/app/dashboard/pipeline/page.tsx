@@ -1,12 +1,21 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Plus, Search, Filter, Layers, Download } from "lucide-react";
+import { useState, useEffect } from "react";
 import { KanbanBoard } from "@/components/dashboard/pipeline/kanban-board";
 import { KanbanColumn } from "@/components/dashboard/pipeline/kanban-column";
 import { KanbanCard } from "@/components/dashboard/pipeline/kanban-card";
 import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { NewRequestDialog } from "@/components/dashboard/pipeline/new-request-dialog";
+import { Search, Filter, Layers, Download } from "lucide-react";
+import {
+    DropdownMenu,
+    DropdownMenuCheckboxItem,
+    DropdownMenuContent,
+    DropdownMenuLabel,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 // Correct mapping to Prisma RequestStatus enum
 enum RequestStatus {
@@ -42,6 +51,7 @@ export default function PipelinePage() {
     const [requests, setRequests] = useState<ServiceRequest[]>([]);
     const [loading, setLoading] = useState(true);
     const [search, setSearch] = useState("");
+    const [statusFilters, setStatusFilters] = useState<RequestStatus[]>([]);
 
     useEffect(() => {
         const fetchRequests = async () => {
@@ -61,30 +71,31 @@ export default function PipelinePage() {
         fetchRequests();
     }, []);
 
-    const filteredRequests = requests.filter(r =>
-        r.company.legalName.toLowerCase().includes(search.toLowerCase()) ||
-        r.serviceType.toLowerCase().includes(search.toLowerCase())
-    );
+    const toggleStatusFilter = (status: RequestStatus) => {
+        setStatusFilters(prev =>
+            prev.includes(status)
+                ? prev.filter(s => s !== status)
+                : [...prev, status]
+        );
+    };
+
+    const filteredRequests = requests.filter(r => {
+        const matchesSearch = r.company.legalName.toLowerCase().includes(search.toLowerCase()) ||
+            r.serviceType.toLowerCase().includes(search.toLowerCase());
+        const matchesStatus = statusFilters.length === 0 || statusFilters.includes(r.status);
+        return matchesSearch && matchesStatus;
+    });
 
     return (
-        <div className="h-[calc(100vh-8rem)] flex flex-col space-y-8">
-            {/* Header section */}
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
-                <div className="space-y-1">
-                    <h1 className="text-3xl font-bold tracking-tight text-foreground">Service Pipeline</h1>
-                    <p className="text-muted-foreground font-medium flex items-center gap-2">
-                        Tracking <span className="text-foreground font-bold">{requests.length}</span> active service requests across stages.
-                    </p>
-                </div>
+        <div className="flex-1 space-y-4 p-8 pt-6">
+            <div className="flex items-center justify-between space-y-2">
+                <h2 className="text-3xl font-bold tracking-tight">Pipeline</h2>
                 <div className="flex items-center gap-3">
                     <Button variant="outline" className="rounded-xl border-border/60 gap-2 px-4 text-muted-foreground font-medium">
                         <Download className="h-4 w-4" />
                         Export
                     </Button>
-                    <Button className="rounded-xl font-bold bg-accent hover:bg-accent/90 shadow-lg shadow-accent/20 gap-2">
-                        <Plus className="h-4 w-4" />
-                        New Request
-                    </Button>
+                    <NewRequestDialog />
                 </div>
             </div>
 
@@ -100,10 +111,33 @@ export default function PipelinePage() {
                     />
                 </div>
                 <div className="flex items-center gap-2 w-full md:w-auto">
-                    <Button variant="outline" className="h-11 rounded-xl border-border/60 gap-2 px-4 text-muted-foreground font-medium flex-1 md:flex-none">
-                        <Filter className="h-4 w-4" />
-                        Filter
-                    </Button>
+                    <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                            <Button variant="outline" className="h-11 rounded-xl border-border/60 gap-2 px-4 text-muted-foreground font-medium flex-1 md:flex-none">
+                                <Filter className="h-4 w-4" />
+                                Filter
+                                {statusFilters.length > 0 && (
+                                    <span className="ml-1 rounded-full bg-accent text-[10px] text-white px-1.5 h-4 flex items-center justify-center">
+                                        {statusFilters.length}
+                                    </span>
+                                )}
+                            </Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="end" className="w-56">
+                            <DropdownMenuLabel>Filter by Status</DropdownMenuLabel>
+                            <DropdownMenuSeparator />
+                            {Object.values(RequestStatus).map((status) => (
+                                <DropdownMenuCheckboxItem
+                                    key={status}
+                                    checked={statusFilters.includes(status)}
+                                    onCheckedChange={() => toggleStatusFilter(status)}
+                                >
+                                    {status}
+                                </DropdownMenuCheckboxItem>
+                            ))}
+                        </DropdownMenuContent>
+                    </DropdownMenu>
+
                     <Button variant="outline" className="h-11 rounded-xl border-border/60 gap-2 px-4 text-muted-foreground font-medium flex-1 md:flex-none">
                         <Layers className="h-4 w-4" />
                         View

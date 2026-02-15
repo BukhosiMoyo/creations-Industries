@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { ArrowRight, Clock, FileText, HelpCircle, Shield, ShieldCheck, TrendingUp, Users } from "lucide-react"
+import { trackEvent, ConversionEvents } from "@/lib/analytics"
 import { Button } from "@/components/ui/button"
 import { Container } from "@/components/ui/container"
 import { SectionWrapper } from "@/components/ui/section-wrapper"
@@ -11,6 +12,7 @@ import { IndustryContent } from "@/types/service"
 import { MotionWrapper, StaggerChildren } from "@/components/ui/motion-wrapper"
 import { IconList } from "@/components/ui/icon-list"
 import { CurvyGraph } from "@/components/ui/curvy-graph"
+import { TestimonialCard } from "@/components/trust/testimonial-card"
 
 interface IndustryPageTemplateProps {
     content: IndustryContent
@@ -54,7 +56,14 @@ export function IndustryPageTemplate({ content }: IndustryPageTemplateProps) {
                             )}
 
                             <MotionWrapper delay={0.4} className="flex flex-col sm:flex-row gap-4 justify-center">
-                                <Link href="/quote">
+                                <Link
+                                    href="/get-a-quote"
+                                    onClick={() => trackEvent({
+                                        action: ConversionEvents.REQUEST_QUOTE_CLICK,
+                                        category: 'conversion',
+                                        label: 'industry_hero_cta'
+                                    })}
+                                >
                                     <Button variant="glow" size="lg" className="h-12 px-8 text-base">Get a Quote <ArrowRight className="ml-2 h-4 w-4" /></Button>
                                 </Link>
                                 <Link href="/contact">
@@ -105,6 +114,21 @@ export function IndustryPageTemplate({ content }: IndustryPageTemplateProps) {
                                 ))}
                             </div>
                         </div>
+                    </Container>
+                </SectionWrapper>
+            )}
+
+            {/* 2.6. TESTIMONIAL (NEW) */}
+            {content.testimonial && (
+                <SectionWrapper variant="base" padding="md">
+                    <Container>
+                        <TestimonialCard
+                            quote={content.testimonial.quote}
+                            author={content.testimonial.author}
+                            role={content.testimonial.role}
+                            variant={content.testimonial.variant || "primary"}
+                            className="max-w-4xl mx-auto"
+                        />
                     </Container>
                 </SectionWrapper>
             )}
@@ -286,7 +310,14 @@ export function IndustryPageTemplate({ content }: IndustryPageTemplateProps) {
                                 <p className="text-text-secondary text-lg mb-10 max-w-xl mx-auto">
                                     Get a comprehensive quote tailored to your business needs in less than 24 hours.
                                 </p>
-                                <Link href="/quote">
+                                <Link
+                                    href="/get-a-quote"
+                                    onClick={() => trackEvent({
+                                        action: ConversionEvents.REQUEST_QUOTE_CLICK,
+                                        category: 'conversion',
+                                        label: 'industry_bottom_cta'
+                                    })}
+                                >
                                     <Button variant="glow" size="lg" className="w-full sm:w-auto px-16 h-16 text-xl font-bold">
                                         Request Quote Now
                                     </Button>

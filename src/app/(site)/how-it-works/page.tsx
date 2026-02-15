@@ -1,9 +1,11 @@
 import Link from "next/link"
 import { ArrowRight, CheckCircle2, FileSearch, Handshake, Rocket } from "lucide-react"
+import { trackEvent, ConversionEvents } from "@/lib/analytics"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Container } from "@/components/ui/container"
 import { SectionWrapper } from "@/components/ui/section-wrapper"
+import { QuoteLink } from "@/components/common/quote-link"
 
 const steps = [
     {
@@ -86,11 +88,11 @@ export default function HowItWorksPage() {
             <SectionWrapper padding="lg" showGlow patternIntensity="strong">
                 <Container className="text-center">
                     <h2 className="text-3xl font-bold mb-6">Ready to get started?</h2>
-                    <Link href="/quote">
+                    <QuoteLink eventLabel="how_it_works_cta">
                         <Button size="lg" className="h-14 px-8 text-lg">
                             Get Your Free Quote <ArrowRight className="ml-2 h-5 w-5" />
                         </Button>
-                    </Link>
+                    </QuoteLink>
                 </Container>
             </SectionWrapper>
         </main>

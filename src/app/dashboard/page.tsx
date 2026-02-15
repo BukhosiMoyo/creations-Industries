@@ -141,7 +141,7 @@ export default async function DashboardPage() {
                         <Clock className="h-4 w-4" />
                         Last 30 Days
                     </Button>
-                    <Button className="rounded-xl font-bold bg-accent hover:bg-accent/90 shadow-lg shadow-accent/20">
+                    <Button className="rounded-xl font-bold bg-accent hover:bg-accent/90 shadow-lg shadow-accent/20 text-white">
                         Generate Report
                     </Button>
                 </div>

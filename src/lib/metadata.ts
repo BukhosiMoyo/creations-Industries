@@ -18,6 +18,7 @@ interface MetadataProps {
     image?: string
     icons?: string
     noIndex?: boolean
+    canonical?: string
 }
 
 export function constructMetadata({
@@ -25,7 +26,8 @@ export function constructMetadata({
     description = siteConfig.description,
     image = siteConfig.ogImage,
     icons = '/favicon.ico',
-    noIndex = false
+    noIndex = false,
+    canonical
 }: MetadataProps = {}): Metadata {
     return {
         title: {
@@ -54,6 +56,11 @@ export function constructMetadata({
         },
         icons,
         metadataBase: new URL(siteConfig.url),
+        ...(canonical && {
+            alternates: {
+                canonical
+            }
+        }),
         ...(noIndex && {
             robots: {
                 index: false,

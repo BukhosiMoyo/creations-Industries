@@ -2,12 +2,15 @@
 
 import * as React from "react"
 import Link from "next/link"
-import { Menu } from "lucide-react"
+import { Menu, Home, Briefcase, Info, Phone, LayoutGrid, FileText, ChevronRight, LogIn, ClipboardEdit, Building } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
-import { Separator } from "@/components/ui/separator"
 import { ScrollArea } from "@/components/ui/scroll-area"
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import Image from "next/image"
+
+import { useRouter } from "next/navigation"
+import { trackEvent, ConversionEvents } from "@/lib/analytics"
 
 export function MobileNav() {
     const [open, setOpen] = React.useState(false)
@@ -15,70 +18,126 @@ export function MobileNav() {
     return (
         <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger asChild>
-                <Button variant="ghost" className="px-0 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 lg:hidden">
+                <Button variant="ghost" size="icon" className="lg:hidden text-text-primary hover:bg-surface-elevated">
                     <Menu className="h-6 w-6" />
                     <span className="sr-only">Toggle Menu</span>
                 </Button>
             </SheetTrigger>
-            <SheetContent side="left" className="pr-0">
-                <SheetHeader className="px-1 text-left">
+            <SheetContent side="right" className="w-[300px] sm:w-[350px] p-0 border-l border-border/40">
+                <SheetHeader className="p-4 text-left border-b border-border/40 bg-surface/50 backdrop-blur-sm">
                     <SheetTitle>
-                        <Image
-                            src="/logo.png"
-                            alt="Creations"
-                            width={140}
-                            height={40}
-                            className="h-8 w-auto object-contain dark:hidden"
-                        />
-                        <Image
-                            src="/logo-dark.png"
-                            alt="Creations"
-                            width={140}
-                            height={40}
-                            className="h-8 w-auto object-contain hidden dark:block"
-                        />
+                        <div className="flex items-center gap-2">
+                            <Image
+                                src="/logo.png"
+                                alt="Creations"
+                                width={120}
+                                height={32}
+                                className="h-6 w-auto object-contain dark:hidden"
+                            />
+                            <Image
+                                src="/logo-dark.png"
+                                alt="Creations"
+                                width={120}
+                                height={32}
+                                className="h-6 w-auto object-contain hidden dark:block"
+                            />
+                        </div>
                     </SheetTitle>
                 </SheetHeader>
-                <ScrollArea className="my-4 h-[calc(100vh-8rem)] pb-10 pl-1">
-                    <div className="flex flex-col space-y-3">
-                        <MobileLink href="/" onOpenChange={setOpen} className="font-bold">Home</MobileLink>
-                        <div className="flex flex-col space-y-2 pt-4">
-                            <h4 className="font-medium text-sm text-text-muted">Services</h4>
-                            {/* Simplified list for mobile to avoid deep nesting complexity */}
-                            <MobileLink href="/services" onOpenChange={setOpen} className="font-medium pl-4">All Services</MobileLink>
-                            <MobileLink href="/services/tax-services" onOpenChange={setOpen} className="text-text-secondary pl-4">Tax Services</MobileLink>
-                            <MobileLink href="/services/cipc-compliance" onOpenChange={setOpen} className="text-text-secondary pl-4">CIPC Compliance</MobileLink>
-                            <MobileLink href="/services/accounting" onOpenChange={setOpen} className="text-text-secondary pl-4">Accounting</MobileLink>
-                            {/* We can list more or link to parent pages */}
-                        </div>
+                <ScrollArea className="h-[calc(100vh-8rem)]">
+                    <div className="flex flex-col p-4 space-y-6">
+                        {/* Main Links */}
+                        <div className="flex flex-col space-y-1">
+                            <MobileLink href="/" onOpenChange={setOpen} icon={Home}>Home</MobileLink>
 
-                        <div className="flex flex-col space-y-2 pt-4">
-                            <h4 className="font-medium text-sm text-text-muted">Company</h4>
-                            <MobileLink href="/about" onOpenChange={setOpen}>About Us</MobileLink>
-                            <MobileLink href="/how-it-works" onOpenChange={setOpen}>Process</MobileLink>
-                            <MobileLink href="/industries" onOpenChange={setOpen}>Industries</MobileLink>
-                            <MobileLink href="/contact" onOpenChange={setOpen}>Contact</MobileLink>
+                            <Accordion type="single" collapsible className="w-full">
+                                <AccordionItem value="services" className="border-none">
+                                    <AccordionTrigger className="py-2 hover:no-underline hover:bg-accent/5 rounded-md px-3 text-sm font-medium">
+                                        <span className="flex items-center gap-3">
+                                            <LayoutGrid className="h-4 w-4 text-primary" />
+                                            Services
+                                        </span>
+                                    </AccordionTrigger>
+                                    <AccordionContent className="pb-0 pl-4">
+                                        <div className="flex flex-col space-y-1 pt-1 border-l border-border/50 ml-2 pl-2">
+                                            <MobileLink href="/services/tax-services" onOpenChange={setOpen} icon={FileText} className="text-sm text-text-secondary">Tax Services</MobileLink>
+                                            <MobileLink href="/services/bookkeeping" onOpenChange={setOpen} icon={FileText} className="text-sm text-text-secondary">Bookkeeping</MobileLink>
+                                            <MobileLink href="/services/payroll-service" onOpenChange={setOpen} icon={FileText} className="text-sm text-text-secondary">Payroll</MobileLink>
+                                            <MobileLink href="/services/cipc-compliance" onOpenChange={setOpen} icon={Building} className="text-sm text-text-secondary">Compliance</MobileLink>
+                                            <MobileLink href="/services" onOpenChange={setOpen} icon={ChevronRight} className="text-sm font-semibold text-primary mt-2">View All Services</MobileLink>
+                                        </div>
+                                    </AccordionContent>
+                                </AccordionItem>
+
+                                <AccordionItem value="industries" className="border-none">
+                                    <AccordionTrigger className="py-2 hover:no-underline hover:bg-accent/5 rounded-md px-3 text-sm font-medium">
+                                        <span className="flex items-center gap-3">
+                                            <Briefcase className="h-4 w-4 text-primary" />
+                                            Industries
+                                        </span>
+                                    </AccordionTrigger>
+                                    <AccordionContent className="pb-0 pl-4">
+                                        <div className="flex flex-col space-y-1 pt-1 border-l border-border/50 ml-2 pl-2">
+                                            <MobileLink href="/industries/medical-professionals" onOpenChange={setOpen} className="text-sm text-text-secondary">Medical</MobileLink>
+                                            <MobileLink href="/industries/engineering-consultants" onOpenChange={setOpen} className="text-sm text-text-secondary">Engineering</MobileLink>
+                                            <MobileLink href="/industries/legal-attorneys" onOpenChange={setOpen} className="text-sm text-text-secondary">Legal</MobileLink>
+                                            <MobileLink href="/industries/construction-projects" onOpenChange={setOpen} className="text-sm text-text-secondary">Construction</MobileLink>
+                                        </div>
+                                    </AccordionContent>
+                                </AccordionItem>
+                            </Accordion>
+
+                            <MobileLink href="/about" onOpenChange={setOpen} icon={Info}>About Us</MobileLink>
+                            <MobileLink href="/how-it-works" onOpenChange={setOpen} icon={LayoutGrid}>Process</MobileLink>
+                            <MobileLink href="/contact" onOpenChange={setOpen} icon={Phone}>Contact</MobileLink>
                         </div>
                     </div>
                 </ScrollArea>
+
+                <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-border/40 bg-surface/50 backdrop-blur-sm">
+                    <div className="grid grid-cols-2 gap-3">
+                        <Link href="/login" onClick={() => setOpen(false)}>
+                            <Button variant="outline" className="w-full justify-center">
+                                <LogIn className="mr-2 h-4 w-4" />
+                                Sign In
+                            </Button>
+                        </Link>
+                        <Link
+                            href="/get-a-quote"
+                            onClick={() => {
+                                trackEvent({
+                                    action: ConversionEvents.REQUEST_QUOTE_CLICK,
+                                    category: 'navigation',
+                                    label: 'mobile_menu_cta'
+                                })
+                                setOpen(false)
+                            }}
+                        >
+                            <Button variant="default" className="w-full justify-center bg-accent hover:bg-accent/90 text-white">
+                                <ClipboardEdit className="mr-2 h-4 w-4" />
+                                Quote
+                            </Button>
+                        </Link>
+                    </div>
+                </div>
             </SheetContent>
         </Sheet>
     )
 }
 
-type MobileLinkProps = React.PropsWithChildren<{
+interface MobileLinkProps extends React.PropsWithChildren {
     href: string
     onOpenChange?: (open: boolean) => void
     className?: string
-}>
-
-import { useRouter } from "next/navigation"
+    icon?: React.ElementType
+}
 
 function MobileLink({
     href,
     onOpenChange,
     className,
     children,
+    icon: Icon,
     ...props
 }: MobileLinkProps) {
     const router = useRouter()
@@ -89,10 +148,11 @@ function MobileLink({
                 router.push(href)
                 onOpenChange?.(false)
             }}
-            className={className}
+            className={`flex items-center gap-3 px-3 py-2 rounded-md transition-colors hover:bg-accent/5 hover:text-accent group ${className}`}
             {...props}
         >
-            {children}
+            {Icon && <Icon className="h-4 w-4 text-muted-foreground group-hover:text-accent transition-colors" />}
+            <span className="font-medium">{children}</span>
         </Link>
     )
 }

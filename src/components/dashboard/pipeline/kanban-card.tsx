@@ -32,7 +32,7 @@ export function KanbanCard({ request, onClick }: KanbanCardProps) {
 
     return (
         <Card
-            className="group shadow-sm border-border/50 hover:border-accent/40 hover:shadow-md transition-all cursor-grab active:cursor-grabbing bg-card/50 backdrop-blur-sm overflow-hidden"
+            className="group shadow-sm border-border hover:border-accent/40 hover:shadow-md transition-all cursor-grab active:cursor-grabbing bg-card overflow-hidden"
             onClick={onClick}
         >
             <CardHeader className="p-4 pb-2 space-y-3">

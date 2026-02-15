@@ -28,19 +28,19 @@ export function KanbanColumn({ label, count, children, accentColor }: KanbanColu
                     </Badge>
                 </div>
                 <div className="flex items-center gap-1">
-                    <Button variant="ghost" size="icon" className="h-7 w-7 text-muted-foreground/60 hover:text-foreground">
-                        <Plus className="h-3.5 w-3.5" />
+                    <Button variant="ghost" size="icon" className="h-7 w-7 text-muted-foreground hover:text-foreground">
+                        <Plus className="h-4 w-4" />
                     </Button>
-                    <Button variant="ghost" size="icon" className="h-7 w-7 text-muted-foreground/60 hover:text-foreground">
-                        <MoreHorizontal className="h-3.5 w-3.5" />
+                    <Button variant="ghost" size="icon" className="h-7 w-7 text-muted-foreground hover:text-foreground">
+                        <MoreHorizontal className="h-4 w-4" />
                     </Button>
                 </div>
             </div>
 
             <div
                 className={cn(
-                    "flex-1 rounded-2xl p-3 space-y-3 min-h-[600px] border border-transparent transition-colors",
-                    "bg-muted/30 hover:bg-muted/40",
+                    "flex-1 rounded-2xl p-3 space-y-3 min-h-[600px] border transition-colors",
+                    "bg-accent/5 border-border/60 hover:bg-accent/10",
                     accentColor && `border-t-2 ${accentColor}`
                 )}
             >

@@ -62,7 +62,13 @@ export const industries: IndustryContent[] = [
             "Difficulty opening business bank accounts",
             "Messy personal vs. business finance mixing"
         ],
-        complianceContext: "We ensure your startup complies with the Companies Act 2008 and Tax Administration Act from the very first transaction."
+        complianceContext: "We ensure your startup complies with the Companies Act 2008 and Tax Administration Act from the very first transaction.",
+        testimonial: {
+            quote: "We stopped worrying about whether our reports were correct and started focusing on what the numbers meant for our growth.",
+            author: "Founder",
+            role: "Tech Start-up",
+            variant: "subtle"
+        }
     },
     {
         slug: "growing-sme",
@@ -125,7 +131,13 @@ export const industries: IndustryContent[] = [
             "Late penalties from SARS",
             "Lack of visibility into profitability"
         ],
-        complianceContext: "Our processes ensure full compliance with IFRS for SMEs and all relevant labour laws."
+        complianceContext: "Our processes ensure full compliance with IFRS for SMEs and all relevant labour laws.",
+        testimonial: {
+            quote: "Moving from annual catch-ups to monthly management accounts gave us the visibility we needed to secure funding.",
+            author: "Director",
+            role: "Manufacturing Business",
+            variant: "primary"
+        }
     },
     {
         slug: "tender-driven-business",
@@ -189,7 +201,13 @@ export const industries: IndustryContent[] = [
             "Scrambling for financials at the last minute",
             "Inconsistent B-BBEE levels"
         ],
-        complianceContext: "We align strictly with the PFMA and PPPFA requirements to ensure your bid is administratively compliant."
+        complianceContext: "We align strictly with the PFMA and PPPFA requirements to ensure your bid is administratively compliant.",
+        testimonial: {
+            quote: "We can clearly see profit margins per project now, which has changed how we tender for new work.",
+            author: "Quantity Surveyor",
+            role: "Construction SME",
+            variant: "subtle"
+        }
     },
     {
         slug: "professional-practice",
@@ -253,6 +271,12 @@ export const industries: IndustryContent[] = [
             "Mixing personal and business expenses",
             "Fear of SARS audits"
         ],
-        complianceContext: "We ensure compliance with specific industry bodies (HPCSA, LPC) where finance overlaps with professional conduct."
+        complianceContext: "We ensure compliance with specific industry bodies (HPCSA, LPC) where finance overlaps with professional conduct.",
+        testimonial: {
+            quote: "I can focus on patients knowing that my tax and practice finances are being monitored by professionals.",
+            author: "Specialist",
+            role: "Private Practice",
+            variant: "primary"
+        }
     }
 ]

@@ -2,6 +2,7 @@
 
 import * as React from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { usePathname } from "next/navigation"
 import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
@@ -14,7 +15,6 @@ import {
     BarChart3,
     Zap,
     Settings,
-    ShieldCheck,
     PanelLeftClose,
     PanelLeftOpen,
 } from "lucide-react"
@@ -58,19 +58,35 @@ export function DashboardSidebar({ user }: DashboardSidebarProps) {
             )}
         >
             {/* Brand Header */}
-            <div className="flex h-16 items-center px-6">
+            <div className="flex h-16 items-center px-4">
                 <Link href="/" className="flex items-center gap-3 overflow-hidden">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-accent shadow-lg shadow-accent/20">
-                        <ShieldCheck className="h-6 w-6 text-white" />
-                    </div>
-                    {!isCollapsed && (
-                        <motion.span
-                            initial={{ opacity: 0, x: -10 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            className="text-xl font-bold tracking-tight text-foreground whitespace-nowrap"
-                        >
-                            Creations
-                        </motion.span>
+                    {isCollapsed ? (
+                        <div className="flex h-10 w-10 shrink-0 items-center justify-center">
+                            <Image
+                                src="/icon.webp"
+                                alt="Creations"
+                                width={32}
+                                height={32}
+                                className="h-8 w-8 object-contain"
+                            />
+                        </div>
+                    ) : (
+                        <div className="relative h-8 w-32 shrink-0">
+                            <Image
+                                src="/logo.png"
+                                alt="Creations"
+                                fill
+                                className="object-contain dark:hidden"
+                                priority
+                            />
+                            <Image
+                                src="/logo-dark.png"
+                                alt="Creations"
+                                fill
+                                className="hidden object-contain dark:block"
+                                priority
+                            />
+                        </div>
                     )}
                 </Link>
             </div>

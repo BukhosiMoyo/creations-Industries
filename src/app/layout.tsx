@@ -14,6 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 import { constructMetadata } from "@/lib/metadata";
+import { GoogleAnalytics } from "@/components/analytics/google-analytics";
+import { GA_MEASUREMENT_ID } from "@/lib/analytics";
 
 export const metadata = constructMetadata();
 
@@ -31,6 +33,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-text-primary`}
       >
+        <GoogleAnalytics GA_MEASUREMENT_ID={GA_MEASUREMENT_ID} />
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

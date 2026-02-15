@@ -23,6 +23,7 @@ import {
     DropdownMenuItem,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { NewTaskDialog } from "@/components/dashboard/tasks/new-task-dialog";
 
 interface Task {
     id: string;
@@ -123,10 +124,12 @@ export default function TasksPage() {
                         <Download className="h-4 w-4" />
                         Export
                     </Button>
-                    <Button className="rounded-xl font-bold bg-accent hover:bg-accent/90 shadow-lg shadow-accent/20 gap-2">
-                        <Plus className="h-4 w-4" />
-                        New Task
-                    </Button>
+                    <NewTaskDialog>
+                        <Button className="rounded-xl font-bold bg-accent hover:bg-accent/90 shadow-lg shadow-accent/20 gap-2 text-white">
+                            <Plus className="h-4 w-4" />
+                            New Task
+                        </Button>
+                    </NewTaskDialog>
                 </div>
             </div>
 
@@ -153,8 +156,8 @@ export default function TasksPage() {
                             key={value}
                             variant={filter === value ? "default" : "outline"}
                             className={`h-11 rounded-xl px-4 font-bold text-xs ${filter === value
-                                    ? "bg-accent text-white"
-                                    : "border-border/60 text-muted-foreground"
+                                ? "bg-accent text-white"
+                                : "border-border/60 text-muted-foreground"
                                 }`}
                             onClick={() => setFilter(value)}
                         >
@@ -223,8 +226,8 @@ export default function TasksPage() {
                                             <div className="lg:col-span-4 flex items-center gap-4">
                                                 <div
                                                     className={`h-10 w-10 shrink-0 rounded-xl flex items-center justify-center transition-all ${task.status === "Done"
-                                                            ? "bg-emerald-500/10 text-emerald-500"
-                                                            : "bg-muted/50 text-muted-foreground group-hover:bg-accent group-hover:text-white"
+                                                        ? "bg-emerald-500/10 text-emerald-500"
+                                                        : "bg-muted/50 text-muted-foreground group-hover:bg-accent group-hover:text-white"
                                                         }`}
                                                 >
                                                     {task.status === "Done" ? (
@@ -236,9 +239,9 @@ export default function TasksPage() {
                                                 <div className="min-w-0">
                                                     <h3
                                                         className={`font-bold text-sm truncate ${task.status ===
-                                                                "Done"
-                                                                ? "line-through text-muted-foreground"
-                                                                : "text-foreground"
+                                                            "Done"
+                                                            ? "line-through text-muted-foreground"
+                                                            : "text-foreground"
                                                             }`}
                                                     >
                                                         {task.title}
@@ -274,7 +277,7 @@ export default function TasksPage() {
                                                     variant="outline"
                                                     className={`${TYPE_STYLES[
                                                         task.type
-                                                        ] || ""
+                                                    ] || ""
                                                         } border-none text-[10px] font-bold uppercase tracking-wider`}
                                                 >
                                                     {TYPE_LABELS[task.type] ||
@@ -286,8 +289,8 @@ export default function TasksPage() {
                                             <div className="hidden lg:col-span-1 lg:flex items-center justify-center">
                                                 <Badge
                                                     className={`text-[10px] font-bold uppercase tracking-wider ${task.status === "Done"
-                                                            ? "bg-emerald-500 text-white"
-                                                            : "bg-blue-500 text-white"
+                                                        ? "bg-emerald-500 text-white"
+                                                        : "bg-blue-500 text-white"
                                                         }`}
                                                 >
                                                     {task.status}
@@ -301,10 +304,10 @@ export default function TasksPage() {
                                                         className={`flex items-center gap-1.5 text-xs font-bold ${new Date(
                                                             task.dueDate
                                                         ) < new Date() &&
-                                                                task.status ===
-                                                                "Open"
-                                                                ? "text-red-500"
-                                                                : "text-foreground/70"
+                                                            task.status ===
+                                                            "Open"
+                                                            ? "text-red-500"
+                                                            : "text-foreground/70"
                                                             }`}
                                                     >
                                                         <CalendarClock className="h-3.5 w-3.5" />
