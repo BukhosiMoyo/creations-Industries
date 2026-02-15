@@ -238,7 +238,7 @@ export default function ConstructionIndustryPage() {
             </SectionWrapper>
 
             {/* TRUST BLOCK */}
-            <TrustBlock />
+            <TrustBlock variant="process" />
 
             {/* 4. PAIN POINTS SOLVED */}
             <SectionWrapper padding="lg" variant="surface" showLineGrid>
