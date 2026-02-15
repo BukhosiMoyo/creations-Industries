@@ -8,7 +8,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     // 1. Static Pages (Core)
     const staticRoutes = [
-        '',
+        '/', // Home
         '/about',
         '/contact',
         '/how-it-works',
@@ -17,8 +17,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
         '/industries', // Industries hub
         '/privacy',
         '/terms',
-        // HTML Sitemap
-        '/site-map',
+        '/services/accounting',
+        '/services/tax',
+        '/services/bookkeeping',
         // Location Hubs
         '/locations/pretoria',
         '/locations/johannesburg',
@@ -26,11 +27,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         // Pretoria Service Pages
         '/locations/pretoria/tax',
         '/locations/pretoria/bookkeeping',
-        '/locations/pretoria/accounting', // Newly added
-        // Static Service Replacements (High Priority)
-        '/services/accounting',
-        '/services/tax',
-        '/services/bookkeeping',
+        '/locations/pretoria/accounting',
     ].map((route) => ({
         url: `${baseUrl}${route}`,
         lastModified: new Date(),

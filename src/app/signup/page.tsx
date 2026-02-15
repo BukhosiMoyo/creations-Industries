@@ -1,6 +1,13 @@
 import { SignUpCard } from "@/components/auth/SignUpCard";
 import { LoginRightPanel } from "@/components/auth/LoginRightPanel";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
+import { constructMetadata } from "@/lib/metadata";
+import { Metadata } from "next";
+
+export const metadata: Metadata = constructMetadata({
+    title: "Create Account",
+    description: "Sign up for the Creations client portal. Securely onboard your business and get started."
+});
 
 export default function RegisterPage() {
     return (

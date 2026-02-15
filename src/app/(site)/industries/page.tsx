@@ -4,6 +4,13 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Container } from "@/components/ui/container"
 import { SectionWrapper } from "@/components/ui/section-wrapper"
+import { constructMetadata } from "@/lib/metadata"
+import { Metadata } from "next"
+
+export const metadata: Metadata = constructMetadata({
+    title: "Industries We Serve",
+    description: "Specialized accounting solutions for Construction, Retail, Tech, Healthcare, and more. tailored to your sector's unique challenges."
+})
 
 const industries = [
     {
@@ -84,6 +91,45 @@ export default function IndustriesPage() {
                                 </CardContent>
                             </Card>
                         ))}
+                    </div>
+                </Container>
+            </SectionWrapper>
+
+            <SectionWrapper padding="lg" showDotGrid>
+                <Container max-w-4xl>
+                    <div className="grid md:grid-cols-2 gap-12 items-center">
+                        <div>
+                            <h2 className="text-3xl font-bold mb-6">Why Industry Specialization Matters</h2>
+                            <p className="text-lg text-text-secondary mb-6 leading-relaxed">
+                                Generic accounting often misses the nuances that drive profitability in specific sectors. Construction firms need WIP tracking, not just expense categorization. Law firms need precise trust account audits, not standard banking reconciliations.
+                            </p>
+                            <p className="text-lg text-text-secondary leading-relaxed">
+                                By focusing on these key industries, we’ve developed proprietary workflows and compliance checklists that ensure you aren’t just compliant — you’re optimized for growth within your specific market conditions.
+                            </p>
+                        </div>
+                        <div className="bg-surface-elevated p-8 rounded-2xl border border-border/50">
+                            <h3 className="text-xl font-bold mb-4">The Specialist Advantage</h3>
+                            <ul className="space-y-4">
+                                <li className="flex gap-3">
+                                    <div className="h-6 w-6 rounded-full bg-green-500/10 flex items-center justify-center shrink-0">
+                                        <div className="h-2 w-2 rounded-full bg-green-500" />
+                                    </div>
+                                    <span className="text-text-secondary">Sector-specific tax deductions aimed at reducing liability.</span>
+                                </li>
+                                <li className="flex gap-3">
+                                    <div className="h-6 w-6 rounded-full bg-green-500/10 flex items-center justify-center shrink-0">
+                                        <div className="h-2 w-2 rounded-full bg-green-500" />
+                                    </div>
+                                    <span className="text-text-secondary">Pre-built financial models tailored to your business type.</span>
+                                </li>
+                                <li className="flex gap-3">
+                                    <div className="h-6 w-6 rounded-full bg-green-500/10 flex items-center justify-center shrink-0">
+                                        <div className="h-2 w-2 rounded-full bg-green-500" />
+                                    </div>
+                                    <span className="text-text-secondary">Proactive compliance monitoring for industry regulations.</span>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </Container>
             </SectionWrapper>

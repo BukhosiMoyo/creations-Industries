@@ -6,6 +6,13 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Container } from "@/components/ui/container"
 import { SectionWrapper } from "@/components/ui/section-wrapper"
 import { QuoteLink } from "@/components/common/quote-link"
+import { constructMetadata } from "@/lib/metadata"
+import { Metadata } from "next"
+
+export const metadata: Metadata = constructMetadata({
+    title: "How It Works",
+    description: "A simple, transparent 4-step process to get your business finances on track. From discovery to ongoing support."
+})
 
 const steps = [
     {
@@ -49,7 +56,6 @@ export default function HowItWorksPage() {
             <SectionWrapper variant="surface" padding="lg">
                 <Container>
                     <div className="relative max-w-4xl mx-auto">
-                        {/* Connecting Line (Desktop) */}
                         <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-border -translate-x-1/2" />
 
                         <div className="space-y-12 md:space-y-24 relative">
@@ -58,7 +64,6 @@ export default function HowItWorksPage() {
                                 return (
                                     <div key={item.step} className={`flex flex-col md:flex-row items-center gap-8 ${isEven ? 'md:flex-row-reverse' : ''}`}>
 
-                                        {/* Content Side */}
                                         <div className={`flex-1 text-center ${isEven ? 'md:text-left' : 'md:text-right'}`}>
                                             <div className="inline-flex items-center justify-center h-12 w-12 rounded-full bg-accent/10 text-accent mb-4 md:hidden">
                                                 <item.icon className="h-6 w-6" />
@@ -69,17 +74,51 @@ export default function HowItWorksPage() {
                                             </p>
                                         </div>
 
-                                        {/* Center Node */}
                                         <div className="relative z-10 hidden md:flex h-16 w-16 items-center justify-center rounded-full bg-surface-elevated border-4 border-background shadow-lg">
                                             <span className="text-xl font-bold text-accent">{item.step}</span>
                                         </div>
 
-                                        {/* Empty Side for Balance */}
                                         <div className="flex-1 hidden md:block" />
 
                                     </div>
                                 )
                             })}
+                        </div>
+                    </div>
+                </Container>
+            </SectionWrapper>
+
+            <SectionWrapper showDotGrid padding="lg">
+                <Container className="max-w-4xl">
+                    <div className="text-center mb-12">
+                        <h2 className="text-3xl font-bold mb-4">Common Questions</h2>
+                        <p className="text-text-secondary text-lg">Everything you need to know about getting started.</p>
+                    </div>
+
+                    <div className="grid md:grid-cols-2 gap-8">
+                        <div className="space-y-4">
+                            <h3 className="text-xl font-bold">Do I need to change banks?</h3>
+                            <p className="text-text-secondary leading-relaxed">
+                                No. We work with all major South African banks. We simply set up read-only feeds or request statements to keep your books up to date without interfering with your banking relationships.
+                            </p>
+                        </div>
+                        <div className="space-y-4">
+                            <h3 className="text-xl font-bold">What software do you use?</h3>
+                            <p className="text-text-secondary leading-relaxed">
+                                We are Xero and Sage partners. If you don't have a preference, we'll recommend the best fit for your industry. If you already have a subscription, we can take it over or work within your existing setup.
+                            </p>
+                        </div>
+                        <div className="space-y-4">
+                            <h3 className="text-xl font-bold">How fast is the onboarding?</h3>
+                            <p className="text-text-secondary leading-relaxed">
+                                Typically 2-3 days. Once we have your documents and access, we can usually start processing your accounts within the same week. We prioritize speed so you don't lose momentum.
+                            </p>
+                        </div>
+                        <div className="space-y-4">
+                            <h3 className="text-xl font-bold">Can I upgrade my package later?</h3>
+                            <p className="text-text-secondary leading-relaxed">
+                                Absolutely. As you grow, your needs will change. You can switch from a compliance-only package to a full advisory retainer at any time with no penalties.
+                            </p>
                         </div>
                     </div>
                 </Container>
@@ -95,6 +134,6 @@ export default function HowItWorksPage() {
                     </QuoteLink>
                 </Container>
             </SectionWrapper>
-        </main>
+        </main >
     )
 }

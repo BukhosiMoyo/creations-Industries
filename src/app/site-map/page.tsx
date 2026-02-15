@@ -22,7 +22,7 @@ export default function SitemapPage() {
         { label: "About Us", href: "/about" },
         { label: "How It Works", href: "/how-it-works" },
         { label: "Contact", href: "/contact" },
-        { label: "Get a Quote", href: "/quote" },
+        { label: "Get a Quote", href: "/get-a-quote" },
         { label: "Services Overview", href: "/services" },
         { label: "Industries", href: "/industries" },
     ]

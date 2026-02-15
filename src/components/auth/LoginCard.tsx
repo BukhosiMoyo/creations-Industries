@@ -118,12 +118,9 @@ export function LoginCard() {
                     <div className="space-y-2">
                         <div className="flex items-center justify-between">
                             <Label htmlFor="password">Password</Label>
-                            <Link
-                                href="/forgot-password"
-                                className="text-sm text-muted-foreground hover:text-primary underline-offset-4 hover:underline"
-                            >
+                            <span className="text-sm text-muted-foreground/50 cursor-not-allowed">
                                 Forgot password?
-                            </Link>
+                            </span>
                         </div>
                         <div className="relative">
                             <Lock className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />

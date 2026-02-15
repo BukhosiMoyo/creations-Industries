@@ -6,12 +6,15 @@ export default function robots(): MetadataRoute.Robots {
             userAgent: '*',
             allow: '/',
             disallow: [
+                '/dashboard/',
                 '/admin/',
-                '/portal/',
+                '/client/',
+                '/employee/',
                 '/api/',
-                '/auth/', // If auth routes exist
-                '/thank-you/',
-                '/internal/',
+                '/login',
+                '/portal/', // Legacy/Auth
+                '/internal/', // System
+                '/auth/', // Auth
             ],
         },
         sitemap: 'https://creations.co.za/sitemap.xml',

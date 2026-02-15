@@ -1,6 +1,13 @@
 import { LoginCard } from "@/components/auth/LoginCard";
 import { LoginRightPanel } from "@/components/auth/LoginRightPanel";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
+import { constructMetadata } from "@/lib/metadata";
+import { Metadata } from "next";
+
+export const metadata: Metadata = constructMetadata({
+    title: "Client Portal Login",
+    description: "Secure access to your Creations client portal. Manage documents, view reports, and track requests."
+});
 
 export default function LoginPage() {
     return (

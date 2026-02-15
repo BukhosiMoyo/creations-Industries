@@ -105,7 +105,7 @@ export function PillarsSection() {
                             "Companies Act secretarial"
                         ]}
                         quote="Non-compliance cost is 2.7x more than fees."
-                        href="/services/tax-services"
+                        href="/services/tax"
                         delay={0.1}
                     />
 

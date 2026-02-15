@@ -60,7 +60,7 @@ export function MobileNav() {
                                     </AccordionTrigger>
                                     <AccordionContent className="pb-0 pl-4">
                                         <div className="flex flex-col space-y-1 pt-1 border-l border-border/50 ml-2 pl-2">
-                                            <MobileLink href="/services/tax-services" onOpenChange={setOpen} icon={FileText} className="text-sm text-text-secondary">Tax Services</MobileLink>
+                                            <MobileLink href="/services/tax" onOpenChange={setOpen} icon={FileText} className="text-sm text-text-secondary">Tax Services</MobileLink>
                                             <MobileLink href="/services/bookkeeping" onOpenChange={setOpen} icon={FileText} className="text-sm text-text-secondary">Bookkeeping</MobileLink>
                                             <MobileLink href="/services/payroll-service" onOpenChange={setOpen} icon={FileText} className="text-sm text-text-secondary">Payroll</MobileLink>
                                             <MobileLink href="/services/cipc-compliance" onOpenChange={setOpen} icon={Building} className="text-sm text-text-secondary">Compliance</MobileLink>

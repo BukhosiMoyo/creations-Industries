@@ -25,6 +25,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         return constructMetadata({
             title: service.seoTitle || `${service.title} | Creations`,
             description: service.seoDescription || service.hero.subheading,
+            noIndex: true // Dynamic services are not structural pillars; prevent indexing.
         })
     }
 
