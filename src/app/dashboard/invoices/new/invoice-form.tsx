@@ -32,9 +32,8 @@ const invoiceSchema = z.object({
     notes: z.string().optional(),
     lineItems: z.array(z.object({
         description: z.string().min(1, "Description is required"),
-        // Use preprocess to safely cast string/number inputs to number
-        quantity: z.preprocess((val) => Number(val), z.number().min(1, "Quantity must be at least 1")),
-        unitPrice: z.preprocess((val) => Number(val), z.number().min(0, "Price cannot be negative")),
+        quantity: z.coerce.number().min(1, "Quantity must be at least 1"),
+        unitPrice: z.coerce.number().min(0, "Price cannot be negative"),
     })).min(1, "At least one line item is required")
 })
 
@@ -51,7 +50,8 @@ export default function CreateInvoicePage({ clients }: Props) {
 
     // Form
     const form = useForm<InvoiceFormValues>({
-        resolver: zodResolver(invoiceSchema),
+        // Cast resolver to any to avoid strict type mismatch with z.coerce.number()
+        resolver: zodResolver(invoiceSchema) as any,
         defaultValues: {
             dueDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0], // +7 days
             lineItems: [{ description: "Professional Services", quantity: 1, unitPrice: 0 }]
