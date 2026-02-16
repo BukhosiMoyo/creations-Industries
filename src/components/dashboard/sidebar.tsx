@@ -18,6 +18,9 @@ import {
     PanelLeftClose,
     PanelLeftOpen,
     User as UserIcon,
+    Megaphone,
+    Receipt,
+    Users,
 } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -27,10 +30,13 @@ const navigation = [
     { name: "Leads", href: "/dashboard/leads", icon: UserIcon, roles: ["ADMIN", "STAFF", "EMPLOYEE"] },
     { name: "Pipeline", href: "/dashboard/pipeline", icon: Briefcase, roles: ["ADMIN", "STAFF"] },
     { name: "Companies", href: "/dashboard/companies", icon: Building2, roles: ["ADMIN", "STAFF"] },
+    { name: "Invoices", href: "/dashboard/invoices", icon: Receipt, roles: ["ADMIN", "STAFF"] },
+    { name: "Campaigns", href: "/dashboard/campaigns", icon: Megaphone, roles: ["ADMIN", "STAFF"] },
     { name: "Service Requests", href: "/dashboard/requests", icon: Briefcase, roles: ["ADMIN", "STAFF", "EMPLOYEE"] },
     { name: "Tasks", href: "/dashboard/tasks", icon: CheckSquare, badge: 3, roles: ["ADMIN", "STAFF", "EMPLOYEE"] },
     { name: "Documents", href: "/dashboard/documents", icon: FileText, badge: 12, roles: ["ADMIN", "STAFF", "EMPLOYEE"] },
     { type: "separator" },
+    { name: "Team", href: "/dashboard/users", icon: Users, roles: ["ADMIN"] },
     { name: "Reports", href: "/dashboard/reports", icon: BarChart3, disabled: true, roles: ["ADMIN", "STAFF"] },
     { name: "Analytics", href: "/dashboard/analytics", icon: BarChart3, roles: ["ADMIN"] },
     { name: "Integrations", href: "/dashboard/xero", icon: Zap, roles: ["ADMIN"] },
