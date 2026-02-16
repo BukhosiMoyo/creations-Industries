@@ -1,5 +1,7 @@
+
 import Link from 'next/link'
 import { ArrowRight, Calculator } from 'lucide-react'
+import { FaqList } from '@/components/home/faq-section'
 import { Button } from '@/components/ui/button'
 import { Container } from '@/components/ui/container'
 import { SectionWrapper } from '@/components/ui/section-wrapper'
@@ -20,6 +22,25 @@ const services = [
     "Customer Invoicing",
     "VAT Calculations",
     "Cloud Accounting (Xero/Sage)"
+]
+
+const faqs = [
+    {
+        question: "What is bookkeeping?",
+        answer: "Bookkeeping is the process of recording financial transactions. It's essential for tracking income and expenses, managing cash flow, and preparing for tax season."
+    },
+    {
+        question: "Why do I need a bookkeeper?",
+        answer: "A bookkeeper helps you maintain accurate financial records, saving you time and ensuring compliance. This allows you to focus on growing your business."
+    },
+    {
+        question: "Do you use cloud accounting software?",
+        answer: "Yes, we specialize in cloud-based accounting solutions like Xero and Sage, providing real-time financial insights and efficient collaboration."
+    },
+    {
+        question: "How often do you perform bookkeeping tasks?",
+        answer: "We offer flexible bookkeeping services, from daily to monthly, tailored to your business needs and transaction volume."
+    }
 ]
 
 export default function CenturionBookkeepingPage() {
@@ -76,11 +97,7 @@ export default function CenturionBookkeepingPage() {
                                 <Calculator className="h-5 w-5 text-accent" />
                                 Services Included
                             </h3>
-                            <IconList
-                                items={services}
-                                className="space-y-4"
-                                itemClassName="flex items-center gap-3 text-text-secondary"
-                            />
+                            <FaqList items={faqs} />
                         </MotionWrapper>
                     </div>
                 </Container>
@@ -88,3 +105,4 @@ export default function CenturionBookkeepingPage() {
         </main>
     )
 }
+

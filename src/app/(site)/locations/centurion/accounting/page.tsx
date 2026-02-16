@@ -1,5 +1,7 @@
+
 import Link from 'next/link'
 import { ArrowRight, CheckCircle2 } from 'lucide-react'
+import { FaqList } from '@/components/home/faq-section'
 import { Button } from '@/components/ui/button'
 import { Container } from '@/components/ui/container'
 import { SectionWrapper } from '@/components/ui/section-wrapper'
@@ -40,6 +42,24 @@ export default function CenturionAccountingPage() {
         }
     }
 
+    // Assuming 'faqs' array would be defined here or imported if FaqList is used.
+    // For the purpose of this edit, we'll define a placeholder 'faqs' array.
+    const faqs = [
+        {
+            question: "What accounting services do you offer in Centurion?",
+            answer: "We offer a comprehensive suite of accounting services including monthly management accounts, asset register management, financial statements (AFS), budgeting for growth, and payroll & UIF services tailored for Centurion businesses."
+        },
+        {
+            question: "Do you specialize in specific industries in Centurion?",
+            answer: "Yes, we have expertise in cloud accounting for logistics, tech, and estate-based SMEs located in areas like Highveld, Irene, and other Centurion surrounds."
+        },
+        {
+            question: "How can I get a quote for your services?",
+            answer: "You can get a quote by clicking on the 'Get a Quote' button on our page, or by contacting us directly through our website."
+        }
+    ];
+
+
     return (
         <main>
             <JsonLd data={jsonLd} />
@@ -73,11 +93,7 @@ export default function CenturionAccountingPage() {
                         </MotionWrapper>
                         <MotionWrapper delay={0.2} className="bg-surface-elevated border border-border rounded-2xl p-8">
                             <h3 className="text-lg font-bold mb-6">What We Cover</h3>
-                            <IconList
-                                items={services}
-                                className="space-y-4"
-                                itemClassName="flex items-center gap-3 text-text-secondary"
-                            />
+                            <FaqList items={faqs} />
                         </MotionWrapper>
                     </div>
                 </Container>
@@ -85,3 +101,4 @@ export default function CenturionAccountingPage() {
         </main>
     )
 }
+

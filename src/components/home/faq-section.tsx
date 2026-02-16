@@ -65,3 +65,13 @@ export function FaqItem({ question, answer, value }: { question: string, answer:
     )
 }
 
+export function FaqList({ items }: { items: { question: string, answer: string }[] }) {
+    return (
+        <Accordion type="single" collapsible className="w-full space-y-4">
+            {items.map((faq, i) => (
+                <FaqItem key={i} question={faq.question} answer={faq.answer} value={`item-${i}`} />
+            ))}
+        </Accordion>
+    )
+}
+

@@ -6,7 +6,7 @@ import { Container } from '@/components/ui/container'
 import { SectionWrapper } from '@/components/ui/section-wrapper'
 import { MotionWrapper } from '@/components/ui/motion-wrapper'
 import { IconList } from '@/components/ui/icon-list'
-import { FaqItem } from '@/components/home/faq-section'
+import { FaqList } from '@/components/home/faq-section'
 import { constructMetadata } from '@/lib/metadata'
 import { JsonLd } from '@/components/seo/json-ld'
 import { Service, WithContext } from 'schema-dts'
@@ -118,11 +118,7 @@ export default function JohannesburgTaxPage() {
                     <MotionWrapper className="text-center mb-12">
                         <h2 className="text-3xl font-bold mb-4">Tax FAQs</h2>
                     </MotionWrapper>
-                    <div className="space-y-4">
-                        {faqs.map((faq, i) => (
-                            <FaqItem key={i} question={faq.question} answer={faq.answer} />
-                        ))}
-                    </div>
+                    <FaqList items={faqs} />
                 </Container>
             </SectionWrapper>
         </main>

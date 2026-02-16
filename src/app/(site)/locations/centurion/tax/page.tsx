@@ -1,10 +1,10 @@
 import Link from 'next/link'
-import { ArrowRight, ShieldCheck } from 'lucide-react'
+import { ShieldCheck } from 'lucide-react'
 import { Button } from '@/components/ui/button'
+import { FaqList } from '@/components/home/faq-section'
 import { Container } from '@/components/ui/container'
 import { SectionWrapper } from '@/components/ui/section-wrapper'
 import { MotionWrapper } from '@/components/ui/motion-wrapper'
-import { IconList } from '@/components/ui/icon-list'
 import { constructMetadata } from '@/lib/metadata'
 import { JsonLd } from '@/components/seo/json-ld'
 import { Service, WithContext } from 'schema-dts'
@@ -20,6 +20,25 @@ const services = [
     "Logistics Sector Tax Compliance",
     "Tax Clearance for Tenders",
     "Provisional Tax Calculations"
+]
+
+const faqs = [
+    {
+        question: "What tax services do you offer in Centurion?",
+        answer: "We offer a comprehensive range of tax services including Corporate Income Tax Returns, VAT Registration & Submissions, Logistics Sector Tax Compliance, Tax Clearance for Tenders, and Provisional Tax Calculations tailored for Centurion businesses."
+    },
+    {
+        question: "How can you help with SARS compliance for my Centurion business?",
+        answer: "Our experts ensure your business adheres to all SARS regulations, handling submissions, returns, and providing guidance to keep your tax affairs in order, preventing penalties and ensuring smooth operations."
+    },
+    {
+        question: "Do you assist with tax clearance certificates for tenders?",
+        answer: "Yes, we specialize in assisting Centurion businesses with obtaining tax clearance certificates, which are crucial for participating in tenders and securing new business opportunities."
+    },
+    {
+        question: "What industries do you serve in Centurion for tax services?",
+        answer: "While we serve a broad range of industries, we have particular expertise in logistics and professional services sectors within Centurion, understanding their unique tax challenges and requirements."
+    }
 ]
 
 export default function CenturionTaxPage() {
@@ -76,11 +95,7 @@ export default function CenturionTaxPage() {
                                 <ShieldCheck className="h-5 w-5 text-accent" />
                                 Local Tax Services
                             </h3>
-                            <IconList
-                                items={services}
-                                className="space-y-4"
-                                itemClassName="flex items-center gap-3 text-text-secondary"
-                            />
+                            <FaqList items={faqs} />
                         </MotionWrapper>
                     </div>
                 </Container>
