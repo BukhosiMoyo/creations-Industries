@@ -32,6 +32,7 @@ const navigation = [
     { name: "Documents", href: "/dashboard/documents", icon: FileText, badge: 12, roles: ["ADMIN", "STAFF", "EMPLOYEE"] },
     { type: "separator" },
     { name: "Reports", href: "/dashboard/reports", icon: BarChart3, disabled: true, roles: ["ADMIN", "STAFF"] },
+    { name: "Analytics", href: "/dashboard/analytics", icon: BarChart3, roles: ["ADMIN"] },
     { name: "Integrations", href: "/dashboard/xero", icon: Zap, roles: ["ADMIN"] },
     { name: "Settings", href: "/dashboard/settings", icon: Settings, roles: ["ADMIN"] },
 ]
