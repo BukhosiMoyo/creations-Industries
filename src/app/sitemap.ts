@@ -83,8 +83,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     const serviceRoutes = services
         .filter(s => !staticServiceSlugs.includes(s.slug))
+        .filter(s => !s.href) // Exclude services that redirect (targets are in staticRoutes)
         .map((service) => ({
-            url: service.href ? `${baseUrl}${service.href}` : `${baseUrl}/services/${service.slug}`,
+            url: `${baseUrl}/services/${service.slug}`,
             lastModified: new Date(),
             changeFrequency: 'weekly' as const,
             priority: 0.9,

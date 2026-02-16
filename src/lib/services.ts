@@ -9181,7 +9181,16 @@ export const services: ServiceContent[] = [
     },
     {
         slug: "vat-returns-submissions",
+        title: "VAT Submissions (Redirect)",
+        href: "/services/tax/vat-registration-returns",
+        pillar: "Compliance",
+        hero: { heading: "", subheading: "" },
+        whoIsThisFor: [], deliverables: [], process: [], requirements: [], timeline: "", faqs: [], relatedServices: []
+    },
+    {
+        slug: "vat-registration-returns",
         title: "VAT Returns & VAT Submissions (VAT201) Services",
+        href: "/services/tax/vat-registration-returns",
         pillar: "Compliance",
         hero: {
             heading: "VAT Returns & VAT Submissions (VAT201) Services",
@@ -9419,7 +9428,7 @@ export const services: ServiceContent[] = [
             { question: "Why is my VAT refund delayed?", answer: "Refunds are usually delayed due to outstanding returns in other tax types (like PAYE), missing bank details, or an active audit status." }
         ],
         relatedServices: [
-            { slug: "vat-returns-submissions", title: "VAT Submissions" },
+            { slug: "vat-registration-returns", title: "VAT Submissions" },
             { slug: "tax-clearance-certificates", title: "Tax Clearance" },
             { slug: "bookkeeping-services-south-africa", title: "Bookkeeping Services" }
         ],
@@ -9919,7 +9928,7 @@ export const services: ServiceContent[] = [
         ],
         relatedServices: [
             { slug: "workmens-compensation-coida", title: "COIDA Registration" },
-            { slug: "tax-clearance-certificate", title: "Tax Clearance Certificate" },
+            { slug: "tax-clearance-certificates", title: "Tax Clearance Certificate" },
             { slug: "company-registration-sa", title: "Company Registration" }
         ],
         stats: [
@@ -10316,7 +10325,7 @@ export const services: ServiceContent[] = [
         ],
         relatedServices: [
             { slug: "emp501-reconciliations", title: "EMP501 Reconciliations" },
-            { slug: "personal-income-tax-returns-itr12", title: "Personal Income Tax" },
+            { slug: "personal-income-tax-returns", title: "Personal Income Tax" },
             { slug: "payroll-services-south-africa", title: "Monthly Payroll" }
         ],
         stats: [
@@ -10413,8 +10422,8 @@ export const services: ServiceContent[] = [
             { question: "Can I use the 'Basic Amount' from last year?", answer: "You can, but SARS increases it by 8% per year. Also, if your last assessment is older than 18 months, the Basic Amount expires." }
         ],
         relatedServices: [
-            { slug: "corporate-income-tax-returns-itr14", title: "Corporate Income Tax" },
-            { slug: "personal-income-tax-returns-itr12", title: "Personal Income Tax" },
+            { slug: "business-income-tax-returns", title: "Business Income Tax" },
+            { slug: "personal-income-tax-returns", title: "Personal Income Tax" },
             { slug: "tax-clearance-certificate", title: "Tax Clearance Certificate" }
         ],
         stats: [
@@ -10477,7 +10486,16 @@ export const services: ServiceContent[] = [
     },
     {
         slug: "corporate-income-tax-returns-itr14",
-        title: "Corporate Income Tax (ITR14)",
+        title: "Corporate Tax ITR14 (Redirect)",
+        href: "/services/tax/business-income-tax-returns",
+        pillar: "Compliance",
+        hero: { heading: "", subheading: "" },
+        whoIsThisFor: [], deliverables: [], process: [], requirements: [], timeline: "", faqs: [], relatedServices: []
+    },
+    {
+        slug: "business-income-tax-returns",
+        title: "Business Income Tax Returns",
+        href: "/services/tax/business-income-tax-returns",
         pillar: "Compliance",
         hero: {
             heading: "Corporate Income Tax (ITR14)",
@@ -10575,7 +10593,16 @@ export const services: ServiceContent[] = [
     },
     {
         slug: "personal-income-tax-returns-itr12",
+        title: "Personal Income Tax ITR12 (Redirect)",
+        href: "/services/tax/personal-income-tax-returns",
+        pillar: "Compliance",
+        hero: { heading: "", subheading: "" },
+        whoIsThisFor: [], deliverables: [], process: [], requirements: [], timeline: "", faqs: [], relatedServices: []
+    },
+    {
+        slug: "personal-income-tax-returns",
         title: "Personal Income Tax (ITR12)",
+        href: "/services/tax/personal-income-tax-returns",
         pillar: "Compliance",
         hero: {
             heading: "Personal Income Tax (ITR12)",
@@ -10707,7 +10734,7 @@ export const services: ServiceContent[] = [
             { question: "When should I register a Pty Ltd?", answer: "When your risk increases (you need limited liability) or when your profits exceed the tax bracket where company tax (27%) is cheaper than personal tax." }
         ],
         relatedServices: [
-            { slug: "personal-income-tax-returns-itr12", title: "Personal Income Tax" },
+            { slug: "personal-income-tax-returns", title: "Personal Income Tax" },
             { slug: "provisional-tax-services", title: "Provisional Tax" },
             { slug: "company-registration-pty-ltd-npc", title: "Company Registration" }
         ],
@@ -10805,8 +10832,8 @@ export const services: ServiceContent[] = [
             { question: "I lost my invoices for renovations. Can I claim them?", answer: "No. SARS is strict on proof. Without invoices, your base cost is lower, and your tax is higher. We help you digitize these proofs." }
         ],
         relatedServices: [
-            { slug: "personal-income-tax-returns-itr12", title: "Personal Income Tax" },
-            { slug: "corporate-income-tax-returns-itr14", title: "Corporate Income Tax" },
+            { slug: "personal-income-tax-returns", title: "Personal Income Tax" },
+            { slug: "business-income-tax-returns", title: "Business Income Tax" },
             { slug: "annual-financial-statements-afs", title: "Financial Statements" }
         ],
         stats: [
@@ -10904,7 +10931,7 @@ export const services: ServiceContent[] = [
             { question: "Can I use AFS to get a business loan?", answer: "Yes. Banks require up-to-date AFS to assess your creditworthiness. We prepare them in the format banks expect." }
         ],
         relatedServices: [
-            { slug: "corporate-income-tax-returns-itr14", title: "Corporate Income Tax" },
+            { slug: "business-income-tax-returns", title: "Business Income Tax" },
             { slug: "management-accounts", title: "Management Accounts" },
             { slug: "monthly-bookkeeping-services", title: "Monthly Bookkeeping" }
         ],
@@ -12290,6 +12317,14 @@ export const services: ServiceContent[] = [
     // TAX SERVICES (STATIC)
     // -----------------------------------------------------------------------------
     {
+        slug: "tax-clearance-certificate", // Redirect for singular
+        title: "Tax Clearance Certificate (Redirect)",
+        href: "/services/tax/tax-clearance-certificates",
+        pillar: "Compliance",
+        hero: { heading: "", subheading: "" },
+        whoIsThisFor: [], deliverables: [], process: [], requirements: [], timeline: "", faqs: [], relatedServices: []
+    },
+    {
         slug: "tax-clearance-certificates",
         title: "Tax Clearance Certificates",
         pillar: "Compliance",
@@ -12297,22 +12332,8 @@ export const services: ServiceContent[] = [
         hero: { heading: "", subheading: "" },
         whoIsThisFor: [], deliverables: [], process: [], requirements: [], timeline: "", faqs: [], relatedServices: []
     },
-    {
-        slug: "vat-registration-returns",
-        title: "VAT Registration & Returns",
-        pillar: "Compliance",
-        href: "/services/tax/vat-registration-returns",
-        hero: { heading: "", subheading: "" },
-        whoIsThisFor: [], deliverables: [], process: [], requirements: [], timeline: "", faqs: [], relatedServices: []
-    },
-    {
-        slug: "business-income-tax-returns",
-        title: "Business Income Tax Returns",
-        pillar: "Compliance",
-        href: "/services/tax/business-income-tax-returns",
-        hero: { heading: "", subheading: "" },
-        whoIsThisFor: [], deliverables: [], process: [], requirements: [], timeline: "", faqs: [], relatedServices: []
-    },
+
+
     {
         slug: "sars-penalties-disputes",
         title: "SARS Penalties & Disputes",
