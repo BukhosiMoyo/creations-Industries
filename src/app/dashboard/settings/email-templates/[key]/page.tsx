@@ -153,7 +153,7 @@ export default function EditTemplatePage({ params }: { params: { key: string } }
                 </div>
                 <div className="flex gap-2">
                     {template && (
-                        <Button variant="destructive" variant="outline" onClick={handleReset} disabled={saving}>
+                        <Button variant="outline" className="text-destructive hover:text-destructive" onClick={handleReset} disabled={saving}>
                             <RotateCcw className="h-4 w-4 mr-2" />
                             Revert to Default
                         </Button>
