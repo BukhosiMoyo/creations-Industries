@@ -21,8 +21,11 @@ import {
     SelectContent,
     SelectItem,
     SelectTrigger,
-    SelectValue
-} from "@/components/ui/select"
+    SelectValue,
+    SelectGroup,
+    SelectLabel
+}
+    from "@/components/ui/select"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Textarea } from "@/components/ui/textarea"
 import { cn } from "@/lib/utils"
@@ -333,12 +336,25 @@ function PersonalStep({ data, onChange }: PersonalStepProps) {
                         <SelectTrigger className="h-14 rounded-2xl bg-muted/30 border-2 border-border/40 hover:border-accent/40 focus-visible:ring-2 focus-visible:ring-accent/30 font-medium px-6 text-base transition-all">
                             <SelectValue placeholder="What do you need?" />
                         </SelectTrigger>
-                        <SelectContent className="rounded-xl border-border/40 p-2 shadow-2xl">
-                            <SelectItem value="Bookkeeping" className="rounded-lg font-medium py-2.5">Monthly Bookkeeping</SelectItem>
-                            <SelectItem value="Accounting" className="rounded-lg font-medium py-2.5">Annual Financials</SelectItem>
-                            <SelectItem value="Tax" className="rounded-lg font-medium py-2.5">Tax Compliance</SelectItem>
-                            <SelectItem value="Payroll" className="rounded-lg font-medium py-2.5">Payroll System</SelectItem>
-                            <SelectItem value="CIPC" className="rounded-lg font-medium py-2.5">CIPC Secretarial</SelectItem>
+                        <SelectContent className="rounded-xl border-border/40 p-2 shadow-2xl max-h-[300px]">
+                            <SelectGroup>
+                                <SelectLabel>Company Services</SelectLabel>
+                                <SelectItem value="Shelf Company" className="rounded-lg font-medium py-2.5">Buy Shelf Company (Immediate)</SelectItem>
+                                <SelectItem value="Company Registration" className="rounded-lg font-medium py-2.5">New Company Registration</SelectItem>
+                                <SelectItem value="CIPC Services" className="rounded-lg font-medium py-2.5">CIPC Updates & Returns</SelectItem>
+                            </SelectGroup>
+                            <SelectGroup>
+                                <SelectLabel>Tax Services</SelectLabel>
+                                <SelectItem value="Tax Clearance" className="rounded-lg font-medium py-2.5">Tax Clearance Certificate</SelectItem>
+                                <SelectItem value="VAT Registration" className="rounded-lg font-medium py-2.5">VAT Registration</SelectItem>
+                                <SelectItem value="Tax Compliance" className="rounded-lg font-medium py-2.5">General Tax Compliance</SelectItem>
+                            </SelectGroup>
+                            <SelectGroup>
+                                <SelectLabel>Accounting & Bookkeeping</SelectLabel>
+                                <SelectItem value="Monthly Bookkeeping" className="rounded-lg font-medium py-2.5">Monthly Bookkeeping</SelectItem>
+                                <SelectItem value="Financial Statements" className="rounded-lg font-medium py-2.5">Annual Financial Statements</SelectItem>
+                                <SelectItem value="Payroll" className="rounded-lg font-medium py-2.5">Payroll Services</SelectItem>
+                            </SelectGroup>
                         </SelectContent>
                     </Select>
                 </div>

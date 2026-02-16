@@ -44,7 +44,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     const serviceRoutes = services
         .filter(s => !['accounting', 'bookkeeping', 'tax-services'].includes(s.slug))
         .map((service) => ({
-            url: `${baseUrl}/services/${service.slug}`,
+            url: service.href ? `${baseUrl}${service.href}` : `${baseUrl}/services/${service.slug}`,
             lastModified: new Date(),
             changeFrequency: 'weekly' as const,
             priority: 0.9,

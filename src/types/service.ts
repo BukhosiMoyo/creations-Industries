@@ -5,6 +5,7 @@ export type ServiceVisualType = "compliance" | "chart" | "shield" | "flow" | "st
 export interface ServiceContent {
     slug: string
     title: string
+    href?: string
     pillar: ServicePillar
     hero: {
         heading: string

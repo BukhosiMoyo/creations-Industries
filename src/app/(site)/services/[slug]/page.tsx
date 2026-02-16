@@ -1,4 +1,4 @@
-import { notFound } from "next/navigation"
+import { notFound, redirect } from "next/navigation"
 import { Metadata } from "next"
 import { services, pillars } from "@/lib/services"
 import { ServicePageTemplate } from "@/components/services/service-template"
@@ -22,10 +22,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
     const service = services.find((s) => s.slug === slug)
     if (service) {
+        // If it has an href, it's a redirect, but we still need metadata if we stay here.
+        // But we redirect in the component. Metadata doesn't redirect.
+        // Actually, if we redirect, metadata doesn't matter much unless bots hit it.
         return constructMetadata({
             title: service.seoTitle || `${service.title} | Creations`,
             description: service.seoDescription || service.hero.subheading,
-            noIndex: true // Dynamic services are not structural pillars; prevent indexing.
+            noIndex: !!service.href // No index if it's a redirect placeholder
         })
     }
 
@@ -48,6 +51,11 @@ export default async function ServiceOrPillarPage({ params }: Props) {
     // Check if it's a service
     const service = services.find((s) => s.slug === slug)
     if (service) {
+        // Redirect if explicit href exists
+        if (service.href) {
+            redirect(service.href)
+        }
+
         const jsonLd: WithContext<Service> = {
             "@context": "https://schema.org",
             "@type": "Service",

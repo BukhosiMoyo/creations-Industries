@@ -88,7 +88,7 @@ export default function SitemapPage() {
                                         <ul className="space-y-2">
                                             {pillar.items.map((service) => (
                                                 <li key={service.slug}>
-                                                    <Link href={`/services/${service.slug}`} className="block text-sm text-text-secondary hover:text-accent transition-colors py-1">
+                                                    <Link href={service.href || `/services/${service.slug}`} className="block text-sm text-text-secondary hover:text-accent transition-colors py-1">
                                                         {service.title}
                                                     </Link>
                                                 </li>

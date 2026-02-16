@@ -5,13 +5,21 @@ export const pillars: PillarContent[] = [
         slug: "compliance",
         title: "Compliance",
         description: "Stay on the right side of SARS and CIPC. We handle your tax filings, annual returns, and statutory obligations so you can focus on business.",
-        services: ["tax-services", "cipc-compliance", "companies-act-compliance", "tender-readiness"]
+        services: ["tax-services", "cipc-compliance", "companies-act-compliance", "tender-readiness",
+            // New Company Services
+            "shelf-companies", "company-registration", "company-amendments", "annual-returns-filing", "company-deregistration",
+            // New Tax Services
+            "tax-clearance-certificates", "vat-registration-returns", "business-income-tax-returns", "sars-penalties-disputes"
+        ]
     },
     {
         slug: "accounting",
         title: "Accounting",
         description: "Clean books for sound decisions. From monthly bookkeeping to annual financial statements, we ensure your records are accurate and up to date.",
-        services: ["bookkeeping", "accounting", "payroll-service", "audit-readiness"]
+        services: ["bookkeeping", "accounting", "payroll-service", "audit-readiness",
+            // New Accounting Services
+            "business-budgeting-forecasting", "cash-flow-management", "financial-statements-preparation", "management-accounts", "monthly-accounting-services"
+        ]
     },
     {
         slug: "intelligence",
@@ -12233,5 +12241,128 @@ export const services: ServiceContent[] = [
             }
         ],
         visualType: "certificate"
-    }
+    },
+    // -----------------------------------------------------------------------------
+    // COMPANY SERVICES (STATIC)
+    // -----------------------------------------------------------------------------
+    {
+        slug: "shelf-companies",
+        title: "Shelf Companies",
+        pillar: "Compliance",
+        href: "/services/company-services/shelf-companies",
+        hero: { heading: "", subheading: "" }, // Minimal for sitemap
+        whoIsThisFor: [], deliverables: [], process: [], requirements: [], timeline: "", faqs: [], relatedServices: []
+    },
+    {
+        slug: "company-registration",
+        title: "Company Registration",
+        pillar: "Compliance",
+        href: "/services/company-services/company-registration",
+        hero: { heading: "", subheading: "" },
+        whoIsThisFor: [], deliverables: [], process: [], requirements: [], timeline: "", faqs: [], relatedServices: []
+    },
+    {
+        slug: "company-amendments",
+        title: "Company Amendments",
+        pillar: "Compliance",
+        href: "/services/company-services/company-amendments",
+        hero: { heading: "", subheading: "" },
+        whoIsThisFor: [], deliverables: [], process: [], requirements: [], timeline: "", faqs: [], relatedServices: []
+    },
+    {
+        slug: "annual-returns-filing",
+        title: "Annual Returns Filing",
+        pillar: "Compliance",
+        href: "/services/company-services/annual-returns-filing",
+        hero: { heading: "", subheading: "" },
+        whoIsThisFor: [], deliverables: [], process: [], requirements: [], timeline: "", faqs: [], relatedServices: []
+    },
+    {
+        slug: "company-deregistration",
+        title: "Company Deregistration",
+        pillar: "Compliance",
+        href: "/services/company-services/company-deregistration",
+        hero: { heading: "", subheading: "" },
+        whoIsThisFor: [], deliverables: [], process: [], requirements: [], timeline: "", faqs: [], relatedServices: []
+    },
+
+    // -----------------------------------------------------------------------------
+    // TAX SERVICES (STATIC)
+    // -----------------------------------------------------------------------------
+    {
+        slug: "tax-clearance-certificates",
+        title: "Tax Clearance Certificates",
+        pillar: "Compliance",
+        href: "/services/tax/tax-clearance-certificates",
+        hero: { heading: "", subheading: "" },
+        whoIsThisFor: [], deliverables: [], process: [], requirements: [], timeline: "", faqs: [], relatedServices: []
+    },
+    {
+        slug: "vat-registration-returns",
+        title: "VAT Registration & Returns",
+        pillar: "Compliance",
+        href: "/services/tax/vat-registration-returns",
+        hero: { heading: "", subheading: "" },
+        whoIsThisFor: [], deliverables: [], process: [], requirements: [], timeline: "", faqs: [], relatedServices: []
+    },
+    {
+        slug: "business-income-tax-returns",
+        title: "Business Income Tax Returns",
+        pillar: "Compliance",
+        href: "/services/tax/business-income-tax-returns",
+        hero: { heading: "", subheading: "" },
+        whoIsThisFor: [], deliverables: [], process: [], requirements: [], timeline: "", faqs: [], relatedServices: []
+    },
+    {
+        slug: "sars-penalties-disputes",
+        title: "SARS Penalties & Disputes",
+        pillar: "Compliance",
+        href: "/services/tax/sars-penalties-disputes",
+        hero: { heading: "", subheading: "" },
+        whoIsThisFor: [], deliverables: [], process: [], requirements: [], timeline: "", faqs: [], relatedServices: []
+    },
+
+    // -----------------------------------------------------------------------------
+    // ACCOUNTING SERVICES (STATIC)
+    // -----------------------------------------------------------------------------
+    {
+        slug: "business-budgeting-forecasting",
+        title: "Business Budgeting & Forecasting",
+        pillar: "Accounting",
+        href: "/services/accounting/business-budgeting-forecasting",
+        hero: { heading: "", subheading: "" },
+        whoIsThisFor: [], deliverables: [], process: [], requirements: [], timeline: "", faqs: [], relatedServices: []
+    },
+    {
+        slug: "cash-flow-management",
+        title: "Cash Flow Management",
+        pillar: "Accounting",
+        href: "/services/accounting/cash-flow-management",
+        hero: { heading: "", subheading: "" },
+        whoIsThisFor: [], deliverables: [], process: [], requirements: [], timeline: "", faqs: [], relatedServices: []
+    },
+    {
+        slug: "financial-statements-preparation",
+        title: "Financial Statements Preparation",
+        pillar: "Accounting",
+        href: "/services/accounting/financial-statements-preparation",
+        hero: { heading: "", subheading: "" },
+        whoIsThisFor: [], deliverables: [], process: [], requirements: [], timeline: "", faqs: [], relatedServices: []
+    },
+    {
+        slug: "management-accounts",
+        title: "Management Accounts",
+        pillar: "Accounting",
+        href: "/services/accounting/management-accounts",
+        hero: { heading: "", subheading: "" },
+        whoIsThisFor: [], deliverables: [], process: [], requirements: [], timeline: "", faqs: [], relatedServices: []
+    },
+    {
+        slug: "monthly-accounting-services",
+        title: "Monthly Accounting Services",
+        pillar: "Accounting",
+        href: "/services/accounting/monthly-accounting-services",
+        hero: { heading: "", subheading: "" },
+        whoIsThisFor: [], deliverables: [], process: [], requirements: [], timeline: "", faqs: [], relatedServices: []
+    },
 ]
