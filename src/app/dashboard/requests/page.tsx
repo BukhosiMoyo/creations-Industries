@@ -22,6 +22,7 @@ import {
     DropdownMenuItem,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { getServiceLabel } from "@/lib/quote-catalog";
 
 interface ServiceRequest {
     id: string;
@@ -216,7 +217,7 @@ export default function RequestsPage() {
                                                     </div>
                                                     <div className="min-w-0">
                                                         <h3 className="font-bold text-foreground text-sm truncate">
-                                                            {request.serviceType}
+                                                            {getServiceLabel(request.serviceType)}
                                                         </h3>
                                                         <span className="text-xs font-semibold text-muted-foreground/70 truncate block">
                                                             {request.description?.slice(
@@ -282,7 +283,7 @@ export default function RequestsPage() {
                                                 {/* Actions */}
                                                 <div className="lg:col-span-2 flex items-center justify-end gap-2">
                                                     <Link
-                                                        href={`/dashboard/pipeline`}
+                                                        href={`/dashboard/requests/${request.id}`}
                                                     >
                                                         <Button
                                                             variant="ghost"

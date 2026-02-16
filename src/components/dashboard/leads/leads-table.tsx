@@ -1,6 +1,9 @@
 "use client"
 
 import * as React from "react"
+import Link from "next/link"
+import { useSearchParams, useRouter, usePathname } from "next/navigation"
+import { formatDistanceToNow } from "date-fns"
 import {
     Table,
     TableBody,
@@ -11,228 +14,229 @@ import {
 } from "@/components/ui/table"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
 import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuTrigger
+} from "@/components/ui/dropdown-menu"
+import {
+    Search,
+    Filter,
     MoreHorizontal,
-    User as UserIcon,
-    ExternalLink,
-    FileText,
-    Target
+    ArrowUpDown,
+    Calendar,
+    MapPin,
+    AlertCircle
 } from "lucide-react"
-import { formatDistanceToNow } from "date-fns"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { cn } from "@/lib/utils"
-import { useRouter } from "next/navigation"
+// import { LeadStatus, LeadUrgency } from "@prisma/client" // Client component might struggle with prisma imports directly if not type-only
+// Using manual types or props for safety
+import { Lead } from "@prisma/client" // Types are fine
 
 interface LeadsTableProps {
-    searchQuery: string
+    data: (Lead & {
+        assignedToUser?: { name: string | null, image: string | null } | null
+    })[]
 }
 
-type Lead = {
-    id: string
-    referenceId: string
-    firstName: string
-    lastName: string
-    fullName: string
-    companyName: string | null
-    email: string
-    serviceType: string
-    urgency: string
-    budgetRange: string
-    status: string
-    leadScore: number
-    priorityTag: string
-    createdAt: string
-    assignedTo: { name: string } | null
-    docCount: number
-}
-
-export function LeadsTable({ searchQuery }: LeadsTableProps) {
+export function LeadsTable({ data }: LeadsTableProps) {
     const router = useRouter()
-    const [leads, setLeads] = React.useState<Lead[]>([])
-    const [isLoading, setIsLoading] = React.useState(true)
+    const pathname = usePathname()
+    const searchParams = useSearchParams()
 
+    // -- Filter State (Synced with URL) --
+    const [searchTerm, setSearchTerm] = React.useState(searchParams.get("search") || "")
+
+    // Debounce Search
     React.useEffect(() => {
-        async function fetchLeads() {
-            try {
-                const res = await fetch('/api/leads')
-                const data = await res.json()
-                if (Array.isArray(data)) {
-                    // Map DB data to UI model
-                    const mapped = data.map((l: any) => ({
-                        id: l.id,
-                        referenceId: l.referenceId,
-                        firstName: l.firstName,
-                        lastName: l.lastName,
-                        fullName: `${l.firstName} ${l.lastName}`,
-                        companyName: l.companyName,
-                        email: l.email,
-                        serviceType: l.serviceType,
-                        urgency: l.urgency,
-                        budgetRange: l.budgetRange,
-                        status: l.status,
-                        leadScore: l.leadScore,
-                        priorityTag: l.priorityTag,
-                        createdAt: l.createdAt,
-                        assignedTo: null, // Not yet implemented
-                        docCount: 0 // Not yet implemented
-                    }))
-                    setLeads(mapped)
-                }
-            } catch (error) {
-                console.error("Failed to fetch leads", error)
-            } finally {
-                setIsLoading(false)
-            }
-        }
-        fetchLeads()
-    }, [])
+        const timer = setTimeout(() => {
+            const params = new URLSearchParams(searchParams)
+            if (searchTerm) params.set("search", searchTerm)
+            else params.delete("search")
+            router.replace(`${pathname}?${params.toString()}`)
+        }, 300)
+        return () => clearTimeout(timer)
+    }, [searchTerm, router, pathname, searchParams])
 
-    const filteredLeads = leads.filter(l =>
-        l.fullName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        (l.companyName && l.companyName.toLowerCase().includes(searchQuery.toLowerCase())) ||
-        l.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        l.referenceId.toLowerCase().includes(searchQuery.toLowerCase())
-    )
-
-    const getStatusStyle = (status: string) => {
-        switch (status) {
-            case "New": return "bg-blue-500/10 text-blue-600 border-blue-200/50"
-            case "Contacted": return "bg-indigo-500/10 text-indigo-600 border-indigo-200/50"
-            case "Qualified": return "bg-emerald-500/10 text-emerald-600 border-emerald-200/50"
-            case "AwaitingDocs": return "bg-amber-500/10 text-amber-600 border-amber-200/50"
-            case "Converted": return "bg-emerald-500 text-white border-transparent"
-            case "Lost": return "bg-slate-500/10 text-slate-600 border-slate-200/50"
-            default: return "bg-muted/30 text-muted-foreground"
-        }
+    const handleStatusFilter = (status: string | null) => {
+        const params = new URLSearchParams(searchParams)
+        if (status) params.set("status", status)
+        else params.delete("status")
+        router.push(`${pathname}?${params.toString()}`)
     }
 
-    const getUrgencyIcon = (urgency: string) => {
-        switch (urgency) {
-            case "Urgent_24_48h": return <Badge className="bg-red-500 text-white border-0 font-bold text-[9px] h-5 px-1.5 uppercase">Urgent</Badge>
-            case "Soon_7d": return <Badge className="bg-amber-500/10 text-amber-600 border-amber-200/50 font-bold text-[9px] h-5 px-1.5 uppercase">Soon</Badge>
-            default: return <Badge className="bg-slate-500/10 text-slate-600 border-slate-200/50 font-bold text-[9px] h-5 px-1.5 uppercase">Flexible</Badge>
-        }
-    }
-
-    const getScoreColor = (score: number) => {
-        if (score >= 75) return "text-red-500 bg-red-500/10"
-        if (score >= 45) return "text-amber-500 bg-amber-500/10"
-        return "text-blue-500 bg-blue-500/10"
-    }
-
-    if (isLoading) {
-        return <div className="p-8 text-center text-muted-foreground text-sm font-medium">Loading leads...</div>
-    }
+    const currentFilter = searchParams.get("status") || "active"
 
     return (
-        <div className="rounded-2xl border border-border/40 bg-card/30 backdrop-blur-md overflow-hidden shadow-sm">
-            <Table>
-                <TableHeader className="bg-muted/30">
-                    <TableRow className="hover:bg-transparent border-border/40">
-                        <TableHead className="w-[80px] text-[10px] font-bold uppercase tracking-widest pl-6">Score</TableHead>
-                        <TableHead className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Lead Info</TableHead>
-                        <TableHead className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Details</TableHead>
-                        <TableHead className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Status</TableHead>
-                        <TableHead className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Assigned</TableHead>
-                        <TableHead className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground text-right pr-6">Actions</TableHead>
-                    </TableRow>
-                </TableHeader>
-                <TableBody>
-                    {filteredLeads.length === 0 ? (
-                        <TableRow>
-                            <TableCell colSpan={6} className="h-24 text-center text-sm text-muted-foreground">
-                                No leads found.
-                            </TableCell>
+        <div className="space-y-4">
+            {/* Toolbar */}
+            <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
+                <div className="relative w-full md:w-80">
+                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                    <Input
+                        placeholder="Search leads..."
+                        className="pl-9"
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                    />
+                </div>
+
+                <div className="flex items-center gap-2 w-full md:w-auto overflow-x-auto pb-2 md:pb-0">
+                    <FilterButton
+                        label="Active"
+                        active={currentFilter === "active"}
+                        onClick={() => handleStatusFilter(null)}
+                    />
+                    <FilterButton
+                        label="New"
+                        active={currentFilter === "new"}
+                        onClick={() => handleStatusFilter("new")}
+                    />
+                    <FilterButton
+                        label="Unassigned"
+                        active={currentFilter === "unassigned"}
+                        onClick={() => handleStatusFilter("unassigned")}
+                    />
+                    <FilterButton
+                        label="Urgent"
+                        active={currentFilter === "urgent"}
+                        onClick={() => handleStatusFilter("urgent")}
+                    />
+                    <FilterButton
+                        label="Incomplete"
+                        active={currentFilter === "incomplete"}
+                        onClick={() => handleStatusFilter("incomplete")}
+                    />
+                </div>
+            </div>
+
+            {/* Table */}
+            <div className="border rounded-xl bg-card shadow-sm overflow-hidden">
+                <Table>
+                    <TableHeader>
+                        <TableRow className="bg-muted/50 hover:bg-muted/50">
+                            <TableHead className="w-[250px]">Lead Name</TableHead>
+                            <TableHead>Service</TableHead>
+                            <TableHead>Status</TableHead>
+                            <TableHead>Urgency</TableHead>
+                            <TableHead>Assigned To</TableHead>
+                            <TableHead className="text-right">Created</TableHead>
+                            <TableHead className="w-[50px]"></TableHead>
                         </TableRow>
-                    ) : (
-                        filteredLeads.map((lead) => (
-                            <TableRow
-                                key={lead.id}
-                                className="group hover:bg-muted/30 border-border/40 transition-colors cursor-pointer"
-                                onClick={() => router.push(`/dashboard/leads/${lead.id}`)}
-                            >
-                                <TableCell className="pl-6">
-                                    <div className={cn(
-                                        "h-10 w-10 rounded-xl flex flex-col items-center justify-center border border-transparent font-bold",
-                                        getScoreColor(lead.leadScore)
-                                    )}>
-                                        <span className="text-xs">{lead.leadScore}</span>
-                                        <span className="text-[7px] uppercase tracking-tighter opacity-70">Score</span>
-                                    </div>
-                                </TableCell>
-                                <TableCell>
-                                    <div className="space-y-1">
-                                        <p className="text-sm font-bold text-foreground group-hover:text-accent transition-colors flex items-center gap-1.5">
-                                            {lead.fullName}
-                                            {lead.docCount > 0 && <FileText className="h-3 w-3 text-muted-foreground/50" />}
-                                        </p>
-                                        <p className="text-[11px] font-bold text-muted-foreground/80 truncate max-w-[180px]">
-                                            {lead.companyName !== "N/A" ? lead.companyName : lead.email}
-                                        </p>
-                                        <p className="text-[9px] text-muted-foreground/60">{lead.referenceId}</p>
-                                    </div>
-                                </TableCell>
-                                <TableCell>
-                                    <div className="flex flex-wrap gap-1.5">
-                                        <Badge variant="outline" className="bg-muted/30 border-0 text-[10px] font-bold text-muted-foreground h-5">
-                                            {lead.serviceType}
-                                        </Badge>
-                                        {getUrgencyIcon(lead.urgency)}
-                                        <Badge variant="outline" className="bg-muted/30 border-0 text-[10px] font-bold text-muted-foreground h-5 tabular-nums">
-                                            {lead.budgetRange.replace('R', '').replace('Plus', '+').replace('Unknown', '?')}
-                                        </Badge>
-                                    </div>
-                                </TableCell>
-                                <TableCell>
-                                    <Badge className={cn(
-                                        "text-[9px] h-5 px-2 font-bold uppercase tracking-widest border border-transparent",
-                                        getStatusStyle(lead.status)
-                                    )}>
-                                        {lead.status}
-                                    </Badge>
-                                </TableCell>
-                                <TableCell>
-                                    <div className="flex items-center gap-2">
-                                        <div className="h-7 w-7 rounded-full bg-accent/10 flex items-center justify-center border border-accent/20">
-                                            <UserIcon className="h-3.5 w-3.5 text-accent" />
-                                        </div>
-                                        <div className="space-y-0.5">
-                                            <p className="text-[10px] font-bold text-foreground leading-none">
-                                                {lead.assignedTo?.name || "Unassigned"}
-                                            </p>
-                                            <p className="text-[9px] font-bold text-muted-foreground/60 leading-none">
-                                                {formatDistanceToNow(new Date(lead.createdAt))} ago
-                                            </p>
-                                        </div>
-                                    </div>
-                                </TableCell>
-                                <TableCell className="text-right pr-6">
-                                    <div className="flex items-center justify-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                                        <Button variant="ghost" size="icon" className="h-8 w-8 rounded-lg hover:bg-accent/10 hover:text-accent">
-                                            <Target className="h-4 w-4" />
-                                        </Button>
-                                        <Button variant="ghost" size="icon" className="h-8 w-8 rounded-lg hover:bg-accent/10 hover:text-accent">
-                                            <ExternalLink className="h-4 w-4" />
-                                        </Button>
-                                        <Button variant="ghost" size="icon" className="h-8 w-8 rounded-lg">
-                                            <MoreHorizontal className="h-4 w-4" />
-                                        </Button>
-                                    </div>
+                    </TableHeader>
+                    <TableBody>
+                        {data.length === 0 ? (
+                            <TableRow>
+                                <TableCell colSpan={7} className="h-32 text-center text-muted-foreground">
+                                    No leads found matching criteria.
                                 </TableCell>
                             </TableRow>
-                        )))}
-                </TableBody>
-            </Table>
-
-            <div className="p-4 border-t border-border/40 bg-muted/20 flex items-center justify-between">
-                <p className="text-[11px] font-bold text-muted-foreground uppercase tracking-widest">
-                    Showing {filteredLeads.length} leads
-                </p>
-                <div className="flex items-center gap-2">
-                    <Button variant="ghost" size="sm" className="h-8 px-3 text-[11px] font-bold uppercase tracking-widest" disabled>Previous</Button>
-                    <Button variant="ghost" size="sm" className="h-8 px-3 text-[11px] font-bold uppercase tracking-widest border border-border/40 bg-background/50 hover:bg-background">1</Button>
-                    <Button variant="ghost" size="sm" className="h-8 px-3 text-[11px] font-bold uppercase tracking-widest" disabled>Next</Button>
-                </div>
+                        ) : (
+                            data.map((lead) => (
+                                <TableRow key={lead.id} className="group cursor-pointer hover:bg-muted/30" onClick={() => router.push(`/dashboard/leads/${lead.id}`)}>
+                                    <TableCell className="font-medium">
+                                        <div className="flex flex-col">
+                                            <span className="text-foreground font-semibold">
+                                                {lead.firstName} {lead.lastName}
+                                            </span>
+                                            <span className="text-xs text-muted-foreground">{lead.email}</span>
+                                        </div>
+                                    </TableCell>
+                                    <TableCell>
+                                        <div className="flex flex-col">
+                                            <span>{lead.serviceType}</span>
+                                            <span className="text-xs text-muted-foreground truncate max-w-[150px]">{lead.companyName || "Personal"}</span>
+                                        </div>
+                                    </TableCell>
+                                    <TableCell>
+                                        <StatusBadge status={lead.status} />
+                                    </TableCell>
+                                    <TableCell>
+                                        <UrgencyBadge urgency={lead.urgency} />
+                                    </TableCell>
+                                    <TableCell>
+                                        {lead.assignedToUser ? (
+                                            <div className="flex items-center gap-2">
+                                                <Avatar className="w-6 h-6">
+                                                    <AvatarImage src={lead.assignedToUser.image || ""} />
+                                                    <AvatarFallback className="text-[10px]">{lead.assignedToUser.name?.slice(0, 2).toUpperCase()}</AvatarFallback>
+                                                </Avatar>
+                                                <span className="text-sm">{lead.assignedToUser.name}</span>
+                                            </div>
+                                        ) : (
+                                            <Badge variant="outline" className="text-xs font-normal text-muted-foreground border-dashed">
+                                                Unassigned
+                                            </Badge>
+                                        )}
+                                    </TableCell>
+                                    <TableCell className="text-right text-xs text-muted-foreground whitespace-nowrap">
+                                        {formatDistanceToNow(new Date(lead.createdAt), { addSuffix: true })}
+                                    </TableCell>
+                                    <TableCell>
+                                        <Button variant="ghost" size="icon" className="h-8 w-8 opacity-0 group-hover:opacity-100 transition-opacity">
+                                            <MoreHorizontal className="w-4 h-4" />
+                                        </Button>
+                                    </TableCell>
+                                </TableRow>
+                            ))
+                        )}
+                    </TableBody>
+                </Table>
             </div>
         </div>
     )
+}
+
+// Sub-components
+
+function FilterButton({ label, active, onClick }: { label: string, active: boolean, onClick: () => void }) {
+    return (
+        <button
+            onClick={onClick}
+            className={cn(
+                "px-3 py-1.5 rounded-full text-sm font-medium transition-all border",
+                active
+                    ? "bg-primary text-primary-foreground border-primary"
+                    : "bg-background text-muted-foreground border-border hover:border-primary/50 hover:text-foreground"
+            )}
+        >
+            {label}
+        </button>
+    )
+}
+
+function StatusBadge({ status }: { status: string }) {
+    const styles: Record<string, string> = {
+        New: "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300",
+        Incomplete: "bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-300",
+        Contacted: "bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300",
+        Qualified: "bg-indigo-100 text-indigo-700 dark:bg-indigo-900/30 dark:text-indigo-300",
+        Converted: "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300",
+        Lost: "bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-400",
+        Spam: "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-300"
+    }
+
+    return (
+        <span className={cn("px-2 py-0.5 rounded-md text-xs font-medium", styles[status] || "bg-gray-100 text-gray-600")}>
+            {status}
+        </span>
+    )
+}
+
+function UrgencyBadge({ urgency }: { urgency: string }) {
+    if (urgency === "Urgent_24_48h") {
+        return (
+            <div className="flex items-center gap-1.5 text-red-600 dark:text-red-400 font-medium text-xs">
+                <AlertCircle className="w-3.5 h-3.5" />
+                Urgent
+            </div>
+        )
+    }
+    if (urgency === "Soon_7d") {
+        return <span className="text-orange-600 dark:text-orange-400 text-xs font-medium">Soon (7d)</span>
+    }
+    return <span className="text-muted-foreground text-xs">Flexible</span>
 }

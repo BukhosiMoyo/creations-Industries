@@ -2,7 +2,7 @@
 import { NextResponse } from "next/server"
 import { z } from "zod"
 import { prisma } from "@/lib/prisma"
-import { ServiceCategories } from "@/lib/quote-catalog"
+import { ServiceCategories, getPrismaServiceType } from "@/lib/quote-catalog"
 
 
 // Validation Schema for Step 1
@@ -12,15 +12,16 @@ const DraftSchema = z.object({
     phone: z.string().min(10),
     city: z.string().optional(),
     urgency: z.string().optional(),
-    serviceSlug: z.string().optional(), // We store the specific slug in metadata
+    serviceSlug: z.string().optional(), // Latest selection
     category: z.enum([...ServiceCategories] as [string, ...string[]]).optional(),
+    services: z.array(z.any()).optional(), // Multi-service array
     metadata: z.record(z.string(), z.any()).optional()
 })
 
 export async function POST(req: Request) {
     try {
         const body = await req.json()
-        console.log("Draft API Received Body:", JSON.stringify(body, null, 2))
+        // console.log("Draft API Received Body:", JSON.stringify(body, null, 2))
 
         const validation = DraftSchema.safeParse(body)
 
@@ -36,17 +37,10 @@ export async function POST(req: Request) {
         const referenceId = `LEAD-${Date.now().toString().slice(-6)}`
 
         // Map category to Prisma ServiceType (best effort)
-        let prismaServiceType: any = "Other"
-        if (data.category === "Accounting Services") prismaServiceType = "Accounting"
-        if (data.category === "Tax & SARS Services") prismaServiceType = "Tax"
-        if (data.category === "Bookkeeping Services") prismaServiceType = "Bookkeeping"
-        if (data.category === "Company & CIPC Services") prismaServiceType = "CIPC" // Using CIPC as closest match
-        if (data.category === "Shelf Companies") prismaServiceType = "ShelfCompany" // Singular in enum maybe? Cast to any to be safe
-        if (data.category === "Compliance & Registrations") prismaServiceType = "Compliance"
+        const mainCategory = data.services?.[0]?.category || data.category
+        const mainSlug = data.services?.[0]?.slug || data.serviceSlug
 
-        // Refine with slug if available (duplicates logic from submit but safe for draft)
-        if (data.serviceSlug?.includes("payroll")) prismaServiceType = "Payroll"
-        if (data.serviceSlug?.includes("trust")) prismaServiceType = "Trusts"
+        let prismaServiceType = getPrismaServiceType(mainCategory, mainSlug)
 
         // Helper: Map City to LeadLocation Enum
         const city = data.city || "";
@@ -67,6 +61,13 @@ export async function POST(req: Request) {
             urgency = urgencyInput;
         }
 
+        // Construct Message
+        const serviceCount = data.services?.length || 0
+        const servicesList = data.services?.map((s: any) => s.slug).join(", ") || data.serviceSlug || "Unknown Service"
+        const message = serviceCount > 1
+            ? `Draft Multi-Quote (${serviceCount}): ${servicesList}`
+            : `Draft Quote: ${servicesList}`
+
         const lead = await prisma.lead.create({
             data: {
                 referenceId,
@@ -79,11 +80,12 @@ export async function POST(req: Request) {
                 urgency: urgency,
                 status: "Incomplete", // Using Incomplete or New? Enum has Incomplete.
                 serviceType: prismaServiceType as any,
-                message: `Draft Quote: ${data.serviceSlug || "Unknown Service"}`,
+                message: message,
                 resumeToken,
                 // @ts-ignore
                 metadata: {
                     ...(data.metadata || {}),
+                    services: data.services, // Store the array!
                     serviceSlug: data.serviceSlug,
                     category: data.category,
                     city: data.city,

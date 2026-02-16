@@ -251,3 +251,39 @@ export function getServiceSpecificFields(slug: string): FieldDefinition[] {
         default: return []
     }
 }
+
+// Helper to get human-readable label from slug
+export function getServiceLabel(slug: string): string {
+    const service = SERVICE_CATALOG.find(s => s.slug === slug)
+    return service?.label || slug.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase()) // Fallback to title case
+}
+
+export function getCategoryLabel(slug: string): string {
+    const service = SERVICE_CATALOG.find(s => s.slug === slug)
+    return service?.category || "General Request"
+}
+
+// Helper: Map Category/Slug to Prisma ServiceType
+export function getPrismaServiceType(category: string | undefined, slug: string | undefined): "Bookkeeping" | "Accounting" | "Tax" | "Advisory" | "CIPC" | "CompaniesAct" | "Payroll" | "AuditReadiness" | "TenderReadiness" | "DataAnalytics" | "BusinessIT" | "ShelfCompany" | "Compliance" | "Registration" | "Trusts" | "Other" {
+    if (!slug) return "Other"
+
+    // 1. Specific Slug Overrides (Most Granular)
+    if (slug.includes("payroll")) return "Payroll"
+    if (slug.includes("shelf")) return "ShelfCompany"
+    if (slug.includes("trust")) return "Trusts"
+    if (slug.includes("import-export") || slug.includes("cidb")) return "Compliance"
+    if (slug.includes("registration")) return "Registration"
+    if (slug.includes("audit")) return "AuditReadiness"
+    if (slug.includes("tender")) return "TenderReadiness"
+
+    // 2. Category Fallbacks
+    switch (category) {
+        case "Accounting Services": return "Accounting"
+        case "Tax & SARS Services": return "Tax"
+        case "Bookkeeping Services": return "Bookkeeping"
+        case "Company & CIPC Services": return "CIPC"
+        case "Compliance & Registrations": return "Compliance"
+        case "Shelf Companies": return "ShelfCompany"
+        default: return "Other"
+    }
+}

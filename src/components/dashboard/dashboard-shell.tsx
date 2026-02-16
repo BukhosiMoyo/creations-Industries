@@ -12,9 +12,15 @@ import { User } from "next-auth"
 interface DashboardShellProps {
     children: React.ReactNode
     user: User
+    counts?: {
+        leads?: number
+        requests?: number
+        tasks?: number
+        documents?: number
+    }
 }
 
-export function DashboardShell({ children, user }: DashboardShellProps) {
+export function DashboardShell({ children, user, counts }: DashboardShellProps) {
     const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false)
 
     return (
@@ -23,7 +29,7 @@ export function DashboardShell({ children, user }: DashboardShellProps) {
             <LineGridOverlay className="opacity-40" />
 
             {/* Desktop Sidebar */}
-            <DashboardSidebar user={user} />
+            <DashboardSidebar user={user} counts={counts} />
 
             {/* Mobile Sidebar */}
             <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
@@ -35,7 +41,7 @@ export function DashboardShell({ children, user }: DashboardShellProps) {
                         <SheetTitle className="text-xl font-bold ml-3">Creations</SheetTitle>
                     </SheetHeader>
                     <div className="flex-1 overflow-y-auto">
-                        <DashboardSidebar user={user} />
+                        <DashboardSidebar user={user} counts={counts} />
                     </div>
                 </SheetContent>
             </Sheet>

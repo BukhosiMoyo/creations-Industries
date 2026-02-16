@@ -17,12 +17,14 @@ import {
     Settings,
     PanelLeftClose,
     PanelLeftOpen,
+    User as UserIcon,
 } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 
 const navigation = [
     { name: "Overview", href: "/dashboard", icon: LayoutDashboard, roles: ["ADMIN", "STAFF", "EMPLOYEE"] },
+    { name: "Leads", href: "/dashboard/leads", icon: UserIcon, roles: ["ADMIN", "STAFF", "EMPLOYEE"] },
     { name: "Pipeline", href: "/dashboard/pipeline", icon: Briefcase, roles: ["ADMIN", "STAFF"] },
     { name: "Companies", href: "/dashboard/companies", icon: Building2, roles: ["ADMIN", "STAFF"] },
     { name: "Service Requests", href: "/dashboard/requests", icon: Briefcase, roles: ["ADMIN", "STAFF", "EMPLOYEE"] },
@@ -38,9 +40,15 @@ import { User } from "next-auth"
 
 interface DashboardSidebarProps {
     user: User
+    counts?: {
+        leads?: number
+        requests?: number
+        tasks?: number
+        documents?: number
+    }
 }
 
-export function DashboardSidebar({ user }: DashboardSidebarProps) {
+export function DashboardSidebar({ user, counts }: DashboardSidebarProps) {
     const pathname = usePathname()
     const [isCollapsed, setIsCollapsed] = React.useState(false)
 
@@ -107,6 +115,13 @@ export function DashboardSidebar({ user }: DashboardSidebarProps) {
 
                     const isActive = pathname === navItem.href || (navItem.href !== "/dashboard" && pathname.startsWith(navItem.href + "/"))
 
+                    // Resolve Badge Count
+                    let badgeCount = navItem.badge
+                    if (navItem.name === "Leads") badgeCount = counts?.leads
+                    if (navItem.name === "Service Requests") badgeCount = counts?.requests
+                    if (navItem.name === "Tasks") badgeCount = counts?.tasks || navItem.badge // fallback to hardcoded if needed or 0
+                    if (navItem.name === "Documents") badgeCount = counts?.documents || navItem.badge
+
                     return (
                         <Link
                             key={navItem.name}
@@ -138,9 +153,10 @@ export function DashboardSidebar({ user }: DashboardSidebarProps) {
                                 />
                             )}
 
-                            {navItem.badge && !isCollapsed && (
-                                <Badge variant="secondary" className="h-5 min-w-[20px] px-1 rounded-md bg-muted text-[10px] font-bold">
-                                    {navItem.badge}
+                            {/* Badge Display */}
+                            {!!badgeCount && badgeCount > 0 && !isCollapsed && (
+                                <Badge variant="secondary" className="h-5 min-w-[20px] px-1 rounded-md bg-muted text-[10px] font-bold ml-auto">
+                                    {badgeCount}
                                 </Badge>
                             )}
 

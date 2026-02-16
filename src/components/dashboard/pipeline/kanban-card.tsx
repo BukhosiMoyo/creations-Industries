@@ -7,6 +7,9 @@ import { Clock, User as UserIcon, MoreHorizontal, ArrowUpRight } from "lucide-re
 import { formatDistanceToNow } from "date-fns"
 import { cn } from "@/lib/utils"
 
+import { useRouter } from "next/navigation"
+import { getServiceLabel } from "@/lib/quote-catalog"
+
 interface KanbanCardProps {
     request: {
         id: string
@@ -17,10 +20,11 @@ interface KanbanCardProps {
         assignedTo: { name: string | null } | null
         updatedAt: string | Date
     }
-    onClick?: () => void
 }
 
-export function KanbanCard({ request, onClick }: KanbanCardProps) {
+export function KanbanCard({ request }: KanbanCardProps) {
+    const router = useRouter()
+
     const getPriorityStyles = (priority: string) => {
         switch (priority) {
             case "Urgent": return "bg-red-500/10 text-red-600 border-red-200/50 dot-red-500"
@@ -32,8 +36,8 @@ export function KanbanCard({ request, onClick }: KanbanCardProps) {
 
     return (
         <Card
-            className="group shadow-sm border-border hover:border-accent/40 hover:shadow-md transition-all cursor-grab active:cursor-grabbing bg-card overflow-hidden"
-            onClick={onClick}
+            className="group shadow-sm border-border hover:border-accent/40 hover:shadow-md transition-all cursor-pointer bg-card overflow-hidden"
+            onClick={() => router.push(`/dashboard/requests/${request.id}`)}
         >
             <CardHeader className="p-4 pb-2 space-y-3">
                 <div className="flex items-center justify-between">
@@ -60,7 +64,7 @@ export function KanbanCard({ request, onClick }: KanbanCardProps) {
                         <ArrowUpRight className="h-3 w-3 opacity-0 -translate-y-1 translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all text-accent" />
                     </h4>
                     <p className="text-[11px] font-bold text-muted-foreground/80 uppercase tracking-tight">
-                        {request.serviceType}
+                        {getServiceLabel(request.serviceType)}
                     </p>
                 </div>
             </CardHeader>

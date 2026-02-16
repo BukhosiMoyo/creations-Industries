@@ -18,6 +18,7 @@ import { constructMetadata } from "@/lib/metadata";
 import { GoogleAnalytics } from "@/components/analytics/google-analytics";
 import { GA_MEASUREMENT_ID } from "@/lib/analytics";
 import { QuoteProvider } from "@/components/providers/quote-provider";
+import { Toaster } from "@/components/ui/toaster";
 
 export const metadata = constructMetadata();
 
@@ -47,6 +48,7 @@ export default function RootLayout({
               <div className="relative flex min-h-screen flex-col">
                 {children}
               </div>
+              <Toaster />
             </QuoteProvider>
           </Suspense>
         </ThemeProvider>
@@ -54,3 +56,4 @@ export default function RootLayout({
     </html>
   );
 }
+

@@ -26,6 +26,9 @@ import SystemRoleChangedInternal from "@/emails/templates/SystemRoleChangedInter
 import SystemXeroConnectedInternal from "@/emails/templates/SystemXeroConnectedInternal";
 import SystemXeroFailedInternal from "@/emails/templates/SystemXeroFailedInternal";
 import SystemEmailFailedInternal from "@/emails/templates/SystemEmailFailedInternal";
+import LeadTrackRequest from "@/emails/templates/LeadTrackRequest";
+import AuthWelcomeLinked from "@/emails/templates/AuthWelcomeLinked";
+import AuthFinishSetup from "@/emails/templates/AuthFinishSetup";
 
 export const EMAIL_TEMPLATES: Record<string, React.ComponentType<any>> = {
     // Auth
@@ -66,6 +69,11 @@ export const EMAIL_TEMPLATES: Record<string, React.ComponentType<any>> = {
     "system.xero.connected.internal": SystemXeroConnectedInternal,
     "system.xero.failed.internal": SystemXeroFailedInternal,
     "system.email-failed.internal": SystemEmailFailedInternal,
+
+    // New Flow
+    "lead.track.request": LeadTrackRequest,
+    "auth.welcome.linked": AuthWelcomeLinked,
+    "auth.finish.setup": AuthFinishSetup,
 };
 
 export const EMAIL_KEYS = Object.keys(EMAIL_TEMPLATES);
