@@ -4,11 +4,12 @@ import { Pool } from "pg";
 
 const globalForPrisma = global as unknown as { prisma: PrismaClient };
 
-// Prefer POSTGRES_PRISMA_URL (Vercel) -> DATABASE_URL (Standard)
-const connectionString = process.env.POSTGRES_PRISMA_URL || process.env.DATABASE_URL;
+// Prefer Custom Var -> POSTGRES_PRISMA_URL (Vercel) -> DATABASE_URL (Standard)
+const connectionString = process.env.creations_database_DATABASE_URL || process.env.POSTGRES_PRISMA_URL || process.env.DATABASE_URL;
 
 if (process.env.NODE_ENV === 'production') {
     console.log("Prisma Init:", {
+        hasCustomUrl: !!process.env.creations_database_DATABASE_URL,
         hasPostgresPrismaUrl: !!process.env.POSTGRES_PRISMA_URL,
         hasDatabaseUrl: !!process.env.DATABASE_URL,
         connectionStringLength: connectionString?.length || 0,
