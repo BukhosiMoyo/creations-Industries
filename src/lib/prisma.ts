@@ -7,6 +7,15 @@ const globalForPrisma = global as unknown as { prisma: PrismaClient };
 // Prefer POSTGRES_PRISMA_URL (Vercel) -> DATABASE_URL (Standard)
 const connectionString = process.env.POSTGRES_PRISMA_URL || process.env.DATABASE_URL;
 
+if (process.env.NODE_ENV === 'production') {
+    console.log("Prisma Init:", {
+        hasPostgresPrismaUrl: !!process.env.POSTGRES_PRISMA_URL,
+        hasDatabaseUrl: !!process.env.DATABASE_URL,
+        connectionStringLength: connectionString?.length || 0,
+        usingAdapter: !!connectionString
+    });
+}
+
 const adapter = connectionString
     ? new PrismaPg(new Pool({ connectionString }))
     : undefined;
