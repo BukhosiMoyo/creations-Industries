@@ -3,6 +3,9 @@
 import { prisma } from "@/lib/prisma"
 import { revalidatePath } from "next/cache"
 import { RequestStatus, ServiceType, Priority } from "@prisma/client"
+import { sendEmail } from "@/lib/email/send-email"
+import { createNotification } from "@/lib/notifications"
+import { getSession } from "@/lib/rbac"
 
 export async function createServiceRequest(formData: FormData) {
     const companyName = formData.get("companyName") as string
@@ -24,16 +27,36 @@ export async function createServiceRequest(formData: FormData) {
         })
     }
 
-    await prisma.serviceRequest.create({
+    const request = await prisma.serviceRequest.create({
         data: {
-            // workspaceId field doesn't exist on ServiceRequest
             companyId: company.id,
             serviceType: serviceType,
             priority: priority,
             description: description,
-            status: RequestStatus.New
+            status: RequestStatus.New,
+            // Assign to current user if they are staff? Or leave unassigned?
+            // current logic leaves it unassigned
         }
     })
+
+    // Try to get primary contact email for notification
+    const primaryContact = await prisma.clientContact.findFirst({
+        where: { companyId: company.id, isPrimary: true }
+    })
+
+    if (primaryContact && primaryContact.email) {
+        await sendEmail({
+            key: "lead.received.client", // Use 'lead.received' or 'request.received' generic template
+            to: primaryContact.email,
+            props: {
+                firstName: primaryContact.fullName.split(" ")[0],
+                serviceType: serviceType.replace(/([A-Z])/g, ' $1').trim(),
+                brandName: "Creations"
+            },
+            relatedCompanyId: company.id,
+            relatedServiceRequestId: request.id
+        })
+    }
 
     revalidatePath("/dashboard/pipeline")
     revalidatePath("/dashboard")
