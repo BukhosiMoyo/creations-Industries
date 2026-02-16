@@ -45,49 +45,37 @@ export async function sendEmail({ key, to, props, relatedCompanyId, relatedServi
         });
 
         // 2. Prepare props (merge with defaults/overrides if needed)
-        // For simple text overrides, we pass them as props if the component supports them.
-        // The components utilize props for dynamic content.
-        // If 'body' overrides existed in DB as JSON, we would merge them here.
-        // Currently, we just use the props passed in.
-        const finalProps = { ...props };
+        let finalProps = { ...props };
 
-        // If the DB has specific subject/preheader overrides, we might want to use them.
-        // However, Resend 'subject' is separate. React Email 'preview' is preheader.
-        // We'll prioritize the DB subject if it exists, otherwise use a default (which might need to be passed in or defined in a config).
-        // For now, let's assume the caller passes the subject or we rely on the template's internal Preview/Heading?
-        // Actually, Resend needs a subject string.
-        // We should probably define default subjects in the registry or a separate config.
-        // For this MVP, I'll assume the props might contain 'subject' or we assume a default.
-        // But the prompt says "Admin can edit subject... per templateKey".
+        // Merge body text overrides if they exist
+        if (templateOverride?.body && typeof templateOverride.body === 'object') {
+            finalProps = { ...finalProps, ...templateOverride.body };
+        }
 
-        // Let's rely on the DB override for subject, or a sensible default if we can map it.
-        // I will add a helper to get default subject/preheader below if needed, but for now let's use what we have.
+        // 3. Render HTML
+        const emailHtml = await render(React.createElement(TemplateComponent, finalProps));
 
-        let subject = templateOverride?.subject;
+        // 4. Determine Subject
+        // If subject is overridden in DB, use it. Otherwise use the one passed in or default.
+        let subject = templateOverride?.subject || props.subject;
 
         if (!subject) {
-            // Fallback default subjects (simple map)
-            // Ideally this should be in the DB seed or a config file.
-            // For now, I'll generate a subject based on the key if missing? Or just generic.
-            // Or better, fetch from a local map.
             subject = DEFAULT_SUBJECTS[key] || "Notification from Creations";
         }
 
         // Replace variables in subject
         // e.g. "Welcome {{firstName}}" -> "Welcome Max"
         Object.keys(finalProps).forEach(varName => {
-            subject = subject?.replace(new RegExp(`{{${varName}}}`, 'g'), finalProps[varName]);
+            if (typeof finalProps[varName] === 'string') {
+                subject = subject.replace(new RegExp(`{{${varName}}}`, 'g'), finalProps[varName]);
+            }
         });
 
-
-        // 3. Render HTML
-        const emailHtml = await render(React.createElement(TemplateComponent, finalProps));
-
-        // 4. Send via Resend
+        // 5. Send via Resend
         const { data, error } = await resend.emails.send({
             from: FROM_EMAIL,
             to,
-            subject: subject || "Notification",
+            subject,
             html: emailHtml,
         });
 
@@ -97,7 +85,7 @@ export async function sendEmail({ key, to, props, relatedCompanyId, relatedServi
             return { success: false, error };
         }
 
-        // 5. Log success
+        // 6. Log success
         await logEmailEvent(key, to, subject || "Notification", "Sent", data?.id, relatedCompanyId, relatedServiceRequestId);
 
         return { success: true, data };
@@ -120,9 +108,6 @@ async function logEmailEvent(
     // Map key to EmailType enum if possible, or fallback?
     // The Schema has an EmailType enum. We might need to extend it or map loosely.
     // For now, let's just pick 'StatusUpdate' as a generic fallback if we can't match exactly.
-    // Or we should update the enum. The prompt listed keys that don't perfectly match the Enum.
-    // I'll leave it as StatusUpdate for safety or try to map.
-
     let type: EmailType = EmailType.StatusUpdate;
     if (key.includes("lead")) type = EmailType.LeadReceived;
     if (key.includes("docs")) type = EmailType.DocsRequested;
@@ -156,6 +141,7 @@ const DEFAULT_SUBJECTS: Record<string, string> = {
     "lead.new.internal": "New lead received — {{serviceType}}",
     "lead.abandoned.reminder-1": "You’re almost done — complete your request",
     "lead.converted.onboarded.client": "You’re officially onboarded",
+    "request.created.client": "We've received your service request",
     "request.docs-needed.client": "Documents required to proceed",
     "request.completed.client": "Your request has been completed",
     "reminder.missing-docs.client": "Reminder: documents outstanding",

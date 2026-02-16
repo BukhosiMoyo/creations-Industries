@@ -140,6 +140,7 @@ model ClientCompany {
   xeroConnection  XeroConnection?
   emailEvents     EmailEvent[]
   users           User[]
+  invoices        Invoice[]
 }
 
 model ClientContact {
@@ -216,6 +217,7 @@ model ServiceRequest {
   emailEvents     EmailEvent[]
   analyticsEvents AnalyticsEvent[]
   notifications   Notification[]
+  invoices        Invoice[]
 }
 
 enum TaskStatus {
@@ -1069,4 +1071,58 @@ model AnalyticsEvent {
   user          User?              @relation(fields: [userId], references: [id])
   lead          Lead?              @relation(fields: [leadId], references: [id])
   request       ServiceRequest?    @relation(fields: [requestId], references: [id])
+}
+
+// -----------------------------------------------------------------------------
+// INVOICING MODELS (PROMPT D)
+// -----------------------------------------------------------------------------
+
+enum InvoiceStatus {
+  Draft
+  Issued
+  Paid
+  Overdue
+  Void
+  Cancelled
+}
+
+model Invoice {
+  id            String        @id @default(cuid())
+  invoiceNumber String        @unique // e.g. INV-2024-001
+  status        InvoiceStatus @default(Draft)
+  
+  clientId      String
+  requestId     String?
+  
+  issueDate     DateTime      @default(now())
+  dueDate       DateTime
+  paidAt        DateTime?
+  
+  currency      String        @default("ZAR")
+  subtotal      Decimal       @db.Decimal(10, 2)
+  taxrate       Decimal       @default(15) // Percentage
+  taxAmount     Decimal       @db.Decimal(10, 2)
+  total         Decimal       @db.Decimal(10, 2)
+  
+  notes         String?       @db.Text
+  pdfUrl        String?       // Internal or S3 URL if generated
+  
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  
+  client        ClientCompany   @relation(fields: [clientId], references: [id])
+  request       ServiceRequest? @relation(fields: [requestId], references: [id])
+  
+  lineItems     InvoiceLineItem[]
+}
+
+model InvoiceLineItem {
+  id          String   @id @default(cuid())
+  invoiceId   String
+  description String
+  quantity    Decimal  @default(1) @db.Decimal(10, 2)
+  unitPrice   Decimal  @db.Decimal(10, 2)
+  amount      Decimal  @db.Decimal(10, 2)
+  
+  invoice     Invoice  @relation(fields: [invoiceId], references: [id], onDelete: Cascade)
 }

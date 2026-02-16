@@ -1,112 +1,109 @@
-"use client";
-
-import { useEffect, useState } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { getEmailTemplates } from "@/app/actions/email-template-actions";
+import { EMAIL_TEMPLATE_CONFIG } from "@/lib/email/template-config";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Loader2, Mail } from "lucide-react"; // Assuming lucide-react is installed
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Edit, AlertCircle } from "lucide-react";
 import Link from "next/link";
-import { toast } from "sonner";
+import { format } from "date-fns";
+import { prisma } from "@/lib/prisma"; // Direct access for server component
+import { getSession } from "@/lib/rbac";
 
-interface Template {
-    key: string;
-    subject: string | null;
-    updatedAt: string | null;
-    lastEditedBy: string | null;
-}
+// Helper to get inventory
+const getInventory = async () => {
+    // We combine the static config with DB overrides
+    const overrides = await prisma.emailTemplate.findMany();
 
-export default function EmailTemplatesPage() {
-    const [templates, setTemplates] = useState<Template[]>([]);
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        fetchTemplates();
-    }, []);
-
-    const fetchTemplates = async () => {
-        try {
-            const res = await fetch("/api/email/templates");
-            if (!res.ok) throw new Error("Failed to fetch templates");
-            const data = await res.json();
-            setTemplates(data);
-        } catch (error) {
-            toast.error("Error fetching templates");
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    if (loading) {
-        return (
-            <div className="flex justify-center items-center h-96">
-                <Loader2 className="animate-spin h-8 w-8 text-black" />
-            </div>
-        );
-    }
-
-    // Group templates by category
-    const categories: Record<string, Template[]> = {
-        Auth: [],
-        Leads: [],
-        Requests: [],
-        Tasks: [],
-        System: [],
-        Other: [],
-    };
-
-    templates.forEach(t => {
-        if (t.key.startsWith("auth")) categories.Auth.push(t);
-        else if (t.key.startsWith("lead")) categories.Leads.push(t);
-        else if (t.key.startsWith("request")) categories.Requests.push(t);
-        else if (t.key.startsWith("task") || t.key.startsWith("reminder") || t.key.startsWith("digest")) categories.Tasks.push(t);
-        else if (t.key.startsWith("system")) categories.System.push(t);
-        else categories.Other.push(t);
+    // Map existing config to a list
+    const inventory = Object.values(EMAIL_TEMPLATE_CONFIG).map(config => {
+        const override = overrides.find(o => o.key === config.key);
+        return {
+            ...config,
+            override
+        };
     });
 
-    return (
-        <div className="space-y-6 p-6">
-            <h1 className="text-3xl font-bold tracking-tight">Email Templates</h1>
-            <p className="text-muted-foreground">
-                Manage transactional email templates and overrides.
-            </p>
+    return inventory;
+}
 
-            {Object.entries(categories).map(([category, items]) => {
-                if (items.length === 0) return null;
-                return (
-                    <Card key={category}>
-                        <CardHeader>
-                            <CardTitle>{category}</CardTitle>
-                        </CardHeader>
-                        <CardContent className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-                            {items.map((template) => (
-                                <Link
-                                    key={template.key}
-                                    href={`/dashboard/settings/email-templates/${template.key}`}
-                                    className="block group"
-                                >
-                                    <div className="border rounded-lg p-4 hover:border-black transition-colors bg-white">
-                                        <div className="flex items-center gap-3 mb-2">
-                                            <div className="p-2 bg-gray-100 rounded-md group-hover:bg-gray-200">
-                                                <Mail className="h-4 w-4" />
-                                            </div>
-                                            <span className="font-medium text-sm truncate" title={template.key}>
-                                                {template.key}
-                                            </span>
-                                        </div>
-                                        <p className="text-xs text-muted-foreground truncate">
-                                            {template.subject || "Default Subject"}
-                                        </p>
-                                        {template.updatedAt && (
-                                            <p className="text-[10px] text-muted-foreground mt-2">
-                                                Edited: {new Date(template.updatedAt).toLocaleDateString()}
-                                            </p>
-                                        )}
-                                    </div>
-                                </Link>
-                            ))}
+export default async function EmailTemplatesPage() {
+    await getSession('ADMIN');
+    const templates = await getInventory();
+
+    // Group by category
+    const grouped = templates.reduce((acc, template) => {
+        const cat = template.category || "Other";
+        if (!acc[cat]) acc[cat] = [];
+        acc[cat].push(template);
+        return acc;
+    }, {} as Record<string, typeof templates>);
+
+    return (
+        <div className="space-y-8 pb-10">
+            <div>
+                <h1 className="text-3xl font-bold tracking-tight">Email Templates</h1>
+                <p className="text-muted-foreground">Manage transactional email content and overrides.</p>
+            </div>
+
+            {Object.entries(grouped).map(([category, items]) => (
+                <Card key={category}>
+                    <CardHeader>
+                        <CardTitle className="flex items-center gap-2">
+                            {category} Emails
+                            {category === "Invoice" && (
+                                <Badge variant="secondary" className="text-xs font-normal">Xero Managed</Badge>
+                            )}
+                        </CardTitle>
+                        <CardDescription>
+                            {category === "Invoice"
+                                ? "These emails are sent directly by Xero. Content cannot be edited here."
+                                : `${items.length} templates available.`}
+                        </CardDescription>
+                    </CardHeader>
+                    {category !== "Invoice" && (
+                        <CardContent>
+                            <Table>
+                                <TableHeader>
+                                    <TableRow>
+                                        <TableHead>Template Name</TableHead>
+                                        <TableHead>Key</TableHead>
+                                        <TableHead>Status</TableHead>
+                                        <TableHead>Last Edited</TableHead>
+                                        <TableHead className="text-right">Actions</TableHead>
+                                    </TableRow>
+                                </TableHeader>
+                                <TableBody>
+                                    {items.map((template) => (
+                                        <TableRow key={template.key}>
+                                            <TableCell className="font-medium">{template.label}</TableCell>
+                                            <TableCell className="text-xs font-mono text-muted-foreground">{template.key}</TableCell>
+                                            <TableCell>
+                                                {template.override ? (
+                                                    <Badge variant="default" className="bg-emerald-500/15 text-emerald-700 hover:bg-emerald-500/25 border-emerald-500/20">Customized</Badge>
+                                                ) : (
+                                                    <Badge variant="outline">Default</Badge>
+                                                )}
+                                            </TableCell>
+                                            <TableCell className="text-sm text-muted-foreground">
+                                                {template.override ? format(template.override.updatedAt, "MMM d, yyyy") : "—"}
+                                            </TableCell>
+                                            <TableCell className="text-right">
+                                                <Link href={`/dashboard/settings/email-templates/${template.key}`}>
+                                                    <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
+                                                        <Edit className="h-4 w-4" />
+                                                        <span className="sr-only">Edit</span>
+                                                    </Button>
+                                                </Link>
+                                            </TableCell>
+                                        </TableRow>
+                                    ))}
+                                </TableBody>
+                            </Table>
                         </CardContent>
-                    </Card>
-                );
-            })}
+                    )}
+                </Card>
+            ))}
         </div>
-    );
+    )
 }
