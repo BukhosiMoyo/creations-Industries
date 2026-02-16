@@ -4,10 +4,10 @@ import { prisma } from "@/lib/prisma"
 import { revalidatePath } from "next/cache"
 import { sendEmail } from "@/lib/email/send-email"
 import { EMAIL_MOCK_DATA } from "@/lib/email/mock-data"
-import { getSession } from "@/lib/rbac"
+import { requireRole } from "@/lib/rbac"
 
 export async function getEmailTemplates() {
-    await getSession('ADMIN') // Ensure Admin
+    await requireRole(['ADMIN']) // Ensure Admin
 
     const overrides = await prisma.emailTemplate.findMany({
         orderBy: { key: 'asc' }
@@ -16,7 +16,7 @@ export async function getEmailTemplates() {
 }
 
 export async function getEmailTemplate(key: string) {
-    await getSession('ADMIN')
+    await requireRole(['ADMIN'])
 
     const template = await prisma.emailTemplate.findUnique({
         where: { key }
@@ -25,20 +25,20 @@ export async function getEmailTemplate(key: string) {
 }
 
 export async function updateEmailTemplate(key: string, data: { subject: string; body: any }) {
-    const session = await getSession('ADMIN')
+    const user = await requireRole(['ADMIN'])
 
     await prisma.emailTemplate.upsert({
         where: { key },
         update: {
             subject: data.subject,
             body: data.body,
-            lastEditedBy: session.user.id,
+            lastEditedBy: user.id,
         },
         create: {
             key,
             subject: data.subject,
             body: data.body,
-            lastEditedBy: session.user.id,
+            lastEditedBy: user.id,
         }
     })
 
@@ -49,7 +49,7 @@ export async function updateEmailTemplate(key: string, data: { subject: string; 
 }
 
 export async function resetEmailTemplate(key: string) {
-    await getSession('ADMIN')
+    await requireRole(['ADMIN'])
 
     await prisma.emailTemplate.delete({
         where: { key }
@@ -62,7 +62,7 @@ export async function resetEmailTemplate(key: string) {
 }
 
 export async function sendTestEmail(key: string, toEmail: string, contextType: string) {
-    await getSession('ADMIN')
+    await requireRole(['ADMIN'])
 
     // 1. Get mock data
     // @ts-ignore

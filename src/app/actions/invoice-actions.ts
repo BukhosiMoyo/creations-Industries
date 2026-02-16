@@ -2,7 +2,7 @@
 
 import { prisma } from "@/lib/prisma"
 import { revalidatePath } from "next/cache"
-import { getSession } from "@/lib/rbac"
+import { requireRole } from "@/lib/rbac"
 import { InvoiceStatus, Prisma } from "@prisma/client"
 import { createNotification } from "@/lib/notifications"
 import { sendEmail } from "@/lib/email/send-email"
@@ -23,7 +23,7 @@ export async function createInvoice(data: {
     lineItems: LineItemInput[]
     notes?: string
 }) {
-    const session = await getSession('ADMIN') // Or STAFF
+    const user = await requireRole(['ADMIN', 'STAFF'])
 
     // 1. Calculate Totals
     let subtotal = 0
@@ -73,7 +73,7 @@ export async function createInvoice(data: {
 }
 
 export async function updateInvoiceStatus(id: string, newStatus: InvoiceStatus) {
-    const session = await getSession('ADMIN')
+    await requireRole(['ADMIN', 'STAFF'])
 
     const invoice = await prisma.invoice.update({
         where: { id },
@@ -151,7 +151,7 @@ export async function updateInvoiceStatus(id: string, newStatus: InvoiceStatus) 
 }
 
 export async function getInvoices() {
-    await getSession('STAFF')
+    await requireRole(['ADMIN', 'STAFF'])
     return prisma.invoice.findMany({
         include: { client: true },
         orderBy: { createdAt: 'desc' }
@@ -159,7 +159,7 @@ export async function getInvoices() {
 }
 
 export async function getInvoice(id: string) {
-    const session = await getSession(['STAFF', 'CLIENT'])
+    const user = await requireRole(['ADMIN', 'STAFF', 'CLIENT'])
 
     const invoice = await prisma.invoice.findUnique({
         where: { id },
@@ -172,8 +172,8 @@ export async function getInvoice(id: string) {
 
     if (!invoice) return null
 
-    if (session.user.role === 'CLIENT') {
-        if (invoice.clientId !== session.user.companyId) {
+    if (user.role === 'CLIENT') {
+        if (invoice.clientId !== user.companyId) {
             throw new Error("Unauthorized access to invoice")
         }
     }
@@ -182,7 +182,7 @@ export async function getInvoice(id: string) {
 }
 
 export async function deleteInvoice(id: string) {
-    await getSession('ADMIN')
+    await requireRole(['ADMIN'])
     await prisma.invoice.delete({ where: { id } })
     revalidatePath('/dashboard/invoices')
 }
