@@ -115,8 +115,7 @@ export async function updateInvoiceStatus(id: string, newStatus: InvoiceStatus) 
         if (email) {
             await sendEmail({
                 to: email,
-                subject: `Invoice ${invoice.invoiceNumber} Issued`, // Simple subject, can be templated
-                templateName: 'invoice_issued', // Ensure this exists or fallback to generic text
+                key: 'invoice.issued',
                 props: {
                     clientName: invoice.client.legalName,
                     invoiceNumber: invoice.invoiceNumber,

@@ -30,6 +30,8 @@ import LeadTrackRequest from "@/emails/templates/LeadTrackRequest";
 import AuthWelcomeLinked from "@/emails/templates/AuthWelcomeLinked";
 import AuthFinishSetup from "@/emails/templates/AuthFinishSetup";
 
+import InvoiceIssued from "@/emails/templates/InvoiceIssued";
+
 export const EMAIL_TEMPLATES: Record<string, React.ComponentType<any>> = {
     // Auth
     "auth.welcome.client": AuthWelcomeClient,
@@ -48,6 +50,9 @@ export const EMAIL_TEMPLATES: Record<string, React.ComponentType<any>> = {
     "request.created.client": RequestCreatedClient,
     "request.created.internal": RequestCreatedInternal,
     "request.docs-needed.client": RequestDocsNeededClient,
+
+    // Invoices
+    "invoice.issued": InvoiceIssued,
     "request.docs-uploaded.client": RequestDocsUploadedClient,
     "request.docs-uploaded.internal": RequestDocsUploadedInternal,
     "request.stage-update.client": RequestStageUpdateClient,
