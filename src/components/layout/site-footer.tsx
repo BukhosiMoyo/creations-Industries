@@ -9,7 +9,7 @@ export function SiteFooter() {
     return (
         <footer className="border-t border-border/40 bg-surface">
             <Container className="py-12 md:py-16">
-                <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+                <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-5">
                     <div>
                         <Link href="/" className="flex items-center gap-2 mb-4 group w-fit">
                             <div className="relative h-10 w-auto">
@@ -39,8 +39,17 @@ export function SiteFooter() {
                         <ul className="space-y-2 text-sm text-text-secondary">
                             <li><Link href="/services/accounting" className="hover:text-text-primary transition-colors">Accounting</Link></li>
                             <li><Link href="/services/tax" className="hover:text-text-primary transition-colors">Tax Services</Link></li>
-                            <li><Link href="/services/cipc-compliance" className="hover:text-text-primary transition-colors">CIPC Compliance</Link></li>
+                            <li><Link href="/services/company-services" className="hover:text-text-primary transition-colors">Company Services</Link></li>
                             <li><Link href="/services/payroll-service" className="hover:text-text-primary transition-colors">Payroll</Link></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 className="mb-4 text-sm font-semibold">Locations</h3>
+                        <ul className="space-y-2 text-sm text-text-secondary">
+                            <li><Link href="/locations/pretoria" className="hover:text-text-primary transition-colors">Pretoria</Link></li>
+                            <li><Link href="/locations/johannesburg" className="hover:text-text-primary transition-colors">Johannesburg</Link></li>
+                            <li><Link href="/locations/centurion" className="hover:text-text-primary transition-colors">Centurion</Link></li>
                         </ul>
                     </div>
 

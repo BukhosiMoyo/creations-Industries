@@ -55,8 +55,14 @@ const services = [
     {
         title: "Bookkeeping",
         description: "High-volume transaction processing for retailers and agencies via cloud tools.",
-        icon: Briefcase,
+        icon: Briefcase, // Note: Icon was Briefcase in original
         link: "/services/bookkeeping"
+    },
+    {
+        title: "Company Services",
+        description: "CIPC compliance, company registration, and director changes for JHB businesses.",
+        icon: Building2,
+        link: "/services/company-services"
     }
 ]
 

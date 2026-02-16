@@ -63,8 +63,24 @@ export function MobileNav() {
                                             <MobileLink href="/services/tax" onOpenChange={setOpen} icon={FileText} className="text-sm text-text-secondary">Tax Services</MobileLink>
                                             <MobileLink href="/services/bookkeeping" onOpenChange={setOpen} icon={FileText} className="text-sm text-text-secondary">Bookkeeping</MobileLink>
                                             <MobileLink href="/services/payroll-service" onOpenChange={setOpen} icon={FileText} className="text-sm text-text-secondary">Payroll</MobileLink>
-                                            <MobileLink href="/services/cipc-compliance" onOpenChange={setOpen} icon={Building} className="text-sm text-text-secondary">Compliance</MobileLink>
+                                            <MobileLink href="/services/company-services" onOpenChange={setOpen} icon={Building} className="text-sm text-text-secondary">Company Services</MobileLink>
                                             <MobileLink href="/services" onOpenChange={setOpen} icon={ChevronRight} className="text-sm font-semibold text-primary mt-2">View All Services</MobileLink>
+                                        </div>
+                                    </AccordionContent>
+                                </AccordionItem>
+
+                                <AccordionItem value="locations" className="border-none">
+                                    <AccordionTrigger className="py-2 hover:no-underline hover:bg-accent/5 rounded-md px-3 text-sm font-medium">
+                                        <span className="flex items-center gap-3">
+                                            <LayoutGrid className="h-4 w-4 text-primary" />
+                                            Locations
+                                        </span>
+                                    </AccordionTrigger>
+                                    <AccordionContent className="pb-0 pl-4">
+                                        <div className="flex flex-col space-y-1 pt-1 border-l border-border/50 ml-2 pl-2">
+                                            <MobileLink href="/locations/pretoria" onOpenChange={setOpen} className="text-sm text-text-secondary">Pretoria</MobileLink>
+                                            <MobileLink href="/locations/johannesburg" onOpenChange={setOpen} className="text-sm text-text-secondary">Johannesburg</MobileLink>
+                                            <MobileLink href="/locations/centurion" onOpenChange={setOpen} className="text-sm text-text-secondary">Centurion</MobileLink>
                                         </div>
                                     </AccordionContent>
                                 </AccordionItem>

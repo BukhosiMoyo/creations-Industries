@@ -21,7 +21,7 @@ import { TrustBlock } from "@/components/trust/trust-block"
 // -----------------------------------------------------------------------------
 
 export const metadata: Metadata = constructMetadata({
-    title: "Accounting Services South Africa",
+    title: "Accounting Services for Businesses in South Africa",
     description: "Professional accounting services for South African businesses. We keep you compliant, cash-flow aware, and ready to grow. Pretoria, JHB, Centurion.",
 })
 
@@ -233,7 +233,7 @@ export default function AccountingPage() {
 
                             <MotionWrapper delay={0.2}>
                                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-br from-text-primary via-text-primary to-accent mb-6 leading-[1.1]">
-                                    Accounting Services for South African Businesses
+                                    Accounting Services for Businesses in South Africa
                                 </h1>
                             </MotionWrapper>
 

@@ -22,7 +22,7 @@ import { TrustBlock } from "@/components/trust/trust-block"
 // -----------------------------------------------------------------------------
 
 export const metadata: Metadata = constructMetadata({
-    title: "Bookkeeping Services South Africa | Cloud Accounting & Records",
+    title: "Bookkeeping Services for Small & Medium Businesses",
     description: "Modern cloud bookkeeping for South African SMEs. We use Xero and Sage to turn your transactions into business intelligence. Daily processing, VAT compliance, and catch-up services.",
     canonical: "/services/bookkeeping"
 })
@@ -191,7 +191,7 @@ export default function BookkeepingPage() {
 
                             <MotionWrapper delay={0.2}>
                                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-br from-text-primary via-text-primary to-accent mb-6 leading-[1.1]">
-                                    Modern Cloud Bookkeeping for SMEs
+                                    Bookkeeping Services for Small & Medium Businesses
                                 </h1>
                             </MotionWrapper>
 

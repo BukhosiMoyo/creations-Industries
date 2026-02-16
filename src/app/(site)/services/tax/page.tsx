@@ -22,7 +22,7 @@ import { TrustBlock } from "@/components/trust/trust-block"
 // -----------------------------------------------------------------------------
 
 export const metadata: Metadata = constructMetadata({
-    title: "Tax Services South Africa | SARS Compliance & Expert Consulting",
+    title: "Tax Services & Compliance for South African Businesses",
     description: "Expert tax services for South African businesses. Corporate Tax (CIT), VAT, PAYE, and SARS dispute resolution by registered tax practitioners.",
     canonical: "/services/tax"
 })
@@ -192,7 +192,7 @@ export default function TaxPage() {
 
                             <MotionWrapper delay={0.2}>
                                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-br from-text-primary via-text-primary to-accent mb-6 leading-[1.1]">
-                                    Expert Tax Practitioners for SA Businesses
+                                    Tax Services & Compliance for South African Businesses
                                 </h1>
                             </MotionWrapper>
 

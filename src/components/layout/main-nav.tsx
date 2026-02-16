@@ -18,10 +18,10 @@ const services = [
         pillar: "Compliance",
         description: "Stay compliant with SARS, CIPC, and the Companies Act.",
         items: [
-            { title: "Tax Services", href: "/services/tax-services" },
-            { title: "CIPC Compliance", href: "/services/cipc-compliance" },
-            { title: "Companies Act", href: "/services/companies-act-compliance" },
-            { title: "Tender Readiness", href: "/services/tender-readiness" },
+            { title: "Tax Services", href: "/services/tax" },
+            { title: "Company Services", href: "/services/company-services" },
+            { title: "Company Registration", href: "/services/company-services/company-registration" },
+            { title: "Annual Returns", href: "/services/company-services/annual-returns-filing" },
         ],
     },
     {
@@ -72,6 +72,26 @@ export function MainNav() {
                             </div>
                         </NavigationMenuContent>
                     </NavigationMenuItem>
+
+                    <NavigationMenuItem>
+                        <NavigationMenuTrigger className="bg-transparent text-sm font-medium text-text-primary hover:text-text-primary group">
+                            Locations
+                        </NavigationMenuTrigger>
+                        <NavigationMenuContent>
+                            <ul className="grid w-[400px] gap-3 p-4 md:grid-cols-1 bg-surface border border-border/40 shadow-xl rounded-xl">
+                                <ListItem title="Pretoria" href="/locations/pretoria">
+                                    Not serving Pretoria East, Centurion, and Moot.
+                                </ListItem>
+                                <ListItem title="Johannesburg" href="/locations/johannesburg">
+                                    Sandton, Rosebank, and greater JHB business hubs.
+                                </ListItem>
+                                <ListItem title="Centurion" href="/locations/centurion">
+                                    Logistics, Tech, and Estate-based businesses.
+                                </ListItem>
+                            </ul>
+                        </NavigationMenuContent>
+                    </NavigationMenuItem>
+
                     <NavigationMenuItem>
                         <NavigationMenuLink asChild>
                             <Link href="/about" className={cn(navigationMenuTriggerStyle(), "bg-transparent text-sm font-medium text-text-primary hover:text-text-primary")}>
