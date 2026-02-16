@@ -140,11 +140,6 @@ export function QuoteWizardModal({ isOpen, onClose }: { isOpen: boolean, onClose
     async function handleContactSubmit(data: any) {
         setIsLoading(true)
         try {
-            // Create or Update Draft Lead
-            // Logic to handle "Draft" vs "Update" if leadId exists? 
-            // For now, always Draft new if no ID, or we could check state.leadId
-            // Simpler: Just call draft.
-
             const res = await fetch("/api/leads/draft", {
                 method: "POST",
                 body: JSON.stringify({
@@ -167,9 +162,11 @@ export function QuoteWizardModal({ isOpen, onClose }: { isOpen: boolean, onClose
                     contactData: data,
                     step: nextStep
                 }))
+            } else {
+                console.error("Draft API Failed:", json)
             }
         } catch (err) {
-            console.error(err)
+            console.error("Draft API Exception:", err)
         } finally {
             setIsLoading(false)
         }
