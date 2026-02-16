@@ -59,7 +59,10 @@ export async function POST(req: NextRequest) {
 
     } catch (error) {
         console.error("Analytics tracking failed:", error);
-        // Fail silently to client
+        // Fail silently to client, but log for debugging
+        if (error instanceof Error) {
+            console.error(error.stack);
+        }
         return NextResponse.json({ success: false, error: "Internal Server Error" }, { status: 500 });
     }
 }

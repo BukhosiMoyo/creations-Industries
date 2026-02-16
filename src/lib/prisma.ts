@@ -2,21 +2,20 @@ import { PrismaClient } from "@prisma/client";
 import { PrismaPg } from "@prisma/adapter-pg";
 import { Pool } from "pg";
 
-// Global Prisma Client instance
 const globalForPrisma = global as unknown as { prisma: PrismaClient };
 
-// Direct URL for the adapter (extracted from the prisma+postgres URL if possible, 
-// or provided separately. Standard local dev for Prisma 7 uses this port by default).
-const connectionString = process.env.DIRECT_DATABASE_URL || process.env.DATABASE_URL || "postgres://postgres:postgres@localhost:51214/template1?sslmode=disable";
+// Prefer POSTGRES_PRISMA_URL (Vercel) -> DATABASE_URL (Standard)
+const connectionString = process.env.POSTGRES_PRISMA_URL || process.env.DATABASE_URL;
 
-const pool = new Pool({ connectionString });
-const adapter = new PrismaPg(pool);
+const adapter = connectionString
+    ? new PrismaPg(new Pool({ connectionString }))
+    : undefined;
 
 export const prisma =
     globalForPrisma.prisma ||
     new PrismaClient({
-        adapter,
-        log: ["query"],
+        adapter: adapter, // Only use adapter if connection string exists (serverless/edge friendly)
+        log: process.env.NODE_ENV === "development" ? ["query", "error", "warn"] : ["error"],
     });
 
 if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
