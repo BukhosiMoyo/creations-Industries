@@ -7,6 +7,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     const baseUrl = 'https://creations.co.za'
 
     // 1. Static Pages (Core)
+    // 1. Static Pages (Core)
     const staticRoutes = [
         '/', // Home
         '/about',
@@ -20,6 +21,32 @@ export default function sitemap(): MetadataRoute.Sitemap {
         '/services/accounting',
         '/services/tax',
         '/services/bookkeeping',
+        // Company Services Static Pages
+        '/services/company-services',
+        '/services/company-services/annual-returns-filing',
+        '/services/company-services/company-amendments',
+        '/services/company-services/company-deregistration',
+        '/services/company-services/company-registration',
+        '/services/company-services/shelf-companies',
+        // Accounting Sub-Services Static Pages
+        '/services/accounting/business-budgeting-forecasting',
+        '/services/accounting/cash-flow-management',
+        '/services/accounting/financial-statements-preparation',
+        '/services/accounting/fixed-asset-register',
+        '/services/accounting/management-accounts',
+        '/services/accounting/monthly-accounting-services',
+        '/services/accounting/payroll-services',
+        // Tax Sub-Services Static Pages
+        '/services/tax/business-income-tax-returns',
+        '/services/tax/emp201-emp501-submissions',
+        '/services/tax/paye-registration',
+        '/services/tax/pbo-registration',
+        '/services/tax/personal-income-tax-returns',
+        '/services/tax/public-officer-activation',
+        '/services/tax/sars-penalties-disputes',
+        '/services/tax/tax-clearance-certificates',
+        '/services/tax/trust-income-tax-registration',
+        '/services/tax/vat-registration-returns',
         // Location Hubs
         '/locations/pretoria',
         '/locations/johannesburg',
@@ -28,6 +55,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
         '/locations/pretoria/tax',
         '/locations/pretoria/bookkeeping',
         '/locations/pretoria/accounting',
+        // Industry Static Pages
+        '/industries/construction-projects',
+        '/industries/engineering-consultants',
+        '/industries/legal-attorneys',
+        '/industries/medical-professionals',
     ].map((route) => ({
         url: `${baseUrl}${route}`,
         lastModified: new Date(),
@@ -35,14 +67,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: route === '' ? 1 : 0.8,
     }))
 
-    // 2. Service Pages (Dynamic - Exclude ones we have static overrides for if needed, but keeping them doesn't hurt as canonical will handle preference if set)
-    // Note: In a perfect world we filter out 'accounting', 'tax-services', 'bookkeeping' if they are now static.
-    // However, the static definition above just adds them. Next.js sitemap de-duplication might handle it, or we should filter.
-    // Let's filter out the slugs that we know are now static /services/...
-    const staticServiceSlugs = ['accounting', 'tax', 'bookkeeping', 'tax-services'] // tax-services might be the old slug for /services/tax? checking lib/services.ts, slug is 'tax-services' but map is to /services/tax.
+    // 2. Service Pages (Dynamic - Exclude ones we have static overrides for)
+    const staticServiceSlugs = [
+        'accounting', 'bookkeeping', 'tax-services',
+        // Company Services
+        'company-registration', 'annual-returns-filing', 'company-amendments', 'company-deregistration', 'shelf-companies',
+        // Accounting Sub-services
+        'business-budgeting-forecasting', 'cash-flow-management', 'financial-statements-preparation',
+        'fixed-asset-register', 'management-accounts', 'monthly-accounting-services', 'payroll-services',
+        // Tax Sub-services
+        'business-income-tax-returns', 'emp201-emp501-submissions', 'paye-registration', 'pbo-registration',
+        'personal-income-tax-returns', 'public-officer-activation', 'sars-penalties-disputes',
+        'tax-clearance-certificates', 'trust-income-tax-registration', 'vat-registration-returns'
+    ]
 
     const serviceRoutes = services
-        .filter(s => !['accounting', 'bookkeeping', 'tax-services'].includes(s.slug))
+        .filter(s => !staticServiceSlugs.includes(s.slug))
         .map((service) => ({
             url: service.href ? `${baseUrl}${service.href}` : `${baseUrl}/services/${service.slug}`,
             lastModified: new Date(),
@@ -51,12 +91,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
         }))
 
     // 3. Industry Pages (Dynamic from lib/industries)
-    const industryRoutes = industries.map((industry) => ({
-        url: `${baseUrl}/industries/${industry.slug}`,
-        lastModified: new Date(),
-        changeFrequency: 'monthly' as const,
-        priority: 0.8,
-    }))
+    // Filter out static industry pages
+    const staticIndustrySlugs = [
+        'construction-projects',
+        'engineering-consultants',
+        'legal-attorneys',
+        'medical-professionals'
+    ]
+
+    const industryRoutes = industries
+        .filter(i => !staticIndustrySlugs.includes(i.slug))
+        .map((industry) => ({
+            url: `${baseUrl}/industries/${industry.slug}`,
+            lastModified: new Date(),
+            changeFrequency: 'monthly' as const,
+            priority: 0.8,
+        }))
 
     // 4. Guide Pages (Dynamic)
     const guideRoutes = guides.map((guide) => ({
