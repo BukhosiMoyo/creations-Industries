@@ -1,6 +1,10 @@
 
 import { Resend } from 'resend';
 import * as dotenv from 'dotenv';
+import * as React from 'react';
+import { render } from '@react-email/render';
+import { AuthVerifyEmail } from '../src/emails/templates/AuthVerifyEmail';
+
 dotenv.config();
 
 const resend = new Resend(process.env.RESEND_API_KEY);
@@ -12,11 +16,15 @@ async function sendTestEmail() {
     }
 
     try {
+        const emailHtml = await render(React.createElement(AuthVerifyEmail, {
+            verifyUrl: "https://creations.africa/verify-test"
+        }));
+
         const data = await resend.emails.send({
             from: 'Creations <notifications@creations.africa>',
             to: ['khosicodes@gmail.com'],
-            subject: 'Test Email from Creations',
-            html: '<p>This is a test email to verify the Resend integration.</p>'
+            subject: 'Creations Template Test: Verify Email',
+            html: emailHtml
         });
 
         console.log("Email sent successfully:", data);
