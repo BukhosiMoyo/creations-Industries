@@ -9,6 +9,7 @@ import { LayoutDashboard, LogIn } from "lucide-react"
 import { getServerSession } from "next-auth"
 import { authOptions } from "@/lib/auth"
 import { QuoteButton } from "@/components/layout/quote-button"
+import { ClientOnly } from "@/components/client-only"
 
 export async function SiteHeader() {
     const session = await getServerSession(authOptions);
@@ -60,7 +61,9 @@ export async function SiteHeader() {
 
                         <ThemeToggle />
 
-                        <MobileNav />
+                        <ClientOnly>
+                            <MobileNav />
+                        </ClientOnly>
                     </nav>
                 </div>
             </Container>
