@@ -35,6 +35,12 @@ const services = [
         href: "/services/company-services/company-registration"
     },
     {
+        title: "Shelf Companies",
+        description: "Buy a pre-registered company. Immediate trading authority and tax number included.",
+        icon: Building2,
+        href: "/services/company-services/shelf-companies"
+    },
+    {
         title: "Director Amendments",
         description: "Add or remove directors instantly. We handle the CIPC updates and minutes of meetings.",
         icon: FileSignature,
@@ -57,7 +63,8 @@ const services = [
 const faqs = [
     {
         question: "How long does it take to register a company?",
-        answer: "Typically 24 to 48 hours after name reservation approval. CIPC has become much faster, provided all director ID documents are certified correctly."
+        answer: "Typically 24 to 48 hours after name reservation approval. CIPC has become much faster, provided all director ID documents are certified correctly. (Need it faster? Buy a Shelf Company).",
+        answerRich: <>Typically 24 to 48 hours after name reservation approval. CIPC has become much faster, provided all director ID documents are certified correctly. (Need it faster? Buy a <Link href="/services/company-services/shelf-companies" className="text-accent hover:underline">Shelf Company</Link>).</>
     },
     {
         question: "What happens if I don't file Annual Returns?",
@@ -249,7 +256,7 @@ export default function CompanyServicesPage() {
                         {faqs.map((faq, i) => (
                             <AccordionItem key={i} value={`faq-${i}`} className="border rounded-xl bg-background px-4">
                                 <AccordionTrigger className="font-semibold py-4 text-left hover:text-accent hover:no-underline">{faq.question}</AccordionTrigger>
-                                <AccordionContent className="text-text-secondary pb-4">{faq.answer}</AccordionContent>
+                                <AccordionContent className="text-text-secondary pb-4">{(faq as any).answerRich || faq.answer}</AccordionContent>
                             </AccordionItem>
                         ))}
                     </Accordion>

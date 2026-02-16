@@ -8,6 +8,8 @@ import { UseCasesSection } from "@/components/home/use-cases"
 import { TestimonialsSection } from "@/components/home/testimonials"
 import { FaqSection } from "@/components/home/faq-section"
 import { FinalCtaSection } from "@/components/home/final-cta"
+import { PopularServices } from "@/components/home/popular-services"
+import { LocationBanner } from "@/components/home/location-banner"
 import { constructMetadata } from "@/lib/metadata"
 import { JsonLd } from "@/components/seo/json-ld"
 import { Organization, WithContext, LocalBusiness } from "schema-dts"
@@ -59,8 +61,10 @@ export default function Home() {
     <main>
       <JsonLd data={jsonLd} />
       <HeroSection />
-      <PillarsSection />
+      <PopularServices />
       <ServicesGridSection />
+      <LocationBanner />
+      <PillarsSection />
       <HowItWorksSection />
       <DeliverablesSection />
       <AboutPreviewSection />

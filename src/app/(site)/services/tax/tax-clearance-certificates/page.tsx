@@ -47,7 +47,7 @@ const processSteps = [
 const useCases = [
     {
         title: "The Tender Bidder",
-        desc: "Deadline is in 48 hours. Needs a valid TCS PIN immediately to submit with a government proposal."
+        desc: <>Deadline is in 48 hours. Needs a valid TCS PIN immediately to submit with a government proposal. (Consider a <Link href="/services/company-services/shelf-companies" className="text-accent hover:underline">Shelf Company</Link> if you need a number today).</>
     },
     {
         title: "The Emigrating Family",
@@ -79,6 +79,10 @@ const faqs = [
     {
         question: "Why did my clearance expire?",
         answer: "Tax clearance is not valid for a year; it is a snapshot. If you miss a single VAT payment or file a return one day late, your status changes to 'Non-Compliant' immediately."
+    },
+    {
+        question: "Can I bid for a tender while waiting for clearance?",
+        answer: "Usually, no. Most tender mandates require a valid TCS PIN at the exact moment of submission. We prioritize these cases to get you Green status before the deadline."
     }
 ]
 

@@ -70,7 +70,7 @@ const whatIncluded = [
     {
         title: "Monthly Management Reporting",
         icon: FileText,
-        desc: "Profit & Loss, Balance Sheet, Cash Flow visibility, and clear explanations of trends."
+        desc: <><Link href="/services/accounting/management-accounts" className="text-accent hover:underline">Profit & Loss, Balance Sheet</Link>, Cash Flow visibility, and clear explanations of trends.</>
     },
     {
         title: "Compliance-Ready Records",
@@ -80,7 +80,7 @@ const whatIncluded = [
     {
         title: "Year-End Support",
         icon: CheckCircle2,
-        desc: "Preparation of accounting packs, consistency checks, and coordination for financial statements."
+        desc: <>Preparation of accounting packs, consistency checks, and coordination for <Link href="/services/accounting/financial-statements-preparation" className="text-accent hover:underline">financial statements</Link>.</>
     },
     {
         title: "Advisory & Insight (Optional)",

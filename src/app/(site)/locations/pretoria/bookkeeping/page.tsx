@@ -41,7 +41,7 @@ const whoIsThisFor = [
 const whyMatters = [
     {
         title: "VAT Compliance",
-        desc: "Inaccurate input/output claims trigger SARS audits. Pretoria businesses cannot afford VAT risk."
+        desc: <>Inaccurate input/output claims trigger SARS audits. Pretoria businesses cannot afford <Link href="/services/tax/vat-registration-returns" className="text-accent hover:underline">VAT risk</Link>.</>
     },
     {
         title: "Cash Flow Visibility",
@@ -98,7 +98,7 @@ const timelines = [
 const faqs = [
     {
         question: "Do I need a bookkeeper AND an accountant?",
-        answer: "Often, yes. A bookkeeper maintains the daily/weekly records. An accountant analyzes that data for tax strategy and reporting. We provide both services under one roof for seamless handover."
+        answer: <>Often, yes. A bookkeeper maintains the daily/weekly records. An accountant analyzes that data for <Link href="/services/tax" className="text-accent hover:underline">tax strategy</Link> and reporting. We provide both services under one roof for seamless handover.</>
     },
     {
         question: "Can you work with my existing Xero file?",
@@ -160,7 +160,7 @@ export default function PretoriaBookkeepingPage() {
         ]
     }
 
-    const faqSchema: WithContext<FAQPage> = {
+    const faqSchema: WithContext<any> = {
         "@context": "https://schema.org",
         "@type": "FAQPage",
         mainEntity: faqs.map(faq => ({

@@ -241,7 +241,7 @@ export default function VATPage() {
                                     <Calculator className="h-10 w-10 text-accent mb-6" />
                                     <h3 className="text-xl font-bold mb-4">The VAT201 Return</h3>
                                     <p className="text-text-secondary leading-relaxed text-sm">
-                                        We reconcile every transaction. We check that every supplier invoice has a VAT number (if >R5000) and that every sales invoice meets the Tax Invoice requirements. Quality control is key.
+                                        We reconcile every transaction. We check that every supplier invoice has a VAT number (if &gt;R5000) and that every sales invoice meets the Tax Invoice requirements. Quality control is key.
                                     </p>
                                 </CardContent>
                             </Card>

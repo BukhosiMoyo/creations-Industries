@@ -59,12 +59,31 @@ export function MobileNav() {
                                         </span>
                                     </AccordionTrigger>
                                     <AccordionContent className="pb-0 pl-4">
-                                        <div className="flex flex-col space-y-1 pt-1 border-l border-border/50 ml-2 pl-2">
-                                            <MobileLink href="/services/tax" onOpenChange={setOpen} icon={FileText} className="text-sm text-text-secondary">Tax Services</MobileLink>
-                                            <MobileLink href="/services/bookkeeping" onOpenChange={setOpen} icon={FileText} className="text-sm text-text-secondary">Bookkeeping</MobileLink>
-                                            <MobileLink href="/services/payroll-service" onOpenChange={setOpen} icon={FileText} className="text-sm text-text-secondary">Payroll</MobileLink>
-                                            <MobileLink href="/services/company-services" onOpenChange={setOpen} icon={Building} className="text-sm text-text-secondary">Company Services</MobileLink>
-                                            <MobileLink href="/services" onOpenChange={setOpen} icon={ChevronRight} className="text-sm font-semibold text-primary mt-2">View All Services</MobileLink>
+                                        <div className="flex flex-col space-y-4 pt-4 border-l border-border/50 ml-2 pl-4">
+                                            {/* Accounting & Bookkeeping */}
+                                            <div className="space-y-1">
+                                                <h4 className="text-xs font-bold text-text-primary uppercase tracking-wider mb-2">Financial</h4>
+                                                <MobileLink href="/services/accounting" onOpenChange={setOpen} icon={FileText} className="text-sm text-text-secondary">Accounting</MobileLink>
+                                                <MobileLink href="/services/bookkeeping" onOpenChange={setOpen} icon={FileText} className="text-sm text-text-secondary">Bookkeeping</MobileLink>
+                                                <MobileLink href="/services/payroll-service" onOpenChange={setOpen} icon={FileText} className="text-sm text-text-secondary">Payroll</MobileLink>
+                                            </div>
+
+                                            {/* Tax & Compliance */}
+                                            <div className="space-y-1">
+                                                <h4 className="text-xs font-bold text-text-primary uppercase tracking-wider mb-2">Tax & Compliance</h4>
+                                                <MobileLink href="/services/tax" onOpenChange={setOpen} icon={FileText} className="text-sm text-text-secondary">Tax Services</MobileLink>
+                                                <MobileLink href="/services/tax/vat-registration-returns" onOpenChange={setOpen} icon={FileText} className="text-sm text-text-secondary">VAT</MobileLink>
+                                                <MobileLink href="/services/company-services/annual-returns-filing" onOpenChange={setOpen} icon={FileText} className="text-sm text-text-secondary">Annual Returns</MobileLink>
+                                            </div>
+
+                                            {/* Company Services */}
+                                            <div className="space-y-1">
+                                                <h4 className="text-xs font-bold text-text-primary uppercase tracking-wider mb-2">Company</h4>
+                                                <MobileLink href="/services/company-services" onOpenChange={setOpen} icon={Building} className="text-sm text-text-secondary">Company Services</MobileLink>
+                                                <MobileLink href="/services/company-services/shelf-companies" onOpenChange={setOpen} icon={Building} className="text-sm text-text-secondary">Shelf Companies</MobileLink>
+                                            </div>
+
+                                            <MobileLink href="/services" onOpenChange={setOpen} icon={ChevronRight} className="text-sm font-semibold text-accent mt-2">View All Services</MobileLink>
                                         </div>
                                     </AccordionContent>
                                 </AccordionItem>

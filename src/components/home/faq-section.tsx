@@ -44,17 +44,24 @@ export function FaqSection() {
 
                 <Accordion type="single" collapsible className="w-full space-y-4">
                     {faqs.map((faq, i) => (
-                        <AccordionItem key={i} value={`item-${i}`} className="border rounded-xl bg-background/50 backdrop-blur-sm px-4 overflow-hidden shadow-sm transition-all hover:border-accent/30">
-                            <AccordionTrigger className="text-left font-semibold py-4 hover:no-underline hover:text-accent group">
-                                {faq.q}
-                            </AccordionTrigger>
-                            <AccordionContent className="text-text-secondary pb-4 leading-relaxed">
-                                {faq.a}
-                            </AccordionContent>
-                        </AccordionItem>
+                        <FaqItem key={i} question={faq.q} answer={faq.a} value={`item-${i}`} />
                     ))}
                 </Accordion>
             </Container>
         </SectionWrapper>
     )
 }
+
+export function FaqItem({ question, answer, value }: { question: string, answer: string, value?: string }) {
+    return (
+        <AccordionItem value={value || question} className="border rounded-xl bg-background/50 backdrop-blur-sm px-4 overflow-hidden shadow-sm transition-all hover:border-accent/30">
+            <AccordionTrigger className="text-left font-semibold py-4 hover:no-underline hover:text-accent group">
+                {question}
+            </AccordionTrigger>
+            <AccordionContent className="text-text-secondary pb-4 leading-relaxed">
+                {answer}
+            </AccordionContent>
+        </AccordionItem>
+    )
+}
+

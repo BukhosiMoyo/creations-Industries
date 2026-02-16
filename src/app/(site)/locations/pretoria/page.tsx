@@ -126,7 +126,7 @@ export default function PretoriaHubPage() {
         ]
     }
 
-    const faqSchema: WithContext<FAQPage> = {
+    const faqSchema: WithContext<any> = {
         "@context": "https://schema.org",
         "@type": "FAQPage",
         mainEntity: faqs.map(faq => ({
@@ -344,7 +344,7 @@ export default function PretoriaHubPage() {
                         <MotionWrapper>
                             <h2 className="text-3xl font-bold mb-6">Why Choose Creations Accounting in Pretoria</h2>
                             <p className="text-text-secondary mb-6 leading-relaxed">
-                                We combine the personal touch of a local partner with the efficiency of a modern digital firm. No more chasing your accountant for basic reports.
+                                We combine the personal touch of a local partner with the efficiency of a modern <Link href="/services/accounting" className="text-accent hover:underline">digital accounting firm</Link>. No more chasing your accountant for basic reports.
                             </p>
                             <ul className="space-y-4">
                                 {[

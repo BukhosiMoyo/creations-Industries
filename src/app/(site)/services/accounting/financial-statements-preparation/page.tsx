@@ -256,7 +256,7 @@ export default function FinancialStatementsPage() {
                                     <h3 className="text-xl font-bold mb-4">Audit</h3>
                                     <p className="text-text-secondary leading-relaxed text-sm">
                                         <strong>For complex entities.</strong><br />
-                                        If your PI Score is >350, or you hold assets for the public, a full statutory audit is mandatory. We provide audit-readiness support to help you survive this process.
+                                        If your PI Score is &gt;350, or you hold assets for the public, a full statutory audit is mandatory. We provide audit-readiness support to help you survive this process.
                                     </p>
                                 </CardContent>
                             </Card>

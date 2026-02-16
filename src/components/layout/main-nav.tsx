@@ -15,34 +15,73 @@ import {
 
 const services = [
     {
-        pillar: "Compliance",
-        description: "Stay compliant with SARS, CIPC, and the Companies Act.",
-        items: [
-            { title: "Tax Services", href: "/services/tax" },
-            { title: "Company Services", href: "/services/company-services" },
-            { title: "Company Registration", href: "/services/company-services/company-registration" },
-            { title: "Annual Returns", href: "/services/company-services/annual-returns-filing" },
-        ],
+        column: 1,
+        groups: [
+            {
+                title: "Accounting",
+                href: "/services/accounting",
+                items: [
+                    { title: "Monthly Accounting", href: "/services/accounting/monthly-accounting-services" },
+                    { title: "Financial Statements", href: "/services/accounting/financial-statements-preparation" },
+                    { title: "Management Accounts", href: "/services/accounting/management-accounts" },
+                ]
+            },
+            {
+                title: "Bookkeeping",
+                href: "/services/bookkeeping",
+                items: [
+                    { title: "Monthly Processing", href: "/services/bookkeeping" },
+                    { title: "Payroll Services", href: "/services/payroll-service" },
+                ]
+            }
+        ]
     },
     {
-        pillar: "Accounting",
-        description: "Precision in every number. Monthly books, payroll, and audit prep.",
-        items: [
-            { title: "Bookkeeping", href: "/services/bookkeeping" },
-            { title: "Accounting", href: "/services/accounting" },
-            { title: "Payroll Service", href: "/services/payroll-service" },
-            { title: "Audit Readiness", href: "/services/audit-readiness" },
-        ],
+        column: 2,
+        groups: [
+            {
+                title: "Tax Services",
+                href: "/services/tax",
+                items: [
+                    { title: "Corporate Tax (CIT)", href: "/services/tax/business-income-tax-returns" },
+                    { title: "VAT Registration & Returns", href: "/services/tax/vat-registration-returns" },
+                    { title: "Tax Clearance PINs", href: "/services/tax/tax-clearance-certificates" },
+                    { title: "Dispute Resolution", href: "/services/tax/sars-penalties-disputes" },
+                ]
+            },
+            {
+                title: "Compliance",
+                href: "/services/company-services/annual-returns-filing",
+                items: [
+                    { title: "Annual Returns (CIPC)", href: "/services/company-services/annual-returns-filing" },
+                    { title: "Beneficial Ownership", href: "/services/company-services/annual-returns-filing" },
+                ]
+            }
+        ]
     },
     {
-        pillar: "Intelligence",
-        description: "Turn data into direction with advisory and analytics.",
-        items: [
-            { title: "Advisory Services", href: "/services/advisory-services" },
-            { title: "Data Analytics", href: "/services/data-analytics-services" },
-            { title: "Business IT", href: "/services/business-it-solutions" },
-        ],
-    },
+        column: 3,
+        groups: [
+            {
+                title: "Company Services",
+                href: "/services/company-services",
+                items: [
+                    { title: "New Company Reg", href: "/services/company-services/company-registration" },
+                    { title: "Director Amendments", href: "/services/company-services/company-amendments" },
+                    { title: "Share Certificates", href: "/services/company-services/company-amendments" },
+                    { title: "Deregistration", href: "/services/company-services/company-deregistration" },
+                ]
+            },
+            {
+                title: "Shelf Companies",
+                href: "/services/company-services/shelf-companies",
+                items: [
+                    { title: "Buy Shelf Company", href: "/services/company-services/shelf-companies" },
+                    { title: "Vintage Companies", href: "/services/company-services/shelf-companies" },
+                ]
+            }
+        ]
+    }
 ]
 
 export function MainNav() {
@@ -55,18 +94,27 @@ export function MainNav() {
                             Services
                         </NavigationMenuTrigger>
                         <NavigationMenuContent>
-                            <div className="grid w-[800px] gap-3 p-4 md:grid-cols-3 bg-surface border border-border/40 shadow-xl rounded-xl">
-                                {services.map((pillar) => (
-                                    <div key={pillar.pillar} className="flex flex-col space-y-2 p-2">
-                                        <div className="mb-2 pb-2 border-b border-border/40">
-                                            <h4 className="text-sm font-bold leading-none mb-1 text-accent">{pillar.pillar}</h4>
-                                            <p className="text-xs text-text-muted leading-snug">{pillar.description}</p>
-                                        </div>
-                                        <ul className="space-y-1">
-                                            {pillar.items.map((item) => (
-                                                <ListItem key={item.title} title={item.title} href={item.href} />
-                                            ))}
-                                        </ul>
+                            <div className="grid w-[900px] grid-cols-3 gap-6 p-6 bg-surface border border-border/40 shadow-xl rounded-xl">
+                                {services.map((col, i) => (
+                                    <div key={i} className="flex flex-col gap-6">
+                                        {col.groups.map((group) => (
+                                            <div key={group.title} className="flex flex-col space-y-3">
+                                                <Link href={group.href} className="group/title">
+                                                    <h4 className="text-sm font-bold leading-none text-accent flex items-center gap-1 group-hover/title:underline">
+                                                        {group.title}
+                                                    </h4>
+                                                </Link>
+                                                <ul className="space-y-2 border-l border-border/50 pl-3">
+                                                    {group.items.map((item) => (
+                                                        <li key={item.title}>
+                                                            <Link href={item.href} className="block text-sm text-text-muted hover:text-text-primary transition-colors hover:translate-x-1 duration-200">
+                                                                {item.title}
+                                                            </Link>
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            </div>
+                                        ))}
                                     </div>
                                 ))}
                             </div>
@@ -79,13 +127,18 @@ export function MainNav() {
                         </NavigationMenuTrigger>
                         <NavigationMenuContent>
                             <ul className="grid w-[400px] gap-3 p-4 md:grid-cols-1 bg-surface border border-border/40 shadow-xl rounded-xl">
-                                <ListItem title="Pretoria" href="/locations/pretoria">
-                                    Not serving Pretoria East, Centurion, and Moot.
+                                <ListItem title="Pretoria Hub" href="/locations/pretoria">
+                                    Serving Pretoria East, Centurion, and Moot.
                                 </ListItem>
-                                <ListItem title="Johannesburg" href="/locations/johannesburg">
+                                <div className="pl-4 border-l-2 border-accent/10 space-y-1 mb-2">
+                                    <Link href="/locations/pretoria/accounting" className="block text-xs text-text-muted hover:text-accent">Accounting in Pretoria</Link>
+                                    <Link href="/locations/pretoria/tax" className="block text-xs text-text-muted hover:text-accent">Tax Services in Pretoria</Link>
+                                    <Link href="/locations/pretoria/bookkeeping" className="block text-xs text-text-muted hover:text-accent">Bookkeeping in Pretoria</Link>
+                                </div>
+                                <ListItem title="Johannesburg Hub" href="/locations/johannesburg">
                                     Sandton, Rosebank, and greater JHB business hubs.
                                 </ListItem>
-                                <ListItem title="Centurion" href="/locations/centurion">
+                                <ListItem title="Centurion Hub" href="/locations/centurion">
                                     Logistics, Tech, and Estate-based businesses.
                                 </ListItem>
                             </ul>

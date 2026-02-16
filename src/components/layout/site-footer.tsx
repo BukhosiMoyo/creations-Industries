@@ -39,8 +39,9 @@ export function SiteFooter() {
                         <ul className="space-y-2 text-sm text-text-secondary">
                             <li><Link href="/services/accounting" className="hover:text-text-primary transition-colors">Accounting</Link></li>
                             <li><Link href="/services/tax" className="hover:text-text-primary transition-colors">Tax Services</Link></li>
+                            <li><Link href="/services/bookkeeping" className="hover:text-text-primary transition-colors">Bookkeeping</Link></li>
                             <li><Link href="/services/company-services" className="hover:text-text-primary transition-colors">Company Services</Link></li>
-                            <li><Link href="/services/payroll-service" className="hover:text-text-primary transition-colors">Payroll</Link></li>
+                            <li><Link href="/services/company-services/shelf-companies" className="hover:text-text-primary transition-colors">Shelf Companies</Link></li>
                         </ul>
                     </div>
 

@@ -54,7 +54,7 @@ const whatMeans = [
         icon: PieChart,
         points: [
             "Interpreting the numbers",
-            "Producing financial statements & reports",
+            <>Producing <Link href="/services/accounting/financial-statements-preparation" className="text-accent hover:underline">financial statements</Link> & reports</>,
             "Ensuring compliance alignment (SARS/CIPC)",
             "Advising on tax, cash flow & profitability"
         ]
@@ -88,12 +88,12 @@ const servicesIncluded = [
     {
         title: "Monthly Accounting & Reconciliations",
         icon: FileText,
-        description: "Bank reconciliation, allocation of income/expenses, anomaly review, and basic accuracy checks."
+        description: <><Link href="/services/accounting/monthly-accounting-services" className="text-accent hover:underline">Monthly accounting</Link>, bank reconciliation, allocation of income/expenses, anomaly review, and basic accuracy checks.</>
     },
     {
         title: "Monthly Management Reporting",
         icon: PieChart,
-        description: "Profit & Loss, Balance Sheet basics, cash flow visibility, and simple commentary on what changed."
+        description: <><Link href="/services/accounting/management-accounts" className="text-accent hover:underline">Management reports</Link> (Profit & Loss, Balance Sheet), cash flow visibility, and simple commentary on what changed.</>
     },
     {
         title: "Compliance-Ready Record Keeping",
@@ -103,12 +103,12 @@ const servicesIncluded = [
     {
         title: "Year-End Support",
         icon: CheckCircle2,
-        description: "Year-end pack preparation, financial statement coordination, and clean ledger handover."
+        description: <><Link href="/services/accounting/financial-statements-preparation" className="text-accent hover:underline">Annual Financial Statements</Link> preparation, year-end pack coordination, and clean ledger handover.</>
     },
     {
         title: "Advisory & Decision Support",
         icon: TrendingUp,
-        description: "Budgeting support, cost control improvements, and profitability analysis (Optional but Powerful)."
+        description: <><Link href="/services/accounting/business-budgeting-forecasting" className="text-accent hover:underline">Budgeting support</Link>, cost control improvements, and profitability analysis (Optional but Powerful).</>
     }
 ]
 

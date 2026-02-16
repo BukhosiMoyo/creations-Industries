@@ -47,7 +47,7 @@ const whyMatters = [
     },
     {
         title: "Tender Compliance",
-        desc: "In the South African economy, a red Tax Status means lost revenue. We keep your status green for contracts."
+        desc: <>In the South African economy, a red Tax Status means lost revenue. We keep your <Link href="/services/tax/tax-clearance-certificates" className="text-accent hover:underline">Tax Clearance</Link> status green for contracts.</>
     },
     {
         title: "Legislative Complexity",
@@ -63,12 +63,12 @@ const services = [
     {
         title: "Corporate Income Tax",
         icon: Landmark,
-        desc: "Provisional Tax (IRP6) forecasting and Annual Returns (ITR14) with full supporting schedules."
+        desc: <>Provisional Tax (IRP6) forecasting and <Link href="/services/tax/business-income-tax-returns" className="text-accent hover:underline">Annual Returns (ITR14)</Link> with full supporting schedules.</>
     },
     {
         title: "VAT Compliance",
         icon: Calculator,
-        desc: "Reviewing every invoice for valid Section 20 requirements and submitting VAT201s on time."
+        desc: <>Reviewing every invoice for valid Section 20 requirements and submitting <Link href="/services/tax/vat-registration-returns" className="text-accent hover:underline">VAT201s</Link> on time.</>
     },
     {
         title: "Employees' Tax (PAYE)",
@@ -78,7 +78,7 @@ const services = [
     {
         title: "Dispute Resolution",
         icon: Scale,
-        desc: "Handling Objections (NOO), Appeals (NOA), and Voluntary Disclosure (VDP) to resolve SARS issues."
+        desc: <>Handling Objections (NOO), Appeals (NOA), and <Link href="/services/tax/sars-penalties-disputes" className="text-accent hover:underline">Voluntary Disclosure (VDP)</Link> to resolve SARS issues.</>
     }
 ]
 

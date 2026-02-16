@@ -58,17 +58,17 @@ const services = [
     {
         title: "Corporate Tax (CIT)",
         icon: Landmark,
-        desc: "Annual ITR14 submission, Provisional Tax (IRP6) planning, and Dividend declarations."
+        desc: <>Annual ITR14 submission, <Link href="/services/accounting/business-budgeting-forecasting" className="text-accent hover:underline">Provisional Tax (IRP6)</Link> planning, and Dividend declarations.</>
     },
     {
         title: "Personal Income Tax",
         icon: Users,
-        desc: "Individual ITR12 returns, provisional tax for earners, and dispute resolution."
+        desc: <>Individual ITR12 returns, provisional tax for earners, and <Link href="/services/tax/sars-penalties-disputes" className="text-accent hover:underline">dispute resolution</Link>.</>
     },
     {
         title: "VAT Services",
         icon: Calculator,
-        desc: "Registration, two-monthly VAT201 submissions, and audit assistance."
+        desc: <>Registration, two-monthly <Link href="/services/tax/vat-registration-returns" className="text-accent hover:underline">VAT201 submissions</Link>, and audit assistance.</>
     },
     {
         title: "Payroll Tax (PAYE)",
