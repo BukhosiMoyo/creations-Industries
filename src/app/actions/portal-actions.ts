@@ -3,6 +3,7 @@
 import { prisma } from "@/lib/prisma"
 import { revalidatePath } from "next/cache"
 import { getSession } from "@/lib/rbac"
+import { createNotification } from "@/lib/notifications"
 
 export async function uploadClientDocument(
     requestId: string,
@@ -57,6 +58,19 @@ export async function uploadClientDocument(
     // If request was "AwaitingDocs", maybe change status? 
     // Usually manual review, but we could trigger notification.
     // For now, just revalidate.
+
+    // Notify Staff/Admins about new document
+    // Find who is assigned to the request to notify them?
+    const assignedUserId = request.assignedToUserId;
+    if (assignedUserId) {
+        await createNotification({
+            userId: assignedUserId,
+            title: "New Document Uploaded",
+            message: `${session.user.name || 'Client'} uploaded ${fileData.name}`,
+            type: "INFO",
+            link: `/dashboard/requests/${requestId}`
+        });
+    }
 
     revalidatePath(`/portal/requests/${requestId}`)
     return doc

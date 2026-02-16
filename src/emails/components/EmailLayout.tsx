@@ -27,7 +27,7 @@ export const EmailLayout = ({ preview, children }: EmailLayoutProps) => {
                     <Container className="border border-solid border-[#eaeaea] rounded my-[40px] mx-auto p-[20px] w-[465px]">
                         <Section className="mt-[32px] text-center">
                             <Img
-                                src="https://creationsweb-assets.s3.amazonaws.com/logo-email.png" // User must replace this or we use a placeholer if not provided. Prompt said png logo at top.
+                                src="https://creations.africa/logo.png"
                                 alt="Creations"
                                 width="180"
                                 height="48"

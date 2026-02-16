@@ -4,6 +4,7 @@ import { prisma } from "@/lib/prisma"
 import { revalidatePath } from "next/cache"
 import { LeadStatus, RequestStatus, ServiceType, Priority } from "@prisma/client"
 import { getSession } from "@/lib/rbac"
+import { createNotification } from "@/lib/notifications"
 
 // --- LEAD ACTIONS ---
 
@@ -251,6 +252,26 @@ export async function convertLeadToRequest(leadId: string) {
         userId: session.user.id,
         metadata: { companyId: company.id }
     })
+
+    // Notify the user who performed the conversion (success feedback)
+    await createNotification({
+        userId: session.user.id,
+        title: "Lead Converted",
+        message: `Successfully converted ${companyName} to a service request.`,
+        type: "SUCCESS",
+        link: `/dashboard/requests/${request.id}`
+    });
+
+    // Notify assigned user if different from actor
+    if (request.assignedToUserId && request.assignedToUserId !== session.user.id) {
+        await createNotification({
+            userId: request.assignedToUserId,
+            title: "New Request from Lead",
+            message: `Lead ${companyName} has been converted and assigned to you.`,
+            type: "INFO",
+            link: `/dashboard/requests/${request.id}`
+        });
+    }
 
     revalidatePath(`/dashboard/leads/${leadId}`)
     revalidatePath("/dashboard/pipeline")
