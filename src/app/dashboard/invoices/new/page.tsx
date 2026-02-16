@@ -1,9 +1,9 @@
 import { prisma } from "@/lib/prisma"
-import { getSession } from "@/lib/rbac"
+import { requireRole } from "@/lib/rbac"
 import InvoiceForm from "./invoice-form"
 
 async function getClients() {
-    const session = await getSession('STAFF')
+    await requireRole(['ADMIN', 'STAFF'])
     // Fetch active clients
     return prisma.clientCompany.findMany({
         select: {
