@@ -10,20 +10,20 @@ import { Separator } from "@/components/ui/separator"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 
 import { getInvoice } from "@/app/actions/invoice-actions"
-import { getSession } from "@/lib/rbac"
+import { requireRole } from "@/lib/rbac"
 
 interface Props {
     params: Promise<{ invoiceId: string }>
 }
 
-export default async function PortalInvoiceDetailPage(props: Props) {
-    const params = await props.params;
+export default async function PortalInvoiceDetailPage({ params }: Props) {
+    const { invoiceId } = await params
     // Check session again for safety or rely on action
-    const session = await getSession('CLIENT')
+    const user = await requireRole(['CLIENT'])
 
     let invoice
     try {
-        invoice = await getInvoice(params.invoiceId)
+        invoice = await getInvoice(invoiceId)
     } catch (e) {
         // Handle unauthorized or not found
         notFound()

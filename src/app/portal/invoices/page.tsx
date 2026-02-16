@@ -5,16 +5,16 @@ import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { format } from "date-fns"
-import { getSession } from "@/lib/rbac"
+import { requireRole } from "@/lib/rbac"
 import { prisma } from "@/lib/prisma"
 
 async function getClientInvoices() {
-    const session = await getSession('CLIENT')
-    if (!session.user.companyId) return []
+    const user = await requireRole(['CLIENT'])
+    if (!user.companyId) return []
 
     return prisma.invoice.findMany({
         where: {
-            clientId: session.user.companyId,
+            clientId: user.companyId,
             status: { not: 'Draft' } // Clients shouldn't see drafts
         },
         orderBy: { createdAt: 'desc' },

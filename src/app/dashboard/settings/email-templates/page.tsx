@@ -8,7 +8,7 @@ import { Edit, AlertCircle } from "lucide-react";
 import Link from "next/link";
 import { format } from "date-fns";
 import { prisma } from "@/lib/prisma"; // Direct access for server component
-import { getSession } from "@/lib/rbac";
+import { requireRole } from "@/lib/rbac";
 
 // Helper to get inventory
 const getInventory = async () => {
@@ -28,7 +28,7 @@ const getInventory = async () => {
 }
 
 export default async function EmailTemplatesPage() {
-    await getSession('ADMIN');
+    await requireRole(['ADMIN']);
     const templates = await getInventory();
 
     // Group by category
