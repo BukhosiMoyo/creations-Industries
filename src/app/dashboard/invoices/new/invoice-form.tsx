@@ -32,9 +32,9 @@ const invoiceSchema = z.object({
     notes: z.string().optional(),
     lineItems: z.array(z.object({
         description: z.string().min(1, "Description is required"),
-        // Use strict coercion handling for inputs that might return strings
-        quantity: z.union([z.string(), z.number()]).pipe(z.coerce.number().min(1, "Quantity must be at least 1")),
-        unitPrice: z.union([z.string(), z.number()]).pipe(z.coerce.number().min(0, "Price cannot be negative")),
+        // Use preprocess to safely cast string/number inputs to number
+        quantity: z.preprocess((val) => Number(val), z.number().min(1, "Quantity must be at least 1")),
+        unitPrice: z.preprocess((val) => Number(val), z.number().min(0, "Price cannot be negative")),
     })).min(1, "At least one line item is required")
 })
 
