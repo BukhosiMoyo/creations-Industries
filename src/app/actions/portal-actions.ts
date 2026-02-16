@@ -67,8 +67,10 @@ export async function uploadClientDocument(
             userId: assignedUserId,
             title: "New Document Uploaded",
             message: `${session.user.name || 'Client'} uploaded ${fileData.name}`,
-            type: "INFO",
-            link: `/dashboard/requests/${requestId}`
+            severity: "INFO",
+            category: "DOCUMENT",
+            link: `/dashboard/requests/${requestId}`,
+            relatedRequestId: requestId
         });
     }
 

@@ -1,9 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { contactSchema } from "@/lib/schemas";
-import { resend } from "@/lib/email/resend";
+import { sendEmail } from "@/lib/email/send-email"; // Generic Helper
 import { generateReferenceId } from "@/lib/leads/utils";
-import NewLeadEmail from "@/lib/email/templates/new-lead";
-import ClientConfirmationEmail from "@/lib/email/templates/client-confirmation";
 import { prisma } from "@/lib/prisma";
 import { ServiceType, LeadSource } from "@prisma/client";
 
@@ -46,11 +44,10 @@ export async function POST(req: NextRequest) {
         });
 
         // 4. Send Internal Email
-        const { error: adminError } = await resend.emails.send({
-            from: process.env.RESEND_FROM_EMAIL || 'onboarding@resend.dev',
+        await sendEmail({
+            key: "lead.new.internal",
             to: process.env.BUSINESS_EMAIL || 'delivered@resend.dev',
-            subject: `New Enquiry: ${data.subject || 'Contact Form'} (${referenceId})`,
-            react: NewLeadEmail({
+            props: {
                 referenceId,
                 name: `${data.firstName} ${data.lastName}`,
                 email: data.email,
@@ -60,24 +57,19 @@ export async function POST(req: NextRequest) {
                 description: data.message,
                 source: 'Contact Form',
                 date,
-            }) as React.ReactElement,
+            }
         });
 
-        if (adminError) {
-            console.error("Resend Admin Error:", adminError);
-            // We don't fail the request if email fails but DB succeeded, just log it. 
-            // Or maybe we should alert? For now, silent log is fine for user experience.
-        }
-
         // 5. Send Client Confirmation
-        await resend.emails.send({
-            from: process.env.RESEND_FROM_EMAIL || 'onboarding@resend.dev',
+        await sendEmail({
+            key: "lead.received.client",
             to: data.email,
-            subject: `We've received your enquiry - Creations (${referenceId})`,
-            react: ClientConfirmationEmail({
+            props: {
                 referenceId,
                 name: data.firstName,
-            }) as React.ReactElement,
+                firstName: data.firstName,
+                brandName: "Creations"
+            }
         });
 
         return NextResponse.json({ success: true, referenceId });

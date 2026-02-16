@@ -1,12 +1,17 @@
 import { prisma } from "./prisma"
-import { NotificationType } from "@prisma/client"
+import { NotificationType, NotificationSeverity } from "@prisma/client"
 
 interface CreateNotificationParams {
     userId: string
     title: string
     message: string
-    type?: NotificationType
+    type?: NotificationType // Legacy/Visual
+    severity?: NotificationSeverity
+    category?: string
     link?: string
+    metadata?: Record<string, any>
+    relatedLeadId?: string
+    relatedRequestId?: string
 }
 
 export async function createNotification({
@@ -14,7 +19,12 @@ export async function createNotification({
     title,
     message,
     type = "INFO",
-    link
+    severity = "INFO",
+    category = "SYSTEM",
+    link,
+    metadata,
+    relatedLeadId,
+    relatedRequestId
 }: CreateNotificationParams) {
     try {
         return await prisma.notification.create({
@@ -23,7 +33,12 @@ export async function createNotification({
                 title,
                 message,
                 type,
-                link
+                severity,
+                category,
+                link,
+                metadata,
+                relatedLeadId,
+                relatedRequestId
             }
         })
     } catch (error) {

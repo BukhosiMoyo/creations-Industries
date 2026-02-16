@@ -6,6 +6,7 @@ export type DashboardCounts = {
     requests: number
     tasks: number
     documents: number
+    unreadNotifications: number
 }
 
 // Helper to filter by Role
@@ -28,11 +29,11 @@ function getRbacFilter(userId: string, role: string, entityField: string = "assi
 
 export async function getDashboardCounts(userId: string, role: string): Promise<DashboardCounts> {
     if (role === "CLIENT") {
-        return { leads: 0, requests: 0, tasks: 0, documents: 0 }
+        return { leads: 0, requests: 0, tasks: 0, documents: 0, unreadNotifications: 0 }
     }
 
     try {
-        const [leads, requests, tasks, documents] = await Promise.all([
+        const [leads, requests, tasks, documents, unreadNotifications] = await Promise.all([
             // LEADS: Count "New" / "Incomplete" / "In Review" / "Awaiting Docs"
             prisma.lead.count({
                 where: {
@@ -76,13 +77,20 @@ export async function getDashboardCounts(userId: string, role: string): Promise<
                 where: {
                     uploadedByUserId: { not: userId } // Documents uploaded by others (clients)
                 }
+            }),
+            // NOTIFICATIONS: Unread count
+            prisma.notification.count({
+                where: {
+                    userId: userId,
+                    isRead: false
+                }
             })
         ])
 
-        return { leads, requests, tasks, documents }
+        return { leads, requests, tasks, documents, unreadNotifications }
     } catch (error) {
         console.error("Error fetching dashboard counts:", error)
-        return { leads: 0, requests: 0, tasks: 0, documents: 0 }
+        return { leads: 0, requests: 0, tasks: 0, documents: 0, unreadNotifications: 0 }
     }
 }
 

@@ -6,7 +6,7 @@ import * as React from "react";
 import { EmailType } from "@prisma/client";
 
 const resend = new Resend(process.env.RESEND_API_KEY || 're_123456789');
-const FROM_EMAIL = process.env.EMAIL_FROM || "Creations <notifications@creationsweb.za>"; // Fallback
+const FROM_EMAIL = process.env.EMAIL_FROM || process.env.RESEND_FROM_EMAIL || "Creations <notifications@creations.africa>"; // Fallback
 
 interface SendEmailOptions {
     key: string;
@@ -17,9 +17,20 @@ interface SendEmailOptions {
 }
 
 export async function sendEmail({ key, to, props, relatedCompanyId, relatedServiceRequestId }: SendEmailOptions) {
+    // 1. Strict Env Check
     if (!process.env.RESEND_API_KEY) {
-        console.error("RESEND_API_KEY is missing");
-        return { success: false, error: new Error("RESEND_API_KEY is missing") };
+        const errorMsg = "RESEND_API_KEY is missing in environment variables.";
+        console.error(errorMsg);
+        // Log failure even if we can't send
+        await logEmailEvent(key, to, "Unknown", "Failed", errorMsg, relatedCompanyId, relatedServiceRequestId);
+        return { success: false, error: new Error(errorMsg) };
+    }
+
+    if (!process.env.RESEND_FROM_EMAIL && !process.env.EMAIL_FROM) {
+        const errorMsg = "RESEND_FROM_EMAIL (or EMAIL_FROM) is missing in environment variables.";
+        console.error(errorMsg);
+        await logEmailEvent(key, to, "Unknown", "Failed", errorMsg, relatedCompanyId, relatedServiceRequestId);
+        return { success: false, error: new Error(errorMsg) };
     }
 
     try {

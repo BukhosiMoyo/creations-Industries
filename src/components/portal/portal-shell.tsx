@@ -2,6 +2,7 @@
 
 import * as React from "react"
 import { PortalSidebar } from "./portal-sidebar"
+import { NotificationCenter } from "@/components/dashboard/notification-center"
 import { motion } from "framer-motion"
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet"
 import { ShieldCheck, Menu } from "lucide-react"
@@ -51,6 +52,11 @@ export function PortalShell({ children, user }: PortalShellProps) {
                     </Button>
 
                     <div className="flex items-center gap-4">
+                        {/* Notification Center for Client */}
+                        <div className="hidden md:block">
+                            <NotificationCenter />
+                        </div>
+
                         <div className="flex items-center gap-3">
                             <div className="hidden text-right md:block">
                                 <p className="text-sm font-medium leading-none">{user.name || "Client"}</p>

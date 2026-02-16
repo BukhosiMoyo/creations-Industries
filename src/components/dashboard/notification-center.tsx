@@ -17,10 +17,26 @@ interface Notification {
     id: string
     title: string
     message: string
-    type: "INFO" | "SUCCESS" | "WARNING" | "ALERT"
+    type: string // Legacy
+    severity?: "INFO" | "SUCCESS" | "WARNING" | "CRITICAL"
     isRead: boolean
     createdAt: string
     link?: string
+}
+
+// ... existing code ...
+
+const getTypeIcon = (severity?: string, type?: string) => {
+    // Fallback to type if severity is missing (for legacy)
+    const effectiveType = severity || type || "INFO";
+
+    switch (effectiveType) {
+        case "SUCCESS": return <CheckCircle2 className="h-4 w-4 text-emerald-500" />
+        case "WARNING": return <AlertTriangle className="h-4 w-4 text-amber-500" />
+        case "CRITICAL": // Fallthrough
+        case "ALERT": return <AlertCircle className="h-4 w-4 text-destructive" />
+        default: return <Info className="h-4 w-4 text-blue-500" />
+    }
 }
 
 export function NotificationCenter() {
@@ -159,7 +175,7 @@ export function NotificationCenter() {
                                             "h-8 w-8 rounded-lg flex items-center justify-center border",
                                             !n.isRead ? "bg-white shadow-sm border-border/40" : "bg-muted/40 border-transparent"
                                         )}>
-                                            {getTypeIcon(n.type)}
+                                            {getTypeIcon(n.severity, n.type)}
                                         </div>
                                     </div>
                                     <div className="flex-1 space-y-1 pr-6">

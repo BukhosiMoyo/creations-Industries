@@ -211,10 +211,11 @@ model ServiceRequest {
   company     ClientCompany @relation(fields: [companyId], references: [id], onDelete: Cascade)
   assignedTo  User?         @relation("AssignedTo", fields: [assignedToUserId], references: [id])
   tasks       Task[]
-  documents   Document[]
-  activities  ActivityLog[]
-  emailEvents EmailEvent[]
+  documents       Document[]
+  activities      ActivityLog[]
+  emailEvents     EmailEvent[]
   analyticsEvents AnalyticsEvent[]
+  notifications   Notification[]
 }
 
 enum TaskStatus {
@@ -300,15 +301,33 @@ enum NotificationType {
   ALERT
 }
 
+enum NotificationSeverity {
+  INFO
+  SUCCESS
+  WARNING
+  CRITICAL
+}
+
 model Notification {
-  id        String           @id @default(cuid())
+  id        String               @id @default(cuid())
   userId    String
   title     String
   message   String
-  type      NotificationType @default(INFO)
+  type      NotificationType     @default(INFO) // Keeping for backward compat, mapped to severity
+  severity  NotificationSeverity @default(INFO)
+  category  String               @default("SYSTEM") // E.g., Lead, Request, Invoice
+  
   isRead    Boolean          @default(false)
   link      String?
   createdAt DateTime         @default(now())
+  
+  metadata  Json?
+  
+  relatedLeadId String?
+  relatedLead   Lead? @relation(fields: [relatedLeadId], references: [id])
+  
+  relatedRequestId String?
+  relatedRequest   ServiceRequest? @relation(fields: [relatedRequestId], references: [id])
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
@@ -468,8 +487,9 @@ model Lead {
   portalTokens LeadPortalToken[]
 
   // legacy relations
-  outreachEvents OutreachEvent[]
+  outreachEvents  OutreachEvent[]
   analyticsEvents AnalyticsEvent[]
+  notifications   Notification[]
 }
 
 model LeadPersona {

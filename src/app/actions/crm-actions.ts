@@ -56,6 +56,18 @@ export async function assignLead(leadId: string, userId: string) {
         metadata: { assignedToUserId: userId }
     })
 
+    if (userId !== session.user.id) {
+        await createNotification({
+            userId,
+            title: "Lead Assigned",
+            message: "You have been assigned to a lead.", // TODO: Fetch company name for better message
+            severity: "INFO",
+            category: "LEAD",
+            link: `/dashboard/leads/${leadId}`,
+            relatedLeadId: leadId
+        })
+    }
+
     revalidatePath(`/dashboard/leads/${leadId}`)
     revalidatePath("/dashboard/leads")
 }
@@ -158,6 +170,18 @@ export async function assignRequest(requestId: string, userId: string) {
         }
     })
 
+    if (userId !== session.user.id) {
+        await createNotification({
+            userId,
+            title: "Request Assigned",
+            message: "You have been assigned to a service request.",
+            severity: "INFO",
+            category: "REQUEST",
+            link: `/dashboard/requests/${requestId}`,
+            relatedRequestId: requestId
+        })
+    }
+
     revalidatePath(`/dashboard/requests/${requestId}`)
     revalidatePath("/dashboard/pipeline")
 }
@@ -258,7 +282,8 @@ export async function convertLeadToRequest(leadId: string) {
         userId: session.user.id,
         title: "Lead Converted",
         message: `Successfully converted ${companyName} to a service request.`,
-        type: "SUCCESS",
+        severity: "SUCCESS",
+        category: "LEAD",
         link: `/dashboard/requests/${request.id}`
     });
 
@@ -268,8 +293,10 @@ export async function convertLeadToRequest(leadId: string) {
             userId: request.assignedToUserId,
             title: "New Request from Lead",
             message: `Lead ${companyName} has been converted and assigned to you.`,
-            type: "INFO",
-            link: `/dashboard/requests/${request.id}`
+            severity: "INFO",
+            category: "REQUEST",
+            link: `/dashboard/requests/${request.id}`,
+            relatedRequestId: request.id
         });
     }
 
