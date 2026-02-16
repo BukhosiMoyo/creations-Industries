@@ -304,3 +304,19 @@ export async function convertLeadToRequest(leadId: string) {
     revalidatePath("/dashboard/pipeline")
     return request.id
 }
+
+// --- GENERAL CRM ACTIONS ---
+
+export async function getClients() {
+    const session = await getSession()
+    if (!session) throw new Error("Unauthorized")
+
+    return prisma.clientCompany.findMany({
+        orderBy: { legalName: 'asc' },
+        select: {
+            id: true,
+            legalName: true,
+            tradingName: true
+        }
+    })
+}
