@@ -94,15 +94,6 @@ export function NotificationCenter() {
         }
     }
 
-    const getTypeIcon = (type: string) => {
-        switch (type) {
-            case "SUCCESS": return <CheckCircle2 className="h-4 w-4 text-emerald-500" />
-            case "WARNING": return <AlertTriangle className="h-4 w-4 text-amber-500" />
-            case "ALERT": return <AlertCircle className="h-4 w-4 text-destructive" />
-            default: return <Info className="h-4 w-4 text-blue-500" />
-        }
-    }
-
     return (
         <DropdownMenu open={open} onOpenChange={setOpen}>
             <DropdownMenuTrigger asChild>
