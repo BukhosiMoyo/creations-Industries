@@ -19,7 +19,7 @@ interface ChartData {
 
 export function OverviewChart({ data }: { data: ChartData[] }) {
     return (
-        <div className="h-[300px] w-full">
+        <div style={{ width: '100%', height: 300 }}>
             <ResponsiveContainer width="100%" height="100%">
                 <AreaChart
                     data={data}
