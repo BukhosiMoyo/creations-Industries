@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -16,6 +17,7 @@ const geistMono = Geist_Mono({
 import { constructMetadata } from "@/lib/metadata";
 import { GoogleAnalytics } from "@/components/analytics/google-analytics";
 import { GA_MEASUREMENT_ID } from "@/lib/analytics";
+import { QuoteProvider } from "@/components/providers/quote-provider";
 
 export const metadata = constructMetadata();
 
@@ -40,9 +42,13 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div className="relative flex min-h-screen flex-col">
-            {children}
-          </div>
+          <Suspense fallback={null}>
+            <QuoteProvider>
+              <div className="relative flex min-h-screen flex-col">
+                {children}
+              </div>
+            </QuoteProvider>
+          </Suspense>
         </ThemeProvider>
       </body>
     </html>

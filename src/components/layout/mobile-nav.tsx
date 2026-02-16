@@ -11,9 +11,11 @@ import Image from "next/image"
 
 import { useRouter } from "next/navigation"
 import { trackEvent, ConversionEvents } from "@/lib/analytics"
+import { useQuote } from "@/components/providers/quote-provider"
 
 export function MobileNav() {
     const [open, setOpen] = React.useState(false)
+    const { openQuoteWizard } = useQuote()
 
     return (
         <Sheet open={open} onOpenChange={setOpen}>
@@ -137,8 +139,9 @@ export function MobileNav() {
                                 Sign In
                             </Button>
                         </Link>
-                        <Link
-                            href="/get-a-quote"
+                        <Button
+                            variant="default"
+                            className="w-full justify-center bg-accent hover:bg-accent/90 text-white"
                             onClick={() => {
                                 trackEvent({
                                     action: ConversionEvents.REQUEST_QUOTE_CLICK,
@@ -146,13 +149,12 @@ export function MobileNav() {
                                     label: 'mobile_menu_cta'
                                 })
                                 setOpen(false)
+                                openQuoteWizard()
                             }}
                         >
-                            <Button variant="default" className="w-full justify-center bg-accent hover:bg-accent/90 text-white">
-                                <ClipboardEdit className="mr-2 h-4 w-4" />
-                                Quote
-                            </Button>
-                        </Link>
+                            <ClipboardEdit className="mr-2 h-4 w-4" />
+                            Quote
+                        </Button>
                     </div>
                 </div>
             </SheetContent>

@@ -9,7 +9,11 @@ import { MotionWrapper, StaggerChildren } from "@/components/ui/motion-wrapper"
 import { CurvyGraph } from "@/components/ui/curvy-graph"
 import { FloatingStat } from "@/components/ui/hero-visual-items"
 
+import { useQuote } from "@/components/providers/quote-provider"
+
 export function HeroSection() {
+    const { openQuoteWizard } = useQuote()
+
     return (
         <SectionWrapper className="pt-24 pb-24 md:pt-32 md:pb-32 overflow-hidden" showGlow showReactiveGrid patternIntensity="subtle">
             <Container className="relative z-10 flex flex-col items-center text-center lg:text-left lg:flex-row lg:items-center lg:justify-between gap-12">
@@ -36,12 +40,15 @@ export function HeroSection() {
                     </MotionWrapper>
 
                     <MotionWrapper delay={0.4} className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-10">
-                        <Link href="/get-a-quote">
-                            <Button variant="glow" size="lg" className="h-12 px-8 text-base font-semibold group">
-                                Request a Quote
-                                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                            </Button>
-                        </Link>
+                        <Button
+                            variant="glow"
+                            size="lg"
+                            className="h-12 px-8 text-base font-semibold group"
+                            onClick={openQuoteWizard}
+                        >
+                            Request a Quote
+                            <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                        </Button>
                         <Link href="/services">
                             <Button variant="outline" size="lg" className="h-12 px-8 text-base bg-transparent border-border-subtle hover:bg-surface-elevated">View Our Services</Button>
                         </Link>
@@ -127,6 +134,6 @@ export function HeroSection() {
                 </MotionWrapper>
 
             </Container>
-        </SectionWrapper>
+        </SectionWrapper >
     )
 }

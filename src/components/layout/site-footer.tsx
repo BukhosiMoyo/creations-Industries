@@ -4,8 +4,10 @@ import Link from "next/link"
 import Image from "next/image"
 import { trackEvent, ConversionEvents } from "@/lib/analytics"
 import { Container } from "@/components/ui/container"
+import { useQuote } from "@/components/providers/quote-provider"
 
 export function SiteFooter() {
+    const { openQuoteWizard } = useQuote()
     return (
         <footer className="border-t border-border/40 bg-surface">
             <Container className="py-12 md:py-16">
@@ -60,7 +62,11 @@ export function SiteFooter() {
                             <li><Link href="/about" className="hover:text-text-primary transition-colors">About Us</Link></li>
                             <li><Link href="/how-it-works" className="hover:text-text-primary transition-colors">How It Works</Link></li>
                             <li><Link href="/contact" className="hover:text-text-primary transition-colors">Contact</Link></li>
-                            <li><Link href="/get-a-quote" className="hover:text-text-primary transition-colors">Request Quote</Link></li>
+                            <li>
+                                <button onClick={openQuoteWizard} className="hover:text-text-primary transition-colors text-left">
+                                    Request Quote
+                                </button>
+                            </li>
                         </ul>
                     </div>
 

@@ -12349,20 +12349,5 @@ export const services: ServiceContent[] = [
         hero: { heading: "", subheading: "" },
         whoIsThisFor: [], deliverables: [], process: [], requirements: [], timeline: "", faqs: [], relatedServices: []
     },
-    {
-        slug: "management-accounts",
-        title: "Management Accounts",
-        pillar: "Accounting",
-        href: "/services/accounting/management-accounts",
-        hero: { heading: "", subheading: "" },
-        whoIsThisFor: [], deliverables: [], process: [], requirements: [], timeline: "", faqs: [], relatedServices: []
-    },
-    {
-        slug: "monthly-accounting-services",
-        title: "Monthly Accounting Services",
-        pillar: "Accounting",
-        href: "/services/accounting/monthly-accounting-services",
-        hero: { heading: "", subheading: "" },
-        whoIsThisFor: [], deliverables: [], process: [], requirements: [], timeline: "", faqs: [], relatedServices: []
-    },
+
 ]

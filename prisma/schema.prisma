@@ -167,6 +167,10 @@ enum ServiceType {
   TenderReadiness
   DataAnalytics
   BusinessIT
+  ShelfCompany
+  Compliance
+  Registration
+  Trusts
   Other
 }
 
@@ -431,6 +435,7 @@ model Lead {
   abandonedAt        DateTime?
   resumeToken        String?         @unique
   deviceMetadata     Json?
+  metadata           Json?
 
   // Outreach & Scoring (v1.0)
   businessType       BusinessType    @default(Other)

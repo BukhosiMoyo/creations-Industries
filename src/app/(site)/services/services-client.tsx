@@ -49,7 +49,7 @@ export function ServicesClient() {
 
                             <StaggerChildren className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                                 {pillarServices.map((service, sIndex) => (
-                                    <MotionWrapper key={service.slug} delay={sIndex * 0.1}>
+                                    <MotionWrapper key={`${pillar.slug}-${service.slug}`} delay={sIndex * 0.1}>
                                         <Card className="border-border bg-background/50 hover:bg-background hover:border-accent/30 transition-all duration-300 h-full flex flex-col group">
                                             <CardHeader>
                                                 <CardTitle className="text-xl group-hover:text-accent transition-colors">{service.title}</CardTitle>
