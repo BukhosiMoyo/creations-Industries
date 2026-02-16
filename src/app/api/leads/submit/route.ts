@@ -30,7 +30,7 @@ function mapServiceType(category: string | undefined, slug: string | undefined):
         case "Bookkeeping Services": return "Bookkeeping"
         case "Company & CIPC Services": return "CIPC"
         case "Compliance & Registrations": return "Compliance"
-        case "Shelf Companies": return "ShelfCompany" // Singular
+        case "Shelf Companies": return "ShelfCompany"
         default: return "Other"
     }
 }
@@ -63,7 +63,9 @@ export async function POST(req: Request) {
         const serviceType = mapServiceType(category, serviceSlug)
 
         // 3. Find or Create Client Company
-        const companyName = lead.companyName || `${lead.fullName} (Personal)`
+        // Check businessDetails first for company name
+        const submittedCompanyName = businessDetails?.companyName
+        const companyName = submittedCompanyName || lead.companyName || `${lead.fullName} (Personal)`
 
         // Resolve address from location enum/text
         // @ts-ignore

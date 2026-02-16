@@ -174,6 +174,7 @@ function ReactiveLine({
             y2={y2}
             stroke={strokeColor}
             strokeWidth={1}
+            initial={{ strokeOpacity: baseOpacity }}
             animate={{
                 strokeOpacity: opacity,
             }}

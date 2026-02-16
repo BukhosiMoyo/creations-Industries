@@ -99,7 +99,7 @@ export async function POST(req: Request) {
             referenceId
         })
 
-    } catch (error: any) {
+    } catch (error) {
         console.error("Draft Lead Error:", error)
         return NextResponse.json({ error: "Internal Server Error" }, { status: 500 })
     }

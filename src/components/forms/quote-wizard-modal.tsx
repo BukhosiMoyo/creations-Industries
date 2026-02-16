@@ -459,9 +459,17 @@ function Step1Contact({ onSubmit, isLoading, initialData }: any) {
     })
     const schema = z.object(schemaObj)
 
+    // Prepare default values
+    const defaultValues = {
+        ...initialData,
+        city: initialData?.city || "",   // Force user to select
+        urgency: initialData?.urgency || "", // Force user to select
+        existingClient: initialData?.existingClient || "no"
+    }
+
     const { register, handleSubmit, formState: { errors } } = useForm({
         resolver: zodResolver(schema),
-        defaultValues: initialData
+        defaultValues
     })
 
     return (
