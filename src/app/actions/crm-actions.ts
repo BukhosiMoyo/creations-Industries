@@ -7,6 +7,8 @@ import { getSession } from "@/lib/rbac"
 
 // --- LEAD ACTIONS ---
 
+import { trackServerEvent } from "@/app/actions/analytics"
+
 export async function updateLeadStatus(leadId: string, status: LeadStatus) {
     const session = await getSession()
     if (!session) throw new Error("Unauthorized")
@@ -26,6 +28,13 @@ export async function updateLeadStatus(leadId: string, status: LeadStatus) {
         data: { status }
     })
 
+    await trackServerEvent({
+        eventType: "LEAD_STAGE_CHANGED",
+        leadId,
+        userId: session.user.id,
+        metadata: { status }
+    })
+
     revalidatePath(`/dashboard/leads/${leadId}`)
     revalidatePath("/dashboard/leads")
 }
@@ -39,15 +48,40 @@ export async function assignLead(leadId: string, userId: string) {
         data: { assignedToUserId: userId }
     })
 
+    await trackServerEvent({
+        eventType: "LEAD_ASSIGNED",
+        leadId,
+        userId: session.user.id,
+        metadata: { assignedToUserId: userId }
+    })
+
     revalidatePath(`/dashboard/leads/${leadId}`)
     revalidatePath("/dashboard/leads")
 }
 
 // --- REQUEST ACTIONS ---
 
+import { sendEmail } from "@/lib/email/send-email"
+
 export async function updateRequestStatus(requestId: string, status: RequestStatus) {
     const session = await getSession()
     if (!session) throw new Error("Unauthorized")
+
+    // Fetch existing request to get company details for email
+    const request = await prisma.serviceRequest.findUnique({
+        where: { id: requestId },
+        include: {
+            company: {
+                include: {
+                    contacts: {
+                        where: { isPrimary: true }
+                    }
+                }
+            }
+        }
+    })
+
+    if (!request) throw new Error("Request not found")
 
     await prisma.serviceRequest.update({
         where: { id: requestId },
@@ -63,6 +97,42 @@ export async function updateRequestStatus(requestId: string, status: RequestStat
             actionSummary: `Changed status to ${status}`
         }
     })
+
+    await trackServerEvent({
+        eventType: status === RequestStatus.Completed ? "REQUEST_COMPLETED" : "REQUEST_STAGE_CHANGED",
+        requestId,
+        userId: session.user.id,
+        metadata: { status }
+    })
+
+    // Send Notification Emails
+    const primaryContact = request.company.contacts[0]
+    if (primaryContact && primaryContact.email) {
+        if (status === RequestStatus.AwaitingDocs) {
+            await sendEmail({
+                key: "request.docs-needed.client",
+                to: primaryContact.email,
+                props: {
+                    serviceType: request.serviceType.replace(/([A-Z])/g, ' $1').trim(),
+                    portalUrl: `${process.env.NEXT_PUBLIC_APP_URL}/portal/requests/${requestId}`
+                },
+                relatedCompanyId: request.companyId,
+                relatedServiceRequestId: requestId
+            })
+        } else if (status === RequestStatus.Completed) {
+            await sendEmail({
+                key: "request.completed.client",
+                to: primaryContact.email,
+                props: {
+                    serviceType: request.serviceType.replace(/([A-Z])/g, ' $1').trim(),
+                    brandName: "Creations",
+                    portalUrl: `${process.env.NEXT_PUBLIC_APP_URL}/portal/requests/${requestId}`
+                },
+                relatedCompanyId: request.companyId,
+                relatedServiceRequestId: requestId
+            })
+        }
+    }
 
     revalidatePath(`/dashboard/requests/${requestId}`)
     revalidatePath("/dashboard/pipeline")
@@ -172,6 +242,14 @@ export async function convertLeadToRequest(leadId: string) {
             actionType: "CONVERSION",
             actionSummary: `Converted from Lead ${lead.referenceId}`
         }
+    })
+
+    await trackServerEvent({
+        eventType: "LEAD_CONVERTED_TO_REQUEST",
+        leadId,
+        requestId: request.id,
+        userId: session.user.id,
+        metadata: { companyId: company.id }
     })
 
     revalidatePath(`/dashboard/leads/${leadId}`)

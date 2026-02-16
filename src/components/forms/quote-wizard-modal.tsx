@@ -27,6 +27,7 @@ import {
     ServiceCategories,
     FieldDefinition
 } from "@/lib/quote-catalog"
+import { trackEvent } from "@/lib/analytics"
 
 // -----------------------------------------------------------------------------
 // TYPES & STATE
@@ -155,6 +156,37 @@ export function QuoteWizardModal({ isOpen, onClose }: { isOpen: boolean, onClose
     const currentService = SERVICE_CATALOG.find(s => s.slug === state.currentServiceSlug)
     const requiredDocs = currentService?.requiredDocs || []
 
+    // -- Analytics --
+
+    // Track Modal Open
+    React.useEffect(() => {
+        if (isOpen) {
+            trackEvent({ eventType: "QUOTE_MODAL_OPENED" })
+        } else {
+            // If closed while not success (step 6), track abandon
+            if (state.step < 6) {
+                trackEvent({
+                    eventType: "QUOTE_ABANDONED",
+                    stepIndex: state.step
+                })
+            }
+        }
+    }, [isOpen])
+
+    // Track Step Views
+    React.useEffect(() => {
+        if (isOpen) {
+            trackEvent({
+                eventType: "QUOTE_STEP_VIEWED",
+                stepIndex: state.step,
+                metadata: {
+                    serviceSlug: state.currentServiceSlug,
+                    category: state.currentCategory
+                }
+            })
+        }
+    }, [state.step, isOpen])
+
     // -- API Handlers --
 
     async function handleContactSubmit(data: any) {
@@ -164,8 +196,7 @@ export function QuoteWizardModal({ isOpen, onClose }: { isOpen: boolean, onClose
                 method: "POST",
                 body: JSON.stringify({
                     ...data,
-                    services: state.services, // Send existing if any
-                    // Temporary current selection
+                    services: state.services,
                     category: state.currentCategory,
                     serviceSlug: state.currentServiceSlug
                 })
@@ -173,8 +204,8 @@ export function QuoteWizardModal({ isOpen, onClose }: { isOpen: boolean, onClose
             const json = await res.json()
 
             if (json.success) {
+                trackEvent({ eventType: "QUOTE_STEP_COMPLETED", stepIndex: 1 })
                 // Determine next step
-                // If service is already selected (prefilled), skip Step 2 -> Go to Step 3
                 const nextStep = state.currentServiceSlug ? 3 : 2
 
                 setState(prev => ({
@@ -209,6 +240,12 @@ export function QuoteWizardModal({ isOpen, onClose }: { isOpen: boolean, onClose
                 })
             }
 
+            trackEvent({
+                eventType: "QUOTE_STEP_COMPLETED",
+                stepIndex: 2,
+                metadata: { category, slug }
+            })
+
             setState(prev => ({
                 ...prev,
                 currentCategory: category,
@@ -240,13 +277,14 @@ export function QuoteWizardModal({ isOpen, onClose }: { isOpen: boolean, onClose
             // Check Docs
             const hasDocs = (SERVICE_CATALOG.find(s => s.slug === state.currentServiceSlug)?.requiredDocs?.length || 0) > 0
 
+            trackEvent({ eventType: "QUOTE_STEP_COMPLETED", stepIndex: 3 })
+
             setState(prev => {
                 const newState = {
                     ...prev,
                     currentDetails: data,
                 }
 
-                // If NO docs, we effectively "finish" this service add
                 if (!hasDocs) {
                     return completeServiceSelection(newState)
                 }
@@ -260,8 +298,6 @@ export function QuoteWizardModal({ isOpen, onClose }: { isOpen: boolean, onClose
             console.error(err)
             setIsLoading(false)
         } finally {
-            // Note: If going to step 4, loading ends. 
-            // If completing service, completeServiceSelection doesn't do async, so safe to end loading.
             setIsLoading(false)
         }
     }
@@ -278,7 +314,6 @@ export function QuoteWizardModal({ isOpen, onClose }: { isOpen: boolean, onClose
         return {
             ...currentState,
             services: [...currentState.services, newService],
-            // Reset current
             currentCategory: undefined,
             currentServiceSlug: undefined,
             currentDetails: undefined,
@@ -287,7 +322,7 @@ export function QuoteWizardModal({ isOpen, onClose }: { isOpen: boolean, onClose
     }
 
     function handleDocsSubmit() {
-        // Docs acknowledged for current service
+        trackEvent({ eventType: "QUOTE_STEP_COMPLETED", stepIndex: 4 })
         setState(prev => completeServiceSelection(prev))
     }
 
@@ -305,6 +340,7 @@ export function QuoteWizardModal({ isOpen, onClose }: { isOpen: boolean, onClose
             })
             const json = await res.json()
             if (json.success) {
+                trackEvent({ eventType: "QUOTE_SUBMITTED" })
                 setState(prev => ({
                     ...prev,
                     step: 6,
@@ -321,14 +357,13 @@ export function QuoteWizardModal({ isOpen, onClose }: { isOpen: boolean, onClose
 
     // -- Change Service Handler --
     const handleChangeService = () => {
-        // Reset service selection and go to Step 2 (Service Selection)
         setState(prev => ({
             ...prev,
             currentCategory: undefined,
             currentServiceSlug: undefined,
             step: 2
         }))
-        setIsContextAware(false) // User manually opted out of context
+        setIsContextAware(false)
     }
 
     // -- Render --
@@ -411,7 +446,6 @@ export function QuoteWizardModal({ isOpen, onClose }: { isOpen: boolean, onClose
                 {/* Mobile Header (Step Indicator) */}
                 <div className="md:hidden bg-muted/30 border-b border-border p-4 flex items-center justify-between">
                     <Link href="/" onClick={onClose} className="flex items-center">
-                        {/* Compact Logo for Mobile */}
                         <span className="font-bold text-lg">Creations</span>
                     </Link>
                     <div className="text-sm font-medium text-muted-foreground">
@@ -446,7 +480,6 @@ export function QuoteWizardModal({ isOpen, onClose }: { isOpen: boolean, onClose
                                 onSubmit={handleDetailsSubmit}
                                 onBack={() => {
                                     if (state.currentServiceSlug && state.step === 3) {
-                                        // If we skipped step 2, back goes to step 1
                                         setState(prev => ({ ...prev, step: 1 }))
                                     } else {
                                         setState(prev => ({ ...prev, step: 2 }))

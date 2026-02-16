@@ -53,6 +53,7 @@ model User {
   // v1.0 Tenancy
   workspaceId      String?
   workspace        Workspace?       @relation(fields: [workspaceId], references: [id])
+  analyticsEvents  AnalyticsEvent[]
 }
 
 model Workspace {
@@ -213,6 +214,7 @@ model ServiceRequest {
   documents   Document[]
   activities  ActivityLog[]
   emailEvents EmailEvent[]
+  analyticsEvents AnalyticsEvent[]
 }
 
 enum TaskStatus {
@@ -467,6 +469,7 @@ model Lead {
 
   // legacy relations
   outreachEvents OutreachEvent[]
+  analyticsEvents AnalyticsEvent[]
 }
 
 model LeadPersona {
@@ -970,4 +973,80 @@ model OutreachEvent {
   campaign Campaign?     @relation(fields: [campaignId], references: [id])
   step     CampaignStep? @relation(fields: [stepId], references: [id])
   lead     Lead          @relation(fields: [leadId], references: [id], onDelete: Cascade)
+}
+
+// -----------------------------------------------------------------------------
+// ANALYTICS MODELS (PROMPT 6)
+// -----------------------------------------------------------------------------
+
+enum AnalyticsEventType {
+  // Quote Funnel
+  QUOTE_MODAL_OPENED
+  QUOTE_STEP_VIEWED
+  QUOTE_STEP_COMPLETED
+  QUOTE_VALIDATION_ERROR
+  QUOTE_ABANDONED
+  QUOTE_SUBMITTED
+
+  // Account Conversion
+  ACCOUNT_PROMPT_SHOWN
+  ACCOUNT_CREATED_FROM_QUOTE
+  ACCOUNT_SKIPPED
+  ACCOUNT_INVITE_CLICKED
+
+  // Lead -> Request
+  LEAD_CREATED
+  LEAD_CONVERTED_TO_REQUEST
+  LEAD_ASSIGNED
+  LEAD_STAGE_CHANGED
+
+  // Request Lifecycle
+  REQUEST_STAGE_CHANGED
+  REQUEST_COMPLETED
+
+  // Documents
+  DOCUMENT_UPLOAD_STARTED
+  DOCUMENT_UPLOAD_SUCCEEDED
+  DOCUMENT_UPLOAD_FAILED
+
+  // Other
+  PAGE_VIEW
+  CTA_CLICKED
+}
+
+model AnalyticsEvent {
+  id            String             @id @default(cuid())
+  createdAt     DateTime           @default(now())
+  
+  // Identity
+  sessionId     String             // Anonymous session ID (hashed/cookie)
+  userId        String?            // If authenticated
+  leadId        String?            // If linked to a lead
+  requestId     String?            // If linked to a request
+  
+  // Event Details
+  eventType     AnalyticsEventType
+  pagePath      String
+  referrer      String?
+  
+  // Attribution
+  utmSource     String?
+  utmMedium     String?
+  utmCampaign   String?
+  
+  // Context
+  serviceSlug   String?
+  categorySlug  String?
+  locationSlug  String?
+  stepIndex     Int?
+  
+  // Metadata
+  metadata      Json?              // Flexible for errors, field names, etc.
+
+  // Relations (Optional but helpful for data integrity if we want foreign keys)
+  // For high-volume analytics, sticking to loose linking (just IDs) is often faster/safer
+  // but for this CRM scale, FKs are fine and useful.
+  user          User?              @relation(fields: [userId], references: [id])
+  lead          Lead?              @relation(fields: [leadId], references: [id])
+  request       ServiceRequest?    @relation(fields: [requestId], references: [id])
 }
