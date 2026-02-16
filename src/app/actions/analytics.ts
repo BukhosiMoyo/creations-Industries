@@ -54,7 +54,6 @@ export async function trackServerEvent(props: TrackServerEventProps) {
         // Fail silently
     }
 }
-}
 
 // --- RETRIEVAL ---
 
@@ -130,7 +129,7 @@ export async function getAnalyticsMetrics(days = 30) {
             WHERE "createdAt" >= ${startDate}
             GROUP BY DATE("createdAt")
             ORDER BY DATE("createdAt") ASC
-        `
+        ` as Promise<any[]>
     ])
 
     return {
