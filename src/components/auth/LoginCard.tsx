@@ -12,6 +12,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Separator } from "@/components/ui/separator";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
+import { toast } from "sonner";
 
 export function LoginCard() {
     const router = useRouter();
@@ -32,15 +33,17 @@ export function LoginCard() {
             });
 
             if (result?.error) {
-                // Handle error (could show toast or alert)
                 console.error("Login failed:", result.error);
+                toast.error("Invalid credentials. Please check your email and password.");
+                setIsLoading(false); // Ensure loading stops
             } else {
-                router.push("/dashboard"); // Redirect to dashboard after login
+                toast.success("Login successful! Redirecting...");
+                router.push("/dashboard");
                 router.refresh();
             }
         } catch (error) {
             console.error("Login error:", error);
-        } finally {
+            toast.error("An unexpected error occurred. Please try again.");
             setIsLoading(false);
         }
     };
