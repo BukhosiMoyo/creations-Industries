@@ -35,7 +35,9 @@ export function QuoteProvider({ children }: { children: React.ReactNode }) {
     return (
         <QuoteContext.Provider value={{ openQuoteWizard, closeQuoteWizard, isOpen }}>
             {children}
-            <QuoteWizardModal isOpen={isOpen} onClose={closeQuoteWizard} />
+            <Suspense fallback={null}>
+                <QuoteWizardModal isOpen={isOpen} onClose={closeQuoteWizard} />
+            </Suspense>
             <Suspense fallback={null}>
                 <QuoteAutoOpener />
             </Suspense>
