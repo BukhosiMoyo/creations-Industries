@@ -3,6 +3,7 @@
 import * as React from "react"
 import { useSearchParams } from "next/navigation"
 import { QuoteWizardModal } from "@/components/forms/quote-wizard-modal"
+import { Suspense } from "react"
 
 interface QuoteContextType {
     openQuoteWizard: () => void
@@ -12,24 +13,32 @@ interface QuoteContextType {
 
 const QuoteContext = React.createContext<QuoteContextType | undefined>(undefined)
 
-export function QuoteProvider({ children }: { children: React.ReactNode }) {
-    const [isOpen, setIsOpen] = React.useState(false)
+function QuoteAutoOpener() {
     const searchParams = useSearchParams()
+    const { openQuoteWizard } = useQuote()
 
-    // Auto-open if ?quote=true (optional feature, useful for external links)
     React.useEffect(() => {
         if (searchParams.get("quote") === "true") {
-            setIsOpen(true)
+            openQuoteWizard()
         }
-    }, [searchParams])
+    }, [searchParams, openQuoteWizard])
 
-    const openQuoteWizard = () => setIsOpen(true)
-    const closeQuoteWizard = () => setIsOpen(false)
+    return null
+}
+
+export function QuoteProvider({ children }: { children: React.ReactNode }) {
+    const [isOpen, setIsOpen] = React.useState(false)
+
+    const openQuoteWizard = React.useCallback(() => setIsOpen(true), [])
+    const closeQuoteWizard = React.useCallback(() => setIsOpen(false), [])
 
     return (
         <QuoteContext.Provider value={{ openQuoteWizard, closeQuoteWizard, isOpen }}>
             {children}
             <QuoteWizardModal isOpen={isOpen} onClose={closeQuoteWizard} />
+            <Suspense fallback={null}>
+                <QuoteAutoOpener />
+            </Suspense>
         </QuoteContext.Provider>
     )
 }
