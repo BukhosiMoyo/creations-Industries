@@ -19,6 +19,7 @@ import { GoogleAnalytics } from "@/components/analytics/google-analytics";
 import { GA_MEASUREMENT_ID } from "@/lib/analytics";
 import { QuoteProvider } from "@/components/providers/quote-provider";
 import { Toaster } from "@/components/ui/toaster";
+import { Providers } from "@/components/providers/root-providers";
 
 export const metadata = constructMetadata();
 
@@ -37,21 +38,13 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-text-primary`}
       >
         <GoogleAnalytics GA_MEASUREMENT_ID={GA_MEASUREMENT_ID} />
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
+        <Providers>
           <Suspense fallback={null}>
-            <QuoteProvider>
-              <div className="relative flex min-h-screen flex-col">
-                {children}
-              </div>
-              <Toaster />
-            </QuoteProvider>
+            <div className="relative flex min-h-screen flex-col">
+              {children}
+            </div>
           </Suspense>
-        </ThemeProvider>
+        </Providers>
       </body>
     </html>
   );

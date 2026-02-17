@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, use } from "react"
 import { useRouter } from "next/navigation"
 import { useSession } from "next-auth/react"
 import { ArrowLeft, Save, RotateCcw, Send, AlertTriangle, RefreshCw } from "lucide-react"
@@ -15,11 +15,11 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { toast } from "@/components/ui/use-toast"
 
-import { getEmailTemplate, updateEmailTemplate, resetEmailTemplate, sendTestEmail } from "@/app/actions/email-template-actions"
+import { getEmailTemplate, updateEmailTemplate, resetEmailTemplate, sendTestEmail, renderEmailPreview } from "@/app/actions/email-template-actions"
 import { EMAIL_TEMPLATE_CONFIG } from "@/lib/email/template-config"
 
-export default function EditTemplatePage({ params }: { params: { key: string } }) {
-    const { key } = params
+export default function EditTemplatePage({ params }: { params: Promise<{ key: string }> }) {
+    const { key } = use(params)
     const router = useRouter()
     const { data: session } = useSession()
 
@@ -35,12 +35,23 @@ export default function EditTemplatePage({ params }: { params: { key: string } }
     const [bodyFields, setBodyFields] = useState<Record<string, string>>({})
 
     // Test Send State
+    const [activeTab, setActiveTab] = useState("editor")
+    const [previewHtml, setPreviewHtml] = useState<string | null>(null)
+    const [previewLoading, setPreviewLoading] = useState(false)
+
+    // Test Send State
     const [testEmail, setTestEmail] = useState("")
     const [testContext, setTestContext] = useState("GENERIC")
 
     useEffect(() => {
         loadTemplate()
     }, [key])
+
+    useEffect(() => {
+        if (activeTab === "preview") {
+            loadPreview()
+        }
+    }, [activeTab, bodyFields])
 
     const loadTemplate = async () => {
         setLoading(true)
@@ -53,17 +64,29 @@ export default function EditTemplatePage({ params }: { params: { key: string } }
                 setSubject(data.subject || "")
                 setBodyFields(data.body as Record<string, string> || {})
             } else {
-                // If no override, leaving empty means "use default" effectively if we tracked that,
-                // but for editing we might want to show placeholders? 
-                // Currently defaults are in code, so we can't easily fetch them to show as "current value" 
-                // without rendering the template. 
-                // For this MVP, empty input means "Default".
+                // Default handling
             }
         } catch (error) {
             console.error(error)
             toast({ title: "Error loading template", variant: "destructive" })
         } finally {
             setLoading(false)
+        }
+    }
+
+    const loadPreview = async () => {
+        setPreviewLoading(true)
+        try {
+            const res = await renderEmailPreview(key, bodyFields, testContext)
+            // @ts-ignore
+            if (res.success) {
+                // @ts-ignore
+                setPreviewHtml(res.html)
+            }
+        } catch (error) {
+            console.error(error)
+        } finally {
+            setPreviewLoading(false)
         }
     }
 
@@ -74,8 +97,8 @@ export default function EditTemplatePage({ params }: { params: { key: string } }
                 subject,
                 body: bodyFields
             })
-            toast({ title: "Template saved successfully", variant: "default" }) // Use success variant if available
-            loadTemplate() // Reload to get updated timestamps
+            toast({ title: "Template saved successfully", variant: "default" })
+            loadTemplate()
         } catch (error) {
             toast({ title: "Failed to save", variant: "destructive" })
         } finally {
@@ -120,7 +143,12 @@ export default function EditTemplatePage({ params }: { params: { key: string } }
         }
     }
 
+    // ... existing loadTemplate, handleSave, handleReset, handleTestSend ...
+
+    // (Note: ensure renderEmailPreview is imported)
+
     if (!config) {
+        // ... existing error state
         return (
             <div className="p-10 text-center">
                 <h2 className="text-xl font-bold">Template Not Found</h2>
@@ -132,7 +160,7 @@ export default function EditTemplatePage({ params }: { params: { key: string } }
 
     return (
         <div className="max-w-5xl mx-auto pb-20 space-y-8">
-            {/* Header */}
+            {/* Header ... */}
             <div className="flex items-center justify-between">
                 <div className="space-y-1">
                     <div className="flex items-center gap-2 text-muted-foreground mb-2">
@@ -166,58 +194,96 @@ export default function EditTemplatePage({ params }: { params: { key: string } }
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                {/* Editor Column */}
+                {/* Main Column */}
                 <div className="lg:col-span-2 space-y-6">
-                    <Card>
-                        <CardHeader>
-                            <CardTitle>Content Editor</CardTitle>
-                            <CardDescription>
-                                Edit the text content of this email. Design and layout are locked.
-                            </CardDescription>
-                        </CardHeader>
-                        <CardContent className="space-y-6">
-                            <div className="space-y-2">
-                                <Label htmlFor="subject">Subject Line</Label>
-                                <Input
-                                    id="subject"
-                                    value={subject}
-                                    onChange={(e) => setSubject(e.target.value)}
-                                    placeholder="Default Subject used if empty"
-                                />
-                                <p className="text-xs text-muted-foreground">
-                                    Available variables: {config.variables.map(v => `{{${v}}}`).join(", ")}
-                                </p>
-                            </div>
+                    <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
+                        <TabsList className="grid w-full grid-cols-2 mb-6">
+                            <TabsTrigger value="editor">Editor</TabsTrigger>
+                            <TabsTrigger value="preview">Preview</TabsTrigger>
+                        </TabsList>
 
-                            <div className="border-t pt-4">
-                                <h3 className="text-sm font-semibold mb-4">Body Blocks</h3>
-                                {config.editableFields.length > 0 ? (
-                                    <div className="space-y-4">
-                                        {config.editableFields.map((field) => (
-                                            <div key={field} className="space-y-2">
-                                                <Label htmlFor={field} className="capitalize">{field.replace(/([A-Z])/g, ' $1').trim()}</Label>
-                                                <Textarea
-                                                    id={field}
-                                                    value={bodyFields[field] || ""}
-                                                    onChange={(e) => setBodyFields(prev => ({ ...prev, [field]: e.target.value }))}
-                                                    placeholder={`Default ${field} text...`}
-                                                    rows={4}
-                                                />
-                                            </div>
-                                        ))}
+                        <TabsContent value="editor">
+                            <Card>
+                                <CardHeader>
+                                    <CardTitle>Content Editor</CardTitle>
+                                    <CardDescription>
+                                        Edit the text content of this email. Design and layout are locked.
+                                    </CardDescription>
+                                </CardHeader>
+                                <CardContent className="space-y-6">
+                                    <div className="space-y-2">
+                                        <Label htmlFor="subject">Subject Line</Label>
+                                        <Input
+                                            id="subject"
+                                            value={subject}
+                                            onChange={(e) => setSubject(e.target.value)}
+                                            placeholder="Default Subject used if empty"
+                                        />
+                                        <p className="text-xs text-muted-foreground">
+                                            Available variables: {config.variables.map(v => `{{${v}}}`).join(", ")}
+                                        </p>
                                     </div>
-                                ) : (
-                                    <Alert>
-                                        <AlertTriangle className="h-4 w-4" />
-                                        <AlertTitle>No Editable Blocks</AlertTitle>
-                                        <AlertDescription>
-                                            This template does not have any editable text blocks defined. You can still modify the subject line.
-                                        </AlertDescription>
-                                    </Alert>
-                                )}
-                            </div>
-                        </CardContent>
-                    </Card>
+
+                                    <div className="border-t pt-4">
+                                        <h3 className="text-sm font-semibold mb-4">Body Blocks</h3>
+                                        {config.editableFields.length > 0 ? (
+                                            <div className="space-y-4">
+                                                {config.editableFields.map((field) => (
+                                                    <div key={field} className="space-y-2">
+                                                        <Label htmlFor={field} className="capitalize">{field.replace(/([A-Z])/g, ' $1').trim()}</Label>
+                                                        <Textarea
+                                                            id={field}
+                                                            value={bodyFields[field] || ""}
+                                                            onChange={(e) => setBodyFields(prev => ({ ...prev, [field]: e.target.value }))}
+                                                            placeholder={`Default ${field} text...`}
+                                                            rows={4}
+                                                        />
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        ) : (
+                                            <Alert>
+                                                <AlertTriangle className="h-4 w-4" />
+                                                <AlertTitle>No Editable Blocks</AlertTitle>
+                                                <AlertDescription>
+                                                    This template does not have any editable text blocks defined. You can still modify the subject line.
+                                                </AlertDescription>
+                                            </Alert>
+                                        )}
+                                    </div>
+                                </CardContent>
+                            </Card>
+                        </TabsContent>
+
+                        <TabsContent value="preview">
+                            <Card className="h-[800px] flex flex-col">
+                                <CardHeader className="pb-3">
+                                    <CardTitle>Live Preview</CardTitle>
+                                    <CardDescription>
+                                        Visual representation with current edits. Content is mocked.
+                                    </CardDescription>
+                                </CardHeader>
+                                <CardContent className="flex-1 p-0 overflow-hidden bg-white rounded-b-lg border-t">
+                                    {previewLoading ? (
+                                        <div className="h-full flex flex-col items-center justify-center text-muted-foreground gap-2">
+                                            <RefreshCw className="h-8 w-8 animate-spin" />
+                                            <span className="text-sm">Rendering preview...</span>
+                                        </div>
+                                    ) : previewHtml ? (
+                                        <iframe
+                                            srcDoc={previewHtml}
+                                            className="w-full h-full border-0"
+                                            title="Email Preview"
+                                        />
+                                    ) : (
+                                        <div className="h-full flex items-center justify-center text-muted-foreground">
+                                            No preview available.
+                                        </div>
+                                    )}
+                                </CardContent>
+                            </Card>
+                        </TabsContent>
+                    </Tabs>
                 </div>
 
                 {/* Sidebar Column */}

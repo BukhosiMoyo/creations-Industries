@@ -12,17 +12,31 @@ export const RequestCreatedClient = ({
     serviceType = "{{serviceType}}",
     requestId = "{{requestId}}",
     portalUrl = "{{portalUrl}}",
-}: RequestCreatedClientProps) => {
+    // Editable props
+    confirmationText,
+    expectations
+}: RequestCreatedClientProps & {
+    confirmationText?: string;
+    expectations?: string;
+}) => {
     return (
         <EmailLayout preview="Your request has been received.">
             <Heading className="text-black text-[24px] font-normal text-center p-0 my-[30px] mx-0">
                 Request received: {serviceType}
             </Heading>
+
             <Text className="text-black text-[14px] leading-[24px]">
-                We have received your new request for <strong>{serviceType}</strong>.
+                {confirmationText || `We have received your new request for ${serviceType}.`}
                 <br />
                 Reference ID: {requestId}
             </Text>
+
+            {expectations && (
+                <Text className="text-black text-[14px] leading-[24px] whitespace-pre-wrap">
+                    {expectations}
+                </Text>
+            )}
+
             <Section className="text-center mt-[32px] mb-[32px]">
                 <Button
                     className="bg-[#000000] rounded text-white text-[12px] font-semibold no-underline text-center px-5 py-3"

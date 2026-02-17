@@ -33,8 +33,8 @@ const navigation = [
     { name: "Invoices", href: "/dashboard/invoices", icon: Receipt, roles: ["ADMIN", "STAFF"] },
     { name: "Campaigns", href: "/dashboard/campaigns", icon: Megaphone, roles: ["ADMIN", "STAFF"] },
     { name: "Service Requests", href: "/dashboard/requests", icon: Briefcase, roles: ["ADMIN", "STAFF", "EMPLOYEE"] },
-    { name: "Tasks", href: "/dashboard/tasks", icon: CheckSquare, badge: 3, roles: ["ADMIN", "STAFF", "EMPLOYEE"] },
-    { name: "Documents", href: "/dashboard/documents", icon: FileText, badge: 12, roles: ["ADMIN", "STAFF", "EMPLOYEE"] },
+    { name: "Tasks", href: "/dashboard/tasks", icon: CheckSquare, roles: ["ADMIN", "STAFF", "EMPLOYEE"] },
+    { name: "Documents", href: "/dashboard/documents", icon: FileText, roles: ["ADMIN", "STAFF", "EMPLOYEE"] },
     { type: "separator" },
     { name: "Team", href: "/dashboard/users", icon: Users, roles: ["ADMIN"] },
     { name: "Reports", href: "/dashboard/reports", icon: BarChart3, disabled: true, roles: ["ADMIN", "STAFF"] },
@@ -126,8 +126,8 @@ export function DashboardSidebar({ user, counts }: DashboardSidebarProps) {
                     let badgeCount = navItem.badge
                     if (navItem.name === "Leads") badgeCount = counts?.leads
                     if (navItem.name === "Service Requests") badgeCount = counts?.requests
-                    if (navItem.name === "Tasks") badgeCount = counts?.tasks || navItem.badge // fallback to hardcoded if needed or 0
-                    if (navItem.name === "Documents") badgeCount = counts?.documents || navItem.badge
+                    if (navItem.name === "Tasks") badgeCount = counts?.tasks
+                    if (navItem.name === "Documents") badgeCount = counts?.documents
 
                     return (
                         <Link

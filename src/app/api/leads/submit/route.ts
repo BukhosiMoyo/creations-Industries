@@ -110,10 +110,12 @@ Details: ${JSON.stringify(service.details || {}, null, 2)}
         }
 
         // 5. Update Lead Status
+        // User requested that leads stay in "New Leads" even if they generate service requests.
+        // We update metadata but keep status as "New" (or whatever it was) instead of "Converted".
         await prisma.lead.update({
             where: { id: leadId },
             data: {
-                status: "Converted",
+                // status: "Converted", // Commented out to prevent hiding from Leads dashboard
                 metadata: {
                     ...metadata,
                     companyId: company.id,
