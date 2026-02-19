@@ -85,7 +85,7 @@ export default function ShelfCompaniesPage() {
         provider: {
             "@type": "Organization",
             name: "Creations",
-            url: "https://creations.co.za"
+            url: "https://creations.africa"
         },
         areaServed: {
             "@type": "Country",
@@ -97,10 +97,10 @@ export default function ShelfCompaniesPage() {
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
         itemListElement: [
-            { "@type": "ListItem", position: 1, name: "Home", item: "https://creations.co.za" },
-            { "@type": "ListItem", position: 2, name: "Services", item: "https://creations.co.za/services" },
-            { "@type": "ListItem", position: 3, name: "Company Services", item: "https://creations.co.za/services/company-services" },
-            { "@type": "ListItem", position: 4, name: "Shelf Companies", item: "https://creations.co.za/services/company-services/shelf-companies" }
+            { "@type": "ListItem", position: 1, name: "Home", item: "https://creations.africa" },
+            { "@type": "ListItem", position: 2, name: "Services", item: "https://creations.africa/services" },
+            { "@type": "ListItem", position: 3, name: "Company Services", item: "https://creations.africa/services/company-services" },
+            { "@type": "ListItem", position: 4, name: "Shelf Companies", item: "https://creations.africa/services/company-services/shelf-companies" }
         ]
     }
 

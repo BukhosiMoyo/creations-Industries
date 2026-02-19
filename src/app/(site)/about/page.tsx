@@ -18,8 +18,8 @@ export default function AboutPage() {
         mainEntity: {
             "@type": "Organization",
             name: "Creations",
-            url: "https://creations.co.za",
-            logo: "https://creations.co.za/logo.png",
+            url: "https://creations.africa",
+            logo: "https://creations.africa/logo.png",
             contactPoint: {
                 "@type": "ContactPoint",
                 telephone: "+27101234567",

@@ -96,7 +96,7 @@ export default function PenaltiesPage() {
         provider: {
             "@type": "Organization",
             name: "Creations",
-            url: "https://creations.co.za"
+            url: "https://creations.africa"
         },
         areaServed: {
             "@type": "Country",
@@ -117,10 +117,10 @@ export default function PenaltiesPage() {
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
         itemListElement: [
-            { "@type": "ListItem", position: 1, name: "Home", item: "https://creations.co.za" },
-            { "@type": "ListItem", position: 2, name: "Services", item: "https://creations.co.za/services" },
-            { "@type": "ListItem", position: 3, name: "Tax Support", item: "https://creations.co.za/services/tax" },
-            { "@type": "ListItem", position: 4, name: "Penalties & Disputes", item: "https://creations.co.za/services/tax/sars-penalties-disputes" }
+            { "@type": "ListItem", position: 1, name: "Home", item: "https://creations.africa" },
+            { "@type": "ListItem", position: 2, name: "Services", item: "https://creations.africa/services" },
+            { "@type": "ListItem", position: 3, name: "Tax Support", item: "https://creations.africa/services/tax" },
+            { "@type": "ListItem", position: 4, name: "Penalties & Disputes", item: "https://creations.africa/services/tax/sars-penalties-disputes" }
         ]
     }
 

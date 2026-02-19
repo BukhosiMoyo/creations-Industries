@@ -68,7 +68,7 @@ export default function PrivacyPage() {
 
                     <h2>7. Contact Us</h2>
                     <p>
-                        If you have questions or comments about this Privacy Policy, please contact us at info@creations.co.za.
+                        If you have questions or comments about this Privacy Policy, please contact us at info@creations.africa.
                     </p>
                 </div>
             </Container>

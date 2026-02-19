@@ -70,11 +70,11 @@ export default function CenturionHubPage() {
             '@type': 'City',
             name: 'Centurion'
         },
-        url: 'https://creations.co.za/locations/centurion',
+        url: 'https://creations.africa/locations/centurion',
         provider: {
             '@type': 'Organization',
             name: 'Creations',
-            url: 'https://creations.co.za'
+            url: 'https://creations.africa'
         }
     }
 

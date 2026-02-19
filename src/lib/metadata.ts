@@ -4,8 +4,8 @@ import { Metadata } from 'next'
 const siteConfig = {
     name: 'Creations',
     description: 'Specialised accounting, tax, and compliance services for South African businesses. We turn complex regulations into simple, actionable steps.',
-    url: 'https://creations.co.za',
-    ogImage: 'https://creations.co.za/og.jpg',
+    url: 'https://creations.africa',
+    ogImage: 'https://creations.africa/og.jpg',
     links: {
         twitter: 'https://twitter.com/creations_sa',
         github: 'https://github.com/creations-sa',

@@ -24,9 +24,9 @@ export default function Home() {
     "@context": "https://schema.org",
     "@type": "AccountingService", // specific subtype of LocalBusiness
     name: "Creations",
-    image: "https://creations.co.za/logo.png",
-    "@id": "https://creations.co.za",
-    url: "https://creations.co.za",
+    image: "https://creations.africa/logo.png",
+    "@id": "https://creations.africa",
+    url: "https://creations.africa",
     telephone: "+27101234567",
     address: {
       "@type": "PostalAddress",

@@ -56,7 +56,7 @@ export default async function BlogPostPage({ params }: PageProps) {
         "@type": "Article",
         headline: post.frontmatter.title,
         description: post.frontmatter.description,
-        image: post.frontmatter.image ? [`https://creations.co.za${post.frontmatter.image}`] : [],
+        image: post.frontmatter.image ? [`https://creations.africa${post.frontmatter.image}`] : [],
         datePublished: post.frontmatter.date,
         author: {
             "@type": "Person",
@@ -67,7 +67,7 @@ export default async function BlogPostPage({ params }: PageProps) {
             name: "Creations Accounting",
             logo: {
                 "@type": "ImageObject",
-                url: "https://creations.co.za/logo.png"
+                url: "https://creations.africa/logo.png"
             }
         }
     }

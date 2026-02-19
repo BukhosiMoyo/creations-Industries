@@ -110,6 +110,11 @@ export function LeadsTable({ data }: LeadsTableProps) {
                         active={currentFilter === "incomplete"}
                         onClick={() => handleStatusFilter("incomplete")}
                     />
+                    <FilterButton
+                        label="Converted"
+                        active={currentFilter === "converted"}
+                        onClick={() => handleStatusFilter("converted")}
+                    />
                 </div>
             </div>
 

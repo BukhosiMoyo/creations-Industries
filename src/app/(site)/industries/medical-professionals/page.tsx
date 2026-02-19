@@ -112,9 +112,9 @@ export default function MedicalIndustryPage() {
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
         itemListElement: [
-            { "@type": "ListItem", position: 1, name: "Home", item: "https://creations.co.za" },
-            { "@type": "ListItem", position: 2, name: "Industries", item: "https://creations.co.za/services" }, // Fallback to services if industries index doesn't exist
-            { "@type": "ListItem", position: 3, name: "Medical", item: "https://creations.co.za/industries/medical-professionals" }
+            { "@type": "ListItem", position: 1, name: "Home", item: "https://creations.africa" },
+            { "@type": "ListItem", position: 2, name: "Industries", item: "https://creations.africa/services" }, // Fallback to services if industries index doesn't exist
+            { "@type": "ListItem", position: 3, name: "Medical", item: "https://creations.africa/industries/medical-professionals" }
         ]
     }
 

@@ -112,9 +112,9 @@ export default function LegalIndustryPage() {
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
         itemListElement: [
-            { "@type": "ListItem", position: 1, name: "Home", item: "https://creations.co.za" },
-            { "@type": "ListItem", position: 2, name: "Industries", item: "https://creations.co.za/services" },
-            { "@type": "ListItem", position: 3, name: "Legal", item: "https://creations.co.za/industries/legal-attorneys" }
+            { "@type": "ListItem", position: 1, name: "Home", item: "https://creations.africa" },
+            { "@type": "ListItem", position: 2, name: "Industries", item: "https://creations.africa/services" },
+            { "@type": "ListItem", position: 3, name: "Legal", item: "https://creations.africa/industries/legal-attorneys" }
         ]
     }
 

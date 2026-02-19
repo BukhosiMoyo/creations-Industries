@@ -104,7 +104,7 @@ export default function PretoriaHubPage() {
         "@context": "https://schema.org",
         "@type": "AccountingService",
         name: "Creations Accounting Pretoria",
-        url: "https://creations.co.za/locations/pretoria",
+        url: "https://creations.africa/locations/pretoria",
         areaServed: {
             "@type": "City",
             name: "Pretoria"
@@ -120,9 +120,9 @@ export default function PretoriaHubPage() {
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
         itemListElement: [
-            { "@type": "ListItem", position: 1, name: "Home", item: "https://creations.co.za" },
-            { "@type": "ListItem", position: 2, name: "Locations", item: "https://creations.co.za/locations" },
-            { "@type": "ListItem", position: 3, name: "Pretoria", item: "https://creations.co.za/locations/pretoria" }
+            { "@type": "ListItem", position: 1, name: "Home", item: "https://creations.africa" },
+            { "@type": "ListItem", position: 2, name: "Locations", item: "https://creations.africa/locations" },
+            { "@type": "ListItem", position: 3, name: "Pretoria", item: "https://creations.africa/locations/pretoria" }
         ]
     }
 

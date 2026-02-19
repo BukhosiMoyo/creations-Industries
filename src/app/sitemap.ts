@@ -4,7 +4,7 @@ import { guides } from '@/lib/guides'
 import { industries } from '@/lib/industries'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-    const baseUrl = 'https://creations.co.za'
+    const baseUrl = 'https://creations.africa'
 
     // 1. Static Pages (Core)
     // 1. Static Pages (Core)

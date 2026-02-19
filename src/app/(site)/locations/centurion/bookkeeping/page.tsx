@@ -53,11 +53,11 @@ export default function CenturionBookkeepingPage() {
             '@type': 'City',
             name: 'Centurion'
         },
-        url: 'https://creations.co.za/locations/centurion/bookkeeping',
+        url: 'https://creations.africa/locations/centurion/bookkeeping',
         provider: {
             '@type': 'Organization',
             name: 'Creations',
-            url: 'https://creations.co.za'
+            url: 'https://creations.africa'
         }
     }
 

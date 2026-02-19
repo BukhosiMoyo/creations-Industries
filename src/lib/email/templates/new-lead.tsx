@@ -67,7 +67,7 @@ export const NewLeadEmail: React.FC<NewLeadEmailProps> = ({
         )}
 
         <div style={{ marginTop: '40px', fontSize: '12px', color: '#666', borderTop: '1px solid #eee', paddingTop: '20px' }}>
-            <p>This lead was submitted securely via creations.co.za.</p>
+            <p>This lead was submitted securely via creations.africa.</p>
         </div>
     </div>
 );

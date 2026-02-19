@@ -17,6 +17,6 @@ export default function robots(): MetadataRoute.Robots {
                 '/auth/', // Auth
             ],
         },
-        sitemap: 'https://creations.co.za/sitemap.xml',
+        sitemap: 'https://creations.africa/sitemap.xml',
     }
 }

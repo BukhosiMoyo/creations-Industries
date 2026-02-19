@@ -100,7 +100,7 @@ export default function MonthlyAccountingPage() {
         provider: {
             "@type": "Organization",
             name: "Creations",
-            url: "https://creations.co.za"
+            url: "https://creations.africa"
         },
         areaServed: {
             "@type": "Country",
@@ -121,10 +121,10 @@ export default function MonthlyAccountingPage() {
         "@context": "https://schema.org",
         "@type": "BreadcrumbList",
         itemListElement: [
-            { "@type": "ListItem", position: 1, name: "Home", item: "https://creations.co.za" },
-            { "@type": "ListItem", position: 2, name: "Services", item: "https://creations.co.za/services" },
-            { "@type": "ListItem", position: 3, name: "Accounting", item: "https://creations.co.za/services/accounting" },
-            { "@type": "ListItem", position: 4, name: "Monthly Accounting", item: "https://creations.co.za/services/accounting/monthly-accounting-services" }
+            { "@type": "ListItem", position: 1, name: "Home", item: "https://creations.africa" },
+            { "@type": "ListItem", position: 2, name: "Services", item: "https://creations.africa/services" },
+            { "@type": "ListItem", position: 3, name: "Accounting", item: "https://creations.africa/services/accounting" },
+            { "@type": "ListItem", position: 4, name: "Monthly Accounting", item: "https://creations.africa/services/accounting/monthly-accounting-services" }
         ]
     }
 

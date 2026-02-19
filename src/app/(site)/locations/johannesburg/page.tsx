@@ -71,11 +71,11 @@ export default function JohannesburgHubPage() {
             '@type': 'City',
             name: 'Johannesburg'
         },
-        url: 'https://creations.co.za/locations/johannesburg',
+        url: 'https://creations.africa/locations/johannesburg',
         provider: {
             '@type': 'Organization',
             name: 'Creations',
-            url: 'https://creations.co.za'
+            url: 'https://creations.africa'
         }
     }
 

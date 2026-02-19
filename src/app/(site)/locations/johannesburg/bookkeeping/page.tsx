@@ -52,7 +52,7 @@ export default function JohannesburgBookkeepingPage() {
         provider: {
             '@type': 'Organization',
             name: 'Creations',
-            url: 'https://creations.co.za'
+            url: 'https://creations.africa'
         }
     }
 

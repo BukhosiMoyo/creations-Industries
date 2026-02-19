@@ -55,7 +55,7 @@ export default function TermsPage() {
 
                     <h2>9. Contact Us</h2>
                     <p>
-                        If you have any questions about these Terms, please contact us at info@creations.co.za.
+                        If you have any questions about these Terms, please contact us at info@creations.africa.
                     </p>
                 </div>
             </Container>

@@ -64,7 +64,7 @@ export default async function ServiceOrPillarPage({ params }: Props) {
             provider: {
                 "@type": "Organization",
                 name: "Creations",
-                url: "https://creations.co.za"
+                url: "https://creations.africa"
             },
             areaServed: {
                 "@type": "Country",
@@ -80,19 +80,19 @@ export default async function ServiceOrPillarPage({ params }: Props) {
                     "@type": "ListItem",
                     position: 1,
                     name: "Home",
-                    item: "https://creations.co.za"
+                    item: "https://creations.africa"
                 },
                 {
                     "@type": "ListItem",
                     position: 2,
                     name: "Services",
-                    item: "https://creations.co.za/services"
+                    item: "https://creations.africa/services"
                 },
                 {
                     "@type": "ListItem",
                     position: 3,
                     name: service.title,
-                    item: `https://creations.co.za/services/${slug}`
+                    item: `https://creations.africa/services/${slug}`
                 }
             ]
         }
@@ -131,7 +131,7 @@ export default async function ServiceOrPillarPage({ params }: Props) {
             provider: {
                 "@type": "Organization",
                 name: "Creations",
-                url: "https://creations.co.za"
+                url: "https://creations.africa"
             },
             areaServed: {
                 "@type": "Country",

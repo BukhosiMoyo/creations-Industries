@@ -34,11 +34,11 @@ export default function CenturionAccountingPage() {
             '@type': 'City',
             name: 'Centurion'
         },
-        url: 'https://creations.co.za/locations/centurion/accounting',
+        url: 'https://creations.africa/locations/centurion/accounting',
         provider: {
             '@type': 'Organization',
             name: 'Creations',
-            url: 'https://creations.co.za'
+            url: 'https://creations.africa'
         }
     }
 
