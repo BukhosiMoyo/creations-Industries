@@ -4,6 +4,7 @@ import { authOptions } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import crypto from "crypto";
 import { UserRole } from "@prisma/client";
+import { sendEmail } from "@/lib/email/send-email";
 
 export async function POST(req: Request) {
     try {
@@ -54,12 +55,30 @@ export async function POST(req: Request) {
             },
         });
 
-        // In a real app, send email here. For now, return the link.
-        const inviteLink = `${process.env.NEXTAUTH_URL}/accept-invite/${token}`;
+        const baseUrl = process.env.NEXT_PUBLIC_APP_URL || process.env.NEXTAUTH_URL || "http://localhost:3000";
+        const inviteLink = `${baseUrl}/accept-invite/${token}`;
+
+        // Send invite email via Resend
+        const emailResult = await sendEmail({
+            key: "auth.finish.setup",
+            to: email,
+            props: {
+                firstName: email.split("@")[0],
+                setupUrl: inviteLink,
+                serviceType: `${role} account`,
+                brandName: "Creations",
+                subject: "You've been invited to join Creations",
+            },
+        });
+
+        if (!emailResult.success) {
+            console.warn("[INVITE_POST] Email send failed, but invite was created:", emailResult.error);
+        }
 
         return NextResponse.json({
             invite,
-            link: inviteLink, // Returned for testing/demo purposes since we don't have email
+            link: inviteLink,
+            emailSent: emailResult.success,
         });
 
     } catch (error) {
@@ -67,3 +86,4 @@ export async function POST(req: Request) {
         return new NextResponse("Internal Error", { status: 500 });
     }
 }
+
