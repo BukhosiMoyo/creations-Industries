@@ -26,7 +26,7 @@ interface AnalyticsData {
         slug: string | null;
         count: number;
     }[];
-    activity: any[];
+    activity: unknown[];
 }
 
 interface AnalyticsDashboardProps {

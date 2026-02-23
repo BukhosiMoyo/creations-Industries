@@ -19,8 +19,18 @@ import { updateCampaignStatus } from "@/lib/campaigns/campaign-service"; // We n
 // The service file isn't marked 'use server' yet.
 
 interface CampaignSettingsProps {
-    campaign: any;
-    profiles: any[];
+    campaign: {
+        id: string;
+        name: string;
+        status: string;
+        goal?: string | null;
+        sendingProfileId?: string | null;
+    };
+    profiles: {
+        id: string;
+        name: string;
+        fromEmail?: string | null;
+    }[];
 }
 
 export function CampaignSettings({ campaign, profiles }: CampaignSettingsProps) {

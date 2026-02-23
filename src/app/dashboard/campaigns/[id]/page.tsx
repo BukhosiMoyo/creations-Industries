@@ -100,6 +100,7 @@ export default async function CampaignDetailPage({ params }: { params: { id: str
                 <TabsContent value="steps" className="space-y-4">
                     <CampaignStepsEditor
                         campaignId={campaign.id}
+                        // eslint-disable-next-line @typescript-eslint/no-explicit-any
                         initialSteps={campaign.steps.map((s: any) => ({
                             id: s.id,
                             subject: s.subject || "",

@@ -23,6 +23,7 @@ export default async function CampaignsPage() {
             </div>
 
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
                 {campaigns.map((campaign: any) => (
                     <CampaignCard key={campaign.id} campaign={campaign} />
                 ))}

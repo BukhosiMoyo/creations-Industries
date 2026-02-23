@@ -10,6 +10,7 @@ import { toast } from "sonner";
 
 export function LeadImportForm() {
     const [isUploading, setIsUploading] = useState(false);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const [result, setResult] = useState<any>(null);
 
     async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -63,7 +64,8 @@ export function LeadImportForm() {
                         {result.errors.length > 0 && (
                             <div className="mt-2 p-2 bg-red-500/10 rounded border border-red-500/20 max-h-32 overflow-y-auto">
                                 <p className="font-bold text-xs text-red-600 mb-1">Errors:</p>
-                                {result.errors.map((e: any, i: number) => (
+                                {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+                                {result.errors.map((e: { row: number, error: string }, i: number) => (
                                     <p key={i} className="text-xs text-red-600/80">Row {e.row}: {e.error}</p>
                                 ))}
                             </div>

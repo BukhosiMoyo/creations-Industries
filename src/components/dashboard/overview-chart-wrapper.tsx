@@ -7,6 +7,7 @@ const OverviewChart = dynamic(() => import("./overview-chart").then(mod => mod.O
     ssr: false
 })
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function OverviewChartWrapper({ data }: { data: any }) {
     return <OverviewChart data={data} />
 }

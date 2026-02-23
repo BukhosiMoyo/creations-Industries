@@ -2,7 +2,7 @@
 
 import * as React from "react"
 import { cn } from "@/lib/utils"
-import { Building2, Briefcase, FileSearch, AlertCircle, Zap, CheckSquare, TrendingUp, TrendingDown, type LucideIcon } from "lucide-react"
+import { Building2, Briefcase, FileSearch, AlertCircle, Zap, CheckSquare, TrendingUp, TrendingDown, Send, Eye, MessageCircle, AlertTriangle, type LucideIcon } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 
 const iconMap: Record<string, LucideIcon> = {
@@ -12,6 +12,10 @@ const iconMap: Record<string, LucideIcon> = {
     AlertCircle,
     Zap,
     CheckSquare,
+    Send,
+    Eye,
+    MessageCircle,
+    AlertTriangle,
 }
 
 interface KPICardProps {

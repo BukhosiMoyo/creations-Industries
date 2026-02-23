@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { FileCode2 } from "lucide-react"
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function JsonViewer({ data, title }: { data: any, title: string }) {
     if (!data || Object.keys(data).length === 0) return null
 

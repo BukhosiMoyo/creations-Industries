@@ -22,6 +22,7 @@ export default async function LeadDetailsPage({ params }: { params: Promise<{ le
 
     if (!lead) notFound()
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const metadata = (lead.metadata as any) || {}
     const { servicesDump, currentDetails, ...otherMeta } = metadata
 
@@ -141,6 +142,7 @@ export default async function LeadDetailsPage({ params }: { params: Promise<{ le
     )
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function InfoItem({ icon: Icon, label, value, copyable, isLink }: any) {
     return (
         <div className="flex items-start gap-3">

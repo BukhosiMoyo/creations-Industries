@@ -45,7 +45,7 @@ export function CampaignStepsEditor({ campaignId, initialSteps }: StepsEditorPro
         setSteps(newSteps);
     };
 
-    const updateStep = (index: number, field: keyof Step, value: any) => {
+    const updateStep = (index: number, field: keyof Step, value: unknown) => {
         const newSteps = [...steps];
         newSteps[index] = { ...newSteps[index], [field]: value };
         setSteps(newSteps);

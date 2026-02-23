@@ -51,6 +51,7 @@ export default function CreateInvoicePage({ clients }: Props) {
     // Form
     const form = useForm<InvoiceFormValues>({
         // Cast resolver to any to avoid strict type mismatch with z.coerce.number()
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         resolver: zodResolver(invoiceSchema) as any,
         defaultValues: {
             dueDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0], // +7 days

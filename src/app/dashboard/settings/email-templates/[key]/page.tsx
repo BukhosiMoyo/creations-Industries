@@ -25,6 +25,7 @@ export default function EditTemplatePage({ params }: { params: Promise<{ key: st
 
     // Config & State
     const config = EMAIL_TEMPLATE_CONFIG[key]
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const [template, setTemplate] = useState<any>(null)
     const [loading, setLoading] = useState(true)
     const [saving, setSaving] = useState(false)
@@ -78,9 +79,8 @@ export default function EditTemplatePage({ params }: { params: Promise<{ key: st
         setPreviewLoading(true)
         try {
             const res = await renderEmailPreview(key, bodyFields, testContext)
-            // @ts-ignore
             if (res.success) {
-                // @ts-ignore
+                // @ts-expect-error: res.html might not be explicitly typed on success
                 setPreviewHtml(res.html)
             }
         } catch (error) {
@@ -130,7 +130,6 @@ export default function EditTemplatePage({ params }: { params: Promise<{ key: st
         setSending(true)
         try {
             const res = await sendTestEmail(key, testEmail, testContext)
-            // @ts-ignore
             if (res.success) {
                 toast({ title: "Test email sent", variant: "default" })
             } else {
@@ -152,7 +151,7 @@ export default function EditTemplatePage({ params }: { params: Promise<{ key: st
         return (
             <div className="p-10 text-center">
                 <h2 className="text-xl font-bold">Template Not Found</h2>
-                <p className="text-muted-foreground">The key "{key}" is not registered in the system configuration.</p>
+                <p className="text-muted-foreground">The key &quot;{key}&quot; is not registered in the system configuration.</p>
                 <Button onClick={() => router.back()} className="mt-4">Go Back</Button>
             </div>
         )

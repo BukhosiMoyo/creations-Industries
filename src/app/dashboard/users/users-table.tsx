@@ -43,6 +43,7 @@ import { User, UserRole, UserStatus } from "@prisma/client"
 
 interface UsersTableProps {
     users: User[]
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     pendingInvites: any[] // TODO: Type this properly if possible, or just use any for now
 }
 
