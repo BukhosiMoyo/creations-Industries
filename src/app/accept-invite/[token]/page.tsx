@@ -4,14 +4,15 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 interface AcceptInvitePageProps {
-    params: {
+    params: Promise<{
         token: string;
-    };
+    }>;
 }
 
 export default async function AcceptInvitePage({ params }: AcceptInvitePageProps) {
+    const { token } = await params;
     const invite = await prisma.invite.findUnique({
-        where: { token: params.token },
+        where: { token },
     });
 
     if (!invite || invite.status !== "PENDING" || invite.expires < new Date()) {
